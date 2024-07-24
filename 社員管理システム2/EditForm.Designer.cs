@@ -1,6 +1,6 @@
 ﻿namespace 社員管理システム2
 {
-    partial class Form3
+    partial class EmployeeEditForm
     {
         /// <summary>
         /// Required designer variable.
@@ -408,7 +408,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "Form3";
             this.Text = "Form3";
-            this.Load += new System.EventHandler(this.Form3_Load);
+            this.Load += new System.EventHandler(this.Edit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

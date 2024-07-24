@@ -1,6 +1,6 @@
 ﻿namespace 社員管理システム2
 {
-    partial class Form4
+    partial class EmployeeAddForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
@@ -47,12 +46,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.label2 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -156,15 +156,6 @@
             this.textBox6.TabIndex = 5;
             this.textBox6.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(183, 560);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(164, 25);
-            this.textBox12.TabIndex = 11;
-            this.textBox12.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
-            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(183, 81);
@@ -256,15 +247,6 @@
             this.label12.Text = "部門";
             this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(183, 520);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(164, 25);
-            this.textBox11.TabIndex = 10;
-            this.textBox11.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
-            // 
             // monthCalendar1
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(185, 261);
@@ -309,17 +291,56 @@
             this.textBox3.Size = new System.Drawing.Size(196, 25);
             this.textBox3.TabIndex = 34;
             // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "社長",
+            "取締役",
+            "支部長",
+            "課長",
+            "SL",
+            "TL",
+            "メンバ",
+            "営業",
+            "事務",
+            "CA"});
+            this.comboBox2.Location = new System.Drawing.Point(182, 561);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(118, 26);
+            this.comboBox2.TabIndex = 58;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "本社",
+            "東京支部",
+            "横浜支部",
+            "札幌支部",
+            "大阪支部",
+            "京都支部",
+            "大宮支部",
+            "千葉支部",
+            "福岡支部",
+            "名古屋支部"});
+            this.comboBox1.Location = new System.Drawing.Point(185, 521);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(115, 26);
+            this.comboBox1.TabIndex = 57;
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1333, 675);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.monthCalendar1);
-            this.Controls.Add(this.textBox11);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -329,7 +350,6 @@
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox12);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label8);
@@ -359,7 +379,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox8;
@@ -369,11 +388,12 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

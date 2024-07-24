@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace 社員管理システム2
 {
-    public partial class Form3 : Form
+    public partial class EmployeeEditForm : Form
     {
-        public Form3()
+        public EmployeeEditForm()
         {
             InitializeComponent();
         }
 
-        private void Form3_Load(object sender, EventArgs e)
+        private void Edit_Load(object sender, EventArgs e)
         {
 
         }
