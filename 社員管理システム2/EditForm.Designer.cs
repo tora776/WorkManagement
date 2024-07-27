@@ -52,11 +52,12 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label9
@@ -110,9 +111,9 @@
             this.label4.Location = new System.Drawing.Point(43, 219);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 22);
+            this.label4.Size = new System.Drawing.Size(192, 33);
             this.label4.TabIndex = 31;
-            this.label4.Text = "Email";
+            this.label4.Text = "メールアドレス";
             // 
             // label5
             // 
@@ -287,7 +288,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(197, 72);
             this.button1.TabIndex = 52;
-            this.button1.Text = "データ更新";
+            this.button1.Text = "更新";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -300,53 +301,15 @@
             this.button2.Text = "キャンセル";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "本社",
-            "東京支部",
-            "横浜支部",
-            "札幌支部",
-            "大阪支部",
-            "京都支部",
-            "大宮支部",
-            "千葉支部",
-            "福岡支部",
-            "名古屋支部"});
-            this.comboBox1.Location = new System.Drawing.Point(182, 350);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(118, 26);
-            this.comboBox1.TabIndex = 54;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "社長",
-            "取締役",
-            "支部長",
-            "課長",
-            "SL",
-            "TL",
-            "メンバ",
-            "営業",
-            "事務",
-            "CA"});
-            this.comboBox2.Location = new System.Drawing.Point(182, 395);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(118, 26);
-            this.comboBox2.TabIndex = 55;
-            // 
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "在籍",
             "退職済"});
-            this.comboBox3.Location = new System.Drawing.Point(182, 445);
+            this.comboBox3.Location = new System.Drawing.Point(181, 444);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(118, 26);
+            this.comboBox3.Size = new System.Drawing.Size(162, 26);
             this.comboBox3.TabIndex = 56;
             // 
             // label13
@@ -371,16 +334,65 @@
             this.label14.TabIndex = 57;
             this.label14.Text = "名";
             // 
-            // Form3
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "本社",
+            "東京支部",
+            "横浜支部",
+            "札幌支部",
+            "大阪支部",
+            "京都支部",
+            "大宮支部",
+            "千葉支部",
+            "福岡支部",
+            "名古屋支部"});
+            this.comboBox1.Location = new System.Drawing.Point(182, 355);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(162, 26);
+            this.comboBox1.TabIndex = 59;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "社長",
+            "取締役",
+            "支部長",
+            "課長",
+            "SL",
+            "TL",
+            "メンバ",
+            "営業",
+            "事務",
+            "CA"});
+            this.comboBox2.Location = new System.Drawing.Point(181, 399);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(163, 26);
+            this.comboBox2.TabIndex = 60;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(367, 24);
+            this.button3.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(197, 72);
+            this.button3.TabIndex = 61;
+            this.button3.Text = "社員詳細表示に戻る";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // EmployeeEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1333, 675);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox10);
@@ -406,8 +418,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label9);
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.Name = "Form3";
-            this.Text = "Form3";
+            this.Name = "EmployeeEditForm";
+            this.Text = "社員情報管理システム";
             this.Load += new System.EventHandler(this.Edit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -439,10 +451,11 @@
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button button3;
     }
 }

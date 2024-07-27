@@ -110,5 +110,10 @@ namespace 社員管理システム2
         {
 
         }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("この社員を削除しますか？", "削除確認", MessageBoxButtons.OKCancel);
+        }
     }
 }

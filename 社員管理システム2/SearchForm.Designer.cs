@@ -48,9 +48,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -58,6 +55,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label9
@@ -112,9 +112,9 @@
             this.label4.Location = new System.Drawing.Point(43, 219);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 22);
+            this.label4.Size = new System.Drawing.Size(192, 33);
             this.label4.TabIndex = 32;
-            this.label4.Text = "Email";
+            this.label4.Text = "メールアドレス";
             // 
             // label5
             // 
@@ -256,30 +256,6 @@
             this.textBox10.Size = new System.Drawing.Size(164, 25);
             this.textBox10.TabIndex = 51;
             // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(183, 351);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(164, 25);
-            this.textBox11.TabIndex = 52;
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(183, 396);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(164, 25);
-            this.textBox12.TabIndex = 53;
-            // 
-            // textBox13
-            // 
-            this.textBox13.Location = new System.Drawing.Point(183, 441);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(164, 25);
-            this.textBox13.TabIndex = 54;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(118, 508);
@@ -308,7 +284,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(197, 72);
             this.button3.TabIndex = 57;
-            this.button3.Text = "社員表示画面に戻る";
+            this.button3.Text = "社員一覧に戻る";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // label13
@@ -349,11 +325,63 @@
             this.textBox4.Size = new System.Drawing.Size(196, 25);
             this.textBox4.TabIndex = 60;
             // 
-            // SearchForm
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "在籍",
+            "退職済"});
+            this.comboBox3.Location = new System.Drawing.Point(183, 445);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(163, 26);
+            this.comboBox3.TabIndex = 64;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "本社",
+            "東京支部",
+            "横浜支部",
+            "札幌支部",
+            "大阪支部",
+            "京都支部",
+            "大宮支部",
+            "千葉支部",
+            "福岡支部",
+            "名古屋支部"});
+            this.comboBox1.Location = new System.Drawing.Point(185, 354);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(162, 26);
+            this.comboBox1.TabIndex = 65;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "社長",
+            "取締役",
+            "支部長",
+            "課長",
+            "SL",
+            "TL",
+            "メンバ",
+            "営業",
+            "事務",
+            "CA"});
+            this.comboBox2.Location = new System.Drawing.Point(183, 400);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(163, 26);
+            this.comboBox2.TabIndex = 66;
+            // 
+            // EmployeeSearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1333, 675);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label13);
@@ -361,9 +389,6 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox13);
-            this.Controls.Add(this.textBox12);
-            this.Controls.Add(this.textBox11);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.label12);
@@ -385,8 +410,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label9);
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.Name = "SearchForm";
-            this.Text = "Form2";
+            this.Name = "EmployeeSearchForm";
+            this.Text = "社員情報管理システム";
             this.Load += new System.EventHandler(this.SearchForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -414,9 +439,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -424,5 +446,8 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
