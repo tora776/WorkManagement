@@ -12,17 +12,14 @@ namespace 社員管理システム2.Models
 {
     public class EmployeeRepository { 
 
-        public void sqlExecute(String query, NpgsqlConnection conn){
+        public DataTable sqlExecute(String query, NpgsqlConnection conn){
             NpgsqlCommand sql = new NpgsqlCommand(query, conn);
-            // DataTable tbl = new DataTable();
+            DataTable tbl = new DataTable();
             using (NpgsqlDataReader reader = sql.ExecuteReader())
             {
-                while (reader.Read())
-                {
-                    //Console.WriteLine($"{reader["EmployeeID"]}");
-                    MessageBox.Show($"{reader["EmployeeID"]}");
-                }
+                tbl.Load(reader);
             }
+            return tbl;
         }
 
         public string makeSelectQuery(){

@@ -28,12 +28,13 @@ namespace 社員管理システム2
             {
                 NpgsqlConnection conn = DB.connectDB();
                 String query = EmployeeRepos.makeSelectQuery();
-                EmployeeRepos.sqlExecute(query, conn);
+                DataTable dt = EmployeeRepos.sqlExecute(query, conn);
+                dt = InitializeDataGridView(dt);
+                SetDataGridViewEmployeeInfo(dt);
 
                 DB.disconnectDB();
             }
             catch(Exception error) {
-                //Console.WriteLine(error.Message);
                 MessageBox.Show(error.Message);
             }
 
@@ -50,17 +51,6 @@ namespace 社員管理システム2
             // dataGridView1.Columns[3].HeaderText = "所属部門";
             // dataGridView1.Columns[4].HeaderText = "役職";
 
-            // データを追加
-            // dataGridView1.Rows.Add("000001", "田中", "太郎", "たなか", "たろう", "tanaka-tarou@ost.co.jp", "080-1111-2222", "1977/4/1",  "本社", "社長", "在籍");
-            // dataGridView1.Rows.Add("000002", "山田", "一樹", "やまだ", "かずき", "yamada-kazuki@ost.co.jp", "080-1111-2223", "1997/4/2", "本社", "取締役", "在籍");
-            // dataGridView1.Rows.Add("000003", "内田", "弘", "うちだ", "ひろし", "uchida-hiroshi@ost.co.jp", "080-1111-2224", "1997/4/3", "東京支部", "支部長", "在籍");
-            // dataGridView1.Rows.Add("000004", "田中", "司郎", "たなか", "しろう", "tanaka-shiro@ost.co.jp", "080-1111-2225", "1997/4/4", "横浜支部", "支部長", "在籍");
-            // dataGridView1.Rows.Add("000005", "山田", "浩介", "やまだ", "こうすけ", "yamada-kosuke@ost.co.jp", "080-1111-2226", "1997/4/5", "東京支部", "課長", "在籍");
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -75,15 +65,37 @@ namespace 社員管理システム2
             form7.Show();
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
             EmployeeDetailForm detailForm = new EmployeeDetailForm();
             detailForm.Show();
+        }
+
+        private DataTable SetDataGridViewEmployeeInfo(DataTable dt){
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = dt;
+            return dt;
+        }
+
+        private DataTable InitializeDataGridView(DataTable dt){
+            // カラム名を指定
+            // dataGridView1.Columns[0].HeaderText = "社員番号";
+            // dataGridView1.Columns[1].HeaderText = "氏名";
+            // dataGridView1.Columns[2].HeaderText = "氏名（かな）";
+            // dataGridView1.Columns[3].HeaderText = "所属部門";
+            // dataGridView1.Columns[4].HeaderText = "役職";
+            dt.Columns["employeeid"].ColumnName = "社員番号";
+            dt.Columns["firstname"].ColumnName = "姓";
+            dt.Columns["lastname"].ColumnName = "名";
+            dt.Columns["firstnamekana"].ColumnName = "姓（かな）";
+            dt.Columns["lastnamekana"].ColumnName = "名（かな）";
+            dt.Columns["email"].ColumnName = "メールアドレス";
+            dt.Columns["phonenumber"].ColumnName = "電話番号";
+            dt.Columns["hiredate"].ColumnName = "雇用日";
+            dt.Columns["department"].ColumnName = "部門";
+            dt.Columns["position"].ColumnName = "役職";
+            dt.Columns["status"].ColumnName = "ステータス";
+            return dt;
         }
     }
 }
