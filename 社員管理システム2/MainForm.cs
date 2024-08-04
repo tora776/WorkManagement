@@ -23,8 +23,15 @@ namespace 社員管理システム2
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var DB = new DatabaseContext();
-            DB.connectDB();
-            DB.disconnectDB();
+            try
+            {
+                DB.connectDB();
+                DB.disconnectDB();
+            }
+            catch(Exception error) {
+                //Console.WriteLine(error.Message);
+                MessageBox.Show(error.Message);
+            }
             // カラム数を指定
             // dataGridView1.ColumnCount = 5;
 

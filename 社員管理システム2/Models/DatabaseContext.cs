@@ -22,16 +22,22 @@ namespace 社員管理システム2.Models
             //接続文字列
             string conn_str = "Server=localhost;Port=5432;User ID=dbo;Database=employeedb;Password=jigs12t4d;Enlist=true";
 
-            this.conn = new NpgsqlConnection(conn_str);
+            try
+            {
+                this.conn = new NpgsqlConnection(conn_str);
                 //PostgreSQLへ接続
                 this.conn.Open();
             }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
         
-
         public void disconnectDB(){
             this.conn.Close();
             this.conn.Dispose();
-            // MessageBox.Show("接続解除しました");
+            MessageBox.Show("接続解除しました");
         }
     }
 
