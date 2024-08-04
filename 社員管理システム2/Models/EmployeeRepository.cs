@@ -25,7 +25,7 @@ namespace 社員管理システム2.Models
         public string makeSelectQuery(){
             try
             {
-                string query = "SELECT * FROM Employees";
+                string query = "SELECT Employees.EmployeeID, Employees.FirstName, Employees.LastName, \r\nEmployees.FirstNameKana, Employees.LastNameKana, Employees.Email, \r\nEmployees.PhoneNumber, Employees.HireDate, Departments.DepartmentName, \r\nPositions.PositionName, Employees.Status \r\nFROM Employees LEFT OUTER JOIN Departments ON Employees.department = Departments.departmentid LEFT OUTER JOIN Positions ON Employees.position = Positions.positionid;";
                 return query;
             }
             catch (Exception)

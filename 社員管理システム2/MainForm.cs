@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
+using System.Xml.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -73,9 +74,15 @@ namespace 社員管理システム2
             dt.Columns["email"].ColumnName = "メールアドレス";
             dt.Columns["phonenumber"].ColumnName = "電話番号";
             dt.Columns["hiredate"].ColumnName = "雇用日";
-            dt.Columns["department"].ColumnName = "部門";
-            dt.Columns["position"].ColumnName = "役職";
+            dt.Columns["departmentname"].ColumnName = "部門";
+            dt.Columns["positionname"].ColumnName = "役職";
             dt.Columns["status"].ColumnName = "ステータス";
+
+            dt.Columns["ステータス"].ReadOnly = false;
+
+            dt.AsEnumerable().Where(r => r.Field<int>("ステータス") == 0)
+                .Select(r => r["ステータス"] = "在籍")
+                .ToList();
 
             return dt;
         }
