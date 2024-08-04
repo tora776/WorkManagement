@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using System.Windows.Forms;
+using 社員管理システム2.Models;
 
 namespace 社員管理システム2.Models
 {
@@ -18,25 +20,22 @@ namespace 社員管理システム2.Models
         public void connectDB()
         {
             //接続文字列
-            string conn_str = "Server=localhost;Port=5432;User ID=dbo;Database=employeedb;Password=jigs&t4d;Enlist=true";
+            string conn_str = "Server=localhost;Port=5432;User ID=dbo;Database=employeedb;Password=jigs12t4d;Enlist=true";
 
-            //TransactionScopeの利用
-            using (TransactionScope ts = new TransactionScope())
-            {
-                using (this.conn = new NpgsqlConnection(conn_str))
-                {
-                    //PostgreSQLへ接続
-                    conn.Open();
-                }
-
+            this.conn = new NpgsqlConnection(conn_str);
+                //PostgreSQLへ接続
+                this.conn.Open();
             }
-        }
+        
 
         public void disconnectDB(){
-            conn.Close();
-            conn.Dispose();
+            this.conn.Close();
+            this.conn.Dispose();
+            // MessageBox.Show("接続解除しました");
         }
     }
+
+
 }
 
 

@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using 社員管理システム2.Models;
 
 namespace 社員管理システム2
 {
@@ -20,6 +22,9 @@ namespace 社員管理システム2
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            var DB = new DatabaseContext();
+            DB.connectDB();
+            DB.disconnectDB();
             // カラム数を指定
             // dataGridView1.ColumnCount = 5;
 
@@ -31,11 +36,11 @@ namespace 社員管理システム2
             // dataGridView1.Columns[4].HeaderText = "役職";
 
             // データを追加
-            dataGridView1.Rows.Add("000001", "田中", "太郎", "たなか", "たろう", "tanaka-tarou@ost.co.jp", "080-1111-2222", "1977/4/1",  "本社", "社長", "在籍");
-            dataGridView1.Rows.Add("000002", "山田", "一樹", "やまだ", "かずき", "yamada-kazuki@ost.co.jp", "080-1111-2223", "1997/4/2", "本社", "取締役", "在籍");
-            dataGridView1.Rows.Add("000003", "内田", "弘", "うちだ", "ひろし", "uchida-hiroshi@ost.co.jp", "080-1111-2224", "1997/4/3", "東京支部", "支部長", "在籍");
-            dataGridView1.Rows.Add("000004", "田中", "司郎", "たなか", "しろう", "tanaka-shiro@ost.co.jp", "080-1111-2225", "1997/4/4", "横浜支部", "支部長", "在籍");
-            dataGridView1.Rows.Add("000005", "山田", "浩介", "やまだ", "こうすけ", "yamada-kosuke@ost.co.jp", "080-1111-2226", "1997/4/5", "東京支部", "課長", "在籍");
+            // dataGridView1.Rows.Add("000001", "田中", "太郎", "たなか", "たろう", "tanaka-tarou@ost.co.jp", "080-1111-2222", "1977/4/1",  "本社", "社長", "在籍");
+            // dataGridView1.Rows.Add("000002", "山田", "一樹", "やまだ", "かずき", "yamada-kazuki@ost.co.jp", "080-1111-2223", "1997/4/2", "本社", "取締役", "在籍");
+            // dataGridView1.Rows.Add("000003", "内田", "弘", "うちだ", "ひろし", "uchida-hiroshi@ost.co.jp", "080-1111-2224", "1997/4/3", "東京支部", "支部長", "在籍");
+            // dataGridView1.Rows.Add("000004", "田中", "司郎", "たなか", "しろう", "tanaka-shiro@ost.co.jp", "080-1111-2225", "1997/4/4", "横浜支部", "支部長", "在籍");
+            // dataGridView1.Rows.Add("000005", "山田", "浩介", "やまだ", "こうすけ", "yamada-kosuke@ost.co.jp", "080-1111-2226", "1997/4/5", "東京支部", "課長", "在籍");
         }
 
         private void button1_Click(object sender, EventArgs e)
