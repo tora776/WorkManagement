@@ -17,7 +17,7 @@ namespace 社員管理システム2.Models
     {
         private NpgsqlConnection conn;
         private NpgsqlTransaction transaction;
-        public void connectDB()
+        public NpgsqlConnection connectDB()
         {
             //接続文字列
             string conn_str = "Server=localhost;Port=5432;User ID=dbo;Database=employeedb;Password=jigs12t4d;Enlist=true";
@@ -27,6 +27,7 @@ namespace 社員管理システム2.Models
                 this.conn = new NpgsqlConnection(conn_str);
                 //PostgreSQLへ接続
                 this.conn.Open();
+                return conn;
             }
             catch (Exception e)
             {
@@ -39,6 +40,8 @@ namespace 社員管理システム2.Models
             this.conn.Dispose();
             MessageBox.Show("接続解除しました");
         }
+
+       
     }
 
 

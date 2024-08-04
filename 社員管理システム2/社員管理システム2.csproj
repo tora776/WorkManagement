@@ -204,6 +204,7 @@
     <Compile Include="AddForm.Designer.cs">
       <DependentUpon>AddForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmployeeRepository.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\model.cs" />
     <Compile Include="SearchForm.cs">
