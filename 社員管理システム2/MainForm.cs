@@ -18,39 +18,13 @@ namespace 社員管理システム2
         public MainForm()
         {
             InitializeComponent();
+            DataTable dt = SetDataGridViewEmployeeInfo();
+            dataGridView1.DataSource = InitializeDataGridView(dt);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var DB = new DatabaseContext();
-            var EmployeeRepos = new EmployeeRepository();
-            try
-            {
-                NpgsqlConnection conn = DB.connectDB();
-                String query = EmployeeRepos.makeSelectQuery();
-                DataTable dt = EmployeeRepos.sqlExecute(query, conn);
-                dt = InitializeDataGridView(dt);
-                SetDataGridViewEmployeeInfo(dt);
-
-                DB.disconnectDB();
-            }
-            catch(Exception error) {
-                MessageBox.Show(error.Message);
-            }
-
-
-
-
-            // カラム数を指定
-            // dataGridView1.ColumnCount = 5;
-
-            // カラム名を指定
-            // dataGridView1.Columns[0].HeaderText = "社員番号";
-            // dataGridView1.Columns[1].HeaderText = "氏名";
-            // dataGridView1.Columns[2].HeaderText = "氏名（かな）";
-            // dataGridView1.Columns[3].HeaderText = "所属部門";
-            // dataGridView1.Columns[4].HeaderText = "役職";
-
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -71,19 +45,26 @@ namespace 社員管理システム2
             detailForm.Show();
         }
 
-        private DataTable SetDataGridViewEmployeeInfo(DataTable dt){
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = dt;
-            return dt;
+        private DataTable SetDataGridViewEmployeeInfo(){
+            var DB = new DatabaseContext();
+            var EmployeeRepos = new EmployeeRepository();
+            try
+            {
+                NpgsqlConnection conn = DB.connectDB();
+                String query = EmployeeRepos.makeSelectQuery();
+                DataTable dt = EmployeeRepos.sqlExecute(query, conn);              
+                DB.disconnectDB();
+                return dt;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+                return null;
+            }
         }
 
         private DataTable InitializeDataGridView(DataTable dt){
-            // カラム名を指定
-            // dataGridView1.Columns[0].HeaderText = "社員番号";
-            // dataGridView1.Columns[1].HeaderText = "氏名";
-            // dataGridView1.Columns[2].HeaderText = "氏名（かな）";
-            // dataGridView1.Columns[3].HeaderText = "所属部門";
-            // dataGridView1.Columns[4].HeaderText = "役職";
+            // カラム名を変更
             dt.Columns["employeeid"].ColumnName = "社員番号";
             dt.Columns["firstname"].ColumnName = "姓";
             dt.Columns["lastname"].ColumnName = "名";
@@ -95,6 +76,7 @@ namespace 社員管理システム2
             dt.Columns["department"].ColumnName = "部門";
             dt.Columns["position"].ColumnName = "役職";
             dt.Columns["status"].ColumnName = "ステータス";
+
             return dt;
         }
     }

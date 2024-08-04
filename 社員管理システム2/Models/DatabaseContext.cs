@@ -38,7 +38,6 @@ namespace 社員管理システム2.Models
         public void disconnectDB(){
             this.conn.Close();
             this.conn.Dispose();
-            MessageBox.Show("接続解除しました");
         }
 
        
