@@ -10,9 +10,9 @@ using System.Xml.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using 社員管理システム2.Models;
+using SyainKanriSystem.Models;
 
-namespace 社員管理システム2
+namespace SyainKanriSystem
 {
     public partial class MainForm : Form
     {
@@ -78,11 +78,11 @@ namespace 社員管理システム2
             dt.Columns["positionname"].ColumnName = "役職";
             dt.Columns["status"].ColumnName = "ステータス";
 
-            dt.Columns["ステータス"].ReadOnly = false;
+           // dt.Columns["ステータス"].ReadOnly = false;
 
-            dt.AsEnumerable().Where(r => r.Field<int>("ステータス") == 0)
-                .Select(r => r["ステータス"] = "在籍")
-                .ToList();
+            //dt.AsEnumerable().Where(r => r.Field<int>("ステータス") == 0)
+              //  .Select(r => r["ステータス"] = "在籍")
+               // .ToList();
 
             return dt;
         }

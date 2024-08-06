@@ -6,7 +6,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.Common;
 
-namespace 社員管理システム2
+namespace SyainKanriSystem
 {
     [TestClass()]
     public class SqlDatabaseSetup

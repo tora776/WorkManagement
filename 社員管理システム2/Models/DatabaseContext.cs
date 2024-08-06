@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
-using 社員管理システム2.Models;
+using SyainKanriSystem.Models;
 
-namespace 社員管理システム2.Models
+namespace SyainKanriSystem.Models
 {
     public class DatabaseContext
     {

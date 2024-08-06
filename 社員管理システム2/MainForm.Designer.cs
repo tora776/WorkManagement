@@ -1,4 +1,4 @@
-﻿namespace 社員管理システム2
+﻿namespace SyainKanriSystem
 {
     partial class MainForm
     {

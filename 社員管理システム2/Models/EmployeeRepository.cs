@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 社員管理システム2.Models
+namespace SyainKanriSystem.Models
 {
     public class EmployeeRepository { 
 
