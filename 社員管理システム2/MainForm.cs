@@ -19,7 +19,7 @@ namespace SyainKanriSystem
         public MainForm()
         {
             InitializeComponent();
-            DataTable dt = SetDataGridViewEmployeeInfo();
+            List<object> dataList = SetDataGridViewEmployeeInfo();
 
             // dataGridView1.DataSource = InitializeDataGridView(dt);
         }
@@ -47,7 +47,7 @@ namespace SyainKanriSystem
             detailForm.Show();
         }
 
-        private DataTable SetDataGridViewEmployeeInfo(){
+        private List<object> SetDataGridViewEmployeeInfo(){
             var DB = new DatabaseContext();
             var EmployeeRepos = new EmployeeRepository();
             try
@@ -56,7 +56,7 @@ namespace SyainKanriSystem
                 String query = EmployeeRepos.makeSelectQuery();
                 DataTable dt = EmployeeRepos.sqlExecute(query, conn);
                 DB.disconnectDB();
-                List<object> dataList = EmployeeRepos.getSelectEmployee;
+                List<object> dataList = EmployeeRepos.getSelectEmployee(dt);
                 return dataList;
             }
             catch (Exception error)
