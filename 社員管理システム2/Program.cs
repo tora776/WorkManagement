@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 社員管理システム2
+namespace SyainKanriSystem
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace 社員管理システム2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }

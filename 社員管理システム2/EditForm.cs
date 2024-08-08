@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 社員管理システム2
+namespace SyainKanriSystem
 {
-    public partial class Form3 : Form
+    public partial class EmployeeEditForm : Form
     {
-        public Form3()
+        public EmployeeEditForm()
         {
             InitializeComponent();
         }
 
-        private void Form3_Load(object sender, EventArgs e)
+        private void Edit_Load(object sender, EventArgs e)
         {
 
         }
@@ -57,5 +57,9 @@ namespace 社員管理システム2
             MessageBox.Show("データを更新しました");
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

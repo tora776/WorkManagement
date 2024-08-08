@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 社員管理システム2
+namespace SyainKanriSystem
 {
-    public partial class Form2 : Form
+    public partial class EmployeeSearchForm : Form
     {
-        public Form2()
+        public EmployeeSearchForm()
         {
             InitializeComponent();
         }
@@ -92,8 +92,28 @@ namespace 社員管理システム2
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
-            form3.Show();
+            EmployeeEditForm editForm = new EmployeeEditForm();
+            editForm.Show();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SearchForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

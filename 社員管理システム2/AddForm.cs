@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 社員管理システム2
+namespace SyainKanriSystem
 {
-    public partial class Form4 : Form
+    public partial class EmployeeAddForm : Form
     {
-        public Form4()
+        public EmployeeAddForm()
         {
             InitializeComponent();
         }
@@ -133,6 +133,11 @@ namespace 社員管理システム2
         }
 
         private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
         {
 
         }
