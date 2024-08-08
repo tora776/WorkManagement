@@ -12,20 +12,17 @@ namespace SyainKanriSystem.Models
 {
     public class EmployeeRepository { 
 
-        public DataTable sqlExecute(String query, NpgsqlConnection conn){
+        public object sqlExecute(String query, NpgsqlConnection conn){
             NpgsqlCommand sql = new NpgsqlCommand(query, conn);
-            DataTable tbl = new DataTable();
-            using (NpgsqlDataReader reader = sql.ExecuteReader())
-            {
-                tbl.Load(reader);
+            NpgsqlDataReader reader = sql.ExecuteReader();
+            return reader;
             }
-            return tbl;
-        }
+            
 
         public string makeSelectQuery(){
             try
             {
-                string query = "SELECT Employees.EmployeeID, Employees.FirstName, Employees.LastName, \r\nEmployees.FirstNameKana, Employees.LastNameKana, Employees.Email, \r\nEmployees.PhoneNumber, Employees.HireDate, Departments.DepartmentName, \r\nPositions.PositionName, Employees.Status \r\nFROM Employees LEFT OUTER JOIN Departments ON Employees.department = Departments.departmentid LEFT OUTER JOIN Positions ON Employees.position = Positions.positionid;";
+                string query = "SELECT * FROM Employees";
                 return query;
             }
             catch (Exception)
@@ -33,6 +30,27 @@ namespace SyainKanriSystem.Models
                 throw;
             }
         }
-    
+
+        public object getSelectEmployee(IEnumerable<Type> reader) {
+            var dataList = new List<object>();
+            foreach (var item in reader) {
+                Employees employee = new Employees();
+                employee.EmployeeID = item.EmployeeID;
+                employee.FirstName = item.FirstName;
+                employee.LastName = item.LastName;
+                employee.FirstNameKana = item.FirstNameKana;
+                employee.LastNameKana = item.LastNameKana;
+                employee.Email = item.Email;
+                employee.PhoneNumber = item.PhoneNumber;
+                employee.HireDate = item.HireDate;
+                employee.Department = item.Department;
+                employee.Positon = item.Positon;
+                employee.Status = item.Status;
+
+                dataList.Add(employee);
+            }
+            return dataList;
+        }
     }
 }
+

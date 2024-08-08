@@ -19,8 +19,8 @@ namespace SyainKanriSystem
         public MainForm()
         {
             InitializeComponent();
-            DataTable dt = SetDataGridViewEmployeeInfo();
-            dataGridView1.DataSource = InitializeDataGridView(dt);
+            // DataTable dt = SetDataGridViewEmployeeInfo();
+            // dataGridView1.DataSource = InitializeDataGridView(dt);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -53,9 +53,11 @@ namespace SyainKanriSystem
             {
                 NpgsqlConnection conn = DB.connectDB();
                 String query = EmployeeRepos.makeSelectQuery();
-                DataTable dt = EmployeeRepos.sqlExecute(query, conn);              
+                // DataTable dt = EmployeeRepos.sqlExecute(query, conn);              
+                // DataTable dt = EmployeeRepos.sqlExecute(query, conn);              
                 DB.disconnectDB();
-                return dt;
+                // return dt;
+                return null;
             }
             catch (Exception error)
             {
@@ -74,8 +76,8 @@ namespace SyainKanriSystem
             dt.Columns["email"].ColumnName = "メールアドレス";
             dt.Columns["phonenumber"].ColumnName = "電話番号";
             dt.Columns["hiredate"].ColumnName = "雇用日";
-            dt.Columns["departmentname"].ColumnName = "部門";
-            dt.Columns["positionname"].ColumnName = "役職";
+            dt.Columns["department"].ColumnName = "部門";
+            dt.Columns["position"].ColumnName = "役職";
             dt.Columns["status"].ColumnName = "ステータス";
 
            // dt.Columns["ステータス"].ReadOnly = false;
