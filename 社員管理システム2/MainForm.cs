@@ -19,7 +19,8 @@ namespace SyainKanriSystem
         public MainForm()
         {
             InitializeComponent();
-            // DataTable dt = SetDataGridViewEmployeeInfo();
+            DataTable dt = SetDataGridViewEmployeeInfo();
+
             // dataGridView1.DataSource = InitializeDataGridView(dt);
         }
 
@@ -53,11 +54,10 @@ namespace SyainKanriSystem
             {
                 NpgsqlConnection conn = DB.connectDB();
                 String query = EmployeeRepos.makeSelectQuery();
-                // DataTable dt = EmployeeRepos.sqlExecute(query, conn);              
-                // DataTable dt = EmployeeRepos.sqlExecute(query, conn);              
+                DataTable dt = EmployeeRepos.sqlExecute(query, conn);
                 DB.disconnectDB();
-                // return dt;
-                return null;
+                List<object> dataList = EmployeeRepos.getSelectEmployee;
+                return dataList;
             }
             catch (Exception error)
             {
