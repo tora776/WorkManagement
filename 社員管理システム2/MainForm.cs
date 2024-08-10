@@ -19,9 +19,10 @@ namespace SyainKanriSystem
         public MainForm()
         {
             InitializeComponent();
-            List<object> dataList = SetDataGridViewEmployeeInfo();
+            dataGridView1 = InitializeDataGridView();
+            SetDataGridViewEmployeeInfo(dataGridView1);
 
-            // dataGridView1.DataSource = InitializeDataGridView(dt);
+            ;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -47,7 +48,7 @@ namespace SyainKanriSystem
             detailForm.Show();
         }
 
-        private List<object> SetDataGridViewEmployeeInfo(){
+        private DataGridView SetDataGridViewEmployeeInfo(DataGridView dataGridView1){
             var DB = new DatabaseContext();
             var EmployeeRepos = new EmployeeRepository();
             try
@@ -55,9 +56,14 @@ namespace SyainKanriSystem
                 NpgsqlConnection conn = DB.connectDB();
                 String query = EmployeeRepos.makeSelectQuery();
                 DataTable dt = EmployeeRepos.sqlExecute(query, conn);
-                DB.disconnectDB();
-                List<object> dataList = EmployeeRepos.getSelectEmployee(dt);
-                return dataList;
+                DB.disconnectDB(conn);
+                List<Employees> dataList = EmployeeRepos.getSelectEmployee(dt);
+
+                foreach (Employees item in dataList)
+                {
+                    dataGridView1.Rows.Add(item);
+                }
+                return dataGridView1;
             }
             catch (Exception error)
             {
@@ -66,27 +72,31 @@ namespace SyainKanriSystem
             }
         }
 
-        private DataTable InitializeDataGridView(DataTable dt){
-            // カラム名を変更
-            dt.Columns["employeeid"].ColumnName = "社員番号";
-            dt.Columns["firstname"].ColumnName = "姓";
-            dt.Columns["lastname"].ColumnName = "名";
-            dt.Columns["firstnamekana"].ColumnName = "姓（かな）";
-            dt.Columns["lastnamekana"].ColumnName = "名（かな）";
-            dt.Columns["email"].ColumnName = "メールアドレス";
-            dt.Columns["phonenumber"].ColumnName = "電話番号";
-            dt.Columns["hiredate"].ColumnName = "雇用日";
-            dt.Columns["department"].ColumnName = "部門";
-            dt.Columns["position"].ColumnName = "役職";
-            dt.Columns["status"].ColumnName = "ステータス";
+        private DataGridView InitializeDataGridView()
+        {   
+            dataGridView1 = new DataGridView();
+            dataGridView1.ColumnCount = 11;
+            dataGridView1.ColumnHeadersVisible = true;
 
-           // dt.Columns["ステータス"].ReadOnly = false;
+            
+            dataGridView1.Columns[0].Name = "社員番号";
+            dataGridView1.Columns[1].Name = "姓";
+            dataGridView1.Columns[2].Name = "名";
+            dataGridView1.Columns[3].Name = "姓（かな）";
+            dataGridView1.Columns[4].Name = "名（かな）";
+            dataGridView1.Columns[5].Name = "メールアドレス";
+            dataGridView1.Columns[6].Name = "電話番号";
+            dataGridView1.Columns[7].Name = "雇用日";
+            dataGridView1.Columns[8].Name = "部門";
+            dataGridView1.Columns[9].Name = "役職";
+            dataGridView1.Columns[10].Name = "ステータス";
 
-            //dt.AsEnumerable().Where(r => r.Field<int>("ステータス") == 0)
-              //  .Select(r => r["ステータス"] = "在籍")
-               // .ToList();
 
-            return dt;
+
+
+
+
+            return dataGridView1;
         }
     }
 }

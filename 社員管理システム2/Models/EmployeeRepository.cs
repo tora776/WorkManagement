@@ -12,6 +12,7 @@ namespace SyainKanriSystem.Models
 {
     public class EmployeeRepository { 
 
+        // SELECT文のクエリを実行する。
         public DataTable sqlExecute(String query, NpgsqlConnection conn){
             NpgsqlCommand sql = new NpgsqlCommand(query, conn);
             NpgsqlDataReader reader = sql.ExecuteReader();
@@ -20,7 +21,7 @@ namespace SyainKanriSystem.Models
             return dt;
             }
             
-
+        // SELECT文のクエリを作成する。
         public string makeSelectQuery(){
             try
             {
@@ -33,8 +34,9 @@ namespace SyainKanriSystem.Models
             }
         }
 
-        public List<object> getSelectEmployee(DataTable dt) {
-            var dataList = new List<object>();
+        // 取得したクエリ結果を配列に格納する。
+        public List<Employees> getSelectEmployee(DataTable dt) {
+            List<Employees> dataList = new List<Employees>();
 
             foreach(DataRow dr in dt.Rows)
             {             

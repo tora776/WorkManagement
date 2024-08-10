@@ -15,8 +15,8 @@ namespace SyainKanriSystem.Models
 {
     public class DatabaseContext
     {
-        private NpgsqlConnection conn;
-        private NpgsqlTransaction transaction;
+        // private NpgsqlConnection conn;
+        // private NpgsqlTransaction transaction;
         public NpgsqlConnection connectDB()
         {
             //接続文字列
@@ -24,9 +24,9 @@ namespace SyainKanriSystem.Models
 
             try
             {
-                this.conn = new NpgsqlConnection(conn_str);
+                NpgsqlConnection conn = new NpgsqlConnection(conn_str);
                 //PostgreSQLへ接続
-                this.conn.Open();
+                conn.Open();
                 return conn;
             }
             catch (Exception e)
@@ -35,9 +35,9 @@ namespace SyainKanriSystem.Models
             }
         }
         
-        public void disconnectDB(){
-            this.conn.Close();
-            this.conn.Dispose();
+        public void disconnectDB(NpgsqlConnection conn){
+            conn.Close();
+            conn.Dispose();
         }
 
        
