@@ -21,8 +21,6 @@ namespace SyainKanriSystem
             InitializeComponent();
             dataGridView1 = InitializeDataGridView();
             SetDataGridViewEmployeeInfo(dataGridView1);
-
-            ;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -58,11 +56,26 @@ namespace SyainKanriSystem
                 DataTable dt = EmployeeRepos.sqlExecute(query, conn);
                 DB.disconnectDB(conn);
                 List<Employees> dataList = EmployeeRepos.getSelectEmployee(dt);
-
+                
                 foreach (Employees item in dataList)
                 {
-                    dataGridView1.Rows.Add(item);
+                    int rowIndex = dataGridView1.Rows.Add();
+                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
+
+                    row.Cells["社員番号"].Value = item.EmployeeID;
+                    row.Cells["姓"].Value = item.FirstName;
+                    row.Cells["名"].Value =item.LastName;
+                    row.Cells["姓（かな）"].Value = item.FirstNameKana;
+                    row.Cells["名（かな）"].Value = item.LastNameKana;
+                    row.Cells["メールアドレス"].Value = item.Email;
+                    row.Cells["電話番号"].Value = item.PhoneNumber;
+                    row.Cells["雇用日"].Value = item.LastName;
+                    row.Cells["部門"].Value = item.Department;
+                    row.Cells["役職"].Value = item.Position;
+                    row.Cells["ステータス"].Value = item.Status;
+
                 }
+
                 return dataGridView1;
             }
             catch (Exception error)
@@ -74,9 +87,11 @@ namespace SyainKanriSystem
 
         private DataGridView InitializeDataGridView()
         {   
-            dataGridView1 = new DataGridView();
+            // dataGridView1 = new DataGridView();
+            
             dataGridView1.ColumnCount = 11;
             dataGridView1.ColumnHeadersVisible = true;
+            
 
             
             dataGridView1.Columns[0].Name = "社員番号";
@@ -90,11 +105,7 @@ namespace SyainKanriSystem
             dataGridView1.Columns[8].Name = "部門";
             dataGridView1.Columns[9].Name = "役職";
             dataGridView1.Columns[10].Name = "ステータス";
-
-
-
-
-
+            
 
             return dataGridView1;
         }

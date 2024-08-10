@@ -50,7 +50,7 @@ namespace SyainKanriSystem.Models
                 employee.PhoneNumber = dr[6].ToString();
                 employee.HireDate = DateTime.Parse(dr[7].ToString());
                 employee.Department = int.Parse(dr[8].ToString());
-                employee.Positon = int.Parse(dr[9].ToString());
+                employee.Position = int.Parse(dr[9].ToString());
                 employee.Status = int.Parse(dr[10].ToString());
                 dataList.Add(employee);
             }

@@ -17,7 +17,7 @@ namespace SyainKanriSystem
         public string PhoneNumber {  set; get; }
         public DateTime HireDate { set; get; }
         public int Department {  set; get; }
-        public int Positon { set; get; }
+        public int Position { set; get; }
         public int Status { set; get; }
         }
 
