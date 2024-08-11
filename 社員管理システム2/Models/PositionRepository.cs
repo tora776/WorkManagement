@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace SyainKanriSystem.Models
 {
-    public class DepartmentRepository { 
+    public class PositionRepository { 
 
         // SELECT文のクエリを実行する。
         /*
-        public DataTable sqlExecuteDepartment(String query, NpgsqlConnection conn){
+        public DataTable sqlExecutePosition(String query, NpgsqlConnection conn){
             NpgsqlCommand sql = new NpgsqlCommand(query, conn);
             NpgsqlDataReader reader = sql.ExecuteReader();
             DataTable dt = new DataTable();
@@ -24,10 +24,10 @@ namespace SyainKanriSystem.Models
         */
             
         // SELECT文のクエリを作成する。
-        public string makeSelectQueryDepartment(){
+        public string makeSelectQueryPosition(){
             try
             {
-                string query = "SELECT * FROM Departments";
+                string query = "SELECT * FROM Positions";
                 return query;
             }
             catch (Exception)
@@ -37,17 +37,17 @@ namespace SyainKanriSystem.Models
         }
 
         // 取得したクエリ結果を配列に格納する。
-        public List<Departments> getSelectDepartment(DataTable dt) {
-            List<Departments> dataList = new List<Departments>();
+        public List<Positions> getSelectDepartment(DataTable dt) {
+            List<Positions> dataList = new List<Positions>();
 
             foreach(DataRow dr in dt.Rows)
             {             
-                Departments department = new Departments();
-                department.DepartmentID = int.Parse(dr[0].ToString());
-                department.DepartmentName = dr[1].ToString();
-                department.Location = dr[2].ToString();
+                Positions position = new Positions();
+                position.PositionID = int.Parse(dr[0].ToString());
+                position.PositionName = dr[1].ToString();
+                position.Description = dr[2].ToString();
                 
-                dataList.Add(department);
+                dataList.Add(position);
             }
             return dataList;
         }

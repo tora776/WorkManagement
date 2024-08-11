@@ -23,14 +23,14 @@ namespace SyainKanriSystem
 
     public class Departments
     {
-        public string DepartmentID { set; get; }
+        public int DepartmentID { set; get; }
         public string DepartmentName { set; get; }
         public string Location { set; get; }
     }
 
     public class Positions
     {
-        public string PositionID { set; get; }
+        public int PositionID { set; get; }
         public string PositionName { set; get; }
         public string Description { set; get; }
     }
