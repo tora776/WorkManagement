@@ -14,7 +14,7 @@ namespace SyainKanriSystem.Models
 
         // SELECT文のクエリを実行する。
         /*
-        public DataTable sqlExecute(String query, NpgsqlConnection conn){
+        public DataTable sqlExecuteDepartment(String query, NpgsqlConnection conn){
             NpgsqlCommand sql = new NpgsqlCommand(query, conn);
             NpgsqlDataReader reader = sql.ExecuteReader();
             DataTable dt = new DataTable();
@@ -24,7 +24,7 @@ namespace SyainKanriSystem.Models
         */
             
         // SELECT文のクエリを作成する。
-        public string makeSelectQuery(){
+        public string makeSelectQueryDepartment(){
             try
             {
                 string query = "SELECT * FROM Departments";
@@ -37,7 +37,7 @@ namespace SyainKanriSystem.Models
         }
 
         // 取得したクエリ結果を配列に格納する。
-        public List<Departments> getSelectEmployee(DataTable dt) {
+        public List<Departments> getSelectDepartment(DataTable dt) {
             List<Departments> dataList = new List<Departments>();
 
             foreach(DataRow dr in dt.Rows)
