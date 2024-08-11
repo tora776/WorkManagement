@@ -13,7 +13,7 @@ namespace SyainKanriSystem.Models
     public class PositionRepository { 
 
         // SELECT文のクエリを実行する。
-        /*
+        
         public DataTable sqlExecutePosition(String query, NpgsqlConnection conn){
             NpgsqlCommand sql = new NpgsqlCommand(query, conn);
             NpgsqlDataReader reader = sql.ExecuteReader();
@@ -21,7 +21,7 @@ namespace SyainKanriSystem.Models
             dt.Load(reader);
             return dt;
             }
-        */
+        
             
         // SELECT文のクエリを作成する。
         public string makeSelectQueryPosition(){
@@ -37,7 +37,7 @@ namespace SyainKanriSystem.Models
         }
 
         // 取得したクエリ結果を配列に格納する。
-        public List<Positions> getSelectDepartment(DataTable dt) {
+        public List<Positions> getSelectPosition(DataTable dt) {
             List<Positions> dataList = new List<Positions>();
 
             foreach(DataRow dr in dt.Rows)

@@ -19,8 +19,11 @@ namespace SyainKanriSystem
         public MainForm()
         {
             InitializeComponent();
+            List<Employees> employeeList = InitializeEmployees();
+            InitializeDepartment();
+            InitializePosition();
             dataGridView1 = InitializeDataGridView();
-            SetDataGridViewEmployeeInfo(dataGridView1);
+            SetDataGridViewEmployeeInfo(dataGridView1, employeeList);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -46,18 +49,20 @@ namespace SyainKanriSystem
             detailForm.Show();
         }
 
-        private DataGridView SetDataGridViewEmployeeInfo(DataGridView dataGridView1){
+        private DataGridView SetDataGridViewEmployeeInfo(DataGridView dataGridView1, List<Employees> employeeList){
             var DB = new DatabaseContext();
             var EmployeeRepos = new EmployeeRepository();
             try
             {
+                /*
                 NpgsqlConnection conn = DB.connectDB();
                 String query = EmployeeRepos.makeSelectQuery();
                 DataTable dt = EmployeeRepos.sqlExecute(query, conn);
                 DB.disconnectDB(conn);
                 List<Employees> dataList = EmployeeRepos.getSelectEmployee(dt);
+                */
                 
-                foreach (Employees item in dataList)
+                foreach (Employees item in employeeList)
                 {
                     int rowIndex = dataGridView1.Rows.Add();
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
@@ -109,5 +114,69 @@ namespace SyainKanriSystem
 
             return dataGridView1;
         }
+
+        private List<Employees> InitializeEmployees()
+        {
+            var DB = new DatabaseContext();
+            var EmployeeRepos = new EmployeeRepository();
+            try
+            {
+                NpgsqlConnection conn = DB.connectDB();
+                String query = EmployeeRepos.makeSelectQuery();
+                DataTable dt = EmployeeRepos.sqlExecute(query, conn);
+                DB.disconnectDB(conn);
+                List<Employees> employeeList = EmployeeRepos.getSelectEmployee(dt);
+                return employeeList;
+
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+                return null;
+            }
+        }
+
+        private List<Departments> InitializeDepartment()
+        {
+            var DB = new DatabaseContext();
+            var DepartmentRepository = new DepartmentRepository();
+            try
+            {
+                NpgsqlConnection conn = DB.connectDB();
+                String query = DepartmentRepository.makeSelectQueryDepartment();
+                DataTable dt = DepartmentRepository.sqlExecuteDepartment(query, conn);
+                DB.disconnectDB(conn);
+                List<Departments> departmentList = DepartmentRepository.getSelectDepartment(dt);
+                return departmentList;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+                return null;
+            }
+        }
+
+        private List<Positions> InitializePosition()
+        {
+            var DB = new DatabaseContext();
+            var PositionRepository = new PositionRepository();
+            try
+            {
+                NpgsqlConnection conn = DB.connectDB();
+                String query = PositionRepository.makeSelectQueryPosition();
+                DataTable dt = PositionRepository.sqlExecutePosition(query, conn);
+                DB.disconnectDB(conn);
+                List<Positions> departmentList = PositionRepository.getSelectPosition(dt);
+                return departmentList;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+                return null;
+            }
+        }
+
+
+
     }
 }

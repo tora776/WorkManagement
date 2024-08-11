@@ -13,7 +13,7 @@ namespace SyainKanriSystem.Models
     public class DepartmentRepository { 
 
         // SELECT文のクエリを実行する。
-        /*
+        
         public DataTable sqlExecuteDepartment(String query, NpgsqlConnection conn){
             NpgsqlCommand sql = new NpgsqlCommand(query, conn);
             NpgsqlDataReader reader = sql.ExecuteReader();
@@ -21,7 +21,7 @@ namespace SyainKanriSystem.Models
             dt.Load(reader);
             return dt;
             }
-        */
+        
             
         // SELECT文のクエリを作成する。
         public string makeSelectQueryDepartment(){
