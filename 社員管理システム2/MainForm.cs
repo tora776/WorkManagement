@@ -66,7 +66,7 @@ namespace SyainKanriSystem
                     row.Cells["名（かな）"].Value = item.LastNameKana;
                     row.Cells["メールアドレス"].Value = item.Email;
                     row.Cells["電話番号"].Value = item.PhoneNumber;
-                    row.Cells["雇用日"].Value = item.LastName;
+                    row.Cells["雇用日"].Value = item.HireDate.ToString("yyyy/MM/dd");
                     row.Cells["部門"].Value = departmentList.Where(x => x.DepartmentID == item.Department).Select(x => x.DepartmentName).FirstOrDefault();
                     row.Cells["役職"].Value = positionList.Where(x => x.PositionID == item.Position).Select(x => x.PositionName).FirstOrDefault();
                     row.Cells["ステータス"].Value = (item.Status == 0) ? "在籍" : "退職";
