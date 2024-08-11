@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SyainKanriSystem.Models;
+using System.Security.Cryptography.Xml;
 
 namespace SyainKanriSystem
 {
@@ -19,11 +20,11 @@ namespace SyainKanriSystem
         public MainForm()
         {
             InitializeComponent();
-            List<Employees> employeeList = InitializeEmployees();
-            InitializeDepartment();
-            InitializePosition();
+            List<Employees> employeeList = InitializeEmployeeRepository();
+            List<Departments> departmentList = InitializeDepartmentRepository();
+            List<Positions> positionList = InitializePositionRepository();
             dataGridView1 = InitializeDataGridView();
-            SetDataGridViewEmployeeInfo(dataGridView1, employeeList);
+            SetDataGridViewEmployeeInfo(dataGridView1, employeeList, departmentList, positionList);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -49,19 +50,10 @@ namespace SyainKanriSystem
             detailForm.Show();
         }
 
-        private DataGridView SetDataGridViewEmployeeInfo(DataGridView dataGridView1, List<Employees> employeeList){
-            var DB = new DatabaseContext();
-            var EmployeeRepos = new EmployeeRepository();
+        private DataGridView SetDataGridViewEmployeeInfo(DataGridView dataGridView1, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList){
+
             try
-            {
-                /*
-                NpgsqlConnection conn = DB.connectDB();
-                String query = EmployeeRepos.makeSelectQuery();
-                DataTable dt = EmployeeRepos.sqlExecute(query, conn);
-                DB.disconnectDB(conn);
-                List<Employees> dataList = EmployeeRepos.getSelectEmployee(dt);
-                */
-                
+            {            
                 foreach (Employees item in employeeList)
                 {
                     int rowIndex = dataGridView1.Rows.Add();
@@ -75,9 +67,9 @@ namespace SyainKanriSystem
                     row.Cells["メールアドレス"].Value = item.Email;
                     row.Cells["電話番号"].Value = item.PhoneNumber;
                     row.Cells["雇用日"].Value = item.LastName;
-                    row.Cells["部門"].Value = item.Department;
-                    row.Cells["役職"].Value = item.Position;
-                    row.Cells["ステータス"].Value = item.Status;
+                    row.Cells["部門"].Value = departmentList.Where(x => x.DepartmentID == item.Department).Select(x => x.DepartmentName).FirstOrDefault();
+                    row.Cells["役職"].Value = positionList.Where(x => x.PositionID == item.Position).Select(x => x.PositionName).FirstOrDefault();
+                    row.Cells["ステータス"].Value = (item.Status == 0) ? "在籍" : "退職";
 
                 }
 
@@ -115,17 +107,17 @@ namespace SyainKanriSystem
             return dataGridView1;
         }
 
-        private List<Employees> InitializeEmployees()
+        private List<Employees> InitializeEmployeeRepository()
         {
             var DB = new DatabaseContext();
-            var EmployeeRepos = new EmployeeRepository();
+            var EmployeeReposiroty = new EmployeeRepository();
             try
             {
                 NpgsqlConnection conn = DB.connectDB();
-                String query = EmployeeRepos.makeSelectQuery();
-                DataTable dt = EmployeeRepos.sqlExecute(query, conn);
+                String query = EmployeeReposiroty.makeSelectQuery();
+                DataTable dt = EmployeeReposiroty.sqlExecute(query, conn);
                 DB.disconnectDB(conn);
-                List<Employees> employeeList = EmployeeRepos.getSelectEmployee(dt);
+                List<Employees> employeeList = EmployeeReposiroty.getSelectEmployee(dt);
                 return employeeList;
 
             }
@@ -136,7 +128,7 @@ namespace SyainKanriSystem
             }
         }
 
-        private List<Departments> InitializeDepartment()
+        private List<Departments> InitializeDepartmentRepository()
         {
             var DB = new DatabaseContext();
             var DepartmentRepository = new DepartmentRepository();
@@ -156,7 +148,7 @@ namespace SyainKanriSystem
             }
         }
 
-        private List<Positions> InitializePosition()
+        private List<Positions> InitializePositionRepository()
         {
             var DB = new DatabaseContext();
             var PositionRepository = new PositionRepository();
