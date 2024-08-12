@@ -148,7 +148,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1178, 428);
+            this.ClientSize = new System.Drawing.Size(1178, 570);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label9);
@@ -157,6 +157,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "社員情報管理システム";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);

@@ -88,9 +88,15 @@ namespace SyainKanriSystem
             
             dataGridView1.ColumnCount = 11;
             dataGridView1.ColumnHeadersVisible = true;
-            
 
-            
+            //ヘッダーとすべてのセルの内容に合わせて、列の幅を自動調整する
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            for(int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                dataGridView1.Columns[i].MinimumWidth = 80;
+            }
+
+            // ヘッダーを設定
             dataGridView1.Columns[0].Name = "社員番号";
             dataGridView1.Columns[1].Name = "姓";
             dataGridView1.Columns[2].Name = "名";
