@@ -47,6 +47,7 @@ namespace SyainKanriSystem
         private void buttonDetailed_Click(object sender, EventArgs e)
         {
             EmployeeDetailForm detailForm = new EmployeeDetailForm();
+            SelectedDataGridView();
             detailForm.Show();
         }
 
@@ -174,27 +175,22 @@ namespace SyainKanriSystem
             }
         }
 
-        private void SelectedDataGridView(object sender, DataGridViewCellEventArgs e)
+        
+        private String[] SelectedDataGridView()
         {
 
+            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+            String[] employeeSelected = new string[11];
+                
+            for (int i = 0; i < selectedRow.Cells.Count; i++)
+            {
+            // 選択行のセルを取得する
+            employeeSelected[i] = selectedRow.Cells[i].Value.ToString();
+            }
 
-            if (e.RowIndex == -1)
-            {
-                // ヘッダーを選択した場合
-            }
-            else
-            {
-                String[] employeeSelected = null;
-                foreach (DataGridView cell in dataGridView1.SelectedRows)
-                {
-                    // 選択行を取得する
-                    //List<String> employee = dataGridView1.CurrentRow.Cells[0].Value;
-                    employeeSelected.Append(cell.Value);
-                }
-            }
+            // MessageBox.Show(string.Join(", ", employeeSelected));
+            return employeeSelected;
+
         }
-
-
-
     }
 }
