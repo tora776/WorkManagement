@@ -17,7 +17,7 @@ namespace SyainKanriSystem
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonAdd_Click(object sender, EventArgs e)
         {
             MessageBox.Show("データを追加しました。");
         }

@@ -43,7 +43,7 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_Add = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -215,16 +215,16 @@
             this.label10.Text = "-";
             this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
-            // button1
+            // button_Add
             // 
-            this.button1.Location = new System.Drawing.Point(118, 432);
-            this.button1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(197, 72);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "追加";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button_Add.Location = new System.Drawing.Point(118, 432);
+            this.button_Add.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.button_Add.Name = "button_Add";
+            this.button_Add.Size = new System.Drawing.Size(197, 72);
+            this.button_Add.TabIndex = 13;
+            this.button_Add.Text = "追加";
+            this.button_Add.UseVisualStyleBackColor = true;
+            this.button_Add.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // button2
             // 
@@ -357,7 +357,7 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_Add);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.textBox7);
@@ -399,7 +399,7 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_Add;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label2;
