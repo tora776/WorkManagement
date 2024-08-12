@@ -40,8 +40,8 @@ namespace SyainKanriSystem
 
         private void button3_Click(object sender, EventArgs e)
         {
-            EmployeeSearchForm form7 = new EmployeeSearchForm();
-            form7.Show();
+            EmployeeSearchForm searchForm = new EmployeeSearchForm();
+            searchForm.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
