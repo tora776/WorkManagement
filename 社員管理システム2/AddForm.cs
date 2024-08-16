@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -231,20 +232,27 @@ namespace SyainKanriSystem
 
         private string phoneChk(string[] addData)
         {
-            String[] PhoneNumberArray = { addData[6], addData[7], addData[8] };
-            for (int i = 0; i < PhoneNumberArray.Length; i++)
+            try
             {
-                bool result = int.TryParse(PhoneNumberArray[i], out _);
-                if (result == false)
+                String[] PhoneNumberArray = { addData[5], addData[6], addData[7] };
+                for (int i = 0; i < PhoneNumberArray.Length; i++)
                 {
-                    MessageBox.Show("電話番号には数字を記載してください");
-                    return null;
+                    bool result = int.TryParse(PhoneNumberArray[i], out _);
+                    if (result == false)
+                    {
+                        MessageBox.Show("電話番号には数字を記載してください");
+                        return null;
+                    }
                 }
+
+                String PhoneNumberValue = PhoneNumberArray[0] + "-" + PhoneNumberArray[1] + "-" + PhoneNumberArray[2];
+
+                return PhoneNumberValue;
             }
-
-            String PhoneNumberValue = PhoneNumberArray[0] + "-" + PhoneNumberArray[1] + "-" + PhoneNumberArray[2];         
-
-            return PhoneNumberValue;
+            catch (Exception error)
+            {
+                throw error;
+            }
         }
 
         private void mailChk(string[] addData)
@@ -269,15 +277,24 @@ namespace SyainKanriSystem
 
         private DateTime calendarChk(string[] addData)
         {
-            DateTime HireDateValue = DateTime.Parse(addData[9]);
-
-
-            if (HireDateValue > DateTime.Today)
+            try
             {
-                MessageBox.Show("未来の日付は入力できません");
-            }
+                // DateTime.TryParseExact(addData[8], "yyyy/MM/dd", CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime HireDateValue);
+                // DateTime.TryParseExact(addData[8], "yyyy/MM/dd", null, System.Globalization.DateTimeStyles.None, out DateTime HireDateValue);
+                DateTime HireDateValue = DateTime.Parse(addData[8]);
+                MessageBox.Show(HireDateValue.ToString());
 
-            return HireDateValue;
+                if (HireDateValue > DateTime.Today)
+                {
+                    MessageBox.Show("未来の日付は入力できません");
+                }
+                // MessageBox.Show(HireDateValue.ToString());
+                return HireDateValue;
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
         }
 
 
@@ -286,12 +303,12 @@ namespace SyainKanriSystem
             try
             {
                 String[] addData = getInputText();
-                // emptyChk(addData);
-                // wordCount(addData);
-                // mailChk(addData);
+                emptyChk(addData);
+                wordCount(addData);
+                mailChk(addData);
                 kanaChk(addData);
-                // DateTime HireDateValue = calendarChk(addData);
-                // String PhoneNumberArray = phoneChk(addData);
+                DateTime HireDateValue = calendarChk(addData);
+                String PhoneNumberArray = phoneChk(addData);
             }
             catch (Exception error)
             {
