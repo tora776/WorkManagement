@@ -305,18 +305,65 @@ namespace SyainKanriSystem
             }
         }
 
+        private int departmentComboBoxChk(string[] addData)
+        {
+            try
+            {
+                // departmentIDが0の場合、ないデータを記入しています
+                String DepartmentValue = addData[9];
+                int departmentID = departmentList.Where(x => x.DepartmentName == DepartmentValue).Select(x => x.DepartmentID).FirstOrDefault();
+                if(departmentID == 0)
+                {
+                    MessageBox.Show("存在しない部門名を入力しています");
+                }
+                
+                return departmentID;
+            }
+
+            catch (Exception error)
+            {
+                throw error;
+            }
+        }
+
+        private int positionComboBoxChk(string[] addData)
+        {
+            try
+            {
+                String PositionValue = addData[10];
+                int positionID = positionList.Where(x => x.PositionName == PositionValue).Select(x => x.PositionID).FirstOrDefault();
+                if (positionID == 0)
+                {
+                    MessageBox.Show("存在しない役職名を入力しています");
+                }
+
+                return positionID;
+            }
+
+            catch (Exception error)
+            {
+                throw error;
+            }
+        }
+
 
         private void addEmployee()
         {
             try
             {
+                // 入力値を取得
                 String[] addData = getInputText();
+                // エラーチェック
+                /*
                 emptyChk(addData);
                 wordCount(addData);
                 mailChk(addData);
                 kanaChk(addData);
                 DateTime HireDateValue = calendarChk(addData);
                 String PhoneNumberArray = phoneChk(addData);
+                */
+                departmentComboBoxChk(addData);
+                positionComboBoxChk(addData);
             }
             catch (Exception error)
             {
