@@ -15,10 +15,21 @@ using System.Windows.Forms;
 namespace SyainKanriSystem
 {
     public partial class EmployeeAddForm : Form
+
+
     {
-        public EmployeeAddForm()
+        private List<Employees> employeeList;
+        private List<Departments> departmentList;
+        private List<Positions> positionList;
+
+        public EmployeeAddForm(List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList)
         {
             InitializeComponent();
+            this.employeeList = employeeList;
+            this.departmentList = departmentList;
+            this.positionList = positionList;
+            InitializeDepartmentComboBox();
+            InitializePositionComboBox();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -279,8 +290,6 @@ namespace SyainKanriSystem
         {
             try
             {
-                // DateTime.TryParseExact(addData[8], "yyyy/MM/dd", CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime HireDateValue);
-                // DateTime.TryParseExact(addData[8], "yyyy/MM/dd", null, System.Globalization.DateTimeStyles.None, out DateTime HireDateValue);
                 DateTime HireDateValue = DateTime.Parse(addData[8]);
                 MessageBox.Show(HireDateValue.ToString());
 
@@ -288,7 +297,6 @@ namespace SyainKanriSystem
                 {
                     MessageBox.Show("未来の日付は入力できません");
                 }
-                // MessageBox.Show(HireDateValue.ToString());
                 return HireDateValue;
             }
             catch (Exception error)
@@ -316,17 +324,20 @@ namespace SyainKanriSystem
             }
         }
         
-        /*
+        
         public ComboBox InitializeDepartmentComboBox()
         {
-
             try
             {
-                List<Departments> departmentList = MainForm.departmentList;
-                foreach (var department in departmentList)
-                {
+                List<Departments> departmentList = this.departmentList;
 
-                }
+                // コンボボックスに表示と値をセット
+                comboBox_Department.DataSource = departmentList;
+                comboBox_Department.DisplayMember = "DepartmentName";
+                comboBox_Department.ValueMember = "DepartmentId";
+
+                // 初期値セット
+                comboBox_Department.SelectedIndex = -1;
 
                 return comboBox_Department;
             }
@@ -335,6 +346,27 @@ namespace SyainKanriSystem
                 throw error;
             }
         }
-        */
+
+        public ComboBox InitializePositionComboBox()
+        {
+            try
+            {
+                List<Positions> positionList = this.positionList;
+
+                // コンボボックスに表示と値をセット
+                comboBox_Position.DataSource = positionList;
+                comboBox_Position.DisplayMember = "PositionName";
+                comboBox_Position.ValueMember = "PositionId";
+
+                // 初期値セット
+                comboBox_Position.SelectedIndex = -1;
+
+                return comboBox_Position;
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
+        }
     }
 }

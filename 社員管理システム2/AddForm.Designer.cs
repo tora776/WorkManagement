@@ -231,6 +231,7 @@
             // 
             this.comboBox_Department.FormattingEnabled = true;
             this.comboBox_Department.Items.AddRange(new object[] {
+            /*
             "本社",
             "東京支部",
             "横浜支部",
@@ -240,7 +241,9 @@
             "大宮支部",
             "千葉支部",
             "福岡支部",
-            "名古屋支部"});
+            "名古屋支部"
+            */
+                });
             this.comboBox_Department.Location = new System.Drawing.Point(183, 327);
             this.comboBox_Department.Name = "comboBox_Department";
             this.comboBox_Department.Size = new System.Drawing.Size(162, 26);
@@ -250,6 +253,7 @@
             // 
             this.comboBox_Position.FormattingEnabled = true;
             this.comboBox_Position.Items.AddRange(new object[] {
+            /*
             "社長",
             "取締役",
             "支部長",
@@ -259,7 +263,9 @@
             "メンバ",
             "営業",
             "事務",
-            "CA"});
+            "CA"
+            */
+                });
             this.comboBox_Position.Location = new System.Drawing.Point(182, 370);
             this.comboBox_Position.Name = "comboBox_Position";
             this.comboBox_Position.Size = new System.Drawing.Size(163, 26);

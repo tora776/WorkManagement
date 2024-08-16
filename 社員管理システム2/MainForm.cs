@@ -12,19 +12,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SyainKanriSystem.Models;
 using System.Security.Cryptography.Xml;
+using System.Drawing.Text;
 
 namespace SyainKanriSystem
 {
     public partial class MainForm : Form
     {
+        private List<Employees> employeeList;
+        private List<Departments> departmentList;
+        private List<Positions> positionList;
+
         public MainForm()
         {
             InitializeComponent();
-            List<Employees> employeeList = InitializeEmployeeRepository();
-            List<Departments> departmentList = new List<Departments>();
+            employeeList = InitializeEmployeeRepository();
             departmentList = InitializeDepartmentRepository();
-            // List<Departments> departmentList = InitializeDepartmentRepository();
-            List<Positions> positionList = InitializePositionRepository();
+            positionList = InitializePositionRepository();
             dataGridView1 = InitializeDataGridView();
             SetDataGridViewEmployeeInfo(dataGridView1, employeeList, departmentList, positionList);
         }
@@ -36,7 +39,7 @@ namespace SyainKanriSystem
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            EmployeeAddForm addForm = new EmployeeAddForm();
+            EmployeeAddForm addForm = new EmployeeAddForm(employeeList, departmentList, positionList);
             addForm.Show();
         }
 
