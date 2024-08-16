@@ -316,7 +316,25 @@ namespace SyainKanriSystem
             }
         }
         
+        /*
+        public ComboBox InitializeDepartmentComboBox()
+        {
 
-        
+            try
+            {
+                List<Departments> departmentList = MainForm.departmentList;
+                foreach (var department in departmentList)
+                {
+
+                }
+
+                return comboBox_Department;
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
+        }
+        */
     }
 }

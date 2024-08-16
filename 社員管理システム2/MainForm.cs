@@ -21,7 +21,9 @@ namespace SyainKanriSystem
         {
             InitializeComponent();
             List<Employees> employeeList = InitializeEmployeeRepository();
-            List<Departments> departmentList = InitializeDepartmentRepository();
+            List<Departments> departmentList = new List<Departments>();
+            departmentList = InitializeDepartmentRepository();
+            // List<Departments> departmentList = InitializeDepartmentRepository();
             List<Positions> positionList = InitializePositionRepository();
             dataGridView1 = InitializeDataGridView();
             SetDataGridViewEmployeeInfo(dataGridView1, employeeList, departmentList, positionList);
