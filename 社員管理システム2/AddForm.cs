@@ -348,7 +348,7 @@ namespace SyainKanriSystem
             }
         }
 
-        private Array makeInsertList(String[] addData, string HireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
+        public Array submitAddEmployee(String[] addData, string HireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
         {
             // insertするデータの作成
             var insertData = new System.Collections.ArrayList();
@@ -362,8 +362,13 @@ namespace SyainKanriSystem
             insertData.Add(addDepartmentID);
             insertData.Add(addPositionID);
 
+            var employeeService = new EmployeeService();
+            employeeService.insertEmployeeData(insertData);
+
             return insertData.ToArray();
         }
+
+
 
 
         private void addEmployee()
@@ -382,7 +387,7 @@ namespace SyainKanriSystem
                 int addDepartmentID = departmentComboBoxChk(addData);
                 int addPositionID = positionComboBoxChk(addData);
                 // データの作成
-               Array insertData = makeInsertList(addData, HireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
+               Array insertData = submitAddEmployee(addData, HireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
                
 
             }
