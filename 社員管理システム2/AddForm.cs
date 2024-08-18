@@ -286,17 +286,19 @@ namespace SyainKanriSystem
             }
         }
 
-        private DateTime calendarChk(string[] addData)
+        private string calendarChk(string[] addData)
         {
             try
             {
-                DateTime HireDateValue = DateTime.Parse(addData[8]);
-                MessageBox.Show(HireDateValue.ToString());
+                DateTime HireDate = DateTime.Parse(addData[8]);
 
-                if (HireDateValue > DateTime.Today)
+                if (HireDate > DateTime.Today)
                 {
                     MessageBox.Show("未来の日付は入力できません");
                 }
+
+                string HireDateValue = HireDate.ToString("yyyy/MM/dd");
+
                 return HireDateValue;
             }
             catch (Exception error)
@@ -346,6 +348,23 @@ namespace SyainKanriSystem
             }
         }
 
+        private Array makeInsertList(String[] addData, string HireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
+        {
+            // insertするデータの作成
+            var insertData = new System.Collections.ArrayList();
+            insertData.Add(addData[0]);
+            insertData.Add(addData[1]);
+            insertData.Add(addData[2]);
+            insertData.Add(addData[3]);
+            insertData.Add(addData[4]);
+            insertData.Add(addPhoneNumber);
+            insertData.Add(HireDateValue);
+            insertData.Add(addDepartmentID);
+            insertData.Add(addPositionID);
+
+            return insertData.ToArray();
+        }
+
 
         private void addEmployee()
         {
@@ -354,16 +373,18 @@ namespace SyainKanriSystem
                 // 入力値を取得
                 String[] addData = getInputText();
                 // エラーチェック
-                /*
                 emptyChk(addData);
                 wordCount(addData);
                 mailChk(addData);
                 kanaChk(addData);
-                DateTime HireDateValue = calendarChk(addData);
-                String PhoneNumberArray = phoneChk(addData);
-                */
-                departmentComboBoxChk(addData);
-                positionComboBoxChk(addData);
+                string HireDateValue = calendarChk(addData);
+                string addPhoneNumber = phoneChk(addData);
+                int addDepartmentID = departmentComboBoxChk(addData);
+                int addPositionID = positionComboBoxChk(addData);
+                // データの作成
+               Array insertData = makeInsertList(addData, HireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
+               
+
             }
             catch (Exception error)
             {
