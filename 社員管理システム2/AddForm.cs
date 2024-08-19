@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Hierarchy;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -286,18 +287,16 @@ namespace SyainKanriSystem
             }
         }
 
-        private string calendarChk(string[] addData)
+        private DateTime calendarChk(string[] addData)
         {
             try
             {
-                DateTime HireDate = DateTime.Parse(addData[8]);
+                DateTime HireDateValue = DateTime.Parse(addData[8]);
 
-                if (HireDate > DateTime.Today)
+                if (HireDateValue > DateTime.Today)
                 {
                     MessageBox.Show("未来の日付は入力できません");
                 }
-
-                string HireDateValue = HireDate.ToString("yyyy/MM/dd");
 
                 return HireDateValue;
             }
@@ -348,24 +347,26 @@ namespace SyainKanriSystem
             }
         }
 
-        public Array submitAddEmployee(String[] addData, string HireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
+        public Employees submitAddEmployee(String[] addData, DateTime HireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
         {
             // insertするデータの作成
             var insertData = new System.Collections.ArrayList();
-            insertData.Add(addData[0]);
-            insertData.Add(addData[1]);
-            insertData.Add(addData[2]);
-            insertData.Add(addData[3]);
-            insertData.Add(addData[4]);
-            insertData.Add(addPhoneNumber);
-            insertData.Add(HireDateValue);
-            insertData.Add(addDepartmentID);
-            insertData.Add(addPositionID);
+            Employees addEmployee = new Employees();
+            addEmployee.FirstName = addData[0];
+            addEmployee.LastName = addData[1];
+            addEmployee.FirstNameKana = addData[2];
+            addEmployee.LastNameKana = addData[3];
+            addEmployee.Email = addData[4];
+            addEmployee.PhoneNumber = addPhoneNumber;
+            addEmployee.HireDate = HireDateValue;
+            addEmployee.Department = addDepartmentID;
+            addEmployee.Position = addPositionID;
+            addEmployee.Status = 0;
 
             var employeeService = new EmployeeService();
-            employeeService.insertEmployeeData(insertData.ToArray());
+            employeeService.insertEmployeeData(addEmployee);
 
-            return insertData.ToArray();
+            return addEmployee;
         }
 
 
@@ -382,12 +383,13 @@ namespace SyainKanriSystem
                 wordCount(addData);
                 mailChk(addData);
                 kanaChk(addData);
-                string HireDateValue = calendarChk(addData);
+                DateTime HireDateValue = calendarChk(addData);
                 string addPhoneNumber = phoneChk(addData);
                 int addDepartmentID = departmentComboBoxChk(addData);
                 int addPositionID = positionComboBoxChk(addData);
                 // データの作成
-               Array insertData = submitAddEmployee(addData, HireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
+                submitAddEmployee(addData, HireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
+               // Array insertData = submitAddEmployee(addData, HireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
                
 
             }

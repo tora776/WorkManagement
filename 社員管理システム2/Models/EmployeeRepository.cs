@@ -57,11 +57,11 @@ namespace SyainKanriSystem.Models
             return dataList;
         }
 
-        public string makeInsertQuery(Array insertData, string insertEmployeeID)
+        public string makeInsertQuery(Employees addEmployee)
         {
             try
             {
-                string query = "SELECT * FROM Employees";
+                string query = $@"INSERT INTO Employees (EmployeeID, FirstName, LastName, FirstNameKana, LastNameKana, Email, PhoneNumber, HireDate, Department, Position, Status) VALUES ('{addEmployee.EmployeeID}', '{addEmployee.FirstName}', '{addEmployee.LastName}', '{addEmployee.FirstNameKana}', '{addEmployee.LastNameKana}', '{addEmployee.Email}', '{addEmployee.PhoneNumber}', '{addEmployee.HireDate.ToString("yyyyMMdd")}', {addEmployee.Department}, {addEmployee.Position}, {addEmployee.Status})";
                 return query;
             }
             catch (Exception)

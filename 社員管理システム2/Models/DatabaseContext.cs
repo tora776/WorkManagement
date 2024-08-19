@@ -29,9 +29,9 @@ namespace SyainKanriSystem.Models
                 conn.Open();
                 return conn;
             }
-            catch (Exception e)
+            catch (Exception error)
             {
-                throw;
+                throw error;
             }
         }
         
