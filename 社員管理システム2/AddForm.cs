@@ -162,7 +162,11 @@ namespace SyainKanriSystem
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            closeAddForm();
+        }
+        private void button_Cancel_Click(object sender, EventArgs e)
+        {
+            closeAddForm();
         }
 
         private String[] getInputText()
@@ -369,6 +373,11 @@ namespace SyainKanriSystem
             return addEmployee;
         }
 
+        private void closeAddForm()
+        {
+            this.Close();
+        }
+
 
 
 
@@ -387,10 +396,11 @@ namespace SyainKanriSystem
                 string addPhoneNumber = phoneChk(addData);
                 int addDepartmentID = departmentComboBoxChk(addData);
                 int addPositionID = positionComboBoxChk(addData);
-                // データの作成
+                // データの作成・追加処理
                 submitAddEmployee(addData, HireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
-               // Array insertData = submitAddEmployee(addData, HireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
-               
+                // 追加フォームを閉じる。閉じずに入力フォームを初期化したほうがよい？
+                closeAddForm();
+                
 
             }
             catch (Exception error)
@@ -443,5 +453,7 @@ namespace SyainKanriSystem
                 throw error;
             }
         }
+
+        
     }
 }

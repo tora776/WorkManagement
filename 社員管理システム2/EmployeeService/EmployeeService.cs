@@ -22,11 +22,10 @@ namespace SyainKanriSystem
         {
             var DB = new DatabaseContext();
             var EmployeeReposiroty = new EmployeeRepository();
-            
+            NpgsqlConnection conn = DB.connectDB();
+
             try
             {
-            
-                NpgsqlConnection conn = DB.connectDB();
                 String query = EmployeeReposiroty.GetMaxEmployeeIDQuery();
                 DataTable dtMaxID = EmployeeReposiroty.sqlExecute(query, conn);
                 if (dtMaxID.Rows.Count > 0)
@@ -36,21 +35,23 @@ namespace SyainKanriSystem
                     string insertEmployeeID = addEmployeeID.ToString("000000");
                     addEmployee.EmployeeID = insertEmployeeID;
                 }
-                
-                // DB.disconnectDB(conn);
-
-
+                // Insert文を作成
                 query = EmployeeReposiroty.makeInsertQuery(addEmployee);
-                
-                DataTable dt = EmployeeReposiroty.sqlExecute(query, conn);
-                DB.disconnectDB(conn);              
+                // クエリを実行
+                EmployeeReposiroty.sqlExecute(query, conn);              
             
             }
             catch (Exception error)
+            {                
+                throw error;
+            }
+            finally
             {
                 // DBに接続していれば切断する
-                
-                throw error;
+                if (conn != null)
+                {
+                    DB.disconnectDB(conn);
+                }
             }
             
         }
