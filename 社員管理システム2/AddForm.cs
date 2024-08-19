@@ -363,7 +363,7 @@ namespace SyainKanriSystem
             insertData.Add(addPositionID);
 
             var employeeService = new EmployeeService();
-            employeeService.insertEmployeeData(insertData);
+            employeeService.insertEmployeeData(insertData.ToArray());
 
             return insertData.ToArray();
         }

@@ -56,6 +56,33 @@ namespace SyainKanriSystem.Models
             }
             return dataList;
         }
+
+        public string makeInsertQuery(Array insertData, string insertEmployeeID)
+        {
+            try
+            {
+                string query = "SELECT * FROM Employees";
+                return query;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public string GetMaxEmployeeIDQuery()
+        {
+
+            try
+            {
+                string query = "SELECT Max(CAST(EmployeeID as INTEGER)) FROM Employees";
+                return query;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
 
