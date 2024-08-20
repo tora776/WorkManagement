@@ -163,6 +163,7 @@ namespace SyainKanriSystem
         private void button3_Click(object sender, EventArgs e)
         {
             closeAddForm();
+            // MainForm.ResetDataGridView(MainForm.dataGridView1);
         }
         private void button_Cancel_Click(object sender, EventArgs e)
         {
@@ -354,7 +355,6 @@ namespace SyainKanriSystem
         public Employees submitAddEmployee(String[] addData, DateTime HireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
         {
             // insertするデータの作成
-            var insertData = new System.Collections.ArrayList();
             Employees addEmployee = new Employees();
             addEmployee.FirstName = addData[0];
             addEmployee.LastName = addData[1];

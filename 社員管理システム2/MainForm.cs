@@ -32,6 +32,13 @@ namespace SyainKanriSystem
             SetDataGridViewEmployeeInfo(dataGridView1, employeeList, departmentList, positionList);
         }
 
+        public void ResetDataGridView(DataGridView dataGridView1)
+        {
+            employeeList.Clear();
+            employeeList = InitializeEmployeeRepository();
+            SetDataGridViewEmployeeInfo(dataGridView1, employeeList, departmentList, positionList);
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
@@ -52,7 +59,7 @@ namespace SyainKanriSystem
         private void buttonDetailed_Click(object sender, EventArgs e)
         {
             EmployeeDetailForm detailForm = new EmployeeDetailForm();
-            SelectedDataGridView();
+            String[] employeeSelectedRow = SelectedDataGridView();
             detailForm.Show();
         }
 
@@ -185,16 +192,36 @@ namespace SyainKanriSystem
         {
 
             DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-            String[] employeeSelected = new string[11];
-                
+            String[] employeeSelectedRow = new string[11];
+            Employees detailedEmployee = new Employees();
+            
             for (int i = 0; i < selectedRow.Cells.Count; i++)
             {
             // 選択行のセルを取得する
-            employeeSelected[i] = selectedRow.Cells[i].Value.ToString();
+            employeeSelectedRow[i] = selectedRow.Cells[i].Value.ToString();
             }
+            
+            /*
+            detailedEmployee.EmployeeID = selectedRow.Cells[0].Value.ToString();
+            detailedEmployee.FirstName = selectedRow.Cells[1].Value.ToString();
+            detailedEmployee.LastName = selectedRow.Cells[2].Value.ToString();
+            detailedEmployee.FirstNameKana = selectedRow.Cells[3].Value.ToString();
+            detailedEmployee.LastNameKana = selectedRow.Cells[4].Value.ToString();
+            detailedEmployee.Email = selectedRow.Cells[5].Value.ToString();
+            detailedEmployee.PhoneNumber = selectedRow.Cells[6].Value.ToString();
+            detailedEmployee.HireDate = DateTime.Parse(selectedRow.Cells[7].Value.ToString());
+            // DepartmentとPositionはフォームを切り替えるたびにintとStringに変換する必要があり、手間。
+            detailedEmployee.Department = int.Parse(selectedRow.Cells[8].Value.ToString());
+            detailedEmployee.Position = int.Parse(selectedRow.Cells[9].Value.ToString());
+            detailedEmployee.Status = int.Parse(selectedRow.Cells[10].Value.ToString());
+            */
 
-            // MessageBox.Show(string.Join(", ", employeeSelected));
-            return employeeSelected;
+
+
+
+
+            MessageBox.Show(detailedEmployee.HireDate.ToString());
+            return employeeSelectedRow;
 
         }
     }
