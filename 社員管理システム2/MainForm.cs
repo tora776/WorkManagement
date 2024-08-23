@@ -58,8 +58,8 @@ namespace SyainKanriSystem
 
         private void buttonDetailed_Click(object sender, EventArgs e)
         {
-            EmployeeDetailForm detailForm = new EmployeeDetailForm();
-            String[] employeeSelectedRow = SelectedDataGridView();
+            Employees detailedEmployee = SelectedDataGridView();
+            EmployeeDetailForm detailForm = new EmployeeDetailForm(employeeList, departmentList, positionList, detailedEmployee);
             detailForm.Show();
         }
 
@@ -82,7 +82,7 @@ namespace SyainKanriSystem
                     row.Cells["雇用日"].Value = item.HireDate.ToString("yyyy/MM/dd");
                     row.Cells["部門"].Value = departmentList.Where(x => x.DepartmentID == item.Department).Select(x => x.DepartmentName).FirstOrDefault();
                     row.Cells["役職"].Value = positionList.Where(x => x.PositionID == item.Position).Select(x => x.PositionName).FirstOrDefault();
-                    row.Cells["ステータス"].Value = (item.Status == 0) ? "在籍" : "退職";
+                    row.Cells["ステータス"].Value = (item.Status == 0) ? "在籍" : "退職済";
 
                 }
 
@@ -188,40 +188,21 @@ namespace SyainKanriSystem
         }
 
         
-        private String[] SelectedDataGridView()
+        private Employees SelectedDataGridView()
         {
-
-            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-            String[] employeeSelectedRow = new string[11];
-            Employees detailedEmployee = new Employees();
-            
-            for (int i = 0; i < selectedRow.Cells.Count; i++)
+            try
             {
-            // 選択行のセルを取得する
-            employeeSelectedRow[i] = selectedRow.Cells[i].Value.ToString();
+                // 選択している行を取得
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                // 選択している行の社員番号からデータを取得
+                Employees detailedEmployee = employeeList.Find(x => x.EmployeeID == selectedRow.Cells[0].Value.ToString());
+
+                return detailedEmployee;
             }
-            
-            /*
-            detailedEmployee.EmployeeID = selectedRow.Cells[0].Value.ToString();
-            detailedEmployee.FirstName = selectedRow.Cells[1].Value.ToString();
-            detailedEmployee.LastName = selectedRow.Cells[2].Value.ToString();
-            detailedEmployee.FirstNameKana = selectedRow.Cells[3].Value.ToString();
-            detailedEmployee.LastNameKana = selectedRow.Cells[4].Value.ToString();
-            detailedEmployee.Email = selectedRow.Cells[5].Value.ToString();
-            detailedEmployee.PhoneNumber = selectedRow.Cells[6].Value.ToString();
-            detailedEmployee.HireDate = DateTime.Parse(selectedRow.Cells[7].Value.ToString());
-            // DepartmentとPositionはフォームを切り替えるたびにintとStringに変換する必要があり、手間。
-            detailedEmployee.Department = int.Parse(selectedRow.Cells[8].Value.ToString());
-            detailedEmployee.Position = int.Parse(selectedRow.Cells[9].Value.ToString());
-            detailedEmployee.Status = int.Parse(selectedRow.Cells[10].Value.ToString());
-            */
-
-
-
-
-
-            MessageBox.Show(detailedEmployee.HireDate.ToString());
-            return employeeSelectedRow;
+            catch (Exception error)
+            {
+                throw error;
+            }
 
         }
     }

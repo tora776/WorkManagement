@@ -38,26 +38,26 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox_EmployeeID = new System.Windows.Forms.TextBox();
+            this.textBox_FirstName = new System.Windows.Forms.TextBox();
+            this.textBox_FirstNameKana = new System.Windows.Forms.TextBox();
+            this.textBox_Email = new System.Windows.Forms.TextBox();
+            this.textBox_PhoneNumber1 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox_PhoneNumber2 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox_PhoneNumber3 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.textBox_LastNameKana = new System.Windows.Forms.TextBox();
+            this.textBox_LastName = new System.Windows.Forms.TextBox();
+            this.comboBox_Status = new System.Windows.Forms.ComboBox();
+            this.comboBox_Department = new System.Windows.Forms.ComboBox();
+            this.comboBox_Position = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker_HireDate = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label9
@@ -171,56 +171,51 @@
             this.label10.TabIndex = 37;
             this.label10.Text = "ステータス";
             // 
-            // textBox1
+            // textBox_EmployeeID
             // 
-            this.textBox1.Location = new System.Drawing.Point(183, 81);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(164, 25);
-            this.textBox1.TabIndex = 38;
-            this.textBox1.Text = "000001";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox_EmployeeID.Location = new System.Drawing.Point(183, 81);
+            this.textBox_EmployeeID.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.textBox_EmployeeID.Name = "textBox_EmployeeID";
+            this.textBox_EmployeeID.ReadOnly = true;
+            this.textBox_EmployeeID.Size = new System.Drawing.Size(164, 25);
+            this.textBox_EmployeeID.TabIndex = 38;
+            this.textBox_EmployeeID.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // textBox9
+            // textBox_FirstName
             // 
-            this.textBox9.Location = new System.Drawing.Point(183, 128);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(196, 25);
-            this.textBox9.TabIndex = 39;
-            this.textBox9.Text = "田中";
+            this.textBox_FirstName.Location = new System.Drawing.Point(183, 128);
+            this.textBox_FirstName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.textBox_FirstName.Name = "textBox_FirstName";
+            this.textBox_FirstName.ReadOnly = true;
+            this.textBox_FirstName.Size = new System.Drawing.Size(196, 25);
+            this.textBox_FirstName.TabIndex = 39;
             // 
-            // textBox3
+            // textBox_FirstNameKana
             // 
-            this.textBox3.Location = new System.Drawing.Point(183, 171);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(196, 25);
-            this.textBox3.TabIndex = 41;
-            this.textBox3.Text = "たなか";
+            this.textBox_FirstNameKana.Location = new System.Drawing.Point(183, 171);
+            this.textBox_FirstNameKana.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.textBox_FirstNameKana.Name = "textBox_FirstNameKana";
+            this.textBox_FirstNameKana.ReadOnly = true;
+            this.textBox_FirstNameKana.Size = new System.Drawing.Size(196, 25);
+            this.textBox_FirstNameKana.TabIndex = 41;
             // 
-            // textBox5
+            // textBox_Email
             // 
-            this.textBox5.Location = new System.Drawing.Point(183, 216);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(421, 25);
-            this.textBox5.TabIndex = 43;
-            this.textBox5.Text = "aaa@ost.co.jp";
+            this.textBox_Email.Location = new System.Drawing.Point(183, 216);
+            this.textBox_Email.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.textBox_Email.Name = "textBox_Email";
+            this.textBox_Email.ReadOnly = true;
+            this.textBox_Email.Size = new System.Drawing.Size(421, 25);
+            this.textBox_Email.TabIndex = 43;
             // 
-            // textBox6
+            // textBox_PhoneNumber1
             // 
-            this.textBox6.Location = new System.Drawing.Point(183, 261);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(89, 25);
-            this.textBox6.TabIndex = 44;
-            this.textBox6.Text = "090";
+            this.textBox_PhoneNumber1.Location = new System.Drawing.Point(183, 261);
+            this.textBox_PhoneNumber1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.textBox_PhoneNumber1.Name = "textBox_PhoneNumber1";
+            this.textBox_PhoneNumber1.ReadOnly = true;
+            this.textBox_PhoneNumber1.Size = new System.Drawing.Size(89, 25);
+            this.textBox_PhoneNumber1.TabIndex = 44;
             // 
             // label11
             // 
@@ -232,15 +227,14 @@
             this.label11.TabIndex = 47;
             this.label11.Text = "-";
             // 
-            // textBox7
+            // textBox_PhoneNumber2
             // 
-            this.textBox7.Location = new System.Drawing.Point(308, 261);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(89, 25);
-            this.textBox7.TabIndex = 48;
-            this.textBox7.Text = "1111";
+            this.textBox_PhoneNumber2.Location = new System.Drawing.Point(308, 261);
+            this.textBox_PhoneNumber2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.textBox_PhoneNumber2.Name = "textBox_PhoneNumber2";
+            this.textBox_PhoneNumber2.ReadOnly = true;
+            this.textBox_PhoneNumber2.Size = new System.Drawing.Size(89, 25);
+            this.textBox_PhoneNumber2.TabIndex = 48;
             // 
             // label12
             // 
@@ -252,25 +246,14 @@
             this.label12.TabIndex = 49;
             this.label12.Text = "-";
             // 
-            // textBox8
+            // textBox_PhoneNumber3
             // 
-            this.textBox8.Location = new System.Drawing.Point(433, 261);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(89, 25);
-            this.textBox8.TabIndex = 50;
-            this.textBox8.Text = "2222";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(183, 306);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(164, 25);
-            this.textBox10.TabIndex = 51;
-            this.textBox10.Text = "1977/4/1";
+            this.textBox_PhoneNumber3.Location = new System.Drawing.Point(433, 261);
+            this.textBox_PhoneNumber3.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.textBox_PhoneNumber3.Name = "textBox_PhoneNumber3";
+            this.textBox_PhoneNumber3.ReadOnly = true;
+            this.textBox_PhoneNumber3.Size = new System.Drawing.Size(89, 25);
+            this.textBox_PhoneNumber3.TabIndex = 50;
             // 
             // button1
             // 
@@ -327,100 +310,87 @@
             this.label14.TabIndex = 58;
             this.label14.Text = "名";
             // 
-            // textBox2
+            // textBox_LastNameKana
             // 
-            this.textBox2.Location = new System.Drawing.Point(524, 173);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(196, 25);
-            this.textBox2.TabIndex = 61;
-            this.textBox2.Text = "たろう";
+            this.textBox_LastNameKana.Location = new System.Drawing.Point(524, 173);
+            this.textBox_LastNameKana.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.textBox_LastNameKana.Name = "textBox_LastNameKana";
+            this.textBox_LastNameKana.ReadOnly = true;
+            this.textBox_LastNameKana.Size = new System.Drawing.Size(196, 25);
+            this.textBox_LastNameKana.TabIndex = 61;
             // 
-            // textBox4
+            // textBox_LastName
             // 
-            this.textBox4.Location = new System.Drawing.Point(524, 130);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(196, 25);
-            this.textBox4.TabIndex = 60;
-            this.textBox4.Text = "太郎";
+            this.textBox_LastName.Location = new System.Drawing.Point(524, 130);
+            this.textBox_LastName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.textBox_LastName.Name = "textBox_LastName";
+            this.textBox_LastName.ReadOnly = true;
+            this.textBox_LastName.Size = new System.Drawing.Size(196, 25);
+            this.textBox_LastName.TabIndex = 60;
             // 
-            // comboBox3
+            // comboBox_Status
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.comboBox_Status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Status.FormattingEnabled = true;
+            this.comboBox_Status.Items.AddRange(new object[] {
             "在籍",
             "退職済"});
-            this.comboBox3.Location = new System.Drawing.Point(182, 444);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(161, 26);
-            this.comboBox3.TabIndex = 64;
+            this.comboBox_Status.Location = new System.Drawing.Point(182, 444);
+            this.comboBox_Status.Name = "comboBox_Status";
+            this.comboBox_Status.Size = new System.Drawing.Size(161, 26);
+            this.comboBox_Status.TabIndex = 64;
             // 
-            // comboBox1
+            // comboBox_Department
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "本社",
-            "東京支部",
-            "横浜支部",
-            "札幌支部",
-            "大阪支部",
-            "京都支部",
-            "大宮支部",
-            "千葉支部",
-            "福岡支部",
-            "名古屋支部"});
-            this.comboBox1.Location = new System.Drawing.Point(182, 355);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(162, 26);
-            this.comboBox1.TabIndex = 65;
+            this.comboBox_Department.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Department.FormattingEnabled = true;
+            this.comboBox_Department.Location = new System.Drawing.Point(182, 355);
+            this.comboBox_Department.Name = "comboBox_Department";
+            this.comboBox_Department.Size = new System.Drawing.Size(162, 26);
+            this.comboBox_Department.TabIndex = 65;
+            this.comboBox_Department.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // comboBox2
+            // comboBox_Position
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "社長",
-            "取締役",
-            "支部長",
-            "課長",
-            "SL",
-            "TL",
-            "メンバ",
-            "営業",
-            "事務",
-            "CA"});
-            this.comboBox2.Location = new System.Drawing.Point(181, 399);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(163, 26);
-            this.comboBox2.TabIndex = 66;
+            this.comboBox_Position.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Position.FormattingEnabled = true;
+            this.comboBox_Position.Location = new System.Drawing.Point(181, 399);
+            this.comboBox_Position.Name = "comboBox_Position";
+            this.comboBox_Position.Size = new System.Drawing.Size(163, 26);
+            this.comboBox_Position.TabIndex = 66;
+            // 
+            // dateTimePicker_HireDate
+            // 
+            this.dateTimePicker_HireDate.Location = new System.Drawing.Point(183, 309);
+            this.dateTimePicker_HireDate.Name = "dateTimePicker_HireDate";
+            this.dateTimePicker_HireDate.Size = new System.Drawing.Size(200, 25);
+            this.dateTimePicker_HireDate.TabIndex = 67;
             // 
             // EmployeeDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1333, 675);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.dateTimePicker_HireDate);
+            this.Controls.Add(this.comboBox_Position);
+            this.Controls.Add(this.comboBox_Department);
+            this.Controls.Add(this.comboBox_Status);
+            this.Controls.Add(this.textBox_LastNameKana);
+            this.Controls.Add(this.textBox_LastName);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.textBox_PhoneNumber3);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.textBox_PhoneNumber2);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_PhoneNumber1);
+            this.Controls.Add(this.textBox_Email);
+            this.Controls.Add(this.textBox_FirstNameKana);
+            this.Controls.Add(this.textBox_FirstName);
+            this.Controls.Add(this.textBox_EmployeeID);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -451,25 +421,25 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox_EmployeeID;
+        private System.Windows.Forms.TextBox textBox_FirstName;
+        private System.Windows.Forms.TextBox textBox_FirstNameKana;
+        private System.Windows.Forms.TextBox textBox_Email;
+        private System.Windows.Forms.TextBox textBox_PhoneNumber1;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox_PhoneNumber2;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox_PhoneNumber3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox textBox_LastNameKana;
+        private System.Windows.Forms.TextBox textBox_LastName;
+        private System.Windows.Forms.ComboBox comboBox_Status;
+        private System.Windows.Forms.ComboBox comboBox_Department;
+        private System.Windows.Forms.ComboBox comboBox_Position;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_HireDate;
     }
 }

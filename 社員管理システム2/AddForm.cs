@@ -446,7 +446,7 @@ namespace SyainKanriSystem
                 // 初期値セット
                 comboBox_Position.SelectedIndex = -1;
 
-                return comboBox_Position;
+                return  comboBox_Position;
             }
             catch (Exception error)
             {
