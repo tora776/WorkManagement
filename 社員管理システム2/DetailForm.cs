@@ -12,11 +12,13 @@ namespace SyainKanriSystem
 {
     public partial class EmployeeDetailForm : Form
     {
+        // クラス変数を定義
         private List<Employees> employeeList;
         private List<Departments> departmentList;
         private List<Positions> positionList;
         private Employees detailedEmployee;
-
+        
+        // 詳細表示画面を表示する
         public EmployeeDetailForm(List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList, Employees detailedEmployee)
         {
             InitializeComponent();
@@ -28,13 +30,16 @@ namespace SyainKanriSystem
             
         }
 
-        /*
+        /* 詳細表示画面を閉じる
         private void button_Cancel_Click(object sender, EventArgs e)
         {
             closeAddForm();
         }
         */
 
+        // DataGridView選択行の社員データをフォーム・コンボボックスに入力する
+        // TODO DateTimePickerに日付を入力する
+        // TODO コンボボックス・DateTimePickerを読み取り専用（入力不可）にする
         private void inputDetailedEmployee(Employees detailedEmployee)
         {
             textBox_EmployeeID.Text = detailedEmployee.EmployeeID;
@@ -50,10 +55,6 @@ namespace SyainKanriSystem
             InitializeDepartmentComboBox(detailedEmployee);
             InitializePositionComboBox(detailedEmployee);
             InitializeStatusComboBox(detailedEmployee);
-
-
-
-            // String[] addData = { FirstNameValue, LastNameValue, FirstNameKanaValue, LastNameKanaValue, EmailValue, PhoneNumber1Value, PhoneNumber2Value, PhoneNumber3Value, HireDateValue, DepartmentValue, PositionValue };
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -123,7 +124,8 @@ namespace SyainKanriSystem
 
         }
 
-
+        // 削除ボタン処理
+        // TODO ボタンの変数名変更
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("データを削除しますか？", "確認", MessageBoxButtons.OKCancel);
@@ -150,6 +152,8 @@ namespace SyainKanriSystem
 
         }
 
+        // 削除ボタン処理
+        // TODO 削除ボタン処理が2個あるのでどちらが正しいか調べる
         private void button2_Click_1(object sender, EventArgs e)
         {
             MessageBox.Show("この社員を削除しますか？", "削除確認", MessageBoxButtons.OKCancel);
@@ -160,6 +164,8 @@ namespace SyainKanriSystem
 
         }
 
+        // 部門名のコンボボックスのリストを作成・初期値を入力する
+        // TODO コンボボックスを入力不可にする
         public ComboBox InitializeDepartmentComboBox(Employees detailedEmployee)
         {
             try
@@ -184,6 +190,8 @@ namespace SyainKanriSystem
             }
         }
 
+        // 役職コンボボックスのリストを作成・初期値を入力する
+        // TODO 役職コンボボックスを入力不可にする
         public ComboBox InitializePositionComboBox(Employees detailedEmployee)
         {
             try
@@ -208,6 +216,8 @@ namespace SyainKanriSystem
             }
         }
 
+        // ステータスコンボボックスに初期値を入力する（ステータスコンボボックスのリストはDesignerで作成したものを使用する）
+        // TODO ステータスコンボボックスを入力不可にする
         public ComboBox InitializeStatusComboBox(Employees detailedEmployee)
         {
             try

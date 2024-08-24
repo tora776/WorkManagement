@@ -26,13 +26,17 @@ namespace SyainKanriSystem
         public EmployeeAddForm(List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList)
         {
             InitializeComponent();
+            // MainForm.csより受け取ったリストをクラス変数に格納
             this.employeeList = employeeList;
             this.departmentList = departmentList;
             this.positionList = positionList;
+            // コンボボックスを初期化
             InitializeDepartmentComboBox();
             InitializePositionComboBox();
         }
 
+        // 社員追加処理
+        // TODO エラーチェックを検知した際、catch部へ移行する
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             try
@@ -160,16 +164,21 @@ namespace SyainKanriSystem
 
         }
 
+        //  追加フォームを閉じる
         private void button3_Click(object sender, EventArgs e)
         {
             closeAddForm();
             // MainForm.ResetDataGridView(MainForm.dataGridView1);
         }
+
+        // 追加フォームを閉じる
+        // TODO 「戻る」ボタンor「キャンセル」ボタンなのかを明確にする
         private void button_Cancel_Click(object sender, EventArgs e)
         {
             closeAddForm();
         }
 
+        // 入力値を取得する
         private String[] getInputText()
         {
             string FirstNameValue = textBox_FirstName.Text;
@@ -188,6 +197,8 @@ namespace SyainKanriSystem
             return addData;
         }
 
+        // 入力値が空かどうか取得する
+        // TODO 入力値が空の場合、Catch部に移行するエラーを作成
         private void emptyChk(string[] addData)
         {
             try
@@ -208,6 +219,8 @@ namespace SyainKanriSystem
             }
         }
 
+        // 入力文字数がDBの入力制限を超えていないか確認する
+        // TODO 文字数オーバーの場合、Catch部に移行するエラーを作成
         private void wordCount(string[] addData)
         {
             try
@@ -228,6 +241,8 @@ namespace SyainKanriSystem
             }
         }
 
+        // 姓（かな）・名（かな）が平仮名か確認する
+        // TODO ひらがな以外の場合、Catch部に移行するエラーを作成
         private void kanaChk(string[] addData)
         {
             try
@@ -247,11 +262,15 @@ namespace SyainKanriSystem
             }
         }
 
+        // 入力値が数字か確認する
+        // 電話番号を「xxx-xxxx-xxxx」の形に成形する
+        // TODO 入力値が数字ではない場合、Catch部に移行するエラーを作成
         private string phoneChk(string[] addData)
         {
             try
             {
                 String[] PhoneNumberArray = { addData[5], addData[6], addData[7] };
+                // 入力値が数字かどうか確認する
                 for (int i = 0; i < PhoneNumberArray.Length; i++)
                 {
                     bool result = int.TryParse(PhoneNumberArray[i], out _);
@@ -272,6 +291,8 @@ namespace SyainKanriSystem
             }
         }
 
+        // 入力値に「@」「.」が含まれているか確認する
+        // TODO 入力値に上記の文字が含まれていないの場合、Catch部に移行するエラーを作成
         private void mailChk(string[] addData)
         {
             try
@@ -292,6 +313,9 @@ namespace SyainKanriSystem
             }
         }
 
+        // DateTimePickerに未来の日付が入力されていないか確認する
+        // TODO 未来の日付が入力されている場合、Catch部に移行するエラーを作成
+        // TODO 日付以外のデータが入力されている場合、Catch部に移行するエラーを作成
         private DateTime calendarChk(string[] addData)
         {
             try
@@ -311,11 +335,13 @@ namespace SyainKanriSystem
             }
         }
 
+        // 部門コンボボックスに異なる値が入力されていないか確認する
+        // TODO 部門コンボボックスの値が0の場合、Catch部に移行するエラーを作成
         private int departmentComboBoxChk(string[] addData)
         {
             try
             {
-                // departmentIDが0の場合、ないデータを記入しています
+                // departmentIDが0の場合、データが存在しない
                 String DepartmentValue = addData[9];
                 int departmentID = departmentList.Where(x => x.DepartmentName == DepartmentValue).Select(x => x.DepartmentID).FirstOrDefault();
                 if(departmentID == 0)
@@ -332,6 +358,9 @@ namespace SyainKanriSystem
             }
         }
 
+
+        // 役職コンボボックスに異なる値が入力されていないか確認する
+        // TODO 部門コンボボックスの値が0の場合、Catch部に移行するエラーを作成
         private int positionComboBoxChk(string[] addData)
         {
             try
@@ -352,6 +381,7 @@ namespace SyainKanriSystem
             }
         }
 
+        // DBへ社員データを追加する
         public Employees submitAddEmployee(String[] addData, DateTime HireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
         {
             // insertするデータの作成
@@ -373,6 +403,7 @@ namespace SyainKanriSystem
             return addEmployee;
         }
 
+        // 追加フォームを閉じる
         private void closeAddForm()
         {
             this.Close();
@@ -380,7 +411,7 @@ namespace SyainKanriSystem
 
 
 
-
+        // 社員追加処理
         private void addEmployee()
         {
             try
@@ -410,6 +441,7 @@ namespace SyainKanriSystem
         }
         
         
+        // 部門コンボボックスにDBから取得した値を格納する
         public ComboBox InitializeDepartmentComboBox()
         {
             try
@@ -432,6 +464,7 @@ namespace SyainKanriSystem
             }
         }
 
+        // 役職コンボボックスにDBから取得した値を格納する
         public ComboBox InitializePositionComboBox()
         {
             try

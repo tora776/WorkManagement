@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace SyainKanriSystem.Models
 {
+
     public class EmployeeRepository { 
 
+        
         // SELECT文のクエリを実行する。
         public DataTable sqlExecute(String query, NpgsqlConnection conn){
             NpgsqlCommand sql = new NpgsqlCommand(query, conn);
@@ -37,7 +39,7 @@ namespace SyainKanriSystem.Models
         // 取得したクエリ結果を配列に格納する。
         public List<Employees> getSelectEmployee(DataTable dt) {
             List<Employees> dataList = new List<Employees>();
-
+            // 社員リストを作成
             foreach(DataRow dr in dt.Rows)
             {             
                 Employees employee = new Employees();
@@ -57,6 +59,7 @@ namespace SyainKanriSystem.Models
             return dataList;
         }
 
+        // Insert文のクエリを作成する。
         public string makeInsertQuery(Employees addEmployee)
         {
             try
@@ -70,6 +73,7 @@ namespace SyainKanriSystem.Models
             }
         }
 
+        // Insert文の処理にて社員番号の最大値を取得する
         public string GetMaxEmployeeIDQuery()
         {
 

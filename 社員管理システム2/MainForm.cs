@@ -22,6 +22,7 @@ namespace SyainKanriSystem
         private List<Departments> departmentList;
         private List<Positions> positionList;
 
+        // MainFormを表示する
         public MainForm()
         {
             InitializeComponent();
@@ -32,6 +33,8 @@ namespace SyainKanriSystem
             SetDataGridViewEmployeeInfo(dataGridView1, employeeList, departmentList, positionList);
         }
 
+        // 追加処理完了後、DataGridViewをリセットし、最新の社員データを更新する
+        // TODO EmployeeAddFormクラスから本メソッドを起動できるようにする
         public void ResetDataGridView(DataGridView dataGridView1)
         {
             employeeList.Clear();
@@ -43,19 +46,22 @@ namespace SyainKanriSystem
         {
             
         }
-
+        // 追加ボタンを押下し、AddFormを表示する
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             EmployeeAddForm addForm = new EmployeeAddForm(employeeList, departmentList, positionList);
             addForm.Show();
         }
 
+        // 検索ボタンを押下し、searchFormを表示する
+        // TODO 検索フォームを表示する or MainFormに検索内容を表示させるかは要相談
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             EmployeeSearchForm searchForm = new EmployeeSearchForm();
             searchForm.Show();
         }
 
+        // 詳細表示ボタンを押下し、detailFormを表示する
         private void buttonDetailed_Click(object sender, EventArgs e)
         {
             Employees detailedEmployee = SelectedDataGridView();
@@ -63,15 +69,17 @@ namespace SyainKanriSystem
             detailForm.Show();
         }
 
+        // DataGridViewに取得した社員データを表示する
         private DataGridView SetDataGridViewEmployeeInfo(DataGridView dataGridView1, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList){
 
             try
             {            
                 foreach (Employees item in employeeList)
                 {
+                    // 行番号を指定する
                     int rowIndex = dataGridView1.Rows.Add();
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
+                    // 社員データを記載する
                     row.Cells["社員番号"].Value = item.EmployeeID;
                     row.Cells["姓"].Value = item.FirstName;
                     row.Cells["名"].Value =item.LastName;
@@ -95,11 +103,12 @@ namespace SyainKanriSystem
             }
         }
 
+        // DataGridViewを初期化する
         private DataGridView InitializeDataGridView()
         {   
-            // dataGridView1 = new DataGridView();
-            
+            // 列数を指定
             dataGridView1.ColumnCount = 11;
+            // カラムヘッダーを可視化できるようにする
             dataGridView1.ColumnHeadersVisible = true;
 
             //ヘッダーとすべてのセルの内容に合わせて、列の幅を自動調整する
@@ -126,6 +135,8 @@ namespace SyainKanriSystem
             return dataGridView1;
         }
 
+        // DBより社員データを取得する
+        // TODO EmployeeServiceクラスでDBとやりとりするようにする
         private List<Employees> InitializeEmployeeRepository()
         {
             var DB = new DatabaseContext();
@@ -147,6 +158,8 @@ namespace SyainKanriSystem
             }
         }
 
+        // DBより部門データを取得
+        // TODO DepartmentServiceクラスを新規作成し、そのクラス内でDBとやりとりする必要がある（MVCのため）
         private List<Departments> InitializeDepartmentRepository()
         {
             var DB = new DatabaseContext();
@@ -167,6 +180,8 @@ namespace SyainKanriSystem
             }
         }
 
+        // DBより役職データを取得
+        // TODO PositionServiceクラスを新規作成し、そのクラス内でDBとやりとりする必要がある（MVCのため）
         private List<Positions> InitializePositionRepository()
         {
             var DB = new DatabaseContext();
@@ -187,7 +202,9 @@ namespace SyainKanriSystem
             }
         }
 
-        
+        // DataGridViewから選択行のデータを取得
+        // TODO 2行以上選択した場合のエラーチェックを作成する
+        // TODO 行選択がない場合のエラーチェックを作成する
         private Employees SelectedDataGridView()
         {
             try
