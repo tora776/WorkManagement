@@ -136,26 +136,13 @@ namespace SyainKanriSystem
         }
 
         // DBより社員データを取得する
-        // TODO EmployeeServiceクラスでDBとやりとりするようにする
         private List<Employees> InitializeEmployeeRepository()
         {
-            var DB = new DatabaseContext();
-            var EmployeeReposiroty = new EmployeeRepository();
-            try
-            {
-                NpgsqlConnection conn = DB.connectDB();
-                String query = EmployeeReposiroty.makeSelectQuery();
-                DataTable dt = EmployeeReposiroty.sqlExecute(query, conn);
-                DB.disconnectDB(conn);
-                List<Employees> employeeList = EmployeeReposiroty.getSelectEmployee(dt);
-                return employeeList;
-
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message);
-                return null;
-            }
+            // employeeServiceのクラスインスタンスを作成
+            var employeeService = new EmployeeService();
+            // DBよりemployeeListを取得
+            employeeList = employeeService.selectEmployeeData();
+            return employeeList;
         }
 
         // DBより部門データを取得

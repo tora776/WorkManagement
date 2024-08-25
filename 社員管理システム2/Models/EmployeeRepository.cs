@@ -87,6 +87,19 @@ namespace SyainKanriSystem.Models
                 throw;
             }
         }
+
+        public string makeDeleteQuery(string deleteEmployeeID)
+        {
+            try
+            {
+                string query = $@"DELETE FROM Employees WHERE employeeid ='{deleteEmployeeID}'";
+                return query;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
 

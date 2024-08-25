@@ -181,19 +181,19 @@ namespace SyainKanriSystem
         // 入力値を取得する
         private String[] getInputText()
         {
-            string FirstNameValue = textBox_FirstName.Text;
-            string LastNameValue = textBox_LastName.Text;
-            string FirstNameKanaValue = textBox_FirstNameKana.Text;
-            string LastNameKanaValue = textBox_LastNameKana.Text;
-            string EmailValue = textBox_Email.Text;
-            string PhoneNumber1Value = textBox_PhoneNumber1.Text;
-            string PhoneNumber2Value = textBox_PhoneNumber2.Text;
-            string PhoneNumber3Value = textBox_PhoneNumber3.Text;
-            string HireDateValue = dateTimePicker1.Text;
-            string DepartmentValue = comboBox_Department.Text;
-            string PositionValue = comboBox_Position.Text;
+            string firstNameValue = textBox_FirstName.Text;
+            string lastNameValue = textBox_LastName.Text;
+            string firstNameKanaValue = textBox_FirstNameKana.Text;
+            string lastNameKanaValue = textBox_LastNameKana.Text;
+            string emailValue = textBox_Email.Text;
+            string phoneNumber1Value = textBox_PhoneNumber1.Text;
+            string phoneNumber2Value = textBox_PhoneNumber2.Text;
+            string phoneNumber3Value = textBox_PhoneNumber3.Text;
+            string hireDateValue = dateTimePicker1.Text;
+            string departmentValue = comboBox_Department.Text;
+            string positionValue = comboBox_Position.Text;
 
-            String[] addData = {FirstNameValue, LastNameValue, FirstNameKanaValue, LastNameKanaValue, EmailValue, PhoneNumber1Value, PhoneNumber2Value, PhoneNumber3Value, HireDateValue,  DepartmentValue, PositionValue};
+            String[] addData = {firstNameValue, lastNameValue, firstNameKanaValue, lastNameKanaValue, emailValue, phoneNumber1Value, phoneNumber2Value, phoneNumber3Value, hireDateValue,  departmentValue, positionValue};
             return addData;
         }
 
@@ -230,6 +230,7 @@ namespace SyainKanriSystem
                 {
                     if (addData[i].Length > limit[i])
                     {
+                        // TODO contentの{1}がフォーマットされているか確認する
                         string content = string.Format("{0}は既定の文字数をオーバーしています。※{1}文字まで", addData[i], limit[i]);
                         MessageBox.Show(content);
                     }
@@ -269,11 +270,11 @@ namespace SyainKanriSystem
         {
             try
             {
-                String[] PhoneNumberArray = { addData[5], addData[6], addData[7] };
+                String[] phoneNumberArray = { addData[5], addData[6], addData[7] };
                 // 入力値が数字かどうか確認する
-                for (int i = 0; i < PhoneNumberArray.Length; i++)
+                for (int i = 0; i < phoneNumberArray.Length; i++)
                 {
-                    bool result = int.TryParse(PhoneNumberArray[i], out _);
+                    bool result = int.TryParse(phoneNumberArray[i], out _);
                     if (result == false)
                     {
                         MessageBox.Show("電話番号には数字を記載してください");
@@ -281,9 +282,9 @@ namespace SyainKanriSystem
                     }
                 }
 
-                String PhoneNumberValue = PhoneNumberArray[0] + "-" + PhoneNumberArray[1] + "-" + PhoneNumberArray[2];
+                String phoneNumberValue = phoneNumberArray[0] + "-" + phoneNumberArray[1] + "-" + phoneNumberArray[2];
 
-                return PhoneNumberValue;
+                return phoneNumberValue;
             }
             catch (Exception error)
             {
@@ -320,14 +321,14 @@ namespace SyainKanriSystem
         {
             try
             {
-                DateTime HireDateValue = DateTime.Parse(addData[8]);
+                DateTime hireDateValue = DateTime.Parse(addData[8]);
 
-                if (HireDateValue > DateTime.Today)
+                if (hireDateValue > DateTime.Today)
                 {
                     MessageBox.Show("未来の日付は入力できません");
                 }
 
-                return HireDateValue;
+                return hireDateValue;
             }
             catch (Exception error)
             {
@@ -342,8 +343,8 @@ namespace SyainKanriSystem
             try
             {
                 // departmentIDが0の場合、データが存在しない
-                String DepartmentValue = addData[9];
-                int departmentID = departmentList.Where(x => x.DepartmentName == DepartmentValue).Select(x => x.DepartmentID).FirstOrDefault();
+                String departmentValue = addData[9];
+                int departmentID = departmentList.Where(x => x.DepartmentName == departmentValue).Select(x => x.DepartmentID).FirstOrDefault();
                 if(departmentID == 0)
                 {
                     MessageBox.Show("存在しない部門名を入力しています");
@@ -365,8 +366,8 @@ namespace SyainKanriSystem
         {
             try
             {
-                String PositionValue = addData[10];
-                int positionID = positionList.Where(x => x.PositionName == PositionValue).Select(x => x.PositionID).FirstOrDefault();
+                String positionValue = addData[10];
+                int positionID = positionList.Where(x => x.PositionName == positionValue).Select(x => x.PositionID).FirstOrDefault();
                 if (positionID == 0)
                 {
                     MessageBox.Show("存在しない役職名を入力しています");
@@ -382,7 +383,7 @@ namespace SyainKanriSystem
         }
 
         // DBへ社員データを追加する
-        public Employees submitAddEmployee(String[] addData, DateTime HireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
+        public Employees submitAddEmployee(String[] addData, DateTime hireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
         {
             // insertするデータの作成
             Employees addEmployee = new Employees();
@@ -392,7 +393,7 @@ namespace SyainKanriSystem
             addEmployee.LastNameKana = addData[3];
             addEmployee.Email = addData[4];
             addEmployee.PhoneNumber = addPhoneNumber;
-            addEmployee.HireDate = HireDateValue;
+            addEmployee.HireDate = hireDateValue;
             addEmployee.Department = addDepartmentID;
             addEmployee.Position = addPositionID;
             addEmployee.Status = 0;
@@ -423,12 +424,12 @@ namespace SyainKanriSystem
                 wordCount(addData);
                 mailChk(addData);
                 kanaChk(addData);
-                DateTime HireDateValue = calendarChk(addData);
+                DateTime hireDateValue = calendarChk(addData);
                 string addPhoneNumber = phoneChk(addData);
                 int addDepartmentID = departmentComboBoxChk(addData);
                 int addPositionID = positionComboBoxChk(addData);
                 // データの作成・追加処理
-                submitAddEmployee(addData, HireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
+                submitAddEmployee(addData, hireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
                 // 追加フォームを閉じる。閉じずに入力フォームを初期化したほうがよい？
                 closeAddForm();
                 
@@ -487,6 +488,9 @@ namespace SyainKanriSystem
             }
         }
 
-        
+        private void comboBox_Department_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

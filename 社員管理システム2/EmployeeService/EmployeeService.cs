@@ -13,9 +13,32 @@ namespace SyainKanriSystem
 {
     public class EmployeeService
     {
-        public void selectEmployeeData()
+        public List<Employees> selectEmployeeData()
         {
+            var DB = new DatabaseContext();
+            var EmployeeReposiroty = new EmployeeRepository();
+            NpgsqlConnection conn = DB.connectDB();
+            try
+            {
+                String query = EmployeeReposiroty.makeSelectQuery();
+                DataTable dt = EmployeeReposiroty.sqlExecute(query, conn);
+                List<Employees> employeeList = EmployeeReposiroty.getSelectEmployee(dt);
+                return employeeList;
 
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+                return null;
+            }
+            finally
+            {
+                // DBに接続していれば切断する
+                if (conn != null)
+                {
+                    DB.disconnectDB(conn);
+                }
+            }
         }
 
         public void insertEmployeeData(Employees addEmployee)
@@ -55,6 +78,36 @@ namespace SyainKanriSystem
             }
             
         }
+
+        public void deleteEmployeeData(string deleteEmployeeID)
+        {
+            var DB = new DatabaseContext();
+            var EmployeeReposiroty = new EmployeeRepository();
+            NpgsqlConnection conn = DB.connectDB();
+
+            try
+            {
+                // Delete文を作成
+                string query = EmployeeReposiroty.makeDeleteQuery(deleteEmployeeID);
+                // クエリを実行
+                EmployeeReposiroty.sqlExecute(query, conn);
+
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
+            finally
+            {
+                // DBに接続していれば切断する
+                if (conn != null)
+                {
+                    DB.disconnectDB(conn);
+                }
+            }
+
+        }
+
 
 
     }

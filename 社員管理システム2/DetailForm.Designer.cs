@@ -47,8 +47,8 @@
             this.textBox_PhoneNumber2 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox_PhoneNumber3 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button_Edit = new System.Windows.Forms.Button();
+            this.button_Delete = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -255,27 +255,27 @@
             this.textBox_PhoneNumber3.Size = new System.Drawing.Size(89, 25);
             this.textBox_PhoneNumber3.TabIndex = 50;
             // 
-            // button1
+            // button_Edit
             // 
-            this.button1.Location = new System.Drawing.Point(118, 508);
-            this.button1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(197, 72);
-            this.button1.TabIndex = 55;
-            this.button1.Text = "編集";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            this.button_Edit.Location = new System.Drawing.Point(118, 508);
+            this.button_Edit.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.button_Edit.Name = "button_Edit";
+            this.button_Edit.Size = new System.Drawing.Size(197, 72);
+            this.button_Edit.TabIndex = 55;
+            this.button_Edit.Text = "編集";
+            this.button_Edit.UseVisualStyleBackColor = true;
+            this.button_Edit.Click += new System.EventHandler(this.button1_Click_2);
             // 
-            // button2
+            // button_Delete
             // 
-            this.button2.Location = new System.Drawing.Point(458, 508);
-            this.button2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(197, 72);
-            this.button2.TabIndex = 56;
-            this.button2.Text = "削除";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.button_Delete.Location = new System.Drawing.Point(458, 508);
+            this.button_Delete.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.button_Delete.Name = "button_Delete";
+            this.button_Delete.Size = new System.Drawing.Size(197, 72);
+            this.button_Delete.TabIndex = 56;
+            this.button_Delete.Text = "削除";
+            this.button_Delete.UseVisualStyleBackColor = true;
+            this.button_Delete.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // button3
             // 
@@ -380,8 +380,8 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_Delete);
+            this.Controls.Add(this.button_Edit);
             this.Controls.Add(this.textBox_PhoneNumber3);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.textBox_PhoneNumber2);
@@ -430,8 +430,8 @@
         private System.Windows.Forms.TextBox textBox_PhoneNumber2;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox_PhoneNumber3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button_Edit;
+        private System.Windows.Forms.Button button_Delete;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;

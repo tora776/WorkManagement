@@ -27,7 +27,6 @@ namespace SyainKanriSystem
             this.positionList = positionList;
             this.detailedEmployee = detailedEmployee;
             inputDetailedEmployee(detailedEmployee);
-            
         }
 
         /* 詳細表示画面を閉じる
@@ -38,7 +37,6 @@ namespace SyainKanriSystem
         */
 
         // DataGridView選択行の社員データをフォーム・コンボボックスに入力する
-        // TODO DateTimePickerに日付を入力する
         // TODO コンボボックス・DateTimePickerを読み取り専用（入力不可）にする
         private void inputDetailedEmployee(Employees detailedEmployee)
         {
@@ -48,10 +46,11 @@ namespace SyainKanriSystem
             textBox_FirstNameKana.Text = detailedEmployee.FirstNameKana;
             textBox_LastNameKana.Text = detailedEmployee.LastNameKana;
             textBox_Email.Text = detailedEmployee.Email;
-            textBox_PhoneNumber1.Text = detailedEmployee.PhoneNumber;
-            textBox_PhoneNumber2.Text = detailedEmployee.PhoneNumber;
-            textBox_PhoneNumber3.Text = detailedEmployee.PhoneNumber;
+            textBox_PhoneNumber1.Text = detailedEmployee.PhoneNumber.Substring(0,3);
+            textBox_PhoneNumber2.Text = detailedEmployee.PhoneNumber.Substring(4,4);
+            textBox_PhoneNumber3.Text = detailedEmployee.PhoneNumber.Substring(9,4);
             dateTimePicker_HireDate.Text = detailedEmployee.HireDate.ToString("yyyy/MM/dd");
+            dateTimePicker_HireDate.Enabled = false;
             InitializeDepartmentComboBox(detailedEmployee);
             InitializePositionComboBox(detailedEmployee);
             InitializeStatusComboBox(detailedEmployee);
@@ -126,10 +125,17 @@ namespace SyainKanriSystem
 
         // 削除ボタン処理
         // TODO ボタンの変数名変更
+        /*
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("データを削除しますか？", "確認", MessageBoxButtons.OKCancel);
+            DialogResult result = MessageBox.Show("この社員を削除しますか？", "削除確認", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.Yes)
+            {
+                submitDeleteEmployee(detailedEmployee);
+            }
         }
+        */
+        
 
         private void button1_Click_2(object sender, EventArgs e)
         {
@@ -154,10 +160,17 @@ namespace SyainKanriSystem
 
         // 削除ボタン処理
         // TODO 削除ボタン処理が2個あるのでどちらが正しいか調べる
+        
         private void button2_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("この社員を削除しますか？", "削除確認", MessageBoxButtons.OKCancel);
+            
+            DialogResult result = MessageBox.Show("この社員を削除しますか？", "削除確認", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                submitDeleteEmployee(detailedEmployee);
+            }
         }
+        
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -181,6 +194,7 @@ namespace SyainKanriSystem
                 comboBox_Department.SelectedIndex = detailedEmployee.Department - 1;
 
                 // 読み取り専用にする
+                comboBox_Department.Enabled = false;
 
                 return comboBox_Department;
             }
@@ -206,7 +220,8 @@ namespace SyainKanriSystem
                 // 初期値セット。Model.csにてPositionクラスPositionIDは1から始まっているので、-1する
                 comboBox_Position.SelectedIndex = detailedEmployee.Position - 1;
 
-                // 読み取り専用にする
+                // TODO 読み取り専用にする
+                comboBox_Position.Enabled = false;
 
                 return comboBox_Position;
             }
@@ -226,6 +241,7 @@ namespace SyainKanriSystem
                 comboBox_Status.SelectedIndex = detailedEmployee.Status;
 
                 // 読み取り専用にする
+                comboBox_Status.Enabled = false;
 
                 return comboBox_Status;
             }
@@ -234,6 +250,18 @@ namespace SyainKanriSystem
                 throw error;
             }
         }
+
+        // DBへ社員データを追加する
+        public void submitDeleteEmployee(Employees detailedEmployee)
+        {
+            // deleteするデータの作成
+            string deleteEmployeeID = detailedEmployee.EmployeeID;
+
+            var employeeService = new EmployeeService();
+            employeeService.deleteEmployeeData(deleteEmployeeID);
+        }
+
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {

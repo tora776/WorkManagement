@@ -234,9 +234,11 @@
             this.comboBox_Department.Name = "comboBox_Department";
             this.comboBox_Department.Size = new System.Drawing.Size(162, 26);
             this.comboBox_Department.TabIndex = 10;
+            this.comboBox_Department.SelectedIndexChanged += new System.EventHandler(this.comboBox_Department_SelectedIndexChanged);
             // 
             // comboBox_Position
             // 
+            this.comboBox_Position.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Position.FormattingEnabled = true;
             this.comboBox_Position.Location = new System.Drawing.Point(182, 370);
             this.comboBox_Position.Name = "comboBox_Position";
