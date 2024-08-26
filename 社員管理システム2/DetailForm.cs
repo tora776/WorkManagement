@@ -178,7 +178,6 @@ namespace SyainKanriSystem
         }
 
         // 部門名のコンボボックスのリストを作成・初期値を入力する
-        // TODO コンボボックスを入力不可にする
         public ComboBox InitializeDepartmentComboBox(Employees detailedEmployee)
         {
             try
@@ -205,7 +204,6 @@ namespace SyainKanriSystem
         }
 
         // 役職コンボボックスのリストを作成・初期値を入力する
-        // TODO 役職コンボボックスを入力不可にする
         public ComboBox InitializePositionComboBox(Employees detailedEmployee)
         {
             try
@@ -232,7 +230,6 @@ namespace SyainKanriSystem
         }
 
         // ステータスコンボボックスに初期値を入力する（ステータスコンボボックスのリストはDesignerで作成したものを使用する）
-        // TODO ステータスコンボボックスを入力不可にする
         public ComboBox InitializeStatusComboBox(Employees detailedEmployee)
         {
             try
@@ -256,7 +253,7 @@ namespace SyainKanriSystem
         {
             // deleteするデータの作成
             string deleteEmployeeID = detailedEmployee.EmployeeID;
-
+            // deleteクエリの作成・実行
             var employeeService = new EmployeeService();
             employeeService.deleteEmployeeData(deleteEmployeeID);
         }

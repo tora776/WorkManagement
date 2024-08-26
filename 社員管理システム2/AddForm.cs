@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using SyainKanriSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,8 +42,15 @@ namespace SyainKanriSystem
         {
             try
             {
+                // 社員を追加する
                 addEmployee();
-                MessageBox.Show("データを追加しました。");
+                MessageBox.Show("社員を追加しました。");
+                // MainFormに反映
+                var mainForm = new MainForm();
+                mainForm.ResetDataGridView();
+                // 追加フォームを閉じる
+                closeAddForm();
+                
             }
             catch (Exception error) {
                 MessageBox.Show(error.Message);
@@ -431,7 +439,7 @@ namespace SyainKanriSystem
                 // データの作成・追加処理
                 submitAddEmployee(addData, hireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
                 // 追加フォームを閉じる。閉じずに入力フォームを初期化したほうがよい？
-                closeAddForm();
+                // closeAddForm();
                 
 
             }
