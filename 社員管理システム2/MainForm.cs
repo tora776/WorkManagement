@@ -35,7 +35,7 @@ namespace SyainKanriSystem
 
         // 追加処理完了後、DataGridViewをリセットし、最新の社員データを更新する
         // TODO EmployeeAddFormクラスから本メソッドを起動できるようにする
-        public static void ResetDataGridView()
+        public void ResetDataGridView()
         {
             employeeList.Clear();
             employeeList = InitializeEmployeeRepository();
