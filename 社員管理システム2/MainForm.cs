@@ -50,7 +50,7 @@ namespace SyainKanriSystem
         // 追加ボタンを押下し、AddFormを表示する
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            EmployeeAddForm addForm = new EmployeeAddForm(employeeList, departmentList, positionList);
+            EmployeeAddForm addForm = new EmployeeAddForm(this, employeeList, departmentList, positionList);
             addForm.Show();
         }
 
@@ -66,7 +66,7 @@ namespace SyainKanriSystem
         private void buttonDetailed_Click(object sender, EventArgs e)
         {
             Employees detailedEmployee = SelectedDataGridView();
-            EmployeeDetailForm detailForm = new EmployeeDetailForm(employeeList, departmentList, positionList, detailedEmployee);
+            EmployeeDetailForm detailForm = new EmployeeDetailForm(this, employeeList, departmentList, positionList, detailedEmployee);
             detailForm.Show();
         }
 

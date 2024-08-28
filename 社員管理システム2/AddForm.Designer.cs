@@ -229,6 +229,7 @@
             // 
             // comboBox_Department
             // 
+            this.comboBox_Department.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Department.FormattingEnabled = true;
             this.comboBox_Department.Location = new System.Drawing.Point(183, 327);
             this.comboBox_Department.Name = "comboBox_Department";

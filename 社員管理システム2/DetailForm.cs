@@ -17,11 +17,13 @@ namespace SyainKanriSystem
         private List<Departments> departmentList;
         private List<Positions> positionList;
         private Employees detailedEmployee;
+        MainForm mainForm;
         
         // 詳細表示画面を表示する
-        public EmployeeDetailForm(List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList, Employees detailedEmployee)
+        public EmployeeDetailForm(MainForm mainForm, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList, Employees detailedEmployee)
         {
             InitializeComponent();
+
             this.employeeList = employeeList;
             this.departmentList = departmentList;
             this.positionList = positionList;
@@ -38,7 +40,7 @@ namespace SyainKanriSystem
 
         // DataGridView選択行の社員データをフォーム・コンボボックスに入力する
         // TODO コンボボックス・DateTimePickerを読み取り専用（入力不可）にする
-        private void inputDetailedEmployee(Employees detailedEmployee)
+        public void inputDetailedEmployee(Employees detailedEmployee)
         {
             textBox_EmployeeID.Text = detailedEmployee.EmployeeID;
             textBox_FirstName.Text = detailedEmployee.FirstName;
@@ -139,8 +141,8 @@ namespace SyainKanriSystem
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            EmployeeEditForm form3 = new EmployeeEditForm();
-            form3.Show();
+            EmployeeEditForm editForm = new EmployeeEditForm(this, mainForm, employeeList, departmentList, positionList, detailedEmployee);
+            editForm.Show();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -248,7 +250,7 @@ namespace SyainKanriSystem
             }
         }
 
-        // DBへ社員データを追加する
+        // DBへ社員データを削除する
         public void submitDeleteEmployee(Employees detailedEmployee)
         {
             // deleteするデータの作成

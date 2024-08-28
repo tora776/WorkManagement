@@ -92,8 +92,7 @@ namespace SyainKanriSystem
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            EmployeeEditForm editForm = new EmployeeEditForm();
-            editForm.Show();
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
