@@ -272,6 +272,7 @@
             this.button1.TabIndex = 52;
             this.button1.Text = "更新";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -285,6 +286,7 @@
             // 
             // comboBox_Status
             // 
+            this.comboBox_Status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Status.FormattingEnabled = true;
             this.comboBox_Status.Items.AddRange(new object[] {
             "在籍",
@@ -318,21 +320,8 @@
             // 
             // comboBox_Department
             // 
+            this.comboBox_Department.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Department.FormattingEnabled = true;
-            this.comboBox_Department.Items.AddRange(new object[] {
-            /*
-            "本社",
-            "東京支部",
-            "横浜支部",
-            "札幌支部",
-            "大阪支部",
-            "京都支部",
-            "大宮支部",
-            "千葉支部",
-            "福岡支部",
-            "名古屋支部"
-            */
-            });
             this.comboBox_Department.Location = new System.Drawing.Point(182, 355);
             this.comboBox_Department.Name = "comboBox_Department";
             this.comboBox_Department.Size = new System.Drawing.Size(162, 26);
@@ -340,21 +329,8 @@
             // 
             // comboBox_Position
             // 
+            this.comboBox_Position.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Position.FormattingEnabled = true;
-            this.comboBox_Position.Items.AddRange(new object[] {
-            /*
-            "社長",
-            "取締役",
-            "支部長",
-            "課長",
-            "SL",
-            "TL",
-            "メンバ",
-            "営業",
-            "事務",
-            "CA"
-            */
-            });
             this.comboBox_Position.Location = new System.Drawing.Point(181, 399);
             this.comboBox_Position.Name = "comboBox_Position";
             this.comboBox_Position.Size = new System.Drawing.Size(163, 26);
@@ -416,7 +392,6 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "EmployeeEditForm";
             this.Text = "社員情報管理システム";
-            this.Load += new System.EventHandler(this.Edit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

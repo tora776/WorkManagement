@@ -27,16 +27,18 @@ namespace SyainKanriSystem
             this.employeeList = employeeList;
             this.departmentList = departmentList;
             this.positionList = positionList;
+            this.mainForm = mainForm;
             this.detailedEmployee = detailedEmployee;
             inputDetailedEmployee(detailedEmployee);
         }
 
-        /* 詳細表示画面を閉じる
+        // 詳細表示画面を閉じる
         private void button_Cancel_Click(object sender, EventArgs e)
         {
-            closeAddForm();
+            this.Close();
+            this.Dispose();
         }
-        */
+        
 
         // DataGridView選択行の社員データをフォーム・コンボボックスに入力する
         // TODO コンボボックス・DateTimePickerを読み取り専用（入力不可）にする
@@ -58,106 +60,18 @@ namespace SyainKanriSystem
             InitializeStatusComboBox(detailedEmployee);
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        public void closeDetailForm()
         {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
+            this.Close();
+            this.Dispose();
         }
 
 
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // 削除ボタン処理
-        // TODO ボタンの変数名変更
-        /*
-        private void button2_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("この社員を削除しますか？", "削除確認", MessageBoxButtons.OKCancel);
-            if (result == DialogResult.Yes)
-            {
-                submitDeleteEmployee(detailedEmployee);
-            }
-        }
-        */
-        
 
         private void button1_Click_2(object sender, EventArgs e)
         {
             EmployeeEditForm editForm = new EmployeeEditForm(this, mainForm, employeeList, departmentList, positionList, detailedEmployee);
             editForm.Show();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form6_Load(object sender, EventArgs e)
-        {
-
         }
 
         // 削除ボタン処理
@@ -261,10 +175,5 @@ namespace SyainKanriSystem
         }
 
 
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

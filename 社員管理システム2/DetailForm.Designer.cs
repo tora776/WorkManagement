@@ -70,7 +70,6 @@
             this.label9.Size = new System.Drawing.Size(186, 42);
             this.label9.TabIndex = 28;
             this.label9.Text = "社員詳細表示";
-            this.label9.Click += new System.EventHandler(this.label9_Click_1);
             // 
             // label2
             // 
@@ -179,7 +178,6 @@
             this.textBox_EmployeeID.ReadOnly = true;
             this.textBox_EmployeeID.Size = new System.Drawing.Size(164, 25);
             this.textBox_EmployeeID.TabIndex = 38;
-            this.textBox_EmployeeID.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox_FirstName
             // 
@@ -348,7 +346,6 @@
             this.comboBox_Department.Name = "comboBox_Department";
             this.comboBox_Department.Size = new System.Drawing.Size(162, 26);
             this.comboBox_Department.TabIndex = 65;
-            this.comboBox_Department.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // comboBox_Position
             // 
@@ -404,7 +401,6 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "EmployeeDetailForm";
             this.Text = "社員情報管理システム";
-            this.Load += new System.EventHandler(this.Form6_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

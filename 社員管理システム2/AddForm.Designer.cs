@@ -77,7 +77,6 @@
             this.label3.Size = new System.Drawing.Size(32, 22);
             this.label3.TabIndex = 2;
             this.label3.Text = "姓";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -89,7 +88,6 @@
             this.label4.Size = new System.Drawing.Size(128, 22);
             this.label4.TabIndex = 3;
             this.label4.Text = "メールアドレス";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -101,7 +99,6 @@
             this.label5.Size = new System.Drawing.Size(91, 22);
             this.label5.TabIndex = 4;
             this.label5.Text = "姓（かな）";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
@@ -113,7 +110,6 @@
             this.label6.Size = new System.Drawing.Size(98, 22);
             this.label6.TabIndex = 5;
             this.label6.Text = "電話番号";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
@@ -125,7 +121,6 @@
             this.label7.Size = new System.Drawing.Size(76, 22);
             this.label7.TabIndex = 6;
             this.label7.Text = "雇用日";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label8
             // 
@@ -137,7 +132,6 @@
             this.label8.Size = new System.Drawing.Size(54, 22);
             this.label8.TabIndex = 7;
             this.label8.Text = "役職";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // button_Back
             // 
@@ -148,7 +142,6 @@
             this.button_Back.TabIndex = 0;
             this.button_Back.Text = "社員一覧に戻る";
             this.button_Back.UseVisualStyleBackColor = true;
-            this.button_Back.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox_FirstName
             // 
@@ -157,7 +150,6 @@
             this.textBox_FirstName.Name = "textBox_FirstName";
             this.textBox_FirstName.Size = new System.Drawing.Size(196, 25);
             this.textBox_FirstName.TabIndex = 1;
-            this.textBox_FirstName.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // textBox_LastName
             // 
@@ -174,7 +166,6 @@
             this.textBox_FirstNameKana.Name = "textBox_FirstNameKana";
             this.textBox_FirstNameKana.Size = new System.Drawing.Size(196, 25);
             this.textBox_FirstNameKana.TabIndex = 3;
-            this.textBox_FirstNameKana.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox_LastNameKana
             // 
@@ -191,7 +182,6 @@
             this.textBox_Email.Name = "textBox_Email";
             this.textBox_Email.Size = new System.Drawing.Size(421, 25);
             this.textBox_Email.TabIndex = 5;
-            this.textBox_Email.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // textBox_PhoneNumber1
             // 
@@ -200,7 +190,6 @@
             this.textBox_PhoneNumber1.Name = "textBox_PhoneNumber1";
             this.textBox_PhoneNumber1.Size = new System.Drawing.Size(89, 25);
             this.textBox_PhoneNumber1.TabIndex = 6;
-            this.textBox_PhoneNumber1.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
             // 
             // textBox_PhoneNumber2
             // 
@@ -209,7 +198,6 @@
             this.textBox_PhoneNumber2.Name = "textBox_PhoneNumber2";
             this.textBox_PhoneNumber2.Size = new System.Drawing.Size(89, 25);
             this.textBox_PhoneNumber2.TabIndex = 7;
-            this.textBox_PhoneNumber2.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox_PhoneNumber3
             // 
@@ -218,7 +206,6 @@
             this.textBox_PhoneNumber3.Name = "textBox_PhoneNumber3";
             this.textBox_PhoneNumber3.Size = new System.Drawing.Size(89, 25);
             this.textBox_PhoneNumber3.TabIndex = 8;
-            this.textBox_PhoneNumber3.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
             // dateTimePicker1
             // 
@@ -255,7 +242,6 @@
             this.label11.Size = new System.Drawing.Size(17, 18);
             this.label11.TabIndex = 25;
             this.label11.Text = "-";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // label10
             // 
@@ -266,7 +252,6 @@
             this.label10.Size = new System.Drawing.Size(17, 18);
             this.label10.TabIndex = 26;
             this.label10.Text = "-";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // button_Add
             // 
@@ -300,7 +285,6 @@
             this.label12.Size = new System.Drawing.Size(54, 22);
             this.label12.TabIndex = 29;
             this.label12.Text = "部門";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // label2
             // 
@@ -358,7 +342,6 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "EmployeeAddForm";
             this.Text = "社員情報管理システム";
-            this.Load += new System.EventHandler(this.Form4_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

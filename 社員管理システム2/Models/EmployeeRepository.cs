@@ -11,20 +11,23 @@ using System.Windows.Forms;
 namespace SyainKanriSystem.Models
 {
 
-    public class EmployeeRepository { 
+    public class EmployeeRepository
+    {
 
-        
+
         // SELECT文のクエリを実行する。
-        public DataTable sqlExecute(String query, NpgsqlConnection conn){
+        public DataTable sqlExecute(String query, NpgsqlConnection conn)
+        {
             NpgsqlCommand sql = new NpgsqlCommand(query, conn);
             NpgsqlDataReader reader = sql.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(reader);
             return dt;
-            }
-            
+        }
+
         // SELECT文のクエリを作成する。
-        public string makeSelectQuery(){
+        public string makeSelectQuery()
+        {
             try
             {
                 string query = "SELECT * FROM Employees";
@@ -37,11 +40,12 @@ namespace SyainKanriSystem.Models
         }
 
         // 取得したクエリ結果を配列に格納する。
-        public List<Employees> getSelectEmployee(DataTable dt) {
+        public List<Employees> getSelectEmployee(DataTable dt)
+        {
             List<Employees> dataList = new List<Employees>();
             // 社員リストを作成
-            foreach(DataRow dr in dt.Rows)
-            {             
+            foreach (DataRow dr in dt.Rows)
+            {
                 Employees employee = new Employees();
                 employee.EmployeeID = dr[0].ToString();
                 employee.FirstName = dr[1].ToString();
@@ -100,6 +104,18 @@ namespace SyainKanriSystem.Models
                 throw;
             }
         }
+
+        public string makeUpdateQuery(Employees updateEmployee)
+        {
+            try
+            {
+                string query = $@"UPDATE Employees SET (FirstName, LastName, FirstNameKana, LastNameKana, Email, PhoneNumber, HireDate, Department, Position, Status) = ('{updateEmployee.FirstName}', '{updateEmployee.LastName}', '{updateEmployee.FirstNameKana}', '{updateEmployee.LastNameKana}', '{updateEmployee.Email}', '{updateEmployee.PhoneNumber}', '{updateEmployee.HireDate.ToString("yyyyMMdd")}', {updateEmployee.Department}, {updateEmployee.Position}, {updateEmployee.Status}) WHERE employeeid ='{updateEmployee.EmployeeID}'";
+                return query;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
-

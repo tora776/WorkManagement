@@ -70,7 +70,6 @@
             this.label9.Size = new System.Drawing.Size(130, 42);
             this.label9.TabIndex = 28;
             this.label9.Text = "社員検索";
-            this.label9.Click += new System.EventHandler(this.label9_Click_1);
             // 
             // label2
             // 
@@ -413,7 +412,6 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "EmployeeSearchForm";
             this.Text = "社員情報管理システム";
-            this.Load += new System.EventHandler(this.SearchForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
