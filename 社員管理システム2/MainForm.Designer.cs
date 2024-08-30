@@ -30,21 +30,23 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button_Add = new System.Windows.Forms.Button();
-            this.button_Search = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.button_Detail = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button_Search = new System.Windows.Forms.Button();
+            this.button_AddSearchCondition = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.searchComboBox0 = new System.Windows.Forms.ComboBox();
+            this.searchTextBox0 = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(22, 127);
+            this.dataGridView1.Location = new System.Drawing.Point(11, 116);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
@@ -62,16 +64,6 @@
             this.button_Add.Text = "社員追加";
             this.button_Add.UseVisualStyleBackColor = true;
             this.button_Add.Click += new System.EventHandler(this.buttonAdd_Click);
-            // 
-            // button3
-            // 
-            this.button_Search.Location = new System.Drawing.Point(372, 21);
-            this.button_Search.Name = "button_Search";
-            this.button_Search.Size = new System.Drawing.Size(151, 69);
-            this.button_Search.TabIndex = 3;
-            this.button_Search.Text = "社員検索";
-            this.button_Search.UseVisualStyleBackColor = true;
-            this.button_Search.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // label9
             // 
@@ -94,10 +86,42 @@
             this.button_Detail.UseVisualStyleBackColor = true;
             this.button_Detail.Click += new System.EventHandler(this.buttonDetailed_Click);
             // 
-            // comboBox1
+            // button_Search
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.button_Search.Location = new System.Drawing.Point(441, 21);
+            this.button_Search.Name = "button_Search";
+            this.button_Search.Size = new System.Drawing.Size(151, 69);
+            this.button_Search.TabIndex = 3;
+            this.button_Search.Text = "社員検索";
+            this.button_Search.UseVisualStyleBackColor = true;
+            this.button_Search.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // button_AddSearchCondition
+            // 
+            this.button_AddSearchCondition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.button_AddSearchCondition.Location = new System.Drawing.Point(6, 21);
+            this.button_AddSearchCondition.Name = "button_AddSearchCondition";
+            this.button_AddSearchCondition.Size = new System.Drawing.Size(20, 20);
+            this.button_AddSearchCondition.TabIndex = 61;
+            this.button_AddSearchCondition.Text = "+";
+            this.button_AddSearchCondition.UseVisualStyleBackColor = true;
+            this.button_AddSearchCondition.Click += new System.EventHandler(this.button_AddSearchCondition_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button_Search);
+            this.groupBox1.Controls.Add(this.panel1);
+            this.groupBox1.Location = new System.Drawing.Point(509, 7);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(610, 104);
+            this.groupBox1.TabIndex = 60;
+            this.groupBox1.TabStop = false;
+            // 
+            // searchComboBox0
+            // 
+            this.searchComboBox0.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.searchComboBox0.FormattingEnabled = true;
+            this.searchComboBox0.Items.AddRange(new object[] {
             "社員番号",
             "姓",
             "名",
@@ -109,50 +133,39 @@
             "部門",
             "役職",
             "ステータス"});
-            this.comboBox1.Location = new System.Drawing.Point(40, 21);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(115, 28);
-            this.comboBox1.TabIndex = 58;
+            this.searchComboBox0.Location = new System.Drawing.Point(40, 21);
+            this.searchComboBox0.Name = "searchComboBox0";
+            this.searchComboBox0.Size = new System.Drawing.Size(115, 19);
+            this.searchComboBox0.TabIndex = 58;
             // 
-            // textBox2
+            // searchTextBox0
             // 
-            this.textBox2.Location = new System.Drawing.Point(166, 21);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(196, 26);
-            this.textBox2.TabIndex = 59;
+            this.searchTextBox0.Location = new System.Drawing.Point(166, 21);
+            this.searchTextBox0.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.searchTextBox0.Name = "searchTextBox0";
+            this.searchTextBox0.Size = new System.Drawing.Size(196, 26);
+            this.searchTextBox0.TabIndex = 59;
             // 
-            // groupBox1
+            // panel1
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.button_Search);
-            this.groupBox1.Location = new System.Drawing.Point(509, 7);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(538, 104);
-            this.groupBox1.TabIndex = 60;
-            this.groupBox1.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button1.Location = new System.Drawing.Point(9, 21);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(21, 24);
-            this.button1.TabIndex = 61;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.button_AddSearchCondition);
+            this.panel1.Controls.Add(this.searchTextBox0);
+            this.panel1.Controls.Add(this.searchComboBox0);
+            this.panel1.Location = new System.Drawing.Point(9, 15);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(391, 83);
+            this.panel1.TabIndex = 61;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1178, 570);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_Detail);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button_Add);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -161,7 +174,8 @@
             this.Text = "社員情報管理システム";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,13 +185,14 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button_Add;
-        private System.Windows.Forms.Button button_Search;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button_Detail;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button_Search;
+        private System.Windows.Forms.Button button_AddSearchCondition;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox searchComboBox0;
+        private System.Windows.Forms.TextBox searchTextBox0;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

@@ -210,5 +210,74 @@ namespace SyainKanriSystem
             }
 
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button_AddSearchCondition_Click(object sender, EventArgs e)
+        {
+            int textBoxCount = countSearchTextBox();
+            searchTextBox_Add(textBoxCount);
+            searchComboBox_Add(textBoxCount);
+            
+        }
+
+        private void searchTextBox_Add(int textBoxCount)
+        {
+            TextBox searchTextBox = new TextBox();
+
+            searchTextBox.Name = "searchTextBox" + textBoxCount;
+            // 166はx軸、21 + textBoxCount * 18はy軸
+            searchTextBox.Location = new Point(166, 21 + textBoxCount * 20);
+            searchTextBox.Size = new Size(196, 26);
+            this.Controls.Add(searchTextBox);
+            // this.groupBox1.Controls.Add(searchTextBox);
+            this.panel1.Controls.Add(searchTextBox);
+        }
+
+        // テキストボックスとコンボボックスの数は同一なので、textBoxCountを格納。変数名をcomboBoxCountに変更している
+        private void searchComboBox_Add(int comboBoxCount)
+        {
+            ComboBox searchComboBox = new ComboBox();
+
+            searchComboBox.Name = "searchComboBox" + comboBoxCount;
+            // 166はx軸、21 + textBoxCount * 18はy軸
+            searchComboBox.Location = new Point(40, 21 + comboBoxCount * 20);
+            searchComboBox.Size = new Size(115, 28);
+            searchComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            searchComboBox.Items.AddRange(new object[] {
+            "社員番号",
+            "姓",
+            "名",
+            "姓（かな）",
+            "名（かな）",
+            "メールアドレス",
+            "電話番号",
+            "雇用日",
+            "部門",
+            "役職",
+            "ステータス"});
+
+            this.Controls.Add(searchComboBox);
+            // this.groupBox1.Controls.Add(searchComboBox);
+            this.panel1.Controls.Add(searchComboBox);
+        }
+
+        private int countSearchTextBox()
+        {
+            int textBoxCount = 0;
+
+            foreach(Control ctrl in panel1.Controls)
+            {
+                if (ctrl is TextBox)
+                {
+                    textBoxCount++;
+                }
+            }
+            return textBoxCount;
+        }
     }
 }
