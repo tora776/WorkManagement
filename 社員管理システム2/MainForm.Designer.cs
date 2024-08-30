@@ -38,6 +38,7 @@
             this.searchComboBox0 = new System.Windows.Forms.ComboBox();
             this.searchTextBox0 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button_ClearSearchConditions = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -99,7 +100,7 @@
             // button_AddSearchCondition
             // 
             this.button_AddSearchCondition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button_AddSearchCondition.Location = new System.Drawing.Point(6, 21);
+            this.button_AddSearchCondition.Location = new System.Drawing.Point(6, 10);
             this.button_AddSearchCondition.Name = "button_AddSearchCondition";
             this.button_AddSearchCondition.Size = new System.Drawing.Size(20, 20);
             this.button_AddSearchCondition.TabIndex = 61;
@@ -133,29 +134,41 @@
             "部門",
             "役職",
             "ステータス"});
-            this.searchComboBox0.Location = new System.Drawing.Point(40, 21);
+            this.searchComboBox0.Location = new System.Drawing.Point(40, 10);
             this.searchComboBox0.Name = "searchComboBox0";
             this.searchComboBox0.Size = new System.Drawing.Size(115, 19);
             this.searchComboBox0.TabIndex = 58;
             // 
             // searchTextBox0
             // 
-            this.searchTextBox0.Location = new System.Drawing.Point(166, 21);
+            this.searchTextBox0.Location = new System.Drawing.Point(166, 10);
             this.searchTextBox0.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.searchTextBox0.Name = "searchTextBox0";
-            this.searchTextBox0.Size = new System.Drawing.Size(196, 26);
+            this.searchTextBox0.Size = new System.Drawing.Size(196, 17);
             this.searchTextBox0.TabIndex = 59;
             // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.button_ClearSearchConditions);
             this.panel1.Controls.Add(this.button_AddSearchCondition);
             this.panel1.Controls.Add(this.searchTextBox0);
             this.panel1.Controls.Add(this.searchComboBox0);
             this.panel1.Location = new System.Drawing.Point(9, 15);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(391, 83);
+            this.panel1.Size = new System.Drawing.Size(426, 83);
             this.panel1.TabIndex = 61;
+            // 
+            // button_ClearSearchConditions
+            // 
+            this.button_ClearSearchConditions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_ClearSearchConditions.Location = new System.Drawing.Point(0, 40);
+            this.button_ClearSearchConditions.Name = "button_ClearSearchConditions";
+            this.button_ClearSearchConditions.Size = new System.Drawing.Size(40, 20);
+            this.button_ClearSearchConditions.TabIndex = 61;
+            this.button_ClearSearchConditions.Text = "クリア";
+            this.button_ClearSearchConditions.UseVisualStyleBackColor = true;
+            this.button_ClearSearchConditions.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
@@ -193,6 +206,7 @@
         private System.Windows.Forms.ComboBox searchComboBox0;
         private System.Windows.Forms.TextBox searchTextBox0;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button_ClearSearchConditions;
     }
 }
 

@@ -230,7 +230,7 @@ namespace SyainKanriSystem
 
             searchTextBox.Name = "searchTextBox" + textBoxCount;
             // 166はx軸、21 + textBoxCount * 18はy軸
-            searchTextBox.Location = new Point(166, 21 + textBoxCount * 20);
+            searchTextBox.Location = new Point(166, 10 + textBoxCount * 20);
             searchTextBox.Size = new Size(196, 26);
             this.Controls.Add(searchTextBox);
             // this.groupBox1.Controls.Add(searchTextBox);
@@ -244,7 +244,7 @@ namespace SyainKanriSystem
 
             searchComboBox.Name = "searchComboBox" + comboBoxCount;
             // 166はx軸、21 + textBoxCount * 18はy軸
-            searchComboBox.Location = new Point(40, 21 + comboBoxCount * 20);
+            searchComboBox.Location = new Point(40, 10 + comboBoxCount * 20);
             searchComboBox.Size = new Size(115, 28);
             searchComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
@@ -278,6 +278,46 @@ namespace SyainKanriSystem
                 }
             }
             return textBoxCount;
+        }
+
+        private void clearSearchTextBox()
+        {
+            foreach (Control ctrl in panel1.Controls)
+            {
+                // テキストボックスを削除
+                if (ctrl is TextBox)
+                {
+
+                    if (ctrl.Name != "searchTextBox0")
+                    {
+                        // TODO クリアの際テキストボックスが1つ残ってしまう。
+                        panel1.Controls.Remove(ctrl);
+                        ctrl.Dispose();
+                    }
+                }
+            }
+        }
+
+        private void clearSearchComboBox()
+        {
+            foreach (Control ctrl in panel1.Controls)
+            {
+                // コンボボックスを削除
+                if (ctrl is ComboBox)
+                {
+                    if (ctrl.Name != "searchComboBox0")
+                    {
+                        panel1.Controls.Remove(ctrl);
+                        ctrl.Dispose();
+                    }
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            clearSearchComboBox();
+            clearSearchTextBox();
         }
     }
 }
