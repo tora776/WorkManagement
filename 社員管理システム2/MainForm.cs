@@ -216,6 +216,7 @@ namespace SyainKanriSystem
 
         }
 
+        // 「+」ボタンを押下すると、テキストフォーム・コンボボックスが追加される
         private void button_AddSearchCondition_Click(object sender, EventArgs e)
         {
             int textBoxCount = countSearchTextBox();
@@ -224,6 +225,7 @@ namespace SyainKanriSystem
             
         }
 
+        // テキストフォーム追加処理
         private void searchTextBox_Add(int textBoxCount)
         {
             TextBox searchTextBox = new TextBox();
@@ -237,6 +239,7 @@ namespace SyainKanriSystem
             this.panel1.Controls.Add(searchTextBox);
         }
 
+        // コンボボックス追加処理
         // テキストボックスとコンボボックスの数は同一なので、textBoxCountを格納。変数名をcomboBoxCountに変更している
         private void searchComboBox_Add(int comboBoxCount)
         {
@@ -266,6 +269,7 @@ namespace SyainKanriSystem
             this.panel1.Controls.Add(searchComboBox);
         }
 
+        // 「+」ボタンを押した際、現在のテキストボックスの数を取得する
         private int countSearchTextBox()
         {
             int textBoxCount = 0;
@@ -280,6 +284,7 @@ namespace SyainKanriSystem
             return textBoxCount;
         }
 
+        // 検索テキストボックスを初期化する
         private void clearSearchTextBox()
         {
             foreach (Control ctrl in panel1.Controls)
@@ -298,6 +303,7 @@ namespace SyainKanriSystem
             }
         }
 
+        // 検索コンボボックスを初期化する
         private void clearSearchComboBox()
         {
             foreach (Control ctrl in panel1.Controls)
@@ -314,10 +320,40 @@ namespace SyainKanriSystem
             }
         }
 
+        // クリアボタンを押した際の処理
         private void button1_Click(object sender, EventArgs e)
         {
             clearSearchComboBox();
             clearSearchTextBox();
         }
+
+        // 検索コンボボックス・テキストボックスの数だけ入力値を取得する
+        private void getSearchConditions()
+        {
+            int textBoxCount = countSearchTextBox();
+            for (int i = 0; i < textBoxCount; i++)
+            {
+
+            }
+
+
+
+            /* 下記の方法だとpanel1内のコントロールを取得する順序がわからないため、不可？
+             * 
+             
+            List<string> searchComboBoxStr = new List<string>();
+            foreach (Control ctrl in panel1.Controls)
+            {
+                // コンボボックスの値をリストに格納。
+                if (ctrl is ComboBox)
+                {
+                    searchComboBoxStr.Add(ctrl.value);
+                }
+            }
+            
+            */
+
+        }
+
     }
 }
