@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using SyainKanriSystem.Models;
 using System.Security.Cryptography.Xml;
 using System.Drawing.Text;
+using System.CodeDom;
 
 namespace SyainKanriSystem
 {
@@ -21,6 +22,9 @@ namespace SyainKanriSystem
         private List<Employees> employeeList;
         private List<Departments> departmentList;
         private List<Positions> positionList;
+
+        private List<ComboBox> searchComboList;
+        private List<TextBox> searchTextList;
 
         // MainFormを表示する
         public MainForm()
@@ -31,6 +35,18 @@ namespace SyainKanriSystem
             positionList = InitializePositionRepository();
             dataGridView1 = InitializeDataGridView();
             SetDataGridViewEmployeeInfo(dataGridView1, employeeList, departmentList, positionList);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // 検索コンボボックスのリストを作成
+            List<ComboBox> searchComboList = new List<ComboBox>();
+            searchComboList.Add(searchComboBox0);
+            this.searchComboList = searchComboList;
+            // 検索テキストボックスのリストを作成
+            List<TextBox> searchTextList = new List<TextBox>();
+            searchTextList.Add(searchTextBox0);
+            this.searchTextList = searchTextList;
         }
 
         // 追加処理完了後、DataGridViewをリセットし、最新の社員データを更新する
@@ -234,8 +250,9 @@ namespace SyainKanriSystem
             // 166はx軸、21 + textBoxCount * 18はy軸
             searchTextBox.Location = new Point(166, 10 + textBoxCount * 20);
             searchTextBox.Size = new Size(196, 26);
-            this.Controls.Add(searchTextBox);
-            // this.groupBox1.Controls.Add(searchTextBox);
+            // 検索テキストボックスのリストに格納
+            this.searchTextList.Add(searchTextBox);
+            // panel1のコントロールに格納
             this.panel1.Controls.Add(searchTextBox);
         }
 
@@ -263,10 +280,11 @@ namespace SyainKanriSystem
             "部門",
             "役職",
             "ステータス"});
-
-            this.Controls.Add(searchComboBox);
-            // this.groupBox1.Controls.Add(searchComboBox);
+            // 検索コンボボックスのリストに格納
+            this.searchComboList.Add(searchComboBox);
+            // panel1のコントロールに格納
             this.panel1.Controls.Add(searchComboBox);
+            
         }
 
         // 「+」ボタンを押した際、現在のテキストボックスの数を取得する
@@ -301,6 +319,9 @@ namespace SyainKanriSystem
                     }
                 }
             }
+
+            searchTextList.Clear();
+            searchTextList.Add(searchTextBox0);
         }
 
         // 検索コンボボックスを初期化する
@@ -318,6 +339,8 @@ namespace SyainKanriSystem
                     }
                 }
             }
+            searchComboList.Clear();
+            searchComboList.Add(searchComboBox0);
         }
 
         // クリアボタンを押した際の処理
@@ -330,30 +353,19 @@ namespace SyainKanriSystem
         // 検索コンボボックス・テキストボックスの数だけ入力値を取得する
         private void getSearchConditions()
         {
-            int textBoxCount = countSearchTextBox();
-            for (int i = 0; i < textBoxCount; i++)
+            for (int i = 0; i < searchTextList.Count; i++)
             {
-
-            }
-
-
-
-            /* 下記の方法だとpanel1内のコントロールを取得する順序がわからないため、不可？
-             * 
-             
-            List<string> searchComboBoxStr = new List<string>();
-            foreach (Control ctrl in panel1.Controls)
-            {
-                // コンボボックスの値をリストに格納。
-                if (ctrl is ComboBox)
+                string searchComboValue = searchComboList[i].Text;
+                string searchTextValue = searchTextList[i].Text;
+                // 空白でないコンボボックス・テキストボックスにエラーチェック（switch-case?）
+                // 文字列をリストに格納 or newしたEmployeesクラスに格納
+                if (searchComboValue != "" && searchTextValue != "")
                 {
-                    searchComboBoxStr.Add(ctrl.value);
+                    
                 }
             }
-            
-            */
-
         }
+
 
     }
 }
