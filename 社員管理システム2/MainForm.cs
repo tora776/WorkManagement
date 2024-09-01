@@ -14,6 +14,7 @@ using SyainKanriSystem.Models;
 using System.Security.Cryptography.Xml;
 using System.Drawing.Text;
 using System.CodeDom;
+using 社員管理システム2;
 
 namespace SyainKanriSystem
 {
@@ -70,12 +71,19 @@ namespace SyainKanriSystem
             addForm.Show();
         }
 
-        // 検索ボタンを押下し、searchFormを表示する
-        // TODO 検索フォームを表示する or MainFormに検索内容を表示させるかは要相談
+        // 検索ボタンを押下し、DBより検索結果を取得する
+        // TODO MainFormに検索内容を表示させるかは要相談
         private void buttonSearch_Click(object sender, EventArgs e)
         {
+            /* 検索フォームを表示する
             EmployeeSearchForm searchForm = new EmployeeSearchForm();
             searchForm.Show();
+            */
+            List<string> searchComboStr = new List<string>();
+            List<string> searchTextStr = new List<string>();
+            getSearchConditions(searchComboStr, searchTextStr);
+            var employeeService = new EmployeeService();
+            employeeService.searchEmployeeData(searchComboStr, searchTextStr);
         }
 
         // 詳細表示ボタンを押下し、detailFormを表示する
@@ -351,17 +359,82 @@ namespace SyainKanriSystem
         }
 
         // 検索コンボボックス・テキストボックスの数だけ入力値を取得する
-        private void getSearchConditions()
+        private void getSearchConditions(List<string> searchComboStr, List<string> searchTextStr)
         {
+            // エラーチェックのクラスインスタンス作成
+            var validationService = new ValidationService();
             for (int i = 0; i < searchTextList.Count; i++)
             {
                 string searchComboValue = searchComboList[i].Text;
                 string searchTextValue = searchTextList[i].Text;
-                // 空白でないコンボボックス・テキストボックスにエラーチェック（switch-case?）
-                // 文字列をリストに格納 or newしたEmployeesクラスに格納
-                if (searchComboValue != "" && searchTextValue != "")
+                // 空白でないコンボボックス・テキストボックスにエラーチェック
+                // TODO HireDate, Department, Position, Statusはint型へ変換はできているが、String型に変換する必要がある
+                if (String.IsNullOrEmpty(searchComboValue) == false && String.IsNullOrEmpty(searchTextValue) == false)
                 {
-                    
+                    switch (searchComboValue)
+                    {
+                        case "社員番号":
+                            searchComboValue = "EmployeeID";
+                            validationService.wordCount_Main(searchTextValue, 6);
+                            validationService.employeeIDChk(searchTextValue);
+                            break;
+                        case "姓":
+                            searchComboValue = "FirstName";
+                            validationService.wordCount_Main(searchTextValue, 50);
+                            break;
+                        case "名":
+                            searchComboValue = "LastName";
+                            validationService.wordCount_Main(searchTextValue, 50);
+                            break;
+                        case "姓（かな）":
+                            searchComboValue = "FirstNameKana";
+                            validationService.wordCount_Main(searchTextValue, 50);
+                            validationService.kanaChk(searchTextValue);
+                            break;
+                        case "名（かな）":
+                            searchComboValue = "LastNameKana";
+                            validationService.wordCount_Main(searchTextValue, 50);
+                            validationService.kanaChk(searchTextValue);
+                            break;
+                        case "メールアドレス":
+                            searchComboValue = "Email";
+                            validationService.wordCount_Main(searchTextValue, 255);
+                            validationService.mailChk(searchTextValue);
+                            break;
+                        case "電話番号":
+                            searchComboValue = "PhoneNumber";
+                            // TODO 引数が1つの電話番号チェック。検索は完全一致？
+                            validationService.wordCount_Main(searchTextValue, 13);
+                            // validationService.phoneChk(searchTextValue);
+                            break;
+                        case "雇用日":
+                            searchComboValue = "HireDate";
+                            validationService.wordCount_Main(searchTextValue, 10);
+                            // string型に戻して、日付の入力形式を修正
+                            searchTextValue = validationService.calendarChk(searchTextValue).ToString("yyyyMMdd");
+                            break;
+                        case "部門":
+                            searchComboValue = "Department";
+                            validationService.wordCount_Main(searchTextValue, 6);
+                            // int型からString型に戻す
+                            searchTextValue = validationService.departmentChk(searchTextValue, departmentList).ToString();
+                            break;
+                        case "役職":
+                            searchComboValue = "Position";
+                            validationService.wordCount_Main(searchTextValue, 6);
+                            // int型からString型に戻す
+                            searchTextValue = validationService.positionChk(searchTextValue, positionList).ToString();
+                            break;
+                        case "ステータス":
+                            searchComboValue = "Status";
+                            validationService.wordCount_Main(searchTextValue, 3);
+                            // int型からString型に戻す
+                            searchTextValue = validationService.statusChk(searchTextValue).ToString();
+                            break;
+                    }
+                    // エラーチェックした文字列をリストに格納
+                    searchTextStr.Add(searchTextValue);
+                    searchComboStr.Add(searchComboValue);
                 }
             }
         }

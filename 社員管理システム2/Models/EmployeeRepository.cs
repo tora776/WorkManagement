@@ -117,5 +117,33 @@ namespace SyainKanriSystem.Models
                 throw;
             }
         }
+
+        public string makeSearchQuery(List<string> searchComboStr, List<string> searchTextStr)
+        {
+            try
+            {
+                string conditionQuery = null;
+                // 条件式を作成
+                for (int i = 0; i < searchComboStr.Count; i++)
+                {
+                    // TODO int型の場合クォーテーションは不要。switch-case文で場合分けする？
+                    if(conditionQuery == null)
+                    {
+                        conditionQuery = $@"Where {searchComboStr[i]} = '{searchTextStr[i]}'"; 
+                    }
+                    else
+                    {
+                        conditionQuery = conditionQuery + $@" AND Where {searchComboStr[i]} = '{searchTextStr[i]}'";
+                    }
+                }
+
+                string query = "SELECT * FROM Employees" + conditionQuery;
+                return query;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

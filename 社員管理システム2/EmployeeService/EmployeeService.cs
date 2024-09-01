@@ -137,6 +137,34 @@ namespace SyainKanriSystem
 
         }
 
+        public List<Employees> searchEmployeeData(List<string> searchComboStr, List<string> searchTextStr)
+        {
+            var DB = new DatabaseContext();
+            var EmployeeReposiroty = new EmployeeRepository();
+            NpgsqlConnection conn = DB.connectDB();
+            try
+            {
+                String query = EmployeeReposiroty.makeSearchQuery(searchComboStr, searchTextStr);
+                DataTable dt = EmployeeReposiroty.sqlExecute(query, conn);
+                List<Employees> employeeList = EmployeeReposiroty.getSelectEmployee(dt);
+                return employeeList;
+
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+                return null;
+            }
+            finally
+            {
+                // DBに接続していれば切断する
+                if (conn != null)
+                {
+                    DB.disconnectDB(conn);
+                }
+            }
+        }
+
 
 
     }
