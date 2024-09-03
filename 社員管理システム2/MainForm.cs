@@ -23,9 +23,7 @@ namespace SyainKanriSystem
         private List<Employees> employeeList;
         private List<Departments> departmentList;
         private List<Positions> positionList;
-
-        private List<ComboBox> searchComboList;
-        private List<TextBox> searchTextList;
+        private Dictionary<string, string> searchNameDict;
 
         // MainFormを表示する
         public MainForm()
@@ -40,14 +38,11 @@ namespace SyainKanriSystem
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // 検索コンボボックスのリストを作成
-            List<ComboBox> searchComboList = new List<ComboBox>();
-            searchComboList.Add(searchComboBox0);
-            this.searchComboList = searchComboList;
-            // 検索テキストボックスのリストを作成
-            List<TextBox> searchTextList = new List<TextBox>();
-            searchTextList.Add(searchTextBox0);
-            this.searchTextList = searchTextList;
+            // 検索コンボボックスとテキストボックスの辞書を作成
+            Dictionary<string, string> searchNameDict = new Dictionary<string, string>();
+            searchNameDict.Add(searchComboBox0.Name, searchTextBox0.Name);
+            this.searchNameDict = searchNameDict;
+
         }
 
         // 追加処理完了後、DataGridViewをリセットし、最新の社員データを更新する
@@ -62,7 +57,7 @@ namespace SyainKanriSystem
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
         // 追加ボタンを押下し、AddFormを表示する
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -75,15 +70,22 @@ namespace SyainKanriSystem
         // TODO MainFormに検索内容を表示させるかは要相談
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            /* 検索フォームを表示する
-            EmployeeSearchForm searchForm = new EmployeeSearchForm();
-            searchForm.Show();
-            */
-            List<string> searchComboStr = new List<string>();
-            List<string> searchTextStr = new List<string>();
-            getSearchConditions(searchComboStr, searchTextStr);
-            var employeeService = new EmployeeService();
-            employeeService.searchEmployeeData(searchComboStr, searchTextStr);
+            try
+            {
+                /* 検索フォームを表示する
+                EmployeeSearchForm searchForm = new EmployeeSearchForm();
+                searchForm.Show();
+                */
+                List<string> searchComboStr = new List<string>();
+                List<string> searchTextStr = new List<string>();
+                getSearchConditions(searchComboStr, searchTextStr);
+                var employeeService = new EmployeeService();
+                employeeService.searchEmployeeData(searchComboStr, searchTextStr);
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
         }
 
         // 詳細表示ボタンを押下し、detailFormを表示する
@@ -95,10 +97,10 @@ namespace SyainKanriSystem
         }
 
         // DataGridViewに取得した社員データを表示する
-        private DataGridView SetDataGridViewEmployeeInfo(DataGridView dataGridView1, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList){
+        private DataGridView SetDataGridViewEmployeeInfo(DataGridView dataGridView1, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList) {
 
             try
-            {            
+            {
                 foreach (Employees item in employeeList)
                 {
                     // 行番号を指定する
@@ -107,7 +109,7 @@ namespace SyainKanriSystem
                     // 社員データを記載する
                     row.Cells["社員番号"].Value = item.EmployeeID;
                     row.Cells["姓"].Value = item.FirstName;
-                    row.Cells["名"].Value =item.LastName;
+                    row.Cells["名"].Value = item.LastName;
                     row.Cells["姓（かな）"].Value = item.FirstNameKana;
                     row.Cells["名（かな）"].Value = item.LastNameKana;
                     row.Cells["メールアドレス"].Value = item.Email;
@@ -130,7 +132,7 @@ namespace SyainKanriSystem
 
         // DataGridViewを初期化する
         private DataGridView InitializeDataGridView()
-        {   
+        {
             // 列数を指定
             dataGridView1.ColumnCount = 11;
             // カラムヘッダーを可視化できるようにする
@@ -138,7 +140,7 @@ namespace SyainKanriSystem
 
             //ヘッダーとすべてのセルの内容に合わせて、列の幅を自動調整する
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            for(int i = 0; i < dataGridView1.Columns.Count; i++)
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
             {
                 dataGridView1.Columns[i].MinimumWidth = 80;
             }
@@ -155,7 +157,6 @@ namespace SyainKanriSystem
             dataGridView1.Columns[8].Name = "部門";
             dataGridView1.Columns[9].Name = "役職";
             dataGridView1.Columns[10].Name = "ステータス";
-            
 
             return dataGridView1;
         }
@@ -244,29 +245,15 @@ namespace SyainKanriSystem
         private void button_AddSearchCondition_Click(object sender, EventArgs e)
         {
             int textBoxCount = countSearchTextBox();
-            searchTextBox_Add(textBoxCount);
-            searchComboBox_Add(textBoxCount);
-            
-        }
+            string searchComboBox_Name = searchComboBox_Add(textBoxCount);
+            string searchTextBox_Name = searchTextBox_Add(textBoxCount);
+            searchNameDict.Add(searchComboBox_Name, searchTextBox_Name);
 
-        // テキストフォーム追加処理
-        private void searchTextBox_Add(int textBoxCount)
-        {
-            TextBox searchTextBox = new TextBox();
-
-            searchTextBox.Name = "searchTextBox" + textBoxCount;
-            // 166はx軸、21 + textBoxCount * 18はy軸
-            searchTextBox.Location = new Point(166, 10 + textBoxCount * 20);
-            searchTextBox.Size = new Size(196, 26);
-            // 検索テキストボックスのリストに格納
-            this.searchTextList.Add(searchTextBox);
-            // panel1のコントロールに格納
-            this.panel1.Controls.Add(searchTextBox);
         }
 
         // コンボボックス追加処理
         // テキストボックスとコンボボックスの数は同一なので、textBoxCountを格納。変数名をcomboBoxCountに変更している
-        private void searchComboBox_Add(int comboBoxCount)
+        private string searchComboBox_Add(int comboBoxCount)
         {
             ComboBox searchComboBox = new ComboBox();
 
@@ -288,11 +275,26 @@ namespace SyainKanriSystem
             "部門",
             "役職",
             "ステータス"});
-            // 検索コンボボックスのリストに格納
-            this.searchComboList.Add(searchComboBox);
             // panel1のコントロールに格納
             this.panel1.Controls.Add(searchComboBox);
-            
+
+            return searchComboBox.Name;
+
+        }
+
+        // テキストフォーム追加処理
+        private string searchTextBox_Add(int textBoxCount)
+        {
+            TextBox searchTextBox = new TextBox();
+
+            searchTextBox.Name = "searchTextBox" + textBoxCount;
+            // 166はx軸、21 + textBoxCount * 18はy軸
+            searchTextBox.Location = new Point(166, 10 + textBoxCount * 20);
+            searchTextBox.Size = new Size(196, 26);
+            // panel1のコントロールに格納
+            this.panel1.Controls.Add(searchTextBox);
+
+            return searchTextBox.Name;
         }
 
         // 「+」ボタンを押した際、現在のテキストボックスの数を取得する
@@ -300,7 +302,7 @@ namespace SyainKanriSystem
         {
             int textBoxCount = 0;
 
-            foreach(Control ctrl in panel1.Controls)
+            foreach (Control ctrl in panel1.Controls)
             {
                 if (ctrl is TextBox)
                 {
@@ -327,9 +329,6 @@ namespace SyainKanriSystem
                     }
                 }
             }
-
-            searchTextList.Clear();
-            searchTextList.Add(searchTextBox0);
         }
 
         // 検索コンボボックスを初期化する
@@ -347,8 +346,10 @@ namespace SyainKanriSystem
                     }
                 }
             }
+            /*
             searchComboList.Clear();
             searchComboList.Add(searchComboBox0);
+            */
         }
 
         // クリアボタンを押した際の処理
@@ -356,89 +357,115 @@ namespace SyainKanriSystem
         {
             clearSearchComboBox();
             clearSearchTextBox();
+            searchNameDict.Clear();
+            searchNameDict.Add(searchComboBox0.Name, searchTextBox0.Name);
         }
 
         // 検索コンボボックス・テキストボックスの数だけ入力値を取得する
         private void getSearchConditions(List<string> searchComboStr, List<string> searchTextStr)
         {
-            // エラーチェックのクラスインスタンス作成
-            var validationService = new ValidationService();
-            for (int i = 0; i < searchTextList.Count; i++)
+            try
             {
-                string searchComboValue = searchComboList[i].Text;
-                string searchTextValue = searchTextList[i].Text;
-                // 空白でないコンボボックス・テキストボックスにエラーチェック
-                // TODO HireDate, Department, Position, Statusはint型へ変換はできているが、String型に変換する必要がある
-                if (String.IsNullOrEmpty(searchComboValue) == false && String.IsNullOrEmpty(searchTextValue) == false)
+                // エラーチェックのクラスインスタンス作成
+                var validationService = new ValidationService();
+                // for (int i = 0; i < searchNameDict.Count; i++)
+                foreach (KeyValuePair<string, string> kvp in searchNameDict)
                 {
-                    switch (searchComboValue)
+                    // 検索コンボボックスのNameを指定し、入力値を取得
+                    Control ctrlComboBox = this.panel1.Controls[kvp.Key];
+                    string searchComboValue = ctrlComboBox.Text;
+                    // 検索テキストボックスのNameを指定し、入力値を取得
+                    Control ctrlTextBox = this.panel1.Controls[kvp.Value];
+                    string searchTextValue = ctrlTextBox.Text;
+
+                    // 空白でないコンボボックス・テキストボックスにエラーチェック
+                    // TODO HireDate, Department, Position, Statusはint型へ変換はできているが、String型に変換する必要がある
+                    if (String.IsNullOrEmpty(searchComboValue) == false && String.IsNullOrEmpty(searchTextValue) == false)
                     {
-                        case "社員番号":
-                            searchComboValue = "EmployeeID";
-                            validationService.wordCount_Main(searchTextValue, 6);
-                            validationService.employeeIDChk(searchTextValue);
-                            break;
-                        case "姓":
-                            searchComboValue = "FirstName";
-                            validationService.wordCount_Main(searchTextValue, 50);
-                            break;
-                        case "名":
-                            searchComboValue = "LastName";
-                            validationService.wordCount_Main(searchTextValue, 50);
-                            break;
-                        case "姓（かな）":
-                            searchComboValue = "FirstNameKana";
-                            validationService.wordCount_Main(searchTextValue, 50);
-                            validationService.kanaChk(searchTextValue);
-                            break;
-                        case "名（かな）":
-                            searchComboValue = "LastNameKana";
-                            validationService.wordCount_Main(searchTextValue, 50);
-                            validationService.kanaChk(searchTextValue);
-                            break;
-                        case "メールアドレス":
-                            searchComboValue = "Email";
-                            validationService.wordCount_Main(searchTextValue, 255);
-                            validationService.mailChk(searchTextValue);
-                            break;
-                        case "電話番号":
-                            searchComboValue = "PhoneNumber";
-                            // TODO 引数が1つの電話番号チェック。検索は完全一致？
-                            validationService.wordCount_Main(searchTextValue, 13);
-                            // validationService.phoneChk(searchTextValue);
-                            break;
-                        case "雇用日":
-                            searchComboValue = "HireDate";
-                            validationService.wordCount_Main(searchTextValue, 10);
-                            // string型に戻して、日付の入力形式を修正
-                            searchTextValue = validationService.calendarChk(searchTextValue).ToString("yyyyMMdd");
-                            break;
-                        case "部門":
-                            searchComboValue = "Department";
-                            validationService.wordCount_Main(searchTextValue, 6);
-                            // int型からString型に戻す
-                            searchTextValue = validationService.departmentChk(searchTextValue, departmentList).ToString();
-                            break;
-                        case "役職":
-                            searchComboValue = "Position";
-                            validationService.wordCount_Main(searchTextValue, 6);
-                            // int型からString型に戻す
-                            searchTextValue = validationService.positionChk(searchTextValue, positionList).ToString();
-                            break;
-                        case "ステータス":
-                            searchComboValue = "Status";
-                            validationService.wordCount_Main(searchTextValue, 3);
-                            // int型からString型に戻す
-                            searchTextValue = validationService.statusChk(searchTextValue).ToString();
-                            break;
+                        switch (searchComboValue)
+                        {
+                            case "社員番号":
+                                searchComboValue = "EmployeeID";
+                                validationService.wordCount_Main(searchTextValue, 6);
+                                validationService.employeeIDChk(searchTextValue);
+                                break;
+                            case "姓":
+                                searchComboValue = "FirstName";
+                                validationService.wordCount_Main(searchTextValue, 50);
+                                break;
+                            case "名":
+                                searchComboValue = "LastName";
+                                validationService.wordCount_Main(searchTextValue, 50);
+                                break;
+                            case "姓（かな）":
+                                searchComboValue = "FirstNameKana";
+                                validationService.wordCount_Main(searchTextValue, 50);
+                                validationService.kanaChk(searchTextValue);
+                                break;
+                            case "名（かな）":
+                                searchComboValue = "LastNameKana";
+                                validationService.wordCount_Main(searchTextValue, 50);
+                                validationService.kanaChk(searchTextValue);
+                                break;
+                            case "メールアドレス":
+                                searchComboValue = "Email";
+                                validationService.wordCount_Main(searchTextValue, 255);
+                                validationService.mailChk(searchTextValue);
+                                break;
+                            case "電話番号":
+                                searchComboValue = "PhoneNumber";
+                                // TODO 引数が1つの電話番号チェック。検索は完全一致？
+                                validationService.wordCount_Main(searchTextValue, 13);
+                                // validationService.phoneChk(searchTextValue);
+                                break;
+                            case "雇用日":
+                                searchComboValue = "HireDate";
+                                validationService.wordCount_Main(searchTextValue, 10);
+                                // string型に戻して、日付の入力形式を修正
+                                searchTextValue = validationService.calendarChk(searchTextValue).ToString("yyyyMMdd");
+                                break;
+                            case "部門":
+                                searchComboValue = "Department";
+                                validationService.wordCount_Main(searchTextValue, 6);
+                                // int型からString型に戻す
+                                searchTextValue = validationService.departmentChk(searchTextValue, departmentList).ToString();
+                                break;
+                            case "役職":
+                                searchComboValue = "Position";
+                                validationService.wordCount_Main(searchTextValue, 6);
+                                // int型からString型に戻す
+                                searchTextValue = validationService.positionChk(searchTextValue, positionList).ToString();
+                                break;
+                            case "ステータス":
+                                searchComboValue = "Status";
+                                validationService.wordCount_Main(searchTextValue, 3);
+                                // int型からString型に戻す
+                                searchTextValue = validationService.statusChk(searchTextValue).ToString();
+                                break;
+
+                        }
+                        // searchComboStrに同じ項目のものがある場合にエラーを出力する
+                        if (searchComboStr.IndexOf(searchComboValue) == -1)
+                        {
+                            // エラーチェックした文字列をリストに格納
+                            searchComboStr.Add(searchComboValue);
+                            searchTextStr.Add(searchTextValue);
+                        }
+                        else
+                        {
+                            throw new Exception("検索コンボボックスに同一の項目を入力することはできません");
+                        }
                     }
-                    // エラーチェックした文字列をリストに格納
-                    searchTextStr.Add(searchTextValue);
-                    searchComboStr.Add(searchComboValue);
                 }
             }
+            catch (Exception error)
+            {
+                throw error;
+            }
+
         }
-
-
     }
 }
+
+    
+

@@ -126,18 +126,18 @@ namespace SyainKanriSystem.Models
                 // 条件式を作成
                 for (int i = 0; i < searchComboStr.Count; i++)
                 {
-                    // TODO int型の場合クォーテーションは不要。switch-case文で場合分けする？
+                    // TODO int型の場合クォーテーションは不要。switch-case文で場合分けする？int-TryParseできるなら？
                     if(conditionQuery == null)
                     {
-                        conditionQuery = $@"Where {searchComboStr[i]} = '{searchTextStr[i]}'"; 
+                        conditionQuery = $@"Where {searchComboStr[i]} = '{searchTextStr[i]}' "; 
                     }
                     else
                     {
-                        conditionQuery = conditionQuery + $@" AND Where {searchComboStr[i]} = '{searchTextStr[i]}'";
+                        conditionQuery = conditionQuery + $@"AND {searchComboStr[i]} = '{searchTextStr[i]}'";
                     }
                 }
 
-                string query = "SELECT * FROM Employees" + conditionQuery;
+                string query = "SELECT * FROM Employees " + conditionQuery;
                 return query;
             }
             catch (Exception)
