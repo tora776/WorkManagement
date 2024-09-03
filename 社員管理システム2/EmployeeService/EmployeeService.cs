@@ -144,7 +144,7 @@ namespace SyainKanriSystem
             NpgsqlConnection conn = DB.connectDB();
             try
             {
-                String query = EmployeeReposiroty.makeSearchQuery(searchComboStr, searchTextStr);
+                string query = EmployeeReposiroty.makeSearchQuery(searchComboStr, searchTextStr);
                 DataTable dt = EmployeeReposiroty.sqlExecute(query, conn);
                 List<Employees> employeeList = EmployeeReposiroty.getSelectEmployee(dt);
                 return employeeList;

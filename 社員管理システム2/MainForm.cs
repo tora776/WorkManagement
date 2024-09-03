@@ -414,7 +414,7 @@ namespace SyainKanriSystem
                                 break;
                             case "電話番号":
                                 searchComboValue = "PhoneNumber";
-                                // TODO 引数が1つの電話番号チェック。検索は完全一致？
+                                // TODO 引数が1つの電話番号エラーチェック関数を作成
                                 validationService.wordCount_Main(searchTextValue, 13);
                                 // validationService.phoneChk(searchTextValue);
                                 break;
@@ -422,7 +422,7 @@ namespace SyainKanriSystem
                                 searchComboValue = "HireDate";
                                 validationService.wordCount_Main(searchTextValue, 10);
                                 // string型に戻して、日付の入力形式を修正
-                                searchTextValue = validationService.calendarChk(searchTextValue).ToString("yyyyMMdd");
+                                searchTextValue = validationService.calendarChk(searchTextValue).ToString("yyyy/MM/dd");
                                 break;
                             case "部門":
                                 searchComboValue = "Department";
