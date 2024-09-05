@@ -217,9 +217,9 @@ namespace SyainKanriSystem
                 updateEmployee();
                 MessageBox.Show("データを更新しました");
                 // MainFormに反映
-                mainForm.resetDataGridView();
-                closeUpdateForm();
+                mainForm.closeForm_ResetDataGridView();
                 detailForm.closeDetailForm();
+                closeUpdateForm();
             }
             catch (Exception error)
             {

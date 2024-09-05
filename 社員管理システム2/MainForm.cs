@@ -23,7 +23,9 @@ namespace SyainKanriSystem
         private List<Employees> employeeList;
         private List<Departments> departmentList;
         private List<Positions> positionList;
-        private Dictionary<string, string> searchNameDict;
+        private List<string[]> searchNameList;
+        // [[searchComboBox0, searchTextBox0], [searchComboBox1, searchTextBox1]...]
+        // private Dictionary<string, string> searchNameDict;
 
         // MainFormを表示する
         public MainForm()
@@ -39,20 +41,33 @@ namespace SyainKanriSystem
         private void MainForm_Load(object sender, EventArgs e)
         {
             // 検索コンボボックスとテキストボックスの辞書を作成
+            /*
             Dictionary<string, string> searchNameDict = new Dictionary<string, string>();
             searchNameDict.Add(searchComboBox0.Name, searchTextBox0.Name);
             this.searchNameDict = searchNameDict;
+            */
+            List<string[]> searchNameList = new List<string[]>();
+            string[] searchSet = { searchComboBox0.Name, searchTextBox0.Name };
+            searchNameList.Add(searchSet);
+            this.searchNameList = searchNameList;
 
         }
 
         // 追加処理完了後、DataGridViewをリセットし、最新の社員データを更新する
-        public void resetDataGridView()
+        private void resetDataGridView()
         {
             dataGridView1.Rows.Clear();
             dataGridView1.ColumnCount = 0;
         }
 
-        public void setEmployeesDataGridView()
+        public void closeForm_ResetDataGridView()
+        {
+            resetDataGridView();
+            employeeList = InitializeEmployeeRepository();
+            setEmployeesDataGridView();
+        }
+
+        private void setEmployeesDataGridView()
         {
             // employeeList = InitializeEmployeeRepository();
             dataGridView1 = InitializeDataGridView();
@@ -168,7 +183,7 @@ namespace SyainKanriSystem
         }
 
         // DBより社員データを取得する
-        public List<Employees> InitializeEmployeeRepository()
+        private List<Employees> InitializeEmployeeRepository()
         {
             if (employeeList != null)
             {
@@ -257,7 +272,8 @@ namespace SyainKanriSystem
             int textBoxCount = countSearchTextBox();
             string searchComboBox_Name = searchComboBox_Add(textBoxCount);
             string searchTextBox_Name = searchTextBox_Add(textBoxCount);
-            searchNameDict.Add(searchComboBox_Name, searchTextBox_Name);
+            string[] searchSet = { searchComboBox_Name, searchTextBox_Name };
+            searchNameList.Add(searchSet);
 
         }
 
@@ -323,52 +339,27 @@ namespace SyainKanriSystem
         }
 
         // 検索テキストボックスを初期化する
-        private void clearSearchTextBox()
+        private void clearSearchConditions()
         {
-            foreach (Control ctrl in panel1.Controls)
+            if (searchNameList.Count > 0)
             {
-                // テキストボックスを削除
-                if (ctrl is TextBox)
+                for (int i = 1; i < searchNameList.Count; i++)
                 {
-
-                    if (ctrl.Name != "searchTextBox0")
-                    {
-                        // TODO クリアの際テキストボックスが1つ残ってしまう。
-                        panel1.Controls.Remove(ctrl);
-                        ctrl.Dispose();
-                    }
+                    panel1.Controls.RemoveByKey(searchNameList[i][0]);
+                    panel1.Controls.RemoveByKey(searchNameList[i][1]);
                 }
             }
-        }
-
-        // 検索コンボボックスを初期化する
-        private void clearSearchComboBox()
-        {
-            foreach (Control ctrl in panel1.Controls)
-            {
-                // コンボボックスを削除
-                if (ctrl is ComboBox)
-                {
-                    if (ctrl.Name != "searchComboBox0")
-                    {
-                        panel1.Controls.Remove(ctrl);
-                        ctrl.Dispose();
-                    }
-                }
-            }
-            /*
-            searchComboList.Clear();
-            searchComboList.Add(searchComboBox0);
-            */
+            searchComboBox0.SelectedIndex = -1;
+            searchTextBox0.Clear();
         }
 
         // クリアボタンを押した際の処理
         private void button1_Click(object sender, EventArgs e)
         {
-            clearSearchComboBox();
-            clearSearchTextBox();
-            searchNameDict.Clear();
-            searchNameDict.Add(searchComboBox0.Name, searchTextBox0.Name);
+            clearSearchConditions();
+            searchNameList.Clear();
+            string[] searchSet = { searchComboBox0.Name, searchTextBox0.Name };
+            searchNameList.Add(searchSet);
         }
 
         // 検索コンボボックス・テキストボックスの数だけ入力値を取得する
@@ -378,18 +369,16 @@ namespace SyainKanriSystem
             {
                 // エラーチェックのクラスインスタンス作成
                 var validationService = new ValidationService();
-                // for (int i = 0; i < searchNameDict.Count; i++)
-                foreach (KeyValuePair<string, string> kvp in searchNameDict)
+                for (int i = 0; i < searchNameList.Count; i++)
                 {
                     // 検索コンボボックスのNameを指定し、入力値を取得
-                    Control ctrlComboBox = this.panel1.Controls[kvp.Key];
+                    Control ctrlComboBox = this.panel1.Controls[searchNameList[i][0]];
                     string searchComboValue = ctrlComboBox.Text;
                     // 検索テキストボックスのNameを指定し、入力値を取得
-                    Control ctrlTextBox = this.panel1.Controls[kvp.Value];
+                    Control ctrlTextBox = this.panel1.Controls[searchNameList[i][1]];
                     string searchTextValue = ctrlTextBox.Text;
 
                     // 空白でないコンボボックス・テキストボックスにエラーチェック
-                    // TODO HireDate, Department, Position, Statusはint型へ変換はできているが、String型に変換する必要がある
                     if (String.IsNullOrEmpty(searchComboValue) == false && String.IsNullOrEmpty(searchTextValue) == false)
                     {
                         switch (searchComboValue)
@@ -452,7 +441,6 @@ namespace SyainKanriSystem
                                 // int型からString型に戻す
                                 searchTextValue = validationService.statusChk(searchTextValue).ToString();
                                 break;
-
                         }
                         // searchComboStrに同じ項目のものがある場合にエラーを出力する
                         if (searchComboStr.IndexOf(searchComboValue) == -1)

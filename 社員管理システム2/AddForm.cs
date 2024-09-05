@@ -60,9 +60,7 @@ namespace SyainKanriSystem
         private void button_Cancel_Click(object sender, EventArgs e)
         {
             // MainFormに反映
-            mainForm.resetDataGridView();
-            employeeList = mainForm.InitializeEmployeeRepository();
-            mainForm.setEmployeesDataGridView();
+            mainForm.closeForm_ResetDataGridView();
             // 追加フォームを閉じる
             closeAddForm();
         }
