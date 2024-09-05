@@ -47,27 +47,23 @@ namespace SyainKanriSystem
                 // 社員を追加する
                 addEmployee();
                 MessageBox.Show("社員を追加しました。");
-                // MainFormに反映
-                mainForm.ResetDataGridView();
-                // 追加フォームを閉じる
-                closeAddForm();
+                // テキストボックスを初期化する
+                resetInputText();
                 
             }
             catch (Exception error) {
                 MessageBox.Show(error.Message);
             }
         }
-        
-
-        //  追加フォームを閉じる
-        private void button3_Click(object sender, EventArgs e)
-        {
-            closeAddForm();
-        }
 
         // 追加フォームを閉じる
         private void button_Cancel_Click(object sender, EventArgs e)
         {
+            // MainFormに反映
+            mainForm.resetDataGridView();
+            employeeList = mainForm.InitializeEmployeeRepository();
+            mainForm.setEmployeesDataGridView();
+            // 追加フォームを閉じる
             closeAddForm();
         }
 
@@ -88,6 +84,23 @@ namespace SyainKanriSystem
 
             String[] addData = {firstNameValue, lastNameValue, firstNameKanaValue, lastNameKanaValue, emailValue, phoneNumber1Value, phoneNumber2Value, phoneNumber3Value, hireDateValue,  departmentValue, positionValue};
             return addData;
+        }
+
+        // 入力値を取得する
+        private void resetInputText()
+        {
+            textBox_FirstName.Clear();
+            textBox_LastName.Clear();
+            textBox_FirstNameKana.Clear();
+            textBox_LastNameKana.Clear();
+            textBox_Email.Clear();
+            textBox_PhoneNumber1.Clear();
+            textBox_PhoneNumber2.Clear();
+            textBox_PhoneNumber3.Clear();
+            // 同日に入社する人が多いと思われるので、dateTimePickerを初期化する
+            // dateTimePicker1.Clear();
+            comboBox_Department.SelectedIndex = -1;
+            comboBox_Position.SelectedIndex = -1;
         }
 
         // DBへ社員データを追加する
@@ -205,6 +218,11 @@ namespace SyainKanriSystem
         private void comboBox_Department_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button_Back_Click(object sender, EventArgs e)
+        {
+            resetInputText();
         }
     }
 }

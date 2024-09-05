@@ -46,13 +46,17 @@ namespace SyainKanriSystem
         }
 
         // 追加処理完了後、DataGridViewをリセットし、最新の社員データを更新する
-        // TODO EmployeeAddFormクラスから本メソッドを起動できるようにする
-        public void ResetDataGridView()
+        public void resetDataGridView()
         {
-            employeeList.Clear();
-            employeeList = InitializeEmployeeRepository();
+            dataGridView1.Rows.Clear();
+            dataGridView1.ColumnCount = 0;
+        }
+
+        public void setEmployeesDataGridView()
+        {
+            // employeeList = InitializeEmployeeRepository();
             dataGridView1 = InitializeDataGridView();
-            SetDataGridViewEmployeeInfo(dataGridView1, employeeList, departmentList, positionList);
+            SetDataGridViewEmployeeInfo(this.dataGridView1, this.employeeList, this.departmentList, this.positionList);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -80,7 +84,9 @@ namespace SyainKanriSystem
                 List<string> searchTextStr = new List<string>();
                 getSearchConditions(searchComboStr, searchTextStr);
                 var employeeService = new EmployeeService();
-                employeeService.searchEmployeeData(searchComboStr, searchTextStr);
+                this.employeeList = employeeService.searchEmployeeData(searchComboStr, searchTextStr);
+                resetDataGridView();
+                setEmployeesDataGridView();
             }
             catch(Exception error)
             {
@@ -162,8 +168,12 @@ namespace SyainKanriSystem
         }
 
         // DBより社員データを取得する
-        private List<Employees> InitializeEmployeeRepository()
+        public List<Employees> InitializeEmployeeRepository()
         {
+            if (employeeList != null)
+            {
+                employeeList.Clear();
+            }
             // employeeServiceのクラスインスタンスを作成
             var employeeService = new EmployeeService();
             // DBよりemployeeListを取得

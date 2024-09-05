@@ -140,8 +140,9 @@
             this.button_Back.Name = "button_Back";
             this.button_Back.Size = new System.Drawing.Size(197, 72);
             this.button_Back.TabIndex = 0;
-            this.button_Back.Text = "社員一覧に戻る";
+            this.button_Back.Text = "クリア";
             this.button_Back.UseVisualStyleBackColor = true;
+            this.button_Back.Click += new System.EventHandler(this.button_Back_Click);
             // 
             // textBox_FirstName
             // 
