@@ -37,6 +37,8 @@ namespace SyainKanriSystem
             // コンボボックスを初期化
             InitializeDepartmentComboBox();
             InitializePositionComboBox();
+
+            this.FormClosing += new FormClosingEventHandler(AddForm_FormClosing);
         }
 
         // 社員追加処理
@@ -59,11 +61,17 @@ namespace SyainKanriSystem
         // 追加フォームを閉じる
         private void button_Cancel_Click(object sender, EventArgs e)
         {
-            // MainFormに反映
-            mainForm.closeForm_ResetDataGridView();
+            
             // 追加フォームを閉じる
             closeAddForm();
         }
+
+        private void AddForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // MainFormに反映
+            mainForm.closeForm_ResetDataGridView();
+        }
+
 
         // 入力値を取得する
         private String[] getInputText()

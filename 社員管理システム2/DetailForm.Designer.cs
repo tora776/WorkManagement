@@ -49,7 +49,7 @@
             this.textBox_PhoneNumber3 = new System.Windows.Forms.TextBox();
             this.button_Edit = new System.Windows.Forms.Button();
             this.button_Delete = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button_BackEmployeeShow = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox_LastNameKana = new System.Windows.Forms.TextBox();
@@ -262,7 +262,7 @@
             this.button_Edit.TabIndex = 55;
             this.button_Edit.Text = "編集";
             this.button_Edit.UseVisualStyleBackColor = true;
-            this.button_Edit.Click += new System.EventHandler(this.button1_Click_2);
+            this.button_Edit.Click += new System.EventHandler(this.button_EditForm);
             // 
             // button_Delete
             // 
@@ -273,18 +273,18 @@
             this.button_Delete.TabIndex = 56;
             this.button_Delete.Text = "削除";
             this.button_Delete.UseVisualStyleBackColor = true;
-            this.button_Delete.Click += new System.EventHandler(this.button2_Click_1);
+            this.button_Delete.Click += new System.EventHandler(this.button_DeleteEmployee);
             // 
-            // button3
+            // button_BackEmployeeShow
             // 
-            this.button3.Location = new System.Drawing.Point(434, 25);
-            this.button3.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(197, 72);
-            this.button3.TabIndex = 57;
-            this.button3.Text = "社員一覧に戻る";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button_BackEmployeeShow.Location = new System.Drawing.Point(434, 25);
+            this.button_BackEmployeeShow.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.button_BackEmployeeShow.Name = "button_BackEmployeeShow";
+            this.button_BackEmployeeShow.Size = new System.Drawing.Size(197, 72);
+            this.button_BackEmployeeShow.TabIndex = 57;
+            this.button_BackEmployeeShow.Text = "社員一覧に戻る";
+            this.button_BackEmployeeShow.UseVisualStyleBackColor = true;
+            this.button_BackEmployeeShow.Click += new System.EventHandler(this.button_CloseDetailForm);
             // 
             // label13
             // 
@@ -376,7 +376,7 @@
             this.Controls.Add(this.textBox_LastName);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button_BackEmployeeShow);
             this.Controls.Add(this.button_Delete);
             this.Controls.Add(this.button_Edit);
             this.Controls.Add(this.textBox_PhoneNumber3);
@@ -428,7 +428,7 @@
         private System.Windows.Forms.TextBox textBox_PhoneNumber3;
         private System.Windows.Forms.Button button_Edit;
         private System.Windows.Forms.Button button_Delete;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_BackEmployeeShow;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox_LastNameKana;

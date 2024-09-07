@@ -205,12 +205,12 @@ namespace SyainKanriSystem
         }
  
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button_CloseUpdateForm(object sender, EventArgs e)
         {
-
+            closeUpdateForm();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_UpdateClick(object sender, EventArgs e)
         {
             try
             {
@@ -225,6 +225,11 @@ namespace SyainKanriSystem
             {
                 MessageBox.Show(error.Message);
             }
+        }
+
+        private void button_UpdateCancel_Click(object sender, EventArgs e)
+        {
+            closeUpdateForm();
         }
     }
 }

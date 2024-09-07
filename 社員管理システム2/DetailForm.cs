@@ -68,7 +68,7 @@ namespace SyainKanriSystem
 
 
 
-        private void button1_Click_2(object sender, EventArgs e)
+        private void button_EditForm(object sender, EventArgs e)
         {
             EmployeeEditForm editForm = new EmployeeEditForm(this, mainForm, employeeList, departmentList, positionList, detailedEmployee);
             editForm.Show();
@@ -77,20 +77,23 @@ namespace SyainKanriSystem
         // 削除ボタン処理
         // TODO 削除ボタン処理が2個あるのでどちらが正しいか調べる
         
-        private void button2_Click_1(object sender, EventArgs e)
+        private void button_DeleteEmployee(object sender, EventArgs e)
         {
             
             DialogResult result = MessageBox.Show("この社員を削除しますか？", "削除確認", MessageBoxButtons.OKCancel);
             if (result == DialogResult.OK)
             {
                 submitDeleteEmployee(detailedEmployee);
+                // MainFormに反映
+                mainForm.closeForm_ResetDataGridView();
+                closeDetailForm();
             }
         }
         
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button_CloseDetailForm(object sender, EventArgs e)
         {
-
+            closeDetailForm();
         }
 
         // 部門名のコンボボックスのリストを作成・初期値を入力する
@@ -173,7 +176,5 @@ namespace SyainKanriSystem
             var employeeService = new EmployeeService();
             employeeService.deleteEmployeeData(deleteEmployeeID);
         }
-
-
     }
 }

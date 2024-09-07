@@ -24,8 +24,6 @@ namespace SyainKanriSystem
         private List<Departments> departmentList;
         private List<Positions> positionList;
         private List<string[]> searchNameList;
-        // [[searchComboBox0, searchTextBox0], [searchComboBox1, searchTextBox1]...]
-        // private Dictionary<string, string> searchNameDict;
 
         // MainFormを表示する
         public MainForm()
@@ -40,17 +38,17 @@ namespace SyainKanriSystem
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // 検索コンボボックスとテキストボックスの辞書を作成
-            /*
-            Dictionary<string, string> searchNameDict = new Dictionary<string, string>();
-            searchNameDict.Add(searchComboBox0.Name, searchTextBox0.Name);
-            this.searchNameDict = searchNameDict;
-            */
-            List<string[]> searchNameList = new List<string[]>();
-            string[] searchSet = { searchComboBox0.Name, searchTextBox0.Name };
-            searchNameList.Add(searchSet);
-            this.searchNameList = searchNameList;
-
+            try
+            {
+                List<string[]> searchNameList = new List<string[]>();
+                string[] searchSet = { searchComboBox0.Name, searchTextBox0.Name };
+                searchNameList.Add(searchSet);
+                this.searchNameList = searchNameList;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
         }
 
         // 追加処理完了後、DataGridViewをリセットし、最新の社員データを更新する
@@ -112,9 +110,16 @@ namespace SyainKanriSystem
         // 詳細表示ボタンを押下し、detailFormを表示する
         private void buttonDetailed_Click(object sender, EventArgs e)
         {
-            Employees detailedEmployee = SelectedDataGridView();
-            EmployeeDetailForm detailForm = new EmployeeDetailForm(this, employeeList, departmentList, positionList, detailedEmployee);
-            detailForm.Show();
+            try
+            {
+                Employees detailedEmployee = SelectedDataGridView();
+                EmployeeDetailForm detailForm = new EmployeeDetailForm(this, employeeList, departmentList, positionList, detailedEmployee);
+                detailForm.Show();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
         }
 
         // DataGridViewに取得した社員データを表示する
@@ -241,24 +246,36 @@ namespace SyainKanriSystem
         }
 
         // DataGridViewから選択行のデータを取得
-        // TODO 2行以上選択した場合のエラーチェックを作成する
-        // TODO 行選択がない場合のエラーチェックを作成する
         private Employees SelectedDataGridView()
         {
             try
             {
-                // 選択している行を取得
-                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                // 選択している行の社員番号からデータを取得
-                Employees detailedEmployee = employeeList.Find(x => x.EmployeeID == selectedRow.Cells[0].Value.ToString());
+                int selectedRowCount = dataGridView1.SelectedRows.Count;
+                if (selectedRowCount == 1)
+                {
+                    // 選択している行を取得
+                    DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                    // 選択している行の社員番号からデータを取得
+                    Employees detailedEmployee = employeeList.Find(x => x.EmployeeID == selectedRow.Cells[0].Value.ToString());
 
-                return detailedEmployee;
+                    return detailedEmployee;
+                }
+                else if(selectedRowCount == 0)
+                {
+                    throw new Exception("行選択をしてください");
+                }
+                else if(selectedRowCount > 1)
+                {
+                    throw new Exception("行選択は1行のみにしてください");
+                }
             }
             catch (Exception error)
             {
                 throw error;
+                return null;
             }
 
+            return null;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -274,7 +291,6 @@ namespace SyainKanriSystem
             string searchTextBox_Name = searchTextBox_Add(textBoxCount);
             string[] searchSet = { searchComboBox_Name, searchTextBox_Name };
             searchNameList.Add(searchSet);
-
         }
 
         // コンボボックス追加処理
@@ -354,7 +370,7 @@ namespace SyainKanriSystem
         }
 
         // クリアボタンを押した際の処理
-        private void button1_Click(object sender, EventArgs e)
+        private void button_AddSearchConditionsClick(object sender, EventArgs e)
         {
             clearSearchConditions();
             searchNameList.Clear();
