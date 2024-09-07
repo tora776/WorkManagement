@@ -84,7 +84,6 @@ namespace SyainKanriSystem
         }
 
         // 検索ボタンを押下し、DBより検索結果を取得する
-        // TODO MainFormに検索内容を表示させるかは要相談
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             try
