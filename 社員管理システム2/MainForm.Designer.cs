@@ -168,7 +168,7 @@
             this.button_ClearSearchConditions.TabIndex = 61;
             this.button_ClearSearchConditions.Text = "クリア";
             this.button_ClearSearchConditions.UseVisualStyleBackColor = true;
-            this.button_ClearSearchConditions.Click += new System.EventHandler(this.button_AddSearchConditionsClick);
+            this.button_ClearSearchConditions.Click += new System.EventHandler(this.button_clearSearchConditionsClick);
             // 
             // MainForm
             // 

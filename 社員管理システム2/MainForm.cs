@@ -36,10 +36,12 @@ namespace SyainKanriSystem
             SetDataGridViewEmployeeInfo(dataGridView1, employeeList, departmentList, positionList);
         }
 
+        // MainFormをロードし、searchNameListに検索条件コンボボックス・検索条件テキストボックスのNameを格納する
         private void MainForm_Load(object sender, EventArgs e)
         {
             try
             {
+                // 検索条件コンボボックス・テキストボックスのNameを格納するListを作成。
                 List<string[]> searchNameList = new List<string[]>();
                 string[] searchSet = { searchComboBox0.Name, searchTextBox0.Name };
                 searchNameList.Add(searchSet);
@@ -51,13 +53,14 @@ namespace SyainKanriSystem
             }
         }
 
-        // 追加処理完了後、DataGridViewをリセットし、最新の社員データを更新する
+        // DataGridViewをリセットする
         private void resetDataGridView()
         {
             dataGridView1.Rows.Clear();
             dataGridView1.ColumnCount = 0;
         }
 
+        // 追加・詳細・更新フォームを閉じた際、DataGridViewをリセットし、更新後の社員情報を取得する
         public void closeForm_ResetDataGridView()
         {
             resetDataGridView();
@@ -65,6 +68,7 @@ namespace SyainKanriSystem
             setEmployeesDataGridView();
         }
 
+        // DataGridViewに社員情報をセットする
         private void setEmployeesDataGridView()
         {
             // employeeList = InitializeEmployeeRepository();
@@ -76,14 +80,14 @@ namespace SyainKanriSystem
         {
 
         }
-        // 追加ボタンを押下し、AddFormを表示する
+        // 追加ボタンを押下すると、AddFormを表示する
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             EmployeeAddForm addForm = new EmployeeAddForm(this, employeeList, departmentList, positionList);
             addForm.Show();
         }
 
-        // 検索ボタンを押下し、DBより検索結果を取得する
+        // 検索ボタンを押下すると、DBより検索結果を取得する
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             try
@@ -92,12 +96,18 @@ namespace SyainKanriSystem
                 EmployeeSearchForm searchForm = new EmployeeSearchForm();
                 searchForm.Show();
                 */
+                // 検索コンボボックスの値を格納するリストを作成
                 List<string> searchComboStr = new List<string>();
+                // 検索テキストボックスの値を格納するリストを作成
                 List<string> searchTextStr = new List<string>();
+                // 検索コンボボックス・検索テキストボックスの値を取得する
                 getSearchConditions(searchComboStr, searchTextStr);
                 var employeeService = new EmployeeService();
+                // DBから検索結果を取得する
                 this.employeeList = employeeService.searchEmployeeData(searchComboStr, searchTextStr);
+                // DataGridViewを初期化する
                 resetDataGridView();
+                // DataGridViewに検索結果を格納する
                 setEmployeesDataGridView();
             }
             catch(Exception error)
@@ -106,12 +116,12 @@ namespace SyainKanriSystem
             }
         }
 
-        // 詳細表示ボタンを押下し、detailFormを表示する
+        // 詳細表示ボタンを押下すると、detailFormを表示する
         private void buttonDetailed_Click(object sender, EventArgs e)
         {
             try
             {
-                Employees detailedEmployee = SelectedDataGridView();
+                Employees detailedEmployee = getSelectedRow();
                 EmployeeDetailForm detailForm = new EmployeeDetailForm(this, employeeList, departmentList, positionList, detailedEmployee);
                 detailForm.Show();
             }
@@ -186,7 +196,7 @@ namespace SyainKanriSystem
             return dataGridView1;
         }
 
-        // DBより社員データを取得する
+        // 社員情報を初期化する
         private List<Employees> InitializeEmployeeRepository()
         {
             if (employeeList != null)
@@ -200,7 +210,7 @@ namespace SyainKanriSystem
             return employeeList;
         }
 
-        // DBより部門データを取得
+        // 部門情報を初期化する
         // TODO DepartmentServiceクラスを新規作成し、そのクラス内でDBとやりとりする必要がある（MVCのため）
         private List<Departments> InitializeDepartmentRepository()
         {
@@ -222,7 +232,7 @@ namespace SyainKanriSystem
             }
         }
 
-        // DBより役職データを取得
+        // 役職情報を取得する
         // TODO PositionServiceクラスを新規作成し、そのクラス内でDBとやりとりする必要がある（MVCのため）
         private List<Positions> InitializePositionRepository()
         {
@@ -245,10 +255,11 @@ namespace SyainKanriSystem
         }
 
         // DataGridViewから選択行のデータを取得
-        private Employees SelectedDataGridView()
+        private Employees getSelectedRow()
         {
             try
             {
+                // 選択行の行数を取得
                 int selectedRowCount = dataGridView1.SelectedRows.Count;
                 if (selectedRowCount == 1)
                 {
@@ -259,10 +270,12 @@ namespace SyainKanriSystem
 
                     return detailedEmployee;
                 }
+                // 全く行が選択されていない場合
                 else if(selectedRowCount == 0)
                 {
                     throw new Exception("行選択をしてください");
                 }
+                // 2行以上選択されている場合
                 else if(selectedRowCount > 1)
                 {
                     throw new Exception("行選択は1行のみにしてください");
@@ -285,22 +298,22 @@ namespace SyainKanriSystem
         // 「+」ボタンを押下すると、テキストフォーム・コンボボックスが追加される
         private void button_AddSearchCondition_Click(object sender, EventArgs e)
         {
-            int textBoxCount = countSearchTextBox();
-            string searchComboBox_Name = searchComboBox_Add(textBoxCount);
-            string searchTextBox_Name = searchTextBox_Add(textBoxCount);
+            int searchConditionsCount = countSearchConditions();
+            string searchComboBox_Name = searchComboBox_Add(searchConditionsCount);
+            string searchTextBox_Name = searchTextBox_Add(searchConditionsCount);
             string[] searchSet = { searchComboBox_Name, searchTextBox_Name };
             searchNameList.Add(searchSet);
         }
 
-        // コンボボックス追加処理
+        // 検索条件コンボボックス追加処理
         // テキストボックスとコンボボックスの数は同一なので、textBoxCountを格納。変数名をcomboBoxCountに変更している
-        private string searchComboBox_Add(int comboBoxCount)
+        private string searchComboBox_Add(int searchConditionsCount)
         {
             ComboBox searchComboBox = new ComboBox();
-
-            searchComboBox.Name = "searchComboBox" + comboBoxCount;
+            // 検索条件コンボボックスのNameを指定 ex)searchComboBox1, searchComboBox2...
+            searchComboBox.Name = "searchComboBox" + searchConditionsCount;
             // 166はx軸、21 + textBoxCount * 18はy軸
-            searchComboBox.Location = new Point(40, 10 + comboBoxCount * 20);
+            searchComboBox.Location = new Point(40, 10 + searchConditionsCount * 20);
             searchComboBox.Size = new Size(115, 28);
             searchComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
@@ -323,14 +336,14 @@ namespace SyainKanriSystem
 
         }
 
-        // テキストフォーム追加処理
-        private string searchTextBox_Add(int textBoxCount)
+        // 検索条件テキストボックス追加処理
+        private string searchTextBox_Add(int searchConditionsCount)
         {
             TextBox searchTextBox = new TextBox();
-
-            searchTextBox.Name = "searchTextBox" + textBoxCount;
+            // 検索条件テキストボックスのNameを指定 ex)searchTextBox1, searchTextBox2...
+            searchTextBox.Name = "searchTextBox" + searchConditionsCount;
             // 166はx軸、21 + textBoxCount * 18はy軸
-            searchTextBox.Location = new Point(166, 10 + textBoxCount * 20);
+            searchTextBox.Location = new Point(166, 10 + searchConditionsCount * 20);
             searchTextBox.Size = new Size(196, 26);
             // panel1のコントロールに格納
             this.panel1.Controls.Add(searchTextBox);
@@ -338,22 +351,22 @@ namespace SyainKanriSystem
             return searchTextBox.Name;
         }
 
-        // 「+」ボタンを押した際、現在のテキストボックスの数を取得する
-        private int countSearchTextBox()
+        // 「+」ボタンを押した際、現在の検索条件の数を取得する
+        private int countSearchConditions()
         {
-            int textBoxCount = 0;
+            int searchConditionsCount = 0;
 
             foreach (Control ctrl in panel1.Controls)
             {
                 if (ctrl is TextBox)
                 {
-                    textBoxCount++;
+                    searchConditionsCount++;
                 }
             }
-            return textBoxCount;
+            return searchConditionsCount;
         }
 
-        // 検索テキストボックスを初期化する
+        // 「＋」ボタンで増やした、検索条件コンボボックス・検索条件テキストボックスをクリアする。
         private void clearSearchConditions()
         {
             if (searchNameList.Count > 0)
@@ -369,7 +382,7 @@ namespace SyainKanriSystem
         }
 
         // クリアボタンを押した際の処理
-        private void button_AddSearchConditionsClick(object sender, EventArgs e)
+        private void button_clearSearchConditionsClick(object sender, EventArgs e)
         {
             clearSearchConditions();
             searchNameList.Clear();
@@ -377,7 +390,7 @@ namespace SyainKanriSystem
             searchNameList.Add(searchSet);
         }
 
-        // 検索コンボボックス・テキストボックスの数だけ入力値を取得する
+        // 検索条件コンボボックス・検索条件テキストボックスの値を取得する
         private void getSearchConditions(List<string> searchComboStr, List<string> searchTextStr)
         {
             try

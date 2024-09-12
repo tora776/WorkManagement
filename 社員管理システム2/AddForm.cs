@@ -26,6 +26,7 @@ namespace SyainKanriSystem
         private List<Positions> positionList;
         MainForm mainForm;
 
+        // AddFormを初期化する。
         public EmployeeAddForm(MainForm form, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList)
         {
             InitializeComponent();
@@ -50,7 +51,7 @@ namespace SyainKanriSystem
                 addEmployee();
                 MessageBox.Show("社員を追加しました。");
                 // テキストボックスを初期化する
-                resetInputText();
+                clearInputText();
                 
             }
             catch (Exception error) {
@@ -66,6 +67,7 @@ namespace SyainKanriSystem
             closeAddForm();
         }
 
+        // 追加フォームを閉じる際、最新の社員情報をMainFormに反映させる
         private void AddForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // MainFormに反映
@@ -92,8 +94,8 @@ namespace SyainKanriSystem
             return addData;
         }
 
-        // 入力値を取得する
-        private void resetInputText()
+        // 入力値をクリアする
+        private void clearInputText()
         {
             textBox_FirstName.Clear();
             textBox_LastName.Clear();
@@ -226,9 +228,9 @@ namespace SyainKanriSystem
 
         }
 
-        private void button_Back_Click(object sender, EventArgs e)
+        private void button_Clear_Click(object sender, EventArgs e)
         {
-            resetInputText();
+            clearInputText();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace SyainKanriSystem
 {
     public class EmployeeService
     {
+        // 社員データを取得し、フロントエンドに伝える。
         public List<Employees> selectEmployeeData()
         {
             var DB = new DatabaseContext();
@@ -41,6 +42,7 @@ namespace SyainKanriSystem
             }
         }
 
+        // DBにInsert文のクエリを送り、社員データを追加する。
         public void insertEmployeeData(Employees addEmployee)
         {
             var DB = new DatabaseContext();
@@ -79,6 +81,7 @@ namespace SyainKanriSystem
             
         }
 
+        // DBにDelete文のクエリを送り、社員データを削除する。
         public void deleteEmployeeData(string deleteEmployeeID)
         {
             var DB = new DatabaseContext();
@@ -108,6 +111,7 @@ namespace SyainKanriSystem
 
         }
 
+        // DBにUpdate文のクエリを送り、社員データを更新する
         public void updateEmployeeData(Employees updateEmployee)
         {
             var DB = new DatabaseContext();
@@ -137,6 +141,7 @@ namespace SyainKanriSystem
 
         }
 
+        // DBに検索処理のSelect文のクエリを送り、社員データを検索し、フロントエンドに伝える。
         public List<Employees> searchEmployeeData(List<string> searchComboStr, List<string> searchTextStr)
         {
             var DB = new DatabaseContext();

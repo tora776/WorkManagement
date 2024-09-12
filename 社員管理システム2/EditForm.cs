@@ -22,6 +22,7 @@ namespace SyainKanriSystem
         EmployeeDetailForm detailForm;
         MainForm mainForm;
 
+        // EditFormを初期化する
         public EmployeeEditForm(EmployeeDetailForm detailForm, MainForm mainForm, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList, Employees detailedEmployee)
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace SyainKanriSystem
             
         }
 
+        // テキストボックスに更新対象の社員情報を入力する
         public void inputUpdateEmployee(Employees detailedEmployee)
         {
             textBox_EmployeeID.Text = detailedEmployee.EmployeeID;
@@ -100,7 +102,7 @@ namespace SyainKanriSystem
             }
         }
 
-        // テキストフォームの入力値を取得
+        // テキストボックスの入力値を取得
         private String[] getInputText()
         {
             string firstNameValue = textBox_FirstName.Text;

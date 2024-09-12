@@ -142,7 +142,7 @@
             this.button_Back.TabIndex = 0;
             this.button_Back.Text = "クリア";
             this.button_Back.UseVisualStyleBackColor = true;
-            this.button_Back.Click += new System.EventHandler(this.button_Back_Click);
+            this.button_Back.Click += new System.EventHandler(this.button_Clear_Click);
             // 
             // textBox_FirstName
             // 

@@ -31,13 +31,6 @@ namespace SyainKanriSystem
             this.detailedEmployee = detailedEmployee;
             inputDetailedEmployee(detailedEmployee);
         }
-
-        // 詳細表示画面を閉じる
-        private void button_Cancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            this.Dispose();
-        }
         
 
         // DataGridView選択行の社員データをフォーム・コンボボックスに入力する
@@ -67,7 +60,7 @@ namespace SyainKanriSystem
         }
 
 
-
+        // 社員編集フォームを開く
         private void button_EditForm(object sender, EventArgs e)
         {
             EmployeeEditForm editForm = new EmployeeEditForm(this, mainForm, employeeList, departmentList, positionList, detailedEmployee);
@@ -76,7 +69,6 @@ namespace SyainKanriSystem
 
         // 削除ボタン処理
         // TODO 削除ボタン処理が2個あるのでどちらが正しいか調べる
-        
         private void button_DeleteEmployee(object sender, EventArgs e)
         {
             
@@ -89,7 +81,6 @@ namespace SyainKanriSystem
                 closeDetailForm();
             }
         }
-        
 
         private void button_CloseDetailForm(object sender, EventArgs e)
         {
