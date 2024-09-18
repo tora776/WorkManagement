@@ -33,11 +33,10 @@ namespace SyainKanriSystem
             this.positionList = positionList;
             this.detailedEmployee = detailedEmployee;
             inputUpdateEmployee(detailedEmployee);
-            
         }
 
         // テキストボックスに更新対象の社員情報を入力する
-        public void inputUpdateEmployee(Employees detailedEmployee)
+        private void inputUpdateEmployee(Employees detailedEmployee)
         {
             textBox_EmployeeID.Text = detailedEmployee.EmployeeID;
             textBox_FirstName.Text = detailedEmployee.FirstName;
@@ -56,7 +55,7 @@ namespace SyainKanriSystem
 
         // TODO 追加フォームと処理が重複。新規でコンボボックスの入力値を格納するリストを作成？
         // 部門名のコンボボックスのリストを作成・初期値を入力する
-        public ComboBox InitializeDepartmentComboBox(Employees detailedEmployee)
+        private ComboBox InitializeDepartmentComboBox(Employees detailedEmployee)
         {
             try
             {
@@ -80,7 +79,7 @@ namespace SyainKanriSystem
 
         // TODO 追加フォームと処理が重複。新規でコンボボックスの入力値を格納するリストを作成？
         // 役職コンボボックスのリストを作成・初期値を入力する
-        public ComboBox InitializePositionComboBox(Employees detailedEmployee)
+        private ComboBox InitializePositionComboBox(Employees detailedEmployee)
         {
             try
             {

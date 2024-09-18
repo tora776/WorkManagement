@@ -35,7 +35,7 @@ namespace SyainKanriSystem
 
         // DataGridView選択行の社員データをフォーム・コンボボックスに入力する
         // TODO コンボボックス・DateTimePickerを読み取り専用（入力不可）にする
-        public void inputDetailedEmployee(Employees detailedEmployee)
+        private void inputDetailedEmployee(Employees detailedEmployee)
         {
             textBox_EmployeeID.Text = detailedEmployee.EmployeeID;
             textBox_FirstName.Text = detailedEmployee.FirstName;

@@ -17,6 +17,7 @@ namespace SyainKanriSystem.Models
     {
         // private NpgsqlConnection conn;
         // private NpgsqlTransaction transaction;
+        // DBに接続する
         public NpgsqlConnection connectDB()
         {
             //接続文字列
@@ -35,6 +36,7 @@ namespace SyainKanriSystem.Models
             }
         }
         
+        // DB接続を切断する
         public void disconnectDB(NpgsqlConnection conn){
             conn.Close();
             conn.Dispose();

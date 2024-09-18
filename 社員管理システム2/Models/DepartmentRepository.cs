@@ -36,7 +36,7 @@ namespace SyainKanriSystem.Models
             }
         }
 
-        // 取得したクエリ結果を配列に格納する。
+        // クエリの実行結果を取得する。
         public List<Departments> getSelectDepartment(DataTable dt) {
             List<Departments> dataList = new List<Departments>();
 

@@ -15,7 +15,7 @@ namespace SyainKanriSystem.Models
     {
 
 
-        // SELECT文のクエリを実行する。
+        // クエリを実行する。
         public DataTable sqlExecute(String query, NpgsqlConnection conn)
         {
             NpgsqlCommand sql = new NpgsqlCommand(query, conn);
@@ -39,7 +39,7 @@ namespace SyainKanriSystem.Models
             }
         }
 
-        // 取得したクエリ結果を配列に格納する。
+        // 社員情報表示のクエリ結果を受け取る。
         public List<Employees> getSelectEmployee(DataTable dt)
         {
             List<Employees> dataList = new List<Employees>();

@@ -46,10 +46,95 @@ namespace SyainKanriSystem
                 string[] searchSet = { searchComboBox0.Name, searchTextBox0.Name };
                 searchNameList.Add(searchSet);
                 this.searchNameList = searchNameList;
+                // DataGridViewのColumnHeaderMouseClickイベントにハンドラーを追加
+                dataGridView1.ColumnHeaderMouseClick += new DataGridViewCellMouseEventHandler(dataGridView1_ColumnHeaderMouseClick);
             }
             catch (Exception error)
             {
                 MessageBox.Show(error.Message);
+            }
+        }
+
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            // ソートする列の名前を取得
+            string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
+
+            // 現在のソート方向を取得
+            SortOrder sortOrder = getSortOrder(e.ColumnIndex);
+
+            // 特定の列に基づいてソート処理を分岐
+            if (columnName == "姓")
+            {
+                SortByFirstNameKana(sortOrder);  // 「姓」を「姓（かな）」と同様にソート
+            }
+            else if (columnName == "部門")
+            {
+                SortByDepartment(sortOrder);  // 「部門」をDepartmentの値に基づいてソート
+            }
+            else
+            {
+                // デフォルトのソート処理（通常の列ソート）
+                SortDataGridView(columnName, sortOrder);
+            }
+        }
+
+        private SortOrder getSortOrder(int columnIndex)
+        {
+            // 現在のソート状況を確認
+            if (dataGridView1.SortedColumn != null && dataGridView1.SortedColumn.Index == columnIndex)
+            {
+                if (dataGridView1.SortOrder == SortOrder.Ascending)
+                {
+                    return SortOrder.Descending;
+                }
+                else if (dataGridView1.SortOrder == SortOrder.Descending)
+                {
+                    return SortOrder.Ascending;
+                }
+            }
+            return SortOrder.Ascending; // デフォルトでは昇順でソート
+        }
+
+        // 「姓（かな）」列に基づいてソートするメソッド
+        private void SortByFirstNameKana(SortOrder sortOrder)
+        {
+            if (sortOrder == SortOrder.Ascending)
+            {
+                employeeList = employeeList.OrderBy(x => x.FirstNameKana).ToList();
+            }
+            else
+            {
+                employeeList = employeeList.OrderByDescending(x => x.FirstNameKana).ToList();
+            }
+        }
+
+        // Departmentに基づいてソートするメソッド
+        private void SortByDepartment(SortOrder sortOrder)
+        {
+            if (sortOrder == SortOrder.Ascending)
+            {
+                employeeList = employeeList.OrderBy(x => x.Department).ToList();
+                // employeeList = employeeList.Where(x => x.Department == departmentList.DepartmentName).OrderBy(x => departmentList.DepartmentID).ToList();
+            }
+            else
+            {
+                employeeList = employeeList.OrderByDescending(x => x.Department).ToList();
+            }
+            // resetDataGridView();
+            // setEmployeesDataGridView();
+        }
+
+        // 通常の列ソート処理を行うメソッド
+        private void SortDataGridView(string columnName, SortOrder sortOrder)
+        {
+            if (sortOrder == SortOrder.Ascending)
+            {
+                dataGridView1.Sort(dataGridView1.Columns[columnName], System.ComponentModel.ListSortDirection.Ascending);
+            }
+            else
+            {
+                dataGridView1.Sort(dataGridView1.Columns[columnName], System.ComponentModel.ListSortDirection.Descending);
             }
         }
 

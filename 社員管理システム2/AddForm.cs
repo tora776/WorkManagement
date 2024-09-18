@@ -112,7 +112,7 @@ namespace SyainKanriSystem
         }
 
         // DBへ社員データを追加する
-        public Employees submitAddEmployee(String[] addData, DateTime hireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
+        private Employees submitAddEmployee(String[] addData, DateTime hireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
         {
             // insertするデータの作成
             Employees addEmployee = new Employees();
@@ -177,7 +177,7 @@ namespace SyainKanriSystem
 
         // TODO 編集フォームと処理が重複。新規でコンボボックスの入力値を格納するリストを作成？
         // 部門コンボボックスにDBから取得した値を格納する
-        public ComboBox InitializeDepartmentComboBox()
+        private ComboBox InitializeDepartmentComboBox()
         {
             try
             {
@@ -201,7 +201,7 @@ namespace SyainKanriSystem
 
         // TODO 編集フォームと処理が重複。新規でコンボボックスの入力値を格納するリストを作成？
         // 役職コンボボックスにDBから取得した値を格納する
-        public ComboBox InitializePositionComboBox()
+        private ComboBox InitializePositionComboBox()
         {
             try
             {
