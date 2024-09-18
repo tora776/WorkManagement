@@ -78,10 +78,10 @@ namespace SyainKanriSystem
         // 入力値を取得する
         private String[] getInputText()
         {
-            string firstNameValue = textBox_FirstName.Text;
-            string lastNameValue = textBox_LastName.Text;
-            string firstNameKanaValue = textBox_FirstNameKana.Text;
-            string lastNameKanaValue = textBox_LastNameKana.Text;
+            string firstNameValue = textBox_Sei.Text;
+            string lastNameValue = textBox_Mei.Text;
+            string firstNameKanaValue = textBox_SeiKana.Text;
+            string lastNameKanaValue = textBox_MeiKana.Text;
             string emailValue = textBox_Email.Text;
             string phoneNumber1Value = textBox_PhoneNumber1.Text;
             string phoneNumber2Value = textBox_PhoneNumber2.Text;
@@ -97,10 +97,10 @@ namespace SyainKanriSystem
         // 入力値をクリアする
         private void clearInputText()
         {
-            textBox_FirstName.Clear();
-            textBox_LastName.Clear();
-            textBox_FirstNameKana.Clear();
-            textBox_LastNameKana.Clear();
+            textBox_Sei.Clear();
+            textBox_Mei.Clear();
+            textBox_SeiKana.Clear();
+            textBox_MeiKana.Clear();
             textBox_Email.Clear();
             textBox_PhoneNumber1.Clear();
             textBox_PhoneNumber2.Clear();
@@ -116,10 +116,10 @@ namespace SyainKanriSystem
         {
             // insertするデータの作成
             Employees addEmployee = new Employees();
-            addEmployee.FirstName = addData[0];
-            addEmployee.LastName = addData[1];
-            addEmployee.FirstNameKana = addData[2];
-            addEmployee.LastNameKana = addData[3];
+            addEmployee.Sei = addData[0];
+            addEmployee.Mei = addData[1];
+            addEmployee.SeiKana = addData[2];
+            addEmployee.MeiKana = addData[3];
             addEmployee.Email = addData[4];
             addEmployee.PhoneNumber = addPhoneNumber;
             addEmployee.HireDate = hireDateValue;

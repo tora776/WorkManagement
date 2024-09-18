@@ -36,10 +36,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.button_Back = new System.Windows.Forms.Button();
-            this.textBox_FirstName = new System.Windows.Forms.TextBox();
-            this.textBox_LastName = new System.Windows.Forms.TextBox();
-            this.textBox_FirstNameKana = new System.Windows.Forms.TextBox();
-            this.textBox_LastNameKana = new System.Windows.Forms.TextBox();
+            this.textBox_Sei = new System.Windows.Forms.TextBox();
+            this.textBox_Mei = new System.Windows.Forms.TextBox();
+            this.textBox_SeiKana = new System.Windows.Forms.TextBox();
+            this.textBox_MeiKana = new System.Windows.Forms.TextBox();
             this.textBox_Email = new System.Windows.Forms.TextBox();
             this.textBox_PhoneNumber1 = new System.Windows.Forms.TextBox();
             this.textBox_PhoneNumber2 = new System.Windows.Forms.TextBox();
@@ -144,37 +144,37 @@
             this.button_Back.UseVisualStyleBackColor = true;
             this.button_Back.Click += new System.EventHandler(this.button_Clear_Click);
             // 
-            // textBox_FirstName
+            // textBox_Sei
             // 
-            this.textBox_FirstName.Location = new System.Drawing.Point(183, 101);
-            this.textBox_FirstName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox_FirstName.Name = "textBox_FirstName";
-            this.textBox_FirstName.Size = new System.Drawing.Size(196, 25);
-            this.textBox_FirstName.TabIndex = 1;
+            this.textBox_Sei.Location = new System.Drawing.Point(183, 101);
+            this.textBox_Sei.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.textBox_Sei.Name = "textBox_Sei";
+            this.textBox_Sei.Size = new System.Drawing.Size(196, 25);
+            this.textBox_Sei.TabIndex = 1;
             // 
-            // textBox_LastName
+            // textBox_Mei
             // 
-            this.textBox_LastName.Location = new System.Drawing.Point(517, 99);
-            this.textBox_LastName.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox_LastName.Name = "textBox_LastName";
-            this.textBox_LastName.Size = new System.Drawing.Size(196, 25);
-            this.textBox_LastName.TabIndex = 2;
+            this.textBox_Mei.Location = new System.Drawing.Point(517, 99);
+            this.textBox_Mei.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.textBox_Mei.Name = "textBox_Mei";
+            this.textBox_Mei.Size = new System.Drawing.Size(196, 25);
+            this.textBox_Mei.TabIndex = 2;
             // 
-            // textBox_FirstNameKana
+            // textBox_SeiKana
             // 
-            this.textBox_FirstNameKana.Location = new System.Drawing.Point(183, 146);
-            this.textBox_FirstNameKana.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox_FirstNameKana.Name = "textBox_FirstNameKana";
-            this.textBox_FirstNameKana.Size = new System.Drawing.Size(196, 25);
-            this.textBox_FirstNameKana.TabIndex = 3;
+            this.textBox_SeiKana.Location = new System.Drawing.Point(183, 146);
+            this.textBox_SeiKana.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.textBox_SeiKana.Name = "textBox_SeiKana";
+            this.textBox_SeiKana.Size = new System.Drawing.Size(196, 25);
+            this.textBox_SeiKana.TabIndex = 3;
             // 
-            // textBox_LastNameKana
+            // textBox_MeiKana
             // 
-            this.textBox_LastNameKana.Location = new System.Drawing.Point(517, 144);
-            this.textBox_LastNameKana.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.textBox_LastNameKana.Name = "textBox_LastNameKana";
-            this.textBox_LastNameKana.Size = new System.Drawing.Size(196, 25);
-            this.textBox_LastNameKana.TabIndex = 4;
+            this.textBox_MeiKana.Location = new System.Drawing.Point(517, 144);
+            this.textBox_MeiKana.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.textBox_MeiKana.Name = "textBox_MeiKana";
+            this.textBox_MeiKana.Size = new System.Drawing.Size(196, 25);
+            this.textBox_MeiKana.TabIndex = 4;
             // 
             // textBox_Email
             // 
@@ -318,8 +318,8 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.comboBox_Position);
             this.Controls.Add(this.comboBox_Department);
-            this.Controls.Add(this.textBox_LastName);
-            this.Controls.Add(this.textBox_LastNameKana);
+            this.Controls.Add(this.textBox_Mei);
+            this.Controls.Add(this.textBox_MeiKana);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label12);
@@ -330,9 +330,9 @@
             this.Controls.Add(this.textBox_PhoneNumber1);
             this.Controls.Add(this.textBox_PhoneNumber2);
             this.Controls.Add(this.textBox_PhoneNumber3);
-            this.Controls.Add(this.textBox_FirstName);
+            this.Controls.Add(this.textBox_Sei);
             this.Controls.Add(this.textBox_Email);
-            this.Controls.Add(this.textBox_FirstNameKana);
+            this.Controls.Add(this.textBox_SeiKana);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -357,9 +357,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox_FirstNameKana;
+        private System.Windows.Forms.TextBox textBox_SeiKana;
         private System.Windows.Forms.TextBox textBox_Email;
-        private System.Windows.Forms.TextBox textBox_FirstName;
+        private System.Windows.Forms.TextBox textBox_Sei;
         private System.Windows.Forms.TextBox textBox_PhoneNumber3;
         private System.Windows.Forms.TextBox textBox_PhoneNumber2;
         private System.Windows.Forms.TextBox textBox_PhoneNumber1;
@@ -370,8 +370,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox_LastName;
-        private System.Windows.Forms.TextBox textBox_LastNameKana;
+        private System.Windows.Forms.TextBox textBox_Mei;
+        private System.Windows.Forms.TextBox textBox_MeiKana;
         private System.Windows.Forms.ComboBox comboBox_Position;
         private System.Windows.Forms.ComboBox comboBox_Department;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;

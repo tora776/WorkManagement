@@ -39,10 +39,10 @@ namespace SyainKanriSystem
         private void inputUpdateEmployee(Employees detailedEmployee)
         {
             textBox_EmployeeID.Text = detailedEmployee.EmployeeID;
-            textBox_FirstName.Text = detailedEmployee.FirstName;
-            textBox_LastName.Text = detailedEmployee.LastName;
-            textBox_FirstNameKana.Text = detailedEmployee.FirstNameKana;
-            textBox_LastNameKana.Text = detailedEmployee.LastNameKana;
+            textBox_Sei.Text = detailedEmployee.Sei;
+            textBox_Mei.Text = detailedEmployee.Mei;
+            textBox_SeiKana.Text = detailedEmployee.SeiKana;
+            textBox_MeiKana.Text = detailedEmployee.MeiKana;
             textBox_Email.Text = detailedEmployee.Email;
             textBox_PhoneNumber1.Text = detailedEmployee.PhoneNumber.Substring(0, 3);
             textBox_PhoneNumber2.Text = detailedEmployee.PhoneNumber.Substring(4, 4);
@@ -104,10 +104,10 @@ namespace SyainKanriSystem
         // テキストボックスの入力値を取得
         private String[] getInputText()
         {
-            string firstNameValue = textBox_FirstName.Text;
-            string lastNameValue = textBox_LastName.Text;
-            string firstNameKanaValue = textBox_FirstNameKana.Text;
-            string lastNameKanaValue = textBox_LastNameKana.Text;
+            string firstNameValue = textBox_Sei.Text;
+            string lastNameValue = textBox_Mei.Text;
+            string firstNameKanaValue = textBox_SeiKana.Text;
+            string lastNameKanaValue = textBox_MeiKana.Text;
             string emailValue = textBox_Email.Text;
             string phoneNumber1Value = textBox_PhoneNumber1.Text;
             string phoneNumber2Value = textBox_PhoneNumber2.Text;
@@ -129,10 +129,10 @@ namespace SyainKanriSystem
                 // updateするデータの作成
                 Employees updateEmployee = new Employees();
                 updateEmployee.EmployeeID = detailedEmployee.EmployeeID;
-                updateEmployee.FirstName = updateData[0];
-                updateEmployee.LastName = updateData[1];
-                updateEmployee.FirstNameKana = updateData[2];
-                updateEmployee.LastNameKana = updateData[3];
+                updateEmployee.Sei = updateData[0];
+                updateEmployee.Mei = updateData[1];
+                updateEmployee.SeiKana = updateData[2];
+                updateEmployee.MeiKana = updateData[3];
                 updateEmployee.Email = updateData[4];
                 updateEmployee.PhoneNumber = updatePhoneNumber;
                 updateEmployee.HireDate = hireDateValue;

@@ -101,11 +101,11 @@ namespace SyainKanriSystem
         {
             if (sortOrder == SortOrder.Ascending)
             {
-                employeeList = employeeList.OrderBy(x => x.FirstNameKana).ToList();
+                employeeList = employeeList.OrderBy(x => x.SeiKana).ToList();
             }
             else
             {
-                employeeList = employeeList.OrderByDescending(x => x.FirstNameKana).ToList();
+                employeeList = employeeList.OrderByDescending(x => x.MeiKana).ToList();
             }
         }
 
@@ -228,10 +228,10 @@ namespace SyainKanriSystem
                     DataGridViewRow row = dataGridView1.Rows[rowIndex];
                     // 社員データを記載する
                     row.Cells["社員番号"].Value = item.EmployeeID;
-                    row.Cells["姓"].Value = item.FirstName;
-                    row.Cells["名"].Value = item.LastName;
-                    row.Cells["姓（かな）"].Value = item.FirstNameKana;
-                    row.Cells["名（かな）"].Value = item.LastNameKana;
+                    row.Cells["姓"].Value = item.Sei;
+                    row.Cells["名"].Value = item.Mei;
+                    row.Cells["姓（かな）"].Value = item.SeiKana;
+                    row.Cells["名（かな）"].Value = item.MeiKana;
                     row.Cells["メールアドレス"].Value = item.Email;
                     row.Cells["電話番号"].Value = item.PhoneNumber;
                     row.Cells["雇用日"].Value = item.HireDate.ToString("yyyy/MM/dd");
@@ -502,20 +502,20 @@ namespace SyainKanriSystem
                                 validationService.employeeIDChk(searchTextValue);
                                 break;
                             case "姓":
-                                searchComboValue = "FirstName";
+                                searchComboValue = "Sei";
                                 validationService.wordCount_Main(searchTextValue, 50);
                                 break;
                             case "名":
-                                searchComboValue = "LastName";
+                                searchComboValue = "Mei";
                                 validationService.wordCount_Main(searchTextValue, 50);
                                 break;
                             case "姓（かな）":
-                                searchComboValue = "FirstNameKana";
+                                searchComboValue = "SeiKana";
                                 validationService.wordCount_Main(searchTextValue, 50);
                                 validationService.kanaChk(searchTextValue);
                                 break;
                             case "名（かな）":
-                                searchComboValue = "LastNameKana";
+                                searchComboValue = "MeiKana";
                                 validationService.wordCount_Main(searchTextValue, 50);
                                 validationService.kanaChk(searchTextValue);
                                 break;

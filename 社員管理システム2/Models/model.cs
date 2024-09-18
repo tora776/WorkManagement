@@ -9,10 +9,10 @@ namespace SyainKanriSystem
     public class Employees
     {
         public string EmployeeID { set; get; }
-        public string FirstName { set; get; }
-        public string LastName { set; get; }
-        public string FirstNameKana {  set; get; }
-        public string LastNameKana { set; get; }
+        public string Sei { set; get; }
+        public string Mei { set; get; }
+        public string SeiKana {  set; get; }
+        public string MeiKana { set; get; }
         public string Email {  set; get; }
         public string PhoneNumber {  set; get; }
         public DateTime HireDate { set; get; }

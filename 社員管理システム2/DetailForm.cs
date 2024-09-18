@@ -38,10 +38,10 @@ namespace SyainKanriSystem
         private void inputDetailedEmployee(Employees detailedEmployee)
         {
             textBox_EmployeeID.Text = detailedEmployee.EmployeeID;
-            textBox_FirstName.Text = detailedEmployee.FirstName;
-            textBox_LastName.Text = detailedEmployee.LastName;
-            textBox_FirstNameKana.Text = detailedEmployee.FirstNameKana;
-            textBox_LastNameKana.Text = detailedEmployee.LastNameKana;
+            textBox_Sei.Text = detailedEmployee.Sei;
+            textBox_Mei.Text = detailedEmployee.Mei;
+            textBox_SeiKana.Text = detailedEmployee.SeiKana;
+            textBox_MeiKana.Text = detailedEmployee.MeiKana;
             textBox_Email.Text = detailedEmployee.Email;
             textBox_PhoneNumber1.Text = detailedEmployee.PhoneNumber.Substring(0,3);
             textBox_PhoneNumber2.Text = detailedEmployee.PhoneNumber.Substring(4,4);

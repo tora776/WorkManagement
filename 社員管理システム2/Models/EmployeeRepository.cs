@@ -48,10 +48,10 @@ namespace SyainKanriSystem.Models
             {
                 Employees employee = new Employees();
                 employee.EmployeeID = dr[0].ToString();
-                employee.FirstName = dr[1].ToString();
-                employee.LastName = dr[2].ToString();
-                employee.FirstNameKana = dr[3].ToString();
-                employee.LastNameKana = dr[4].ToString();
+                employee.Sei = dr[1].ToString();
+                employee.Mei = dr[2].ToString();
+                employee.SeiKana = dr[3].ToString();
+                employee.MeiKana = dr[4].ToString();
                 employee.Email = dr[5].ToString();
                 employee.PhoneNumber = dr[6].ToString();
                 employee.HireDate = DateTime.Parse(dr[7].ToString());
@@ -68,7 +68,7 @@ namespace SyainKanriSystem.Models
         {
             try
             {
-                string query = $@"INSERT INTO Employees (EmployeeID, FirstName, LastName, FirstNameKana, LastNameKana, Email, PhoneNumber, HireDate, Department, Position, Status) VALUES ('{addEmployee.EmployeeID}', '{addEmployee.FirstName}', '{addEmployee.LastName}', '{addEmployee.FirstNameKana}', '{addEmployee.LastNameKana}', '{addEmployee.Email}', '{addEmployee.PhoneNumber}', '{addEmployee.HireDate.ToString("yyyyMMdd")}', {addEmployee.Department}, {addEmployee.Position}, {addEmployee.Status})";
+                string query = $@"INSERT INTO Employees (EmployeeID, Sei, Mei, SeiKana, MeiKana, Email, PhoneNumber, HireDate, Department, Position, Status) VALUES ('{addEmployee.EmployeeID}', '{addEmployee.Sei}', '{addEmployee.Mei}', '{addEmployee.SeiKana}', '{addEmployee.MeiKana}', '{addEmployee.Email}', '{addEmployee.PhoneNumber}', '{addEmployee.HireDate.ToString("yyyyMMdd")}', {addEmployee.Department}, {addEmployee.Position}, {addEmployee.Status})";
                 return query;
             }
             catch (Exception)
@@ -109,7 +109,7 @@ namespace SyainKanriSystem.Models
         {
             try
             {
-                string query = $@"UPDATE Employees SET (FirstName, LastName, FirstNameKana, LastNameKana, Email, PhoneNumber, HireDate, Department, Position, Status) = ('{updateEmployee.FirstName}', '{updateEmployee.LastName}', '{updateEmployee.FirstNameKana}', '{updateEmployee.LastNameKana}', '{updateEmployee.Email}', '{updateEmployee.PhoneNumber}', '{updateEmployee.HireDate.ToString("yyyyMMdd")}', {updateEmployee.Department}, {updateEmployee.Position}, {updateEmployee.Status}) WHERE employeeid ='{updateEmployee.EmployeeID}'";
+                string query = $@"UPDATE Employees SET (Sei, Mei, SeiKana, MeiKana, Email, PhoneNumber, HireDate, Department, Position, Status) = ('{updateEmployee.Sei}', '{updateEmployee.Mei}', '{updateEmployee.SeiKana}', '{updateEmployee.MeiKana}', '{updateEmployee.Email}', '{updateEmployee.PhoneNumber}', '{updateEmployee.HireDate.ToString("yyyyMMdd")}', {updateEmployee.Department}, {updateEmployee.Position}, {updateEmployee.Status}) WHERE employeeid ='{updateEmployee.EmployeeID}'";
                 return query;
             }
             catch (Exception)
