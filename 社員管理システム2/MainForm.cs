@@ -47,14 +47,16 @@ namespace SyainKanriSystem
                 searchNameList.Add(searchSet);
                 this.searchNameList = searchNameList;
                 // DataGridViewのColumnHeaderMouseClickイベントにハンドラーを追加
-                dataGridView1.ColumnHeaderMouseClick += new DataGridViewCellMouseEventHandler(dataGridView1_ColumnHeaderMouseClick);
+                // dataGridView1.ColumnHeaderMouseClick += new DataGridViewCellMouseEventHandler(dataGridView1_ColumnHeaderMouseClick);
+
             }
             catch (Exception error)
             {
                 MessageBox.Show(error.Message);
             }
         }
-
+        
+        /*
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             // ソートする列の名前を取得
@@ -137,6 +139,8 @@ namespace SyainKanriSystem
                 dataGridView1.Sort(dataGridView1.Columns[columnName], System.ComponentModel.ListSortDirection.Descending);
             }
         }
+        */
+        
 
         // DataGridViewをリセットする
         private void resetDataGridView()
@@ -301,9 +305,9 @@ namespace SyainKanriSystem
         {
             var DB = new DatabaseContext();
             var DepartmentRepository = new DepartmentRepository();
+            NpgsqlConnection conn = DB.connectDB();
             try
             {
-                NpgsqlConnection conn = DB.connectDB();
                 String query = DepartmentRepository.makeSelectQueryDepartment();
                 DataTable dt = DepartmentRepository.sqlExecuteDepartment(query, conn);
                 DB.disconnectDB(conn);
@@ -315,6 +319,14 @@ namespace SyainKanriSystem
                 MessageBox.Show(error.Message);
                 return null;
             }
+            finally
+            {
+                // DBに接続していれば切断する
+                if (conn != null)
+                {
+                    DB.disconnectDB(conn);
+                }
+            }
         }
 
         // 役職情報を取得する
@@ -323,12 +335,11 @@ namespace SyainKanriSystem
         {
             var DB = new DatabaseContext();
             var PositionRepository = new PositionRepository();
+            NpgsqlConnection conn = DB.connectDB();
             try
             {
-                NpgsqlConnection conn = DB.connectDB();
                 String query = PositionRepository.makeSelectQueryPosition();
                 DataTable dt = PositionRepository.sqlExecutePosition(query, conn);
-                DB.disconnectDB(conn);
                 List<Positions> departmentList = PositionRepository.getSelectPosition(dt);
                 return departmentList;
             }
@@ -336,6 +347,14 @@ namespace SyainKanriSystem
             {
                 MessageBox.Show(error.Message);
                 return null;
+            }
+            finally
+            {
+                // DBに接続していれば切断する
+                if (conn != null)
+                {
+                    DB.disconnectDB(conn);
+                }
             }
         }
 
@@ -383,11 +402,25 @@ namespace SyainKanriSystem
         // 「+」ボタンを押下すると、テキストフォーム・コンボボックスが追加される
         private void button_AddSearchCondition_Click(object sender, EventArgs e)
         {
-            int searchConditionsCount = countSearchConditions();
-            string searchComboBox_Name = searchComboBox_Add(searchConditionsCount);
-            string searchTextBox_Name = searchTextBox_Add(searchConditionsCount);
-            string[] searchSet = { searchComboBox_Name, searchTextBox_Name };
-            searchNameList.Add(searchSet);
+            try
+            {
+                if (searchNameList.Count < 12)
+                {
+                    int searchConditionsCount = countSearchConditions();
+                    string searchComboBox_Name = searchComboBox_Add(searchConditionsCount);
+                    string searchTextBox_Name = searchTextBox_Add(searchConditionsCount);
+                    string[] searchSet = { searchComboBox_Name, searchTextBox_Name };
+                    searchNameList.Add(searchSet);
+                }
+                else
+                {
+                    throw new Exception("検索条件を12件以上追加できません");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("検索条件を12件以上追加できません");
+            }
         }
 
         // 検索条件コンボボックス追加処理
