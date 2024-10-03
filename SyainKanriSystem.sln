@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyainKanriSystem", "社員管理システム2\SyainKanriSystem.csproj", "{0857FC67-77BF-430A-99F0-998A8187431B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyainKanriSystemTests", "SyainKanriSystemTests\SyainKanriSystemTests.csproj", "{2C0C05F3-AC4F-4767-9C81-66F4C950313A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0857FC67-77BF-430A-99F0-998A8187431B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0857FC67-77BF-430A-99F0-998A8187431B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0857FC67-77BF-430A-99F0-998A8187431B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C0C05F3-AC4F-4767-9C81-66F4C950313A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C0C05F3-AC4F-4767-9C81-66F4C950313A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C0C05F3-AC4F-4767-9C81-66F4C950313A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C0C05F3-AC4F-4767-9C81-66F4C950313A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -394,11 +394,6 @@ namespace SyainKanriSystem
             return null;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         // 「+」ボタンを押下すると、テキストフォーム・コンボボックスが追加される
         private void button_AddSearchCondition_Click(object sender, EventArgs e)
         {
