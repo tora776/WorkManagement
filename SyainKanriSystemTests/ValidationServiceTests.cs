@@ -93,13 +93,13 @@ namespace 社員管理システム2.Tests
         }
 
         [TestMethod()]
-        [DataRow()]
-        public void wordCount_AddTest()
+        [DataRow({"hoge", "hoge"})]
+        public void wordCount_AddTest(string hoge)
         {
             try
             {
                 var validationService = new ValidationService();
-                // validationService.wordCount_Add();
+                validationService.wordCount_Add(hoge);
                 Assert.Fail();
             }
             catch
