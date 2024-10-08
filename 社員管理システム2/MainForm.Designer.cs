@@ -54,7 +54,7 @@
             this.dataGridView1.RowTemplate.Height = 27;
             this.dataGridView1.Size = new System.Drawing.Size(1117, 408);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
             // 
             // button_Add
             // 
@@ -64,7 +64,7 @@
             this.button_Add.TabIndex = 2;
             this.button_Add.Text = "社員追加";
             this.button_Add.UseVisualStyleBackColor = true;
-            this.button_Add.Click += new System.EventHandler(this.buttonAdd_Click);
+            this.button_Add.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // label9
             // 
@@ -85,7 +85,7 @@
             this.button_Detail.TabIndex = 31;
             this.button_Detail.Text = "社員詳細表示";
             this.button_Detail.UseVisualStyleBackColor = true;
-            this.button_Detail.Click += new System.EventHandler(this.buttonDetailed_Click);
+            this.button_Detail.Click += new System.EventHandler(this.ButtonDetailed_Click);
             // 
             // button_Search
             // 
@@ -95,7 +95,7 @@
             this.button_Search.TabIndex = 3;
             this.button_Search.Text = "社員検索";
             this.button_Search.UseVisualStyleBackColor = true;
-            this.button_Search.Click += new System.EventHandler(this.buttonSearch_Click);
+            this.button_Search.Click += new System.EventHandler(this.ButtonSearch_Click);
             // 
             // button_AddSearchCondition
             // 
@@ -106,7 +106,7 @@
             this.button_AddSearchCondition.TabIndex = 61;
             this.button_AddSearchCondition.Text = "+";
             this.button_AddSearchCondition.UseVisualStyleBackColor = true;
-            this.button_AddSearchCondition.Click += new System.EventHandler(this.button_AddSearchCondition_Click);
+            this.button_AddSearchCondition.Click += new System.EventHandler(this.Button_AddSearchCondition_Click);
             // 
             // groupBox1
             // 
@@ -168,7 +168,7 @@
             this.button_ClearSearchConditions.TabIndex = 61;
             this.button_ClearSearchConditions.Text = "クリア";
             this.button_ClearSearchConditions.UseVisualStyleBackColor = true;
-            this.button_ClearSearchConditions.Click += new System.EventHandler(this.button_clearSearchConditionsClick);
+            this.button_ClearSearchConditions.Click += new System.EventHandler(this.Button_clearSearchConditionsClick);
             // 
             // MainForm
             // 

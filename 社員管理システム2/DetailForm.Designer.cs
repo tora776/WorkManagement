@@ -262,7 +262,7 @@
             this.button_Edit.TabIndex = 55;
             this.button_Edit.Text = "編集";
             this.button_Edit.UseVisualStyleBackColor = true;
-            this.button_Edit.Click += new System.EventHandler(this.button_EditForm);
+            this.button_Edit.Click += new System.EventHandler(this.Button_EditForm);
             // 
             // button_Delete
             // 
@@ -273,7 +273,7 @@
             this.button_Delete.TabIndex = 56;
             this.button_Delete.Text = "削除";
             this.button_Delete.UseVisualStyleBackColor = true;
-            this.button_Delete.Click += new System.EventHandler(this.button_DeleteEmployee);
+            this.button_Delete.Click += new System.EventHandler(this.Button_DeleteEmployee);
             // 
             // button_BackEmployeeShow
             // 
@@ -284,7 +284,7 @@
             this.button_BackEmployeeShow.TabIndex = 57;
             this.button_BackEmployeeShow.Text = "社員一覧に戻る";
             this.button_BackEmployeeShow.UseVisualStyleBackColor = true;
-            this.button_BackEmployeeShow.Click += new System.EventHandler(this.button_CloseDetailForm);
+            this.button_BackEmployeeShow.Click += new System.EventHandler(this.Button_CloseDetailForm);
             // 
             // label13
             // 

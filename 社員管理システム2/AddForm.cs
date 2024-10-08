@@ -21,17 +21,17 @@ namespace SyainKanriSystem
 
 
     {
-        private List<Employees> employeeList;
-        private List<Departments> departmentList;
-        private List<Positions> positionList;
-        MainForm mainForm;
+        // private readonly List<Employees> employeeList;
+        private readonly List<Departments> departmentList;
+        private readonly List<Positions> positionList;
+        private readonly MainForm mainForm;
 
         // AddFormを初期化する。
         public EmployeeAddForm(MainForm form, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList)
         {
             InitializeComponent();
             // MainForm.csより受け取ったリストをクラス変数に格納
-            this.employeeList = employeeList;
+            // this.employeeList = employeeList;
             this.departmentList = departmentList;
             this.positionList = positionList;
             this.mainForm = form;
@@ -43,15 +43,15 @@ namespace SyainKanriSystem
         }
 
         // 社員追加処理
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void ButtonAdd_Click(object sender, EventArgs e)
         {
             try
             {
                 // 社員を追加する
-                addEmployee();
+                AddEmployee();
                 MessageBox.Show("社員を追加しました。");
                 // テキストボックスを初期化する
-                clearInputText();
+                ClearInputText();
                 
             }
             catch (Exception error) {
@@ -60,23 +60,23 @@ namespace SyainKanriSystem
         }
 
         // 追加フォームを閉じる
-        private void button_Cancel_Click(object sender, EventArgs e)
+        private void Button_Cancel_Click(object sender, EventArgs e)
         {
             
             // 追加フォームを閉じる
-            closeAddForm();
+            CloseAddForm();
         }
 
         // 追加フォームを閉じる際、最新の社員情報をMainFormに反映させる
         private void AddForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // MainFormに反映
-            mainForm.closeForm_ResetDataGridView();
+            mainForm.CloseForm_ResetDataGridView();
         }
 
 
         // 入力値を取得する
-        private String[] getInputText()
+        private String[] GetInputText()
         {
             string firstNameValue = textBox_Sei.Text;
             string lastNameValue = textBox_Mei.Text;
@@ -95,7 +95,7 @@ namespace SyainKanriSystem
         }
 
         // 入力値をクリアする
-        private void clearInputText()
+        private void ClearInputText()
         {
             textBox_Sei.Clear();
             textBox_Mei.Clear();
@@ -112,7 +112,7 @@ namespace SyainKanriSystem
         }
 
         // DBへ社員データを追加する
-        private Employees submitAddEmployee(String[] addData, DateTime hireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
+        private Employees SubmitAddEmployee(String[] addData, DateTime hireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
         {
             // insertするデータの作成
             Employees addEmployee = new Employees();
@@ -128,13 +128,13 @@ namespace SyainKanriSystem
             addEmployee.Status = 0;
 
             var employeeService = new EmployeeService();
-            employeeService.insertEmployeeData(addEmployee);
+            employeeService.InsertEmployeeData(addEmployee);
 
             return addEmployee;
         }
 
         // 追加フォームを閉じる
-        private void closeAddForm()
+        private void CloseAddForm()
         {
             this.Close();
             this.Dispose();
@@ -143,12 +143,12 @@ namespace SyainKanriSystem
 
 
         // 社員追加処理
-        private void addEmployee()
+        private void AddEmployee()
         {
             try
             {
                 // 入力値を取得
-                String[] addData = getInputText();
+                String[] addData = GetInputText();
                 // エラーチェックのクラスインスタンス作成
                 var validationService = new ValidationService();
                 // エラーチェック
@@ -162,7 +162,7 @@ namespace SyainKanriSystem
                 int addDepartmentID = validationService.departmentChk(addData[9], departmentList);
                 int addPositionID = validationService.positionChk(addData[10], positionList);
                 // データの作成・追加処理
-                submitAddEmployee(addData, hireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
+                SubmitAddEmployee(addData, hireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
                 // 追加フォームを閉じる。閉じずに入力フォームを初期化したほうがよい？
                 // closeAddForm();
                 
@@ -223,14 +223,14 @@ namespace SyainKanriSystem
             }
         }
 
-        private void comboBox_Department_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_Department_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button_Clear_Click(object sender, EventArgs e)
+        private void Button_Clear_Click(object sender, EventArgs e)
         {
-            clearInputText();
+            ClearInputText();
         }
     }
 }

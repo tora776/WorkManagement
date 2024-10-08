@@ -14,16 +14,16 @@ namespace SyainKanriSystem
     public class EmployeeService
     {
         // 社員データを取得し、フロントエンドに伝える。
-        public List<Employees> selectEmployeeData()
+        public List<Employees> SelectEmployeeData()
         {
             var DB = new DatabaseContext();
             var EmployeeReposiroty = new EmployeeRepository();
-            NpgsqlConnection conn = DB.connectDB();
+            NpgsqlConnection conn = DB.ConnectDB();
             try
             {
-                String query = EmployeeReposiroty.makeSelectQuery();
-                DataTable dt = EmployeeReposiroty.sqlExecute(query, conn);
-                List<Employees> employeeList = EmployeeReposiroty.getSelectEmployee(dt);
+                String query = EmployeeReposiroty.MakeSelectQuery();
+                DataTable dt = EmployeeReposiroty.SqlExecute(query, conn);
+                List<Employees> employeeList = EmployeeReposiroty.GetSelectEmployee(dt);
                 return employeeList;
 
             }
@@ -37,22 +37,22 @@ namespace SyainKanriSystem
                 // DBに接続していれば切断する
                 if (conn != null)
                 {
-                    DB.disconnectDB(conn);
+                    DB.DisconnectDB(conn);
                 }
             }
         }
 
         // DBにInsert文のクエリを送り、社員データを追加する。
-        public void insertEmployeeData(Employees addEmployee)
+        public void InsertEmployeeData(Employees addEmployee)
         {
             var DB = new DatabaseContext();
             var EmployeeReposiroty = new EmployeeRepository();
-            NpgsqlConnection conn = DB.connectDB();
+            NpgsqlConnection conn = DB.ConnectDB();
 
             try
             {
                 String query = EmployeeReposiroty.GetMaxEmployeeIDQuery();
-                DataTable dtMaxID = EmployeeReposiroty.sqlExecute(query, conn);
+                DataTable dtMaxID = EmployeeReposiroty.SqlExecute(query, conn);
                 if (dtMaxID.Rows.Count > 0)
                 {
                     int maxEmployeeID = Convert.ToInt32(dtMaxID.Rows[0][0]);
@@ -61,9 +61,9 @@ namespace SyainKanriSystem
                     addEmployee.EmployeeID = insertEmployeeID;
                 }
                 // Insert文を作成
-                query = EmployeeReposiroty.makeInsertQuery(addEmployee);
+                query = EmployeeReposiroty.MakeInsertQuery(addEmployee);
                 // クエリを実行
-                EmployeeReposiroty.sqlExecute(query, conn);              
+                EmployeeReposiroty.SqlExecute(query, conn);              
             
             }
             catch (Exception error)
@@ -75,25 +75,25 @@ namespace SyainKanriSystem
                 // DBに接続していれば切断する
                 if (conn != null)
                 {
-                    DB.disconnectDB(conn);
+                    DB.DisconnectDB(conn);
                 }
             }
             
         }
 
         // DBにDelete文のクエリを送り、社員データを削除する。
-        public void deleteEmployeeData(string deleteEmployeeID)
+        public void DeleteEmployeeData(string deleteEmployeeID)
         {
             var DB = new DatabaseContext();
             var EmployeeReposiroty = new EmployeeRepository();
-            NpgsqlConnection conn = DB.connectDB();
+            NpgsqlConnection conn = DB.ConnectDB();
 
             try
             {
                 // Delete文を作成
-                string query = EmployeeReposiroty.makeDeleteQuery(deleteEmployeeID);
+                string query = EmployeeReposiroty.MakeDeleteQuery(deleteEmployeeID);
                 // クエリを実行
-                EmployeeReposiroty.sqlExecute(query, conn);
+                EmployeeReposiroty.SqlExecute(query, conn);
 
             }
             catch (Exception error)
@@ -105,25 +105,25 @@ namespace SyainKanriSystem
                 // DBに接続していれば切断する
                 if (conn != null)
                 {
-                    DB.disconnectDB(conn);
+                    DB.DisconnectDB(conn);
                 }
             }
 
         }
 
         // DBにUpdate文のクエリを送り、社員データを更新する
-        public void updateEmployeeData(Employees updateEmployee)
+        public void UpdateEmployeeData(Employees updateEmployee)
         {
             var DB = new DatabaseContext();
             var EmployeeReposiroty = new EmployeeRepository();
-            NpgsqlConnection conn = DB.connectDB();
+            NpgsqlConnection conn = DB.ConnectDB();
 
             try
             {
                 // Update文を作成
-                string query = EmployeeReposiroty.makeUpdateQuery(updateEmployee);
+                string query = EmployeeReposiroty.MakeUpdateQuery(updateEmployee);
                 // クエリを実行
-                EmployeeReposiroty.sqlExecute(query, conn);
+                EmployeeReposiroty.SqlExecute(query, conn);
 
             }
             catch (Exception error)
@@ -135,23 +135,23 @@ namespace SyainKanriSystem
                 // DBに接続していれば切断する
                 if (conn != null)
                 {
-                    DB.disconnectDB(conn);
+                    DB.DisconnectDB(conn);
                 }
             }
 
         }
 
         // DBに検索処理のSelect文のクエリを送り、社員データを検索し、フロントエンドに伝える。
-        public List<Employees> searchEmployeeData(List<string> searchComboStr, List<string> searchTextStr)
+        public List<Employees> SearchEmployeeData(List<string> searchComboStr, List<string> searchTextStr)
         {
             var DB = new DatabaseContext();
             var EmployeeReposiroty = new EmployeeRepository();
-            NpgsqlConnection conn = DB.connectDB();
+            NpgsqlConnection conn = DB.ConnectDB();
             try
             {
-                string query = EmployeeReposiroty.makeSearchQuery(searchComboStr, searchTextStr);
-                DataTable dt = EmployeeReposiroty.sqlExecute(query, conn);
-                List<Employees> employeeList = EmployeeReposiroty.getSelectEmployee(dt);
+                string query = EmployeeReposiroty.MakeSearchQuery(searchComboStr, searchTextStr);
+                DataTable dt = EmployeeReposiroty.SqlExecute(query, conn);
+                List<Employees> employeeList = EmployeeReposiroty.GetSelectEmployee(dt);
                 return employeeList;
 
             }
@@ -165,7 +165,7 @@ namespace SyainKanriSystem
                 // DBに接続していれば切断する
                 if (conn != null)
                 {
-                    DB.disconnectDB(conn);
+                    DB.DisconnectDB(conn);
                 }
             }
         }

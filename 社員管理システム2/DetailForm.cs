@@ -13,11 +13,11 @@ namespace SyainKanriSystem
     public partial class EmployeeDetailForm : Form
     {
         // クラス変数を定義
-        private List<Employees> employeeList;
-        private List<Departments> departmentList;
-        private List<Positions> positionList;
-        private Employees detailedEmployee;
-        MainForm mainForm;
+        private readonly List<Employees> employeeList;
+        private readonly List<Departments> departmentList;
+        private readonly List<Positions> positionList;
+        private readonly Employees detailedEmployee;
+        private readonly MainForm mainForm;
         
         // 詳細表示画面を表示する
         public EmployeeDetailForm(MainForm mainForm, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList, Employees detailedEmployee)
@@ -29,13 +29,13 @@ namespace SyainKanriSystem
             this.positionList = positionList;
             this.mainForm = mainForm;
             this.detailedEmployee = detailedEmployee;
-            inputDetailedEmployee(detailedEmployee);
+            InputDetailedEmployee(detailedEmployee);
         }
         
 
         // DataGridView選択行の社員データをフォーム・コンボボックスに入力する
         // TODO コンボボックス・DateTimePickerを読み取り専用（入力不可）にする
-        private void inputDetailedEmployee(Employees detailedEmployee)
+        private void InputDetailedEmployee(Employees detailedEmployee)
         {
             textBox_EmployeeID.Text = detailedEmployee.EmployeeID;
             textBox_Sei.Text = detailedEmployee.Sei;
@@ -53,7 +53,7 @@ namespace SyainKanriSystem
             InitializeStatusComboBox(detailedEmployee);
         }
 
-        public void closeDetailForm()
+        public void CloseDetailForm()
         {
             this.Close();
             this.Dispose();
@@ -61,7 +61,7 @@ namespace SyainKanriSystem
 
 
         // 社員編集フォームを開く
-        private void button_EditForm(object sender, EventArgs e)
+        private void Button_EditForm(object sender, EventArgs e)
         {
             EmployeeEditForm editForm = new EmployeeEditForm(this, mainForm, employeeList, departmentList, positionList, detailedEmployee);
             editForm.Show();
@@ -69,22 +69,22 @@ namespace SyainKanriSystem
 
         // 削除ボタン処理
         // TODO 削除ボタン処理が2個あるのでどちらが正しいか調べる
-        private void button_DeleteEmployee(object sender, EventArgs e)
+        private void Button_DeleteEmployee(object sender, EventArgs e)
         {
             
             DialogResult result = MessageBox.Show("この社員を削除しますか？", "削除確認", MessageBoxButtons.OKCancel);
             if (result == DialogResult.OK)
             {
-                submitDeleteEmployee(detailedEmployee);
+                SubmitDeleteEmployee(detailedEmployee);
                 // MainFormに反映
-                mainForm.closeForm_ResetDataGridView();
-                closeDetailForm();
+                mainForm.CloseForm_ResetDataGridView();
+                CloseDetailForm();
             }
         }
 
-        private void button_CloseDetailForm(object sender, EventArgs e)
+        private void Button_CloseDetailForm(object sender, EventArgs e)
         {
-            closeDetailForm();
+            CloseDetailForm();
         }
 
         // 部門名のコンボボックスのリストを作成・初期値を入力する
@@ -159,13 +159,13 @@ namespace SyainKanriSystem
         }
 
         // DBへ社員データを削除する
-        public void submitDeleteEmployee(Employees detailedEmployee)
+        public void SubmitDeleteEmployee(Employees detailedEmployee)
         {
             // deleteするデータの作成
             string deleteEmployeeID = detailedEmployee.EmployeeID;
             // deleteクエリの作成・実行
             var employeeService = new EmployeeService();
-            employeeService.deleteEmployeeData(deleteEmployeeID);
+            employeeService.DeleteEmployeeData(deleteEmployeeID);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace SyainKanriSystem.Models
         // private NpgsqlConnection conn;
         // private NpgsqlTransaction transaction;
         // DBに接続する
-        public NpgsqlConnection connectDB()
+        public NpgsqlConnection ConnectDB()
         {
             //接続文字列
             string conn_str = "Server=localhost;Port=5432;User ID=dbo;Database=employeedb;Password=jigs12t4d;Enlist=true";
@@ -37,7 +37,7 @@ namespace SyainKanriSystem.Models
         }
         
         // DB接続を切断する
-        public void disconnectDB(NpgsqlConnection conn){
+        public void DisconnectDB(NpgsqlConnection conn){
             conn.Close();
             conn.Dispose();
         }

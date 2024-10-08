@@ -24,7 +24,7 @@ namespace 社員管理システム2.Tests
         [DataRow("TL", 5)]
         [DataRow("000003", 6)]
         [DataRow("退職済", 3)]
-        public void wordCount_MainTest(string hoge1, int hoge2)
+        public void WordCount_MainTest(string hoge1, int hoge2)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace 社員管理システム2.Tests
         [DataRow("/")]
         [DataRow("2/2")]
         [DataRow("*")]
-        public void employeeIDChkTest_CatchError(string hoge)
+        public void EmployeeIDChkTest_CatchError(string hoge)
         {
             try
             {
@@ -53,22 +53,22 @@ namespace 社員管理システム2.Tests
                 validationService.employeeIDChk(hoge);
                 Assert.Fail();
             }
-            catch (Exception ex)
+            catch (Exception error)
             {
-
+                throw error;
             }
         }
 
         [TestMethod()]
         [DataRow("あ")]
-        public void kanaChkTest(string hoge)
+        public void KanaChkTest(string hoge)
         {
             try
             {
                 var validationService = new ValidationService();
                 validationService.kanaChk(hoge);
             }
-            catch (Exception ex)
+            catch
             {
                 Assert.Fail();
             }
@@ -78,7 +78,7 @@ namespace 社員管理システム2.Tests
         [DataRow("ア")]
         [DataRow("a")]
         [DataRow("!")]
-        public void kanaChkTest_CatchError(string hoge)
+        public void KanaChkTest_CatchError(string hoge)
         {
             try
             {
@@ -86,15 +86,25 @@ namespace 社員管理システム2.Tests
                 validationService.kanaChk(hoge);
                 Assert.Fail();
             }
-            catch (Exception ex)
+            catch (Exception error)
             {
-
+                throw error;
             }
         }
 
         [TestMethod()]
-        [DataRow("h", "h", "h", "h", "h", "h", "h", "h", "h", "h", "h")]
-        public void wordCount_AddTest(string hoge1, string hoge2, string hoge3, string hoge4, string hoge5, string hoge6, string hoge7, string hoge8, string hoge9, string hoge10, string hoge11) { 
+        [DataRow("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", "h", "h", "h", "h", "h", "h", "h", "h", "h", "h")]
+        [DataRow("h", "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", "h", "h", "h", "h", "h", "h", "h", "h", "h")]
+        [DataRow("h", "h", "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", "h", "h", "h", "h", "h", "h", "h", "h")]
+        [DataRow("h", "h", "h", "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", "h", "h", "h", "h", "h", "h", "h")]
+        [DataRow("h", "h", "h", "h", "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", "h", "h", "h", "h", "h", "h")]
+        [DataRow("h", "h", "h", "h", "h", "hoge", "h", "h", "h", "h", "h")]
+        [DataRow("h", "h", "h", "h", "h", "h", "hogehoge", "h", "h", "h", "h")]
+        [DataRow("h", "h", "h", "h", "h", "h", "h", "hogehoge", "h", "h", "h")]
+        [DataRow("h", "h", "h", "h", "h", "h", "h", "h", "hogehoge", "h", "h")]
+        [DataRow("h", "h", "h", "h", "h", "h", "h", "h", "h", "hogehoge", "h")]
+        [DataRow("h", "h", "h", "h", "h", "h", "h", "h", "h", "h", "hogehoge")]
+        public void WordCount_AddTest(string hoge1, string hoge2, string hoge3, string hoge4, string hoge5, string hoge6, string hoge7, string hoge8, string hoge9, string hoge10, string hoge11) { 
             try
             {
                 string[] testData = { hoge1, hoge2, hoge3, hoge4, hoge5, hoge6, hoge7, hoge8, hoge9, hoge10, hoge11 };
@@ -104,7 +114,6 @@ namespace 社員管理システム2.Tests
             }
             catch
             {
-                
             }
         }
     }

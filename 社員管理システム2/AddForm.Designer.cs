@@ -142,7 +142,7 @@
             this.button_Back.TabIndex = 0;
             this.button_Back.Text = "クリア";
             this.button_Back.UseVisualStyleBackColor = true;
-            this.button_Back.Click += new System.EventHandler(this.button_Clear_Click);
+            this.button_Back.Click += new System.EventHandler(this.Button_Clear_Click);
             // 
             // textBox_Sei
             // 
@@ -223,7 +223,7 @@
             this.comboBox_Department.Name = "comboBox_Department";
             this.comboBox_Department.Size = new System.Drawing.Size(162, 26);
             this.comboBox_Department.TabIndex = 10;
-            this.comboBox_Department.SelectedIndexChanged += new System.EventHandler(this.comboBox_Department_SelectedIndexChanged);
+            this.comboBox_Department.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Department_SelectedIndexChanged);
             // 
             // comboBox_Position
             // 
@@ -263,7 +263,7 @@
             this.button_Add.TabIndex = 12;
             this.button_Add.Text = "追加";
             this.button_Add.UseVisualStyleBackColor = true;
-            this.button_Add.Click += new System.EventHandler(this.buttonAdd_Click);
+            this.button_Add.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // button_Cancel
             // 
@@ -274,7 +274,7 @@
             this.button_Cancel.TabIndex = 13;
             this.button_Cancel.Text = "キャンセル";
             this.button_Cancel.UseVisualStyleBackColor = true;
-            this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
+            this.button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
             // label12
             // 

@@ -15,12 +15,12 @@ namespace SyainKanriSystem
     public partial class EmployeeEditForm : Form
     {
         // クラス変数を定義
-        private List<Employees> employeeList;
-        private List<Departments> departmentList;
-        private List<Positions> positionList;
-        private Employees detailedEmployee;
-        EmployeeDetailForm detailForm;
-        MainForm mainForm;
+        private readonly List<Employees> employeeList;
+        private readonly List<Departments> departmentList;
+        private readonly List<Positions> positionList;
+        private readonly Employees detailedEmployee;
+        private readonly EmployeeDetailForm detailForm;
+        private readonly MainForm mainForm;
 
         // EditFormを初期化する
         public EmployeeEditForm(EmployeeDetailForm detailForm, MainForm mainForm, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList, Employees detailedEmployee)
@@ -32,11 +32,11 @@ namespace SyainKanriSystem
             this.departmentList = departmentList;
             this.positionList = positionList;
             this.detailedEmployee = detailedEmployee;
-            inputUpdateEmployee(detailedEmployee);
+            InputUpdateEmployee(detailedEmployee);
         }
 
         // テキストボックスに更新対象の社員情報を入力する
-        private void inputUpdateEmployee(Employees detailedEmployee)
+        private void InputUpdateEmployee(Employees detailedEmployee)
         {
             textBox_EmployeeID.Text = detailedEmployee.EmployeeID;
             textBox_Sei.Text = detailedEmployee.Sei;
@@ -102,7 +102,7 @@ namespace SyainKanriSystem
         }
 
         // テキストボックスの入力値を取得
-        private String[] getInputText()
+        private String[] GetInputText()
         {
             string firstNameValue = textBox_Sei.Text;
             string lastNameValue = textBox_Mei.Text;
@@ -122,7 +122,7 @@ namespace SyainKanriSystem
         }
 
         // DBへ社員データを更新する
-        public void submitUpdateEmployee(Employees detailedEmployee, String[] updateData, DateTime hireDateValue, string updatePhoneNumber, int updateDepartmentID, int updatePositionID, int updateStatusID)
+        public void SubmitUpdateEmployee(Employees detailedEmployee, String[] updateData, DateTime hireDateValue, string updatePhoneNumber, int updateDepartmentID, int updatePositionID, int updateStatusID)
         {
             try
             {
@@ -141,7 +141,7 @@ namespace SyainKanriSystem
                 updateEmployee.Status = updateStatusID;
 
                 var employeeService = new EmployeeService();
-                employeeService.updateEmployeeData(updateEmployee);
+                employeeService.UpdateEmployeeData(updateEmployee);
             }
             catch (Exception error)
             {
@@ -150,21 +150,21 @@ namespace SyainKanriSystem
         }
 
         // 更新フォームを閉じる
-        private void closeUpdateForm()
+        private void CloseUpdateForm()
         {
             this.Close();
             this.Dispose();
         }
 
         // 社員更新処理
-        private void updateEmployee()
+        private void UpdateEmployee()
         {
             
             try
             {
             
                 // 入力値を取得
-                String[] updateData = getInputText();
+                String[] updateData = GetInputText();
                 // エラーチェックのクラスインスタンス作成
                 var validationService = new ValidationService();
                 // エラーチェック
@@ -179,7 +179,7 @@ namespace SyainKanriSystem
                 int updatePositionID = validationService.positionChk(updateData[10], positionList);
                 int updateStatusID = validationService.statusChk(updateData[11]);
                 // データの作成・追加処理
-                submitUpdateEmployee(detailedEmployee, updateData, hireDateValue, updatePhoneNumber, updateDepartmentID, updatePositionID, updateStatusID);
+                SubmitUpdateEmployee(detailedEmployee, updateData, hireDateValue, updatePhoneNumber, updateDepartmentID, updatePositionID, updateStatusID);
 
             }
             catch (Exception error)
@@ -206,21 +206,21 @@ namespace SyainKanriSystem
         }
  
 
-        private void button_CloseUpdateForm(object sender, EventArgs e)
+        private void Button_CloseUpdateForm(object sender, EventArgs e)
         {
-            closeUpdateForm();
+            CloseUpdateForm();
         }
 
-        private void button_UpdateClick(object sender, EventArgs e)
+        private void Button_UpdateClick(object sender, EventArgs e)
         {
             try
             {
-                updateEmployee();
+                UpdateEmployee();
                 MessageBox.Show("データを更新しました");
                 // MainFormに反映
-                mainForm.closeForm_ResetDataGridView();
-                detailForm.closeDetailForm();
-                closeUpdateForm();
+                mainForm.CloseForm_ResetDataGridView();
+                detailForm.CloseDetailForm();
+                CloseUpdateForm();
             }
             catch (Exception error)
             {
@@ -228,9 +228,9 @@ namespace SyainKanriSystem
             }
         }
 
-        private void button_UpdateCancel_Click(object sender, EventArgs e)
+        private void Button_UpdateCancel_Click(object sender, EventArgs e)
         {
-            closeUpdateForm();
+            CloseUpdateForm();
         }
     }
 }

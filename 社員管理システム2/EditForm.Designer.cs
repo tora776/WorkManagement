@@ -272,7 +272,7 @@
             this.button_UpdateEmployee.TabIndex = 52;
             this.button_UpdateEmployee.Text = "更新";
             this.button_UpdateEmployee.UseVisualStyleBackColor = true;
-            this.button_UpdateEmployee.Click += new System.EventHandler(this.button_UpdateClick);
+            this.button_UpdateEmployee.Click += new System.EventHandler(this.Button_UpdateClick);
             // 
             // button_UpdateCancel
             // 
@@ -283,7 +283,7 @@
             this.button_UpdateCancel.TabIndex = 53;
             this.button_UpdateCancel.Text = "キャンセル";
             this.button_UpdateCancel.UseVisualStyleBackColor = true;
-            this.button_UpdateCancel.Click += new System.EventHandler(this.button_UpdateCancel_Click);
+            this.button_UpdateCancel.Click += new System.EventHandler(this.Button_UpdateCancel_Click);
             // 
             // comboBox_Status
             // 
@@ -346,7 +346,7 @@
             this.button_BackDetailForm.TabIndex = 61;
             this.button_BackDetailForm.Text = "社員詳細表示に戻る";
             this.button_BackDetailForm.UseVisualStyleBackColor = true;
-            this.button_BackDetailForm.Click += new System.EventHandler(this.button_CloseUpdateForm);
+            this.button_BackDetailForm.Click += new System.EventHandler(this.Button_CloseUpdateForm);
             // 
             // dateTimePicker_HireDate
             // 

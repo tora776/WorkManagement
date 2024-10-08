@@ -16,7 +16,7 @@ namespace SyainKanriSystem.Models
 
 
         // クエリを実行する。
-        public DataTable sqlExecute(String query, NpgsqlConnection conn)
+        public DataTable SqlExecute(String query, NpgsqlConnection conn)
         {
             NpgsqlCommand sql = new NpgsqlCommand(query, conn);
             NpgsqlDataReader reader = sql.ExecuteReader();
@@ -26,7 +26,7 @@ namespace SyainKanriSystem.Models
         }
 
         // SELECT文のクエリを作成する。
-        public string makeSelectQuery()
+        public string MakeSelectQuery()
         {
             try
             {
@@ -40,7 +40,7 @@ namespace SyainKanriSystem.Models
         }
 
         // 社員情報表示のクエリ結果を受け取る。
-        public List<Employees> getSelectEmployee(DataTable dt)
+        public List<Employees> GetSelectEmployee(DataTable dt)
         {
             List<Employees> dataList = new List<Employees>();
             // 社員リストを作成
@@ -64,7 +64,7 @@ namespace SyainKanriSystem.Models
         }
 
         // Insert文のクエリを作成する。
-        public string makeInsertQuery(Employees addEmployee)
+        public string MakeInsertQuery(Employees addEmployee)
         {
             try
             {
@@ -92,7 +92,7 @@ namespace SyainKanriSystem.Models
             }
         }
 
-        public string makeDeleteQuery(string deleteEmployeeID)
+        public string MakeDeleteQuery(string deleteEmployeeID)
         {
             try
             {
@@ -105,7 +105,7 @@ namespace SyainKanriSystem.Models
             }
         }
 
-        public string makeUpdateQuery(Employees updateEmployee)
+        public string MakeUpdateQuery(Employees updateEmployee)
         {
             try
             {
@@ -118,7 +118,7 @@ namespace SyainKanriSystem.Models
             }
         }
 
-        public string makeSearchQuery(List<string> searchComboStr, List<string> searchTextStr)
+        public string MakeSearchQuery(List<string> searchComboStr, List<string> searchTextStr)
         {
             try
             {
