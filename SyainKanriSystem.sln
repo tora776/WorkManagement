@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyainKanriSystem", "社員管理システム2\SyainKanriSystem.csproj", "{0857FC67-77BF-430A-99F0-998A8187431B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyainKanriSystem", "SyainKanriSystem\SyainKanriSystem.csproj", "{0857FC67-77BF-430A-99F0-998A8187431B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyainKanriSystemTests", "SyainKanriSystemTests\SyainKanriSystemTests.csproj", "{2C0C05F3-AC4F-4767-9C81-66F4C950313A}"
 EndProject

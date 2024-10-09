@@ -18,8 +18,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0857FC67-77BF-430A-99F0-998A8187431B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>社員管理システム2</RootNamespace>
-    <AssemblyName>社員管理システム2</AssemblyName>
+    <RootNamespace>SyainKanriSystem</RootNamespace>
+    <AssemblyName>SyainKanriSystem</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace 社員管理システム2
+namespace SyainKanriSystem
 {
     public class ViewsUtil
     {

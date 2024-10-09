@@ -121,7 +121,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\社員管理システム2\SyainKanriSystem.csproj">
+    <ProjectReference Include="..\SyainKanriSystem\SyainKanriSystem.csproj">
       <Project>{0857FC67-77BF-430A-99F0-998A8187431B}</Project>
       <Name>SyainKanriSystem</Name>
     </ProjectReference>

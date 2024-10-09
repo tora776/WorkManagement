@@ -14,7 +14,7 @@ using SyainKanriSystem.Models;
 using System.Security.Cryptography.Xml;
 using System.Drawing.Text;
 using System.CodeDom;
-using 社員管理システム2;
+using SyainKanriSystem;
 
 namespace SyainKanriSystem
 {
