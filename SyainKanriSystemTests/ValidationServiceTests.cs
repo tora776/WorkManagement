@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using 社員管理システム2;
+using SyainKanriSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace 社員管理システム2.Tests
+namespace SyainKanriSystem.Tests
 {
     [TestClass()]
     public class ValidationServiceTests
