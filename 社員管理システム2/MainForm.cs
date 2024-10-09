@@ -172,7 +172,7 @@ namespace SyainKanriSystem
         // 追加ボタンを押下すると、AddFormを表示する
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            EmployeeAddForm addForm = new EmployeeAddForm(this, employeeList, departmentList, positionList);
+            EmployeeAddForm addForm = new EmployeeAddForm(this, departmentList, positionList);
             addForm.Show();
         }
 
@@ -509,7 +509,7 @@ namespace SyainKanriSystem
             try
             {
                 // エラーチェックのクラスインスタンス作成
-                var validationService = new ValidationService();
+                var viewsUtil = new ViewsUtil();
                 for (int i = 0; i < searchNameList.Count; i++)
                 {
                     // 検索コンボボックスのNameを指定し、入力値を取得
@@ -526,61 +526,61 @@ namespace SyainKanriSystem
                         {
                             case "社員番号":
                                 searchComboValue = "EmployeeID";
-                                validationService.wordCount_Main(searchTextValue, 6);
-                                validationService.employeeIDChk(searchTextValue);
+                                viewsUtil.WordCount_Main(searchTextValue, 6);
+                                viewsUtil.EmployeeIDChk(searchTextValue);
                                 break;
                             case "姓":
                                 searchComboValue = "Sei";
-                                validationService.wordCount_Main(searchTextValue, 50);
+                                viewsUtil.WordCount_Main(searchTextValue, 50);
                                 break;
                             case "名":
                                 searchComboValue = "Mei";
-                                validationService.wordCount_Main(searchTextValue, 50);
+                                viewsUtil.WordCount_Main(searchTextValue, 50);
                                 break;
                             case "姓（かな）":
                                 searchComboValue = "SeiKana";
-                                validationService.wordCount_Main(searchTextValue, 50);
-                                validationService.kanaChk(searchTextValue);
+                                viewsUtil.WordCount_Main(searchTextValue, 50);
+                                viewsUtil.KanaChk(searchTextValue);
                                 break;
                             case "名（かな）":
                                 searchComboValue = "MeiKana";
-                                validationService.wordCount_Main(searchTextValue, 50);
-                                validationService.kanaChk(searchTextValue);
+                                viewsUtil.WordCount_Main(searchTextValue, 50);
+                                viewsUtil.KanaChk(searchTextValue);
                                 break;
                             case "メールアドレス":
                                 searchComboValue = "Email";
-                                validationService.wordCount_Main(searchTextValue, 255);
-                                validationService.mailChk(searchTextValue);
+                                viewsUtil.WordCount_Main(searchTextValue, 255);
+                                viewsUtil.MailChk(searchTextValue);
                                 break;
                             case "電話番号":
                                 searchComboValue = "PhoneNumber";
                                 // TODO 引数が1つの電話番号エラーチェック関数を作成
-                                validationService.wordCount_Main(searchTextValue, 13);
-                                // validationService.phoneChk(searchTextValue);
+                                viewsUtil.WordCount_Main(searchTextValue, 13);
+                                // viewsUtil.phoneChk(searchTextValue);
                                 break;
                             case "雇用日":
                                 searchComboValue = "HireDate";
-                                validationService.wordCount_Main(searchTextValue, 10);
+                                viewsUtil.WordCount_Main(searchTextValue, 10);
                                 // string型に戻して、日付の入力形式を修正
-                                searchTextValue = validationService.calendarChk(searchTextValue).ToString("yyyy/MM/dd");
+                                searchTextValue = viewsUtil.CalendarChk(searchTextValue).ToString("yyyy/MM/dd");
                                 break;
                             case "部門":
                                 searchComboValue = "Department";
-                                validationService.wordCount_Main(searchTextValue, 6);
+                                viewsUtil.WordCount_Main(searchTextValue, 6);
                                 // int型からString型に戻す
-                                searchTextValue = validationService.departmentChk(searchTextValue, departmentList).ToString();
+                                searchTextValue = viewsUtil.DepartmentChk(searchTextValue, departmentList).ToString();
                                 break;
                             case "役職":
                                 searchComboValue = "Position";
-                                validationService.wordCount_Main(searchTextValue, 6);
+                                viewsUtil.WordCount_Main(searchTextValue, 6);
                                 // int型からString型に戻す
-                                searchTextValue = validationService.positionChk(searchTextValue, positionList).ToString();
+                                searchTextValue = viewsUtil.PositionChk(searchTextValue, positionList).ToString();
                                 break;
                             case "ステータス":
                                 searchComboValue = "Status";
-                                validationService.wordCount_Main(searchTextValue, 3);
+                                viewsUtil.WordCount_Main(searchTextValue, 3);
                                 // int型からString型に戻す
-                                searchTextValue = validationService.statusChk(searchTextValue).ToString();
+                                searchTextValue = viewsUtil.StatusChk(searchTextValue).ToString();
                                 break;
                         }
                         // searchComboStrに同じ項目のものがある場合にエラーを出力する

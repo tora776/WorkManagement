@@ -27,11 +27,10 @@ namespace SyainKanriSystem
         private readonly MainForm mainForm;
 
         // AddFormを初期化する。
-        public EmployeeAddForm(MainForm form, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList)
+        public EmployeeAddForm(MainForm form, List<Departments> departmentList, List<Positions> positionList)
         {
             InitializeComponent();
             // MainForm.csより受け取ったリストをクラス変数に格納
-            // this.employeeList = employeeList;
             this.departmentList = departmentList;
             this.positionList = positionList;
             this.mainForm = form;
@@ -150,17 +149,17 @@ namespace SyainKanriSystem
                 // 入力値を取得
                 String[] addData = GetInputText();
                 // エラーチェックのクラスインスタンス作成
-                var validationService = new ValidationService();
+                var viewsUtil = new ViewsUtil();
                 // エラーチェック
-                validationService.emptyChk(addData);
-                validationService.wordCount_Add(addData);
-                validationService.mailChk(addData[4]);
-                validationService.kanaChk(addData[2]);
-                validationService.kanaChk(addData[3]);
-                DateTime hireDateValue = validationService.calendarChk(addData[8]);
-                string addPhoneNumber = validationService.phoneChk(addData[5], addData[6], addData[7]);
-                int addDepartmentID = validationService.departmentChk(addData[9], departmentList);
-                int addPositionID = validationService.positionChk(addData[10], positionList);
+                viewsUtil.EmptyChk(addData);
+                viewsUtil.WordCount_Add(addData);
+                viewsUtil.MailChk(addData[4]);
+                viewsUtil.KanaChk(addData[2]);
+                viewsUtil.KanaChk(addData[3]);
+                DateTime hireDateValue = viewsUtil.CalendarChk(addData[8]);
+                string addPhoneNumber = viewsUtil.PhoneChk(addData[5], addData[6], addData[7]);
+                int addDepartmentID = viewsUtil.DepartmentChk(addData[9], departmentList);
+                int addPositionID = viewsUtil.PositionChk(addData[10], positionList);
                 // データの作成・追加処理
                 SubmitAddEmployee(addData, hireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
                 // 追加フォームを閉じる。閉じずに入力フォームを初期化したほうがよい？

@@ -177,7 +177,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(164, 25);
             this.textBox1.TabIndex = 38;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox9
             // 
@@ -264,7 +263,6 @@
             this.button1.TabIndex = 55;
             this.button1.Text = "検索";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
             // button2
             // 
@@ -285,7 +283,6 @@
             this.button3.TabIndex = 57;
             this.button3.Text = "社員一覧に戻る";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label13
             // 

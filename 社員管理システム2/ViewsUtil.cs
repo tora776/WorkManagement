@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace 社員管理システム2
 {
-    public class ValidationService
+    public class ViewsUtil
     {
 
         // 入力値が空かどうか取得する
-        public void emptyChk(string[] chkData)
+        public void EmptyChk(string[] chkData)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace 社員管理システム2
 
         // 文字数チェック
         // 入力文字数がDBの入力制限を超えていないか確認する
-        public void wordCount_Main(string chkData, int limit)
+        public void WordCount_Main(string chkData, int limit)
         {
             try
             {
@@ -51,9 +51,10 @@ namespace 社員管理システム2
             }
         }
 
+        
         // 追加フォームの文字数チェック
         // 入力文字数がDBの入力制限を超えていないか確認する
-        public void wordCount_Add(string[] addData)
+        public void WordCount_Add(string[] addData)
         {
             try
             {
@@ -76,7 +77,7 @@ namespace 社員管理システム2
 
         // 更新フォームの文字数チェック
         // 入力文字数がDBの入力制限を超えていないか確認する
-        public void wordCount_Update(string[] updateData)
+        public void WordCount_Update(string[] updateData)
         {
             try
             {
@@ -96,10 +97,11 @@ namespace 社員管理システム2
                 throw error;
             }
         }
+        
 
         // 社員番号が数字か確認する
         // 6桁かどうかはwordCount_Mainで確認する
-        public void employeeIDChk(string chkData)
+        public void EmployeeIDChk(string chkData)
         {
             try
             {
@@ -116,7 +118,7 @@ namespace 社員管理システム2
         }
 
         // 姓（かな）・名（かな）が平仮名か確認する
-        public void kanaChk(string chkData)
+        public void KanaChk(string chkData)
         {
             try
             {
@@ -135,7 +137,7 @@ namespace 社員管理システム2
         // 入力値が数字か確認する
         // 電話番号を「xxx-xxxx-xxxx」の形に成形する
         // TODO 電話番号が指定の文字数を下回っていないことを確認
-        public string phoneChk(string phoneNumber1, string phoneNumber2, string phoneNumber3)
+        public string PhoneChk(string phoneNumber1, string phoneNumber2, string phoneNumber3)
         {
             try
             {
@@ -161,7 +163,7 @@ namespace 社員管理システム2
         }
 
         // 入力値に「@」「.」が含まれているか確認する
-        public void mailChk(string chkData)
+        public void MailChk(string chkData)
         {
             try
             {
@@ -182,7 +184,7 @@ namespace 社員管理システム2
         }
 
         // TODO 日付以外のデータが入力されている場合、Catch部に移行するエラーを作成
-        public DateTime calendarChk(string chkData)
+        public DateTime CalendarChk(string chkData)
         {
             try
             {
@@ -198,7 +200,7 @@ namespace 社員管理システム2
 
         // TODO 入力値が空の場合はemptyChk関数で精査できるので、この関数は不要？
         // 部門コンボボックスに異なる値が入力されていないか確認する
-        public int departmentChk(string chkData, List<Departments> departmentList)
+        public int DepartmentChk(string chkData, List<Departments> departmentList)
         {
             try
             {
@@ -220,7 +222,7 @@ namespace 社員管理システム2
 
         // TODO 入力値が空の場合はemptyChk関数で精査できるので、この関数は不要？
         // 役職コンボボックスに異なる値が入力されていないか確認する
-        public int positionChk(string chkData, List<Positions> positionList)
+        public int PositionChk(string chkData, List<Positions> positionList)
         {
             try
             {
@@ -240,7 +242,7 @@ namespace 社員管理システム2
         }
 
         // ステータスコンボボックスに異なる値が入力されていないか確認する
-        public int statusChk(string chkData)
+        public int StatusChk(string chkData)
         {
             try
             {

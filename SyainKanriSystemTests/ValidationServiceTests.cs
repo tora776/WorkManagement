@@ -28,8 +28,8 @@ namespace 社員管理システム2.Tests
         {
             try
             {
-                var validationService = new ValidationService();
-                validationService.wordCount_Main(hoge1, hoge2);
+                var validationService = new ViewsUtil();
+                validationService.WordCount_Main(hoge1, hoge2);
             }
             catch
             {
@@ -49,8 +49,8 @@ namespace 社員管理システム2.Tests
         {
             try
             {
-                var validationService = new ValidationService();
-                validationService.employeeIDChk(hoge);
+                var validationService = new ViewsUtil();
+                validationService.EmployeeIDChk(hoge);
                 Assert.Fail();
             }
             catch (Exception error)
@@ -65,8 +65,8 @@ namespace 社員管理システム2.Tests
         {
             try
             {
-                var validationService = new ValidationService();
-                validationService.kanaChk(hoge);
+                var validationService = new ViewsUtil();
+                validationService.KanaChk(hoge);
             }
             catch
             {
@@ -82,8 +82,8 @@ namespace 社員管理システム2.Tests
         {
             try
             {
-                var validationService = new ValidationService();
-                validationService.kanaChk(hoge);
+                var validationService = new ViewsUtil();
+                validationService.KanaChk(hoge);
                 Assert.Fail();
             }
             catch (Exception error)
@@ -108,8 +108,8 @@ namespace 社員管理システム2.Tests
             try
             {
                 string[] testData = { hoge1, hoge2, hoge3, hoge4, hoge5, hoge6, hoge7, hoge8, hoge9, hoge10, hoge11 };
-                var validationService = new ValidationService();
-                validationService.wordCount_Add(testData);
+                var validationService = new ViewsUtil();
+                validationService.WordCount_Add(testData);
                 Assert.Fail();
             }
             catch

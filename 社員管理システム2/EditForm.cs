@@ -166,18 +166,18 @@ namespace SyainKanriSystem
                 // 入力値を取得
                 String[] updateData = GetInputText();
                 // エラーチェックのクラスインスタンス作成
-                var validationService = new ValidationService();
+                var viewsUtil = new ViewsUtil();
                 // エラーチェック
-                validationService.emptyChk(updateData);
-                validationService.wordCount_Update(updateData);
-                validationService.mailChk(updateData[4]);
-                validationService.kanaChk(updateData[2]);
-                validationService.kanaChk(updateData[3]);
-                DateTime hireDateValue = validationService.calendarChk(updateData[8]);
-                string updatePhoneNumber = validationService.phoneChk(updateData[5], updateData[6], updateData[7]);
-                int updateDepartmentID = validationService.departmentChk(updateData[9], departmentList);
-                int updatePositionID = validationService.positionChk(updateData[10], positionList);
-                int updateStatusID = validationService.statusChk(updateData[11]);
+                viewsUtil.EmptyChk(updateData);
+                viewsUtil.WordCount_Update(updateData);
+                viewsUtil.MailChk(updateData[4]);
+                viewsUtil.KanaChk(updateData[2]);
+                viewsUtil.KanaChk(updateData[3]);
+                DateTime hireDateValue = viewsUtil.CalendarChk(updateData[8]);
+                string updatePhoneNumber = viewsUtil.PhoneChk(updateData[5], updateData[6], updateData[7]);
+                int updateDepartmentID = viewsUtil.DepartmentChk(updateData[9], departmentList);
+                int updatePositionID = viewsUtil.PositionChk(updateData[10], positionList);
+                int updateStatusID = viewsUtil.StatusChk(updateData[11]);
                 // データの作成・追加処理
                 SubmitUpdateEmployee(detailedEmployee, updateData, hireDateValue, updatePhoneNumber, updateDepartmentID, updatePositionID, updateStatusID);
 
