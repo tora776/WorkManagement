@@ -11,20 +11,9 @@ using System.Windows.Forms;
 namespace SyainKanriSystem.Models
 {
     public class PositionRepository { 
-
-        // SELECT文のクエリを実行する。
-        
-        public DataTable sqlExecutePosition(String query, NpgsqlConnection conn){
-            NpgsqlCommand sql = new NpgsqlCommand(query, conn);
-            NpgsqlDataReader reader = sql.ExecuteReader();
-            DataTable dt = new DataTable();
-            dt.Load(reader);
-            return dt;
-            }
-        
             
         // SELECT文のクエリを作成する。
-        public string makeSelectQueryPosition(){
+        public string MakeSelectQueryPosition(){
             try
             {
                 string query = "SELECT * FROM Positions";
@@ -37,7 +26,7 @@ namespace SyainKanriSystem.Models
         }
 
         // 取得したクエリ結果を配列に格納する。
-        public List<Positions> getSelectPosition(DataTable dt) {
+        public List<Positions> GetSelectPosition(DataTable dt) {
             List<Positions> dataList = new List<Positions>();
 
             foreach(DataRow dr in dt.Rows)

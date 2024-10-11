@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Xml.Linq;
@@ -21,8 +20,8 @@ namespace SyainKanriSystem
     public partial class MainForm : Form
     {
         private List<Employees> employeeList;
-        private List<Departments> departmentList;
-        private List<Positions> positionList;
+        private readonly List<Departments> departmentList;
+        private readonly List<Positions> positionList;
         private List<string[]> searchNameList;
 
         // MainFormを表示する
@@ -211,7 +210,7 @@ namespace SyainKanriSystem
             try
             {
                 Employees detailedEmployee = GetSelectedRow();
-                EmployeeDetailForm detailForm = new EmployeeDetailForm(this, employeeList, departmentList, positionList, detailedEmployee);
+                EmployeeDetailForm detailForm = new EmployeeDetailForm(this, departmentList, positionList, detailedEmployee);
                 detailForm.Show();
             }
             catch (Exception error)
@@ -288,10 +287,8 @@ namespace SyainKanriSystem
         // 社員情報を初期化する
         private List<Employees> InitializeEmployeeRepository()
         {
-            if (employeeList != null)
-            {
-                employeeList.Clear();
-            }
+            // NULLチェック
+            employeeList?.Clear();           
             // employeeServiceのクラスインスタンスを作成
             var employeeService = new EmployeeService();
             // DBよりemployeeListを取得
@@ -308,10 +305,10 @@ namespace SyainKanriSystem
             NpgsqlConnection conn = DB.ConnectDB();
             try
             {
-                String query = DepartmentRepository.makeSelectQueryDepartment();
-                DataTable dt = DepartmentRepository.sqlExecuteDepartment(query, conn);
+                String query = DepartmentRepository.MakeSelectQueryDepartment();
+                DataTable dt = DB.SqlExecute(query, conn);
                 DB.DisconnectDB(conn);
-                List<Departments> departmentList = DepartmentRepository.getSelectDepartment(dt);
+                List<Departments> departmentList = DepartmentRepository.GetSelectDepartment(dt);
                 return departmentList;
             }
             catch (Exception error)
@@ -338,9 +335,9 @@ namespace SyainKanriSystem
             NpgsqlConnection conn = DB.ConnectDB();
             try
             {
-                String query = PositionRepository.makeSelectQueryPosition();
-                DataTable dt = PositionRepository.sqlExecutePosition(query, conn);
-                List<Positions> departmentList = PositionRepository.getSelectPosition(dt);
+                String query = PositionRepository.MakeSelectQueryPosition();
+                DataTable dt = DB.SqlExecute(query, conn);
+                List<Positions> departmentList = PositionRepository.GetSelectPosition(dt);
                 return departmentList;
             }
             catch (Exception error)
@@ -526,59 +523,59 @@ namespace SyainKanriSystem
                         {
                             case "社員番号":
                                 searchComboValue = "EmployeeID";
-                                viewsUtil.WordCount_Main(searchTextValue, 6);
+                                viewsUtil.WordCount(searchTextValue, 6);
                                 viewsUtil.EmployeeIDChk(searchTextValue);
                                 break;
                             case "姓":
                                 searchComboValue = "Sei";
-                                viewsUtil.WordCount_Main(searchTextValue, 50);
+                                viewsUtil.WordCount(searchTextValue, 50);
                                 break;
                             case "名":
                                 searchComboValue = "Mei";
-                                viewsUtil.WordCount_Main(searchTextValue, 50);
+                                viewsUtil.WordCount(searchTextValue, 50);
                                 break;
                             case "姓（かな）":
                                 searchComboValue = "SeiKana";
-                                viewsUtil.WordCount_Main(searchTextValue, 50);
+                                viewsUtil.WordCount(searchTextValue, 50);
                                 viewsUtil.KanaChk(searchTextValue);
                                 break;
                             case "名（かな）":
                                 searchComboValue = "MeiKana";
-                                viewsUtil.WordCount_Main(searchTextValue, 50);
+                                viewsUtil.WordCount(searchTextValue, 50);
                                 viewsUtil.KanaChk(searchTextValue);
                                 break;
                             case "メールアドレス":
                                 searchComboValue = "Email";
-                                viewsUtil.WordCount_Main(searchTextValue, 255);
+                                viewsUtil.WordCount(searchTextValue, 255);
                                 viewsUtil.MailChk(searchTextValue);
                                 break;
                             case "電話番号":
                                 searchComboValue = "PhoneNumber";
                                 // TODO 引数が1つの電話番号エラーチェック関数を作成
-                                viewsUtil.WordCount_Main(searchTextValue, 13);
+                                viewsUtil.WordCount(searchTextValue, 13);
                                 // viewsUtil.phoneChk(searchTextValue);
                                 break;
                             case "雇用日":
                                 searchComboValue = "HireDate";
-                                viewsUtil.WordCount_Main(searchTextValue, 10);
+                                viewsUtil.WordCount(searchTextValue, 10);
                                 // string型に戻して、日付の入力形式を修正
                                 searchTextValue = viewsUtil.CalendarChk(searchTextValue).ToString("yyyy/MM/dd");
                                 break;
                             case "部門":
                                 searchComboValue = "Department";
-                                viewsUtil.WordCount_Main(searchTextValue, 6);
+                                viewsUtil.WordCount(searchTextValue, 6);
                                 // int型からString型に戻す
                                 searchTextValue = viewsUtil.DepartmentChk(searchTextValue, departmentList).ToString();
                                 break;
                             case "役職":
                                 searchComboValue = "Position";
-                                viewsUtil.WordCount_Main(searchTextValue, 6);
+                                viewsUtil.WordCount(searchTextValue, 6);
                                 // int型からString型に戻す
                                 searchTextValue = viewsUtil.PositionChk(searchTextValue, positionList).ToString();
                                 break;
                             case "ステータス":
                                 searchComboValue = "Status";
-                                viewsUtil.WordCount_Main(searchTextValue, 3);
+                                viewsUtil.WordCount(searchTextValue, 3);
                                 // int型からString型に戻す
                                 searchTextValue = viewsUtil.StatusChk(searchTextValue).ToString();
                                 break;

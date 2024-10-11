@@ -35,7 +35,17 @@ namespace SyainKanriSystem.Models
                 throw error;
             }
         }
-        
+
+        // クエリを実行する。
+        public DataTable SqlExecute(String query, NpgsqlConnection conn)
+        {
+            NpgsqlCommand sql = new NpgsqlCommand(query, conn);
+            NpgsqlDataReader reader = sql.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(reader);
+            return dt;
+        }
+
         // DB接続を切断する
         public void DisconnectDB(NpgsqlConnection conn){
             conn.Close();

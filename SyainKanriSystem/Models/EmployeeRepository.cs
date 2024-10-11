@@ -12,18 +12,7 @@ namespace SyainKanriSystem.Models
 {
 
     public class EmployeeRepository
-    {
-
-
-        // クエリを実行する。
-        public DataTable SqlExecute(String query, NpgsqlConnection conn)
-        {
-            NpgsqlCommand sql = new NpgsqlCommand(query, conn);
-            NpgsqlDataReader reader = sql.ExecuteReader();
-            DataTable dt = new DataTable();
-            dt.Load(reader);
-            return dt;
-        }
+    {     
 
         // SELECT文のクエリを作成する。
         public string MakeSelectQuery()

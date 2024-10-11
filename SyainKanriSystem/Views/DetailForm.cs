@@ -13,18 +13,18 @@ namespace SyainKanriSystem
     public partial class EmployeeDetailForm : Form
     {
         // クラス変数を定義
-        private readonly List<Employees> employeeList;
+        // private readonly List<Employees> employeeList;
         private readonly List<Departments> departmentList;
         private readonly List<Positions> positionList;
         private readonly Employees detailedEmployee;
         private readonly MainForm mainForm;
         
         // 詳細表示画面を表示する
-        public EmployeeDetailForm(MainForm mainForm, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList, Employees detailedEmployee)
+        public EmployeeDetailForm(MainForm mainForm, List<Departments> departmentList, List<Positions> positionList, Employees detailedEmployee)
         {
             InitializeComponent();
 
-            this.employeeList = employeeList;
+            // this.employeeList = employeeList;
             this.departmentList = departmentList;
             this.positionList = positionList;
             this.mainForm = mainForm;
@@ -63,7 +63,7 @@ namespace SyainKanriSystem
         // 社員編集フォームを開く
         private void Button_EditForm(object sender, EventArgs e)
         {
-            EmployeeEditForm editForm = new EmployeeEditForm(this, mainForm, employeeList, departmentList, positionList, detailedEmployee);
+            EmployeeEditForm editForm = new EmployeeEditForm(this, mainForm, departmentList, positionList, detailedEmployee);
             editForm.Show();
         }
 

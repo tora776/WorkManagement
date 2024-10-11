@@ -17,13 +17,13 @@ namespace SyainKanriSystem
         public List<Employees> SelectEmployeeData()
         {
             var DB = new DatabaseContext();
-            var EmployeeReposiroty = new EmployeeRepository();
+            var employeeReposiroty = new EmployeeRepository();
             NpgsqlConnection conn = DB.ConnectDB();
             try
             {
-                String query = EmployeeReposiroty.MakeSelectQuery();
-                DataTable dt = EmployeeReposiroty.SqlExecute(query, conn);
-                List<Employees> employeeList = EmployeeReposiroty.GetSelectEmployee(dt);
+                String query = employeeReposiroty.MakeSelectQuery();
+                DataTable dt = DB.SqlExecute(query, conn);
+                List<Employees> employeeList = employeeReposiroty.GetSelectEmployee(dt);
                 return employeeList;
 
             }
@@ -46,13 +46,13 @@ namespace SyainKanriSystem
         public void InsertEmployeeData(Employees addEmployee)
         {
             var DB = new DatabaseContext();
-            var EmployeeReposiroty = new EmployeeRepository();
+            var employeeReposiroty = new EmployeeRepository();
             NpgsqlConnection conn = DB.ConnectDB();
 
             try
             {
-                String query = EmployeeReposiroty.GetMaxEmployeeIDQuery();
-                DataTable dtMaxID = EmployeeReposiroty.SqlExecute(query, conn);
+                String query = employeeReposiroty.GetMaxEmployeeIDQuery();
+                DataTable dtMaxID = DB.SqlExecute(query, conn);
                 if (dtMaxID.Rows.Count > 0)
                 {
                     int maxEmployeeID = Convert.ToInt32(dtMaxID.Rows[0][0]);
@@ -61,9 +61,9 @@ namespace SyainKanriSystem
                     addEmployee.EmployeeID = insertEmployeeID;
                 }
                 // Insert文を作成
-                query = EmployeeReposiroty.MakeInsertQuery(addEmployee);
+                query = employeeReposiroty.MakeInsertQuery(addEmployee);
                 // クエリを実行
-                EmployeeReposiroty.SqlExecute(query, conn);              
+                DB.SqlExecute(query, conn);              
             
             }
             catch (Exception error)
@@ -85,15 +85,15 @@ namespace SyainKanriSystem
         public void DeleteEmployeeData(string deleteEmployeeID)
         {
             var DB = new DatabaseContext();
-            var EmployeeReposiroty = new EmployeeRepository();
+            var employeeReposiroty = new EmployeeRepository();
             NpgsqlConnection conn = DB.ConnectDB();
 
             try
             {
                 // Delete文を作成
-                string query = EmployeeReposiroty.MakeDeleteQuery(deleteEmployeeID);
+                string query = employeeReposiroty.MakeDeleteQuery(deleteEmployeeID);
                 // クエリを実行
-                EmployeeReposiroty.SqlExecute(query, conn);
+                DB.SqlExecute(query, conn);
 
             }
             catch (Exception error)
@@ -115,15 +115,15 @@ namespace SyainKanriSystem
         public void UpdateEmployeeData(Employees updateEmployee)
         {
             var DB = new DatabaseContext();
-            var EmployeeReposiroty = new EmployeeRepository();
+            var employeeReposiroty = new EmployeeRepository();
             NpgsqlConnection conn = DB.ConnectDB();
 
             try
             {
                 // Update文を作成
-                string query = EmployeeReposiroty.MakeUpdateQuery(updateEmployee);
+                string query = employeeReposiroty.MakeUpdateQuery(updateEmployee);
                 // クエリを実行
-                EmployeeReposiroty.SqlExecute(query, conn);
+                DB.SqlExecute(query, conn);
 
             }
             catch (Exception error)
@@ -145,13 +145,13 @@ namespace SyainKanriSystem
         public List<Employees> SearchEmployeeData(List<string> searchComboStr, List<string> searchTextStr)
         {
             var DB = new DatabaseContext();
-            var EmployeeReposiroty = new EmployeeRepository();
+            var employeeReposiroty = new EmployeeRepository();
             NpgsqlConnection conn = DB.ConnectDB();
             try
             {
-                string query = EmployeeReposiroty.MakeSearchQuery(searchComboStr, searchTextStr);
-                DataTable dt = EmployeeReposiroty.SqlExecute(query, conn);
-                List<Employees> employeeList = EmployeeReposiroty.GetSelectEmployee(dt);
+                string query = employeeReposiroty.MakeSearchQuery(searchComboStr, searchTextStr);
+                DataTable dt = DB.SqlExecute(query, conn);
+                List<Employees> employeeList = employeeReposiroty.GetSelectEmployee(dt);
                 return employeeList;
 
             }

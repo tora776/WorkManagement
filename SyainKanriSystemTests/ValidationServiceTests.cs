@@ -29,7 +29,7 @@ namespace SyainKanriSystem.Tests
             try
             {
                 var validationService = new ViewsUtil();
-                validationService.WordCount_Main(hoge1, hoge2);
+                validationService.WordCount(hoge1, hoge2);
             }
             catch
             {
@@ -89,31 +89,6 @@ namespace SyainKanriSystem.Tests
             catch (Exception error)
             {
                 throw error;
-            }
-        }
-
-        [TestMethod()]
-        [DataRow("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", "h", "h", "h", "h", "h", "h", "h", "h", "h", "h")]
-        [DataRow("h", "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", "h", "h", "h", "h", "h", "h", "h", "h", "h")]
-        [DataRow("h", "h", "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", "h", "h", "h", "h", "h", "h", "h", "h")]
-        [DataRow("h", "h", "h", "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", "h", "h", "h", "h", "h", "h", "h")]
-        [DataRow("h", "h", "h", "h", "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", "h", "h", "h", "h", "h", "h")]
-        [DataRow("h", "h", "h", "h", "h", "hoge", "h", "h", "h", "h", "h")]
-        [DataRow("h", "h", "h", "h", "h", "h", "hogehoge", "h", "h", "h", "h")]
-        [DataRow("h", "h", "h", "h", "h", "h", "h", "hogehoge", "h", "h", "h")]
-        [DataRow("h", "h", "h", "h", "h", "h", "h", "h", "hogehoge", "h", "h")]
-        [DataRow("h", "h", "h", "h", "h", "h", "h", "h", "h", "hogehoge", "h")]
-        [DataRow("h", "h", "h", "h", "h", "h", "h", "h", "h", "h", "hogehoge")]
-        public void WordCount_AddTest(string hoge1, string hoge2, string hoge3, string hoge4, string hoge5, string hoge6, string hoge7, string hoge8, string hoge9, string hoge10, string hoge11) { 
-            try
-            {
-                string[] testData = { hoge1, hoge2, hoge3, hoge4, hoge5, hoge6, hoge7, hoge8, hoge9, hoge10, hoge11 };
-                var validationService = new ViewsUtil();
-                validationService.WordCount_Add(testData);
-                Assert.Fail();
-            }
-            catch
-            {
             }
         }
     }

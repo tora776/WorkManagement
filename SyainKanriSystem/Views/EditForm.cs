@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -15,7 +16,6 @@ namespace SyainKanriSystem
     public partial class EmployeeEditForm : Form
     {
         // クラス変数を定義
-        private readonly List<Employees> employeeList;
         private readonly List<Departments> departmentList;
         private readonly List<Positions> positionList;
         private readonly Employees detailedEmployee;
@@ -23,12 +23,11 @@ namespace SyainKanriSystem
         private readonly MainForm mainForm;
 
         // EditFormを初期化する
-        public EmployeeEditForm(EmployeeDetailForm detailForm, MainForm mainForm, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList, Employees detailedEmployee)
+        public EmployeeEditForm(EmployeeDetailForm detailForm, MainForm mainForm, List<Departments> departmentList, List<Positions> positionList, Employees detailedEmployee)
         {
             InitializeComponent();
             this.detailForm = detailForm;
             this.mainForm = mainForm;
-            this.employeeList = employeeList;
             this.departmentList = departmentList;
             this.positionList = positionList;
             this.detailedEmployee = detailedEmployee;
@@ -102,43 +101,162 @@ namespace SyainKanriSystem
         }
 
         // テキストボックスの入力値を取得
-        private String[] GetInputText()
+        private bool GetInputText()
         {
-            string firstNameValue = textBox_Sei.Text;
-            string lastNameValue = textBox_Mei.Text;
-            string firstNameKanaValue = textBox_SeiKana.Text;
-            string lastNameKanaValue = textBox_MeiKana.Text;
-            string emailValue = textBox_Email.Text;
-            string phoneNumber1Value = textBox_PhoneNumber1.Text;
-            string phoneNumber2Value = textBox_PhoneNumber2.Text;
-            string phoneNumber3Value = textBox_PhoneNumber3.Text;
-            string hireDateValue = dateTimePicker_HireDate.Text;
-            string departmentValue = comboBox_Department.Text;
-            string positionValue = comboBox_Position.Text;
-            string statusValue = comboBox_Status.Text;
+            // エラーチェックのクラスインスタンス作成
+            var viewsUtil = new ViewsUtil();
+            try
+            {
+                // bool result = true;
 
-            String[] updateData = { firstNameValue, lastNameValue, firstNameKanaValue, lastNameKanaValue, emailValue, phoneNumber1Value, phoneNumber2Value, phoneNumber3Value, hireDateValue, departmentValue, positionValue, statusValue };
-            return updateData;
+                if (textBox_Sei.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_Sei.Text, 50);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_Mei.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_Sei.Text, 50);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_SeiKana.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_Sei.Text, 50);
+                    viewsUtil.KanaChk(textBox_SeiKana.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_MeiKana.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_Mei.Text, 50);
+                    viewsUtil.KanaChk(textBox_MeiKana.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_Email.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_Email.Text, 255);
+                    viewsUtil.MailChk(textBox_Email.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_PhoneNumber1.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_PhoneNumber1.Text, 4);
+                    viewsUtil.PhoneChk(textBox_PhoneNumber1.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_PhoneNumber2.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_PhoneNumber2.Text, 4);
+                    viewsUtil.PhoneChk(textBox_PhoneNumber2.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_PhoneNumber3.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_PhoneNumber3.Text, 4);
+                    viewsUtil.PhoneChk(textBox_PhoneNumber3.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (dateTimePicker_HireDate.Text != "")
+                {
+                    viewsUtil.WordCount(dateTimePicker_HireDate.Text, 10);
+                    viewsUtil.CalendarChk(dateTimePicker_HireDate.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (comboBox_Department.Text != "")
+                {
+                    viewsUtil.WordCount(comboBox_Department.Text, 5);
+                    viewsUtil.DepartmentChk(comboBox_Department.Text, departmentList);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (comboBox_Position.Text != "")
+                {
+                    viewsUtil.WordCount(comboBox_Position.Text, 5);
+                    viewsUtil.PositionChk(comboBox_Position.Text, positionList);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (comboBox_Status.Text != "")
+                {
+                    viewsUtil.WordCount(comboBox_Position.Text, 3);
+                    viewsUtil.StatusChk(comboBox_Status.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
+            catch (Exception error)
+            {
+                throw error;
+            }
         }
+        
 
         // DBへ社員データを更新する
-        public void SubmitUpdateEmployee(Employees detailedEmployee, String[] updateData, DateTime hireDateValue, string updatePhoneNumber, int updateDepartmentID, int updatePositionID, int updateStatusID)
+        public void SubmitUpdateEmployee(Employees detailedEmployee)
         {
             try
             {
                 // updateするデータの作成
                 Employees updateEmployee = new Employees();
+                
                 updateEmployee.EmployeeID = detailedEmployee.EmployeeID;
-                updateEmployee.Sei = updateData[0];
-                updateEmployee.Mei = updateData[1];
-                updateEmployee.SeiKana = updateData[2];
-                updateEmployee.MeiKana = updateData[3];
-                updateEmployee.Email = updateData[4];
-                updateEmployee.PhoneNumber = updatePhoneNumber;
-                updateEmployee.HireDate = hireDateValue;
-                updateEmployee.Department = updateDepartmentID;
-                updateEmployee.Position = updatePositionID;
-                updateEmployee.Status = updateStatusID;
+                updateEmployee.Sei = textBox_Sei.Text;
+                updateEmployee.Mei = textBox_Mei.Text;
+                updateEmployee.SeiKana = textBox_SeiKana.Text;
+                updateEmployee.MeiKana = textBox_MeiKana.Text;
+                updateEmployee.Email = textBox_Email.Text;
+                updateEmployee.PhoneNumber = textBox_PhoneNumber1.Text + "-" + textBox_PhoneNumber2.Text + "-" + textBox_PhoneNumber3.Text;
+                updateEmployee.HireDate = DateTime.Parse(dateTimePicker_HireDate.Text);
+                updateEmployee.Department = departmentList.Where(x => x.DepartmentName == comboBox_Department.Text).Select(x => x.DepartmentID).FirstOrDefault(); ;
+                updateEmployee.Position = positionList.Where(x => x.PositionName == comboBox_Position.Text).Select(x => x.PositionID).FirstOrDefault();
+                updateEmployee.Status = (comboBox_Status.Text == "在籍") ? 0 : 1;
+
 
                 var employeeService = new EmployeeService();
                 employeeService.UpdateEmployeeData(updateEmployee);
@@ -164,22 +282,9 @@ namespace SyainKanriSystem
             {
             
                 // 入力値を取得
-                String[] updateData = GetInputText();
-                // エラーチェックのクラスインスタンス作成
-                var viewsUtil = new ViewsUtil();
-                // エラーチェック
-                viewsUtil.EmptyChk(updateData);
-                viewsUtil.WordCount_Update(updateData);
-                viewsUtil.MailChk(updateData[4]);
-                viewsUtil.KanaChk(updateData[2]);
-                viewsUtil.KanaChk(updateData[3]);
-                DateTime hireDateValue = viewsUtil.CalendarChk(updateData[8]);
-                string updatePhoneNumber = viewsUtil.PhoneChk(updateData[5], updateData[6], updateData[7]);
-                int updateDepartmentID = viewsUtil.DepartmentChk(updateData[9], departmentList);
-                int updatePositionID = viewsUtil.PositionChk(updateData[10], positionList);
-                int updateStatusID = viewsUtil.StatusChk(updateData[11]);
+                GetInputText();
                 // データの作成・追加処理
-                SubmitUpdateEmployee(detailedEmployee, updateData, hireDateValue, updatePhoneNumber, updateDepartmentID, updatePositionID, updateStatusID);
+                SubmitUpdateEmployee(detailedEmployee);
 
             }
             catch (Exception error)

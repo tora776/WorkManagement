@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.Entity.Hierarchy;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -75,22 +74,129 @@ namespace SyainKanriSystem
 
 
         // 入力値を取得する
-        private String[] GetInputText()
+        private bool GetInputText()
         {
-            string firstNameValue = textBox_Sei.Text;
-            string lastNameValue = textBox_Mei.Text;
-            string firstNameKanaValue = textBox_SeiKana.Text;
-            string lastNameKanaValue = textBox_MeiKana.Text;
-            string emailValue = textBox_Email.Text;
-            string phoneNumber1Value = textBox_PhoneNumber1.Text;
-            string phoneNumber2Value = textBox_PhoneNumber2.Text;
-            string phoneNumber3Value = textBox_PhoneNumber3.Text;
-            string hireDateValue = dateTimePicker1.Text;
-            string departmentValue = comboBox_Department.Text;
-            string positionValue = comboBox_Position.Text;
+            // エラーチェックのクラスインスタンス作成
+            var viewsUtil = new ViewsUtil();
+            try
+            {
+                // bool result = true;
 
-            String[] addData = {firstNameValue, lastNameValue, firstNameKanaValue, lastNameKanaValue, emailValue, phoneNumber1Value, phoneNumber2Value, phoneNumber3Value, hireDateValue,  departmentValue, positionValue};
-            return addData;
+                if(textBox_Sei.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_Sei.Text, 50);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_Mei.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_Sei.Text, 50);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_SeiKana.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_Sei.Text, 50);
+                    viewsUtil.KanaChk(textBox_SeiKana.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_MeiKana.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_Mei.Text, 50);
+                    viewsUtil.KanaChk(textBox_MeiKana.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_Email.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_Email.Text, 255);
+                    viewsUtil.MailChk(textBox_Email.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_PhoneNumber1.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_PhoneNumber1.Text, 4);
+                    viewsUtil.PhoneChk(textBox_PhoneNumber1.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_PhoneNumber2.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_PhoneNumber2.Text, 4);
+                    viewsUtil.PhoneChk(textBox_PhoneNumber2.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (textBox_PhoneNumber3.Text != "")
+                {
+                    viewsUtil.WordCount(textBox_PhoneNumber3.Text, 4);
+                    viewsUtil.PhoneChk(textBox_PhoneNumber3.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (dateTimePicker1.Text != "")
+                {
+                    viewsUtil.WordCount(dateTimePicker1.Text, 10);
+                    viewsUtil.CalendarChk(dateTimePicker1.Text);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (comboBox_Department.Text != "")
+                {
+                    viewsUtil.WordCount(comboBox_Department.Text, 5);
+                    viewsUtil.DepartmentChk(comboBox_Department.Text, departmentList);
+                }
+                else
+                {
+                    return false;
+                }
+
+                if (comboBox_Position.Text != "")
+                {
+                    viewsUtil.WordCount(comboBox_Position.Text, 5);
+                    viewsUtil.PositionChk(comboBox_Position.Text, positionList);
+                }
+                else
+                {
+                    return false;
+                }
+
+                return true;
+
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
         }
 
         // 入力値をクリアする
@@ -111,21 +217,22 @@ namespace SyainKanriSystem
         }
 
         // DBへ社員データを追加する
-        private Employees SubmitAddEmployee(String[] addData, DateTime hireDateValue, string addPhoneNumber, int addDepartmentID, int addPositionID)
+        private Employees SubmitAddEmployee()
         {
             // insertするデータの作成
             Employees addEmployee = new Employees();
-            addEmployee.Sei = addData[0];
-            addEmployee.Mei = addData[1];
-            addEmployee.SeiKana = addData[2];
-            addEmployee.MeiKana = addData[3];
-            addEmployee.Email = addData[4];
-            addEmployee.PhoneNumber = addPhoneNumber;
-            addEmployee.HireDate = hireDateValue;
-            addEmployee.Department = addDepartmentID;
-            addEmployee.Position = addPositionID;
+            
+            addEmployee.Sei = textBox_Sei.Text;
+            addEmployee.Mei = textBox_Mei.Text;
+            addEmployee.SeiKana = textBox_SeiKana.Text;
+            addEmployee.MeiKana = textBox_MeiKana.Text;
+            addEmployee.Email = textBox_Email.Text;
+            addEmployee.PhoneNumber = textBox_PhoneNumber1.Text + "-" + textBox_PhoneNumber2.Text + "-" + textBox_PhoneNumber3.Text;
+            addEmployee.HireDate = DateTime.Parse(dateTimePicker1.Text);
+            addEmployee.Department = departmentList.Where(x => x.DepartmentName == comboBox_Department.Text).Select(x => x.DepartmentID).FirstOrDefault(); ;
+            addEmployee.Position = positionList.Where(x => x.PositionName == comboBox_Position.Text).Select(x => x.PositionID).FirstOrDefault();
             addEmployee.Status = 0;
-
+            
             var employeeService = new EmployeeService();
             employeeService.InsertEmployeeData(addEmployee);
 
@@ -139,29 +246,15 @@ namespace SyainKanriSystem
             this.Dispose();
         }
 
-
-
         // 社員追加処理
         private void AddEmployee()
         {
             try
             {
                 // 入力値を取得
-                String[] addData = GetInputText();
-                // エラーチェックのクラスインスタンス作成
-                var viewsUtil = new ViewsUtil();
-                // エラーチェック
-                viewsUtil.EmptyChk(addData);
-                viewsUtil.WordCount_Add(addData);
-                viewsUtil.MailChk(addData[4]);
-                viewsUtil.KanaChk(addData[2]);
-                viewsUtil.KanaChk(addData[3]);
-                DateTime hireDateValue = viewsUtil.CalendarChk(addData[8]);
-                string addPhoneNumber = viewsUtil.PhoneChk(addData[5], addData[6], addData[7]);
-                int addDepartmentID = viewsUtil.DepartmentChk(addData[9], departmentList);
-                int addPositionID = viewsUtil.PositionChk(addData[10], positionList);
+                GetInputText();
                 // データの作成・追加処理
-                SubmitAddEmployee(addData, hireDateValue, addPhoneNumber, addDepartmentID, addPositionID);
+                SubmitAddEmployee();
                 // 追加フォームを閉じる。閉じずに入力フォームを初期化したほうがよい？
                 // closeAddForm();
                 

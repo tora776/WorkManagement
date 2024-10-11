@@ -11,20 +11,9 @@ using System.Windows.Forms;
 namespace SyainKanriSystem.Models
 {
     public class DepartmentRepository { 
-
-        // SELECT文のクエリを実行する。
-        
-        public DataTable sqlExecuteDepartment(String query, NpgsqlConnection conn){
-            NpgsqlCommand sql = new NpgsqlCommand(query, conn);
-            NpgsqlDataReader reader = sql.ExecuteReader();
-            DataTable dt = new DataTable();
-            dt.Load(reader);
-            return dt;
-            }
-        
-            
+       
         // SELECT文のクエリを作成する。
-        public string makeSelectQueryDepartment(){
+        public string MakeSelectQueryDepartment(){
             try
             {
                 string query = "SELECT * FROM Departments";
@@ -35,9 +24,10 @@ namespace SyainKanriSystem.Models
                 throw;
             }
         }
+        
 
         // クエリの実行結果を取得する。
-        public List<Departments> getSelectDepartment(DataTable dt) {
+        public List<Departments> GetSelectDepartment(DataTable dt) {
             List<Departments> dataList = new List<Departments>();
 
             foreach(DataRow dr in dt.Rows)
