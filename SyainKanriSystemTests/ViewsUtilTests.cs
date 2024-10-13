@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace SyainKanriSystem.Tests
 {
     [TestClass()]
-    public class ValidationServiceTests
+    public class ViewsUtilTests
     {
 
         [TestMethod()]

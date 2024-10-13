@@ -293,7 +293,7 @@ namespace SyainKanriSystem
             }
             
         }
-
+        
         // ステータスコンボボックスに初期値を入力する（ステータスコンボボックスのリストはDesignerで作成したものを使用する）
         public ComboBox InitializeStatusComboBox(Employees detailedEmployee)
         {

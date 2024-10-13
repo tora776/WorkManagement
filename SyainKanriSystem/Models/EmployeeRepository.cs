@@ -122,7 +122,8 @@ namespace SyainKanriSystem.Models
                     }
                     else
                     {
-                        conditionQuery = conditionQuery + $@"AND {searchComboStr[i]} = '{searchTextStr[i]}'";
+                        conditionQuery += $@"AND {searchComboStr[i]} = '{searchTextStr[i]}'";
+
                     }
                 }
 
