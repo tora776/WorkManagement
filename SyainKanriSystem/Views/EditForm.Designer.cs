@@ -393,6 +393,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "EmployeeEditForm";
             this.Text = "社員情報管理システム";
+            this.Load += new System.EventHandler(this.EmployeeEditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

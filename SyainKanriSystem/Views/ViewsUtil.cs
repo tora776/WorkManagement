@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SyainKanriSystem
 {
@@ -205,6 +206,42 @@ namespace SyainKanriSystem
                 return statusID;
             }
 
+            catch (Exception error)
+            {
+                throw error;
+            }
+        }
+
+        // 部門コンボボックスにDBから取得した値を格納する
+        public ComboBox InitializeDepartmentComboBox(ComboBox comboBox_Department, List<Departments> departmentList)
+        {
+            try
+            {
+                // コンボボックスに表示と値をセット
+                comboBox_Department.DataSource = departmentList;
+                comboBox_Department.DisplayMember = "DepartmentName";
+                comboBox_Department.ValueMember = "DepartmentId";
+
+                return comboBox_Department;
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
+        }
+
+        // 役職コンボボックスにDBから取得した値を格納する
+        public ComboBox InitializePositionComboBox(ComboBox comboBox_Position, List<Positions> positionList)
+        {
+            try
+            {
+                // コンボボックスに表示と値をセット
+                comboBox_Position.DataSource = positionList;
+                comboBox_Position.DisplayMember = "PositionName";
+                comboBox_Position.ValueMember = "PositionId";
+
+                return comboBox_Position;
+            }
             catch (Exception error)
             {
                 throw error;

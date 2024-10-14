@@ -33,11 +33,19 @@ namespace SyainKanriSystem
             this.departmentList = departmentList;
             this.positionList = positionList;
             this.mainForm = form;
-            // コンボボックスを初期化
-            InitializeDepartmentComboBox();
-            InitializePositionComboBox();
 
             this.FormClosing += new FormClosingEventHandler(AddForm_FormClosing);
+        }
+
+        private void EmployeeAddForm_Load(object sender, EventArgs e)
+        {
+            var viewsUtil = new ViewsUtil();
+            // コンボボックスを初期化
+            viewsUtil.InitializeDepartmentComboBox(this.comboBox_Department, this.departmentList);
+            viewsUtil.InitializePositionComboBox(this.comboBox_Position, this.positionList);
+            // 初期値セット 
+            this.comboBox_Department.SelectedIndex = -1;
+            this.comboBox_Position.SelectedIndex = -1;
         }
 
         // 社員追加処理
@@ -259,55 +267,6 @@ namespace SyainKanriSystem
                 // closeAddForm();
                 
 
-            }
-            catch (Exception error)
-            {
-                throw error;
-            }
-        }
-
-
-        // TODO 編集フォームと処理が重複。新規でコンボボックスの入力値を格納するリストを作成？
-        // 部門コンボボックスにDBから取得した値を格納する
-        private ComboBox InitializeDepartmentComboBox()
-        {
-            try
-            {
-                List<Departments> departmentList = this.departmentList;
-
-                // コンボボックスに表示と値をセット
-                comboBox_Department.DataSource = departmentList;
-                comboBox_Department.DisplayMember = "DepartmentName";
-                comboBox_Department.ValueMember = "DepartmentId";
-
-                // 初期値セット
-                comboBox_Department.SelectedIndex = -1;
-
-                return comboBox_Department;
-            }
-            catch (Exception error)
-            {
-                throw error;
-            }
-        }
-
-        // TODO 編集フォームと処理が重複。新規でコンボボックスの入力値を格納するリストを作成？
-        // 役職コンボボックスにDBから取得した値を格納する
-        private ComboBox InitializePositionComboBox()
-        {
-            try
-            {
-                List<Positions> positionList = this.positionList;
-
-                // コンボボックスに表示と値をセット
-                comboBox_Position.DataSource = positionList;
-                comboBox_Position.DisplayMember = "PositionName";
-                comboBox_Position.ValueMember = "PositionId";
-
-                // 初期値セット
-                comboBox_Position.SelectedIndex = -1;
-
-                return  comboBox_Position;
             }
             catch (Exception error)
             {

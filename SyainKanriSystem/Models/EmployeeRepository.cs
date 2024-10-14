@@ -57,7 +57,7 @@ namespace SyainKanriSystem.Models
         {
             try
             {
-                string query = $@"INSERT INTO Employees (EmployeeID, Sei, Mei, SeiKana, MeiKana, Email, PhoneNumber, HireDate, Department, Position, Status) VALUES ('{addEmployee.EmployeeID}', '{addEmployee.Sei}', '{addEmployee.Mei}', '{addEmployee.SeiKana}', '{addEmployee.MeiKana}', '{addEmployee.Email}', '{addEmployee.PhoneNumber}', '{addEmployee.HireDate.ToString("yyyyMMdd")}', {addEmployee.Department}, {addEmployee.Position}, {addEmployee.Status})";
+                string query = $@"INSERT INTO Employees (EmployeeID, Sei, Mei, SeiKana, MeiKana, Email, PhoneNumber, HireDate, Department, Position, Status) VALUES ('{addEmployee.EmployeeID}', '{addEmployee.Sei}', '{addEmployee.Mei}', '{addEmployee.SeiKana}', '{addEmployee.MeiKana}', '{addEmployee.Email}', '{addEmployee.PhoneNumber}', '{addEmployee.HireDate}', {addEmployee.Department}, {addEmployee.Position}, {addEmployee.Status})";
                 return query;
             }
             catch (Exception)
@@ -98,7 +98,7 @@ namespace SyainKanriSystem.Models
         {
             try
             {
-                string query = $@"UPDATE Employees SET (Sei, Mei, SeiKana, MeiKana, Email, PhoneNumber, HireDate, Department, Position, Status) = ('{updateEmployee.Sei}', '{updateEmployee.Mei}', '{updateEmployee.SeiKana}', '{updateEmployee.MeiKana}', '{updateEmployee.Email}', '{updateEmployee.PhoneNumber}', '{updateEmployee.HireDate.ToString("yyyyMMdd")}', {updateEmployee.Department}, {updateEmployee.Position}, {updateEmployee.Status}) WHERE employeeid ='{updateEmployee.EmployeeID}'";
+                string query = $@"UPDATE Employees SET (Sei, Mei, SeiKana, MeiKana, Email, PhoneNumber, HireDate, Department, Position, Status) = ('{updateEmployee.Sei}', '{updateEmployee.Mei}', '{updateEmployee.SeiKana}', '{updateEmployee.MeiKana}', '{updateEmployee.Email}', '{updateEmployee.PhoneNumber}', '{updateEmployee.HireDate}', {updateEmployee.Department}, {updateEmployee.Position}, {updateEmployee.Status}) WHERE employeeid ='{updateEmployee.EmployeeID}'";
                 return query;
             }
             catch (Exception)

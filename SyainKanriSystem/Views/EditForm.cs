@@ -47,57 +47,20 @@ namespace SyainKanriSystem
             textBox_PhoneNumber2.Text = detailedEmployee.PhoneNumber.Substring(4, 4);
             textBox_PhoneNumber3.Text = detailedEmployee.PhoneNumber.Substring(9, 4);
             dateTimePicker_HireDate.Text = detailedEmployee.HireDate.ToString("yyyy/MM/dd");
-            InitializeDepartmentComboBox(detailedEmployee);
-            InitializePositionComboBox(detailedEmployee);
-            InitializeStatusComboBox(detailedEmployee);
         }
 
-        // TODO 追加フォームと処理が重複。新規でコンボボックスの入力値を格納するリストを作成？
-        // 部門名のコンボボックスのリストを作成・初期値を入力する
-        private ComboBox InitializeDepartmentComboBox(Employees detailedEmployee)
+        private void EmployeeEditForm_Load(object sender, EventArgs e)
         {
-            try
-            {
-                List<Departments> departmentList = this.departmentList;
-
-                // コンボボックスに表示と値をセット
-                comboBox_Department.DataSource = departmentList;
-                comboBox_Department.DisplayMember = "DepartmentName";
-                comboBox_Department.ValueMember = "DepartmentId";
-
-                // 初期値セット。Model.csにてDepartmentクラスDepartmentIDは1から始まっているので、-1する
-                comboBox_Department.SelectedIndex = detailedEmployee.Department - 1;
-
-                return comboBox_Department;
-            }
-            catch (Exception error)
-            {
-                throw error;
-            }
-        }
-
-        // TODO 追加フォームと処理が重複。新規でコンボボックスの入力値を格納するリストを作成？
-        // 役職コンボボックスのリストを作成・初期値を入力する
-        private ComboBox InitializePositionComboBox(Employees detailedEmployee)
-        {
-            try
-            {
-                List<Positions> positionList = this.positionList;
-
-                // コンボボックスに表示と値をセット
-                comboBox_Position.DataSource = positionList;
-                comboBox_Position.DisplayMember = "PositionName";
-                comboBox_Position.ValueMember = "PositionId";
-
-                // 初期値セット。Model.csにてPositionクラスPositionIDは1から始まっているので、-1する
-                comboBox_Position.SelectedIndex = detailedEmployee.Position - 1;
-
-                return comboBox_Position;
-            }
-            catch (Exception error)
-            {
-                throw error;
-            }
+            var viewsUtil = new ViewsUtil();
+            // コンボボックスを初期化（Statusコンボボックスのリストの値はDesignerにて指定済みの為、不要）
+            viewsUtil.InitializeDepartmentComboBox(this.comboBox_Department, this.departmentList);
+            viewsUtil.InitializePositionComboBox(this.comboBox_Position, this.positionList);
+            // 部門コンボボックス初期値セット。Model.csにてDepartmentクラスDepartmentIDは1から始まっているので、-1する
+            this.comboBox_Department.SelectedIndex = this.detailedEmployee.Department - 1;
+            // 役職コンボボックス初期値セット。Model.csにてPositionクラスPositionIDは1から始まっているので、-1する
+            this.comboBox_Position.SelectedIndex = this.detailedEmployee.Position - 1;
+            // ステータスコンボボックス初期値セット。
+            this.comboBox_Status.SelectedIndex = this.detailedEmployee.Status;
         }
 
         // テキストボックスの入力値を取得
@@ -292,24 +255,7 @@ namespace SyainKanriSystem
                 throw error;
             }
             
-        }
-        
-        // ステータスコンボボックスに初期値を入力する（ステータスコンボボックスのリストはDesignerで作成したものを使用する）
-        public ComboBox InitializeStatusComboBox(Employees detailedEmployee)
-        {
-            try
-            {
-                // 初期値セット
-                comboBox_Status.SelectedIndex = detailedEmployee.Status;
-
-                return comboBox_Status;
-            }
-            catch (Exception error)
-            {
-                throw error;
-            }
-        }
- 
+        } 
 
         private void Button_CloseUpdateForm(object sender, EventArgs e)
         {
