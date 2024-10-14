@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SyainKanriSystem.Properties
+namespace 社員管理システム2.Properties
 {
 
 
