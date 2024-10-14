@@ -51,10 +51,9 @@ namespace SyainKanriSystem
 
         private void EmployeeEditForm_Load(object sender, EventArgs e)
         {
-            var viewsUtil = new ViewsUtil();
             // コンボボックスを初期化（Statusコンボボックスのリストの値はDesignerにて指定済みの為、不要）
-            viewsUtil.InitializeDepartmentComboBox(this.comboBox_Department, this.departmentList);
-            viewsUtil.InitializePositionComboBox(this.comboBox_Position, this.positionList);
+            ViewsUtil.InitializeDepartmentComboBox(this.comboBox_Department, this.departmentList);
+            ViewsUtil.InitializePositionComboBox(this.comboBox_Position, this.positionList);
             // 部門コンボボックス初期値セット。Model.csにてDepartmentクラスDepartmentIDは1から始まっているので、-1する
             this.comboBox_Department.SelectedIndex = this.detailedEmployee.Department - 1;
             // 役職コンボボックス初期値セット。Model.csにてPositionクラスPositionIDは1から始まっているので、-1する
@@ -66,15 +65,13 @@ namespace SyainKanriSystem
         // テキストボックスの入力値を取得
         private bool GetInputText()
         {
-            // エラーチェックのクラスインスタンス作成
-            var viewsUtil = new ViewsUtil();
             try
             {
                 // bool result = true;
 
                 if (textBox_Sei.Text != "")
                 {
-                    viewsUtil.WordCount(textBox_Sei.Text, 50);
+                    ViewsUtil.WordCount(textBox_Sei.Text, 50);
                 }
                 else
                 {
@@ -83,7 +80,7 @@ namespace SyainKanriSystem
 
                 if (textBox_Mei.Text != "")
                 {
-                    viewsUtil.WordCount(textBox_Sei.Text, 50);
+                    ViewsUtil.WordCount(textBox_Sei.Text, 50);
                 }
                 else
                 {
@@ -92,8 +89,8 @@ namespace SyainKanriSystem
 
                 if (textBox_SeiKana.Text != "")
                 {
-                    viewsUtil.WordCount(textBox_Sei.Text, 50);
-                    viewsUtil.KanaChk(textBox_SeiKana.Text);
+                    ViewsUtil.WordCount(textBox_Sei.Text, 50);
+                    ViewsUtil.KanaChk(textBox_SeiKana.Text);
                 }
                 else
                 {
@@ -102,8 +99,8 @@ namespace SyainKanriSystem
 
                 if (textBox_MeiKana.Text != "")
                 {
-                    viewsUtil.WordCount(textBox_Mei.Text, 50);
-                    viewsUtil.KanaChk(textBox_MeiKana.Text);
+                    ViewsUtil.WordCount(textBox_Mei.Text, 50);
+                    ViewsUtil.KanaChk(textBox_MeiKana.Text);
                 }
                 else
                 {
@@ -112,8 +109,8 @@ namespace SyainKanriSystem
 
                 if (textBox_Email.Text != "")
                 {
-                    viewsUtil.WordCount(textBox_Email.Text, 255);
-                    viewsUtil.MailChk(textBox_Email.Text);
+                    ViewsUtil.WordCount(textBox_Email.Text, 255);
+                    ViewsUtil.MailChk(textBox_Email.Text);
                 }
                 else
                 {
@@ -122,8 +119,8 @@ namespace SyainKanriSystem
 
                 if (textBox_PhoneNumber1.Text != "")
                 {
-                    viewsUtil.WordCount(textBox_PhoneNumber1.Text, 4);
-                    viewsUtil.PhoneChk(textBox_PhoneNumber1.Text);
+                    ViewsUtil.WordCount(textBox_PhoneNumber1.Text, 4);
+                    ViewsUtil.PhoneChk(textBox_PhoneNumber1.Text);
                 }
                 else
                 {
@@ -132,8 +129,8 @@ namespace SyainKanriSystem
 
                 if (textBox_PhoneNumber2.Text != "")
                 {
-                    viewsUtil.WordCount(textBox_PhoneNumber2.Text, 4);
-                    viewsUtil.PhoneChk(textBox_PhoneNumber2.Text);
+                    ViewsUtil.WordCount(textBox_PhoneNumber2.Text, 4);
+                    ViewsUtil.PhoneChk(textBox_PhoneNumber2.Text);
                 }
                 else
                 {
@@ -142,8 +139,8 @@ namespace SyainKanriSystem
 
                 if (textBox_PhoneNumber3.Text != "")
                 {
-                    viewsUtil.WordCount(textBox_PhoneNumber3.Text, 4);
-                    viewsUtil.PhoneChk(textBox_PhoneNumber3.Text);
+                    ViewsUtil.WordCount(textBox_PhoneNumber3.Text, 4);
+                    ViewsUtil.PhoneChk(textBox_PhoneNumber3.Text);
                 }
                 else
                 {
@@ -152,8 +149,8 @@ namespace SyainKanriSystem
 
                 if (dateTimePicker_HireDate.Text != "")
                 {
-                    viewsUtil.WordCount(dateTimePicker_HireDate.Text, 10);
-                    viewsUtil.CalendarChk(dateTimePicker_HireDate.Text);
+                    ViewsUtil.WordCount(dateTimePicker_HireDate.Text, 10);
+                    ViewsUtil.CalendarChk(dateTimePicker_HireDate.Text);
                 }
                 else
                 {
@@ -162,8 +159,8 @@ namespace SyainKanriSystem
 
                 if (comboBox_Department.Text != "")
                 {
-                    viewsUtil.WordCount(comboBox_Department.Text, 5);
-                    viewsUtil.DepartmentChk(comboBox_Department.Text, departmentList);
+                    ViewsUtil.WordCount(comboBox_Department.Text, 5);
+                    ViewsUtil.DepartmentChk(comboBox_Department.Text, departmentList);
                 }
                 else
                 {
@@ -172,8 +169,8 @@ namespace SyainKanriSystem
 
                 if (comboBox_Position.Text != "")
                 {
-                    viewsUtil.WordCount(comboBox_Position.Text, 5);
-                    viewsUtil.PositionChk(comboBox_Position.Text, positionList);
+                    ViewsUtil.WordCount(comboBox_Position.Text, 5);
+                    ViewsUtil.PositionChk(comboBox_Position.Text, positionList);
                 }
                 else
                 {
@@ -182,8 +179,8 @@ namespace SyainKanriSystem
 
                 if (comboBox_Status.Text != "")
                 {
-                    viewsUtil.WordCount(comboBox_Position.Text, 3);
-                    viewsUtil.StatusChk(comboBox_Status.Text);
+                    ViewsUtil.WordCount(comboBox_Position.Text, 3);
+                    ViewsUtil.StatusChk(comboBox_Status.Text);
                 }
                 else
                 {
