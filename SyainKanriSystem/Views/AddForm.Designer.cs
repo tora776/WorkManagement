@@ -44,7 +44,7 @@
             this.textBox_PhoneNumber1 = new System.Windows.Forms.TextBox();
             this.textBox_PhoneNumber2 = new System.Windows.Forms.TextBox();
             this.textBox_PhoneNumber3 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_HireDate = new System.Windows.Forms.DateTimePicker();
             this.comboBox_Department = new System.Windows.Forms.ComboBox();
             this.comboBox_Position = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -208,12 +208,12 @@
             this.textBox_PhoneNumber3.Size = new System.Drawing.Size(89, 25);
             this.textBox_PhoneNumber3.TabIndex = 8;
             // 
-            // dateTimePicker1
+            // dateTimePicker_HireDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(182, 283);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 25);
-            this.dateTimePicker1.TabIndex = 9;
+            this.dateTimePicker_HireDate.Location = new System.Drawing.Point(182, 283);
+            this.dateTimePicker_HireDate.Name = "dateTimePicker_HireDate";
+            this.dateTimePicker_HireDate.Size = new System.Drawing.Size(200, 25);
+            this.dateTimePicker_HireDate.TabIndex = 9;
             // 
             // comboBox_Department
             // 
@@ -315,7 +315,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1333, 678);
             this.Controls.Add(this.button_Back);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTimePicker_HireDate);
             this.Controls.Add(this.comboBox_Position);
             this.Controls.Add(this.comboBox_Department);
             this.Controls.Add(this.textBox_Mei);
@@ -375,7 +375,7 @@
         private System.Windows.Forms.TextBox textBox_MeiKana;
         private System.Windows.Forms.ComboBox comboBox_Position;
         private System.Windows.Forms.ComboBox comboBox_Department;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_HireDate;
         private System.Windows.Forms.Button button_Back;
     }
 }

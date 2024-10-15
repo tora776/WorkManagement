@@ -13,7 +13,7 @@ namespace SyainKanriSystem
     {
 
         // 入力値が空かどうか取得する
-        public static bool EmptyChk(string chkData)
+        public static bool InputEmptyCheck(string chkData)
         {
             try
             {

@@ -24,6 +24,7 @@ namespace SyainKanriSystem
         private readonly List<Departments> departmentList;
         private readonly List<Positions> positionList;
         private readonly MainForm mainForm;
+        private bool addEmployeeFlg;
 
         // AddFormを初期化する。
         public EmployeeAddForm(MainForm form, List<Departments> departmentList, List<Positions> positionList)
@@ -45,6 +46,8 @@ namespace SyainKanriSystem
             // 初期値セット 
             this.comboBox_Department.SelectedIndex = -1;
             this.comboBox_Position.SelectedIndex = -1;
+            // 社員追加実施した際に、MainFormのDataGridViewを更新するフラグ
+            this.addEmployeeFlg = false;
         }
 
         // 社員追加処理
@@ -67,7 +70,6 @@ namespace SyainKanriSystem
         // 追加フォームを閉じる
         private void Button_Cancel_Click(object sender, EventArgs e)
         {
-            
             // 追加フォームを閉じる
             CloseAddForm();
         }
@@ -75,8 +77,18 @@ namespace SyainKanriSystem
         // 追加フォームを閉じる際、最新の社員情報をMainFormに反映させる
         private void AddForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // MainFormに反映
-            mainForm.CloseForm_ResetDataGridView();
+            try
+            {
+                if (this.addEmployeeFlg == true)
+                {
+                    // MainFormに反映
+                    mainForm.CloseForm_ResetDataGridView();
+                }
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
         }
 
 
@@ -85,9 +97,7 @@ namespace SyainKanriSystem
         {
             try
             {
-                // bool result = true;
-
-                if(textBox_Sei.Text != "")
+                if (ViewsUtil.InputEmptyCheck(textBox_Sei.Text) == false)
                 {
                     ViewsUtil.WordCount(textBox_Sei.Text, 50);
                 }
@@ -96,18 +106,18 @@ namespace SyainKanriSystem
                     return false;
                 }
 
-                if (textBox_Mei.Text != "")
+                if (ViewsUtil.InputEmptyCheck(textBox_Mei.Text) == false)
                 {
-                    ViewsUtil.WordCount(textBox_Sei.Text, 50);
+                    ViewsUtil.WordCount(textBox_Mei.Text, 50);
                 }
                 else
                 {
                     return false;
                 }
 
-                if (textBox_SeiKana.Text != "")
+                if (ViewsUtil.InputEmptyCheck(textBox_SeiKana.Text) == false)
                 {
-                    ViewsUtil.WordCount(textBox_Sei.Text, 50);
+                    ViewsUtil.WordCount(textBox_SeiKana.Text, 50);
                     ViewsUtil.KanaChk(textBox_SeiKana.Text);
                 }
                 else
@@ -115,9 +125,9 @@ namespace SyainKanriSystem
                     return false;
                 }
 
-                if (textBox_MeiKana.Text != "")
+                if (ViewsUtil.InputEmptyCheck(textBox_MeiKana.Text) == false)
                 {
-                    ViewsUtil.WordCount(textBox_Mei.Text, 50);
+                    ViewsUtil.WordCount(textBox_MeiKana.Text, 50);
                     ViewsUtil.KanaChk(textBox_MeiKana.Text);
                 }
                 else
@@ -125,7 +135,7 @@ namespace SyainKanriSystem
                     return false;
                 }
 
-                if (textBox_Email.Text != "")
+                if (ViewsUtil.InputEmptyCheck(textBox_Email.Text) == false)
                 {
                     ViewsUtil.WordCount(textBox_Email.Text, 255);
                     ViewsUtil.MailChk(textBox_Email.Text);
@@ -135,7 +145,7 @@ namespace SyainKanriSystem
                     return false;
                 }
 
-                if (textBox_PhoneNumber1.Text != "")
+                if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber1.Text) == false)
                 {
                     ViewsUtil.WordCount(textBox_PhoneNumber1.Text, 4);
                     ViewsUtil.PhoneChk(textBox_PhoneNumber1.Text);
@@ -145,7 +155,7 @@ namespace SyainKanriSystem
                     return false;
                 }
 
-                if (textBox_PhoneNumber2.Text != "")
+                if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber2.Text) == false)
                 {
                     ViewsUtil.WordCount(textBox_PhoneNumber2.Text, 4);
                     ViewsUtil.PhoneChk(textBox_PhoneNumber2.Text);
@@ -155,7 +165,7 @@ namespace SyainKanriSystem
                     return false;
                 }
 
-                if (textBox_PhoneNumber3.Text != "")
+                if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber3.Text) == false)
                 {
                     ViewsUtil.WordCount(textBox_PhoneNumber3.Text, 4);
                     ViewsUtil.PhoneChk(textBox_PhoneNumber3.Text);
@@ -165,17 +175,17 @@ namespace SyainKanriSystem
                     return false;
                 }
 
-                if (dateTimePicker1.Text != "")
+                if (ViewsUtil.InputEmptyCheck(dateTimePicker_HireDate.Text) == false)
                 {
-                    ViewsUtil.WordCount(dateTimePicker1.Text, 10);
-                    ViewsUtil.CalendarChk(dateTimePicker1.Text);
+                    ViewsUtil.WordCount(dateTimePicker_HireDate.Text, 10);
+                    ViewsUtil.CalendarChk(dateTimePicker_HireDate.Text);
                 }
                 else
                 {
                     return false;
                 }
 
-                if (comboBox_Department.Text != "")
+                if (ViewsUtil.InputEmptyCheck(comboBox_Department.Text) == false)
                 {
                     ViewsUtil.WordCount(comboBox_Department.Text, 5);
                     ViewsUtil.DepartmentChk(comboBox_Department.Text, departmentList);
@@ -185,7 +195,7 @@ namespace SyainKanriSystem
                     return false;
                 }
 
-                if (comboBox_Position.Text != "")
+                if (ViewsUtil.InputEmptyCheck(comboBox_Position.Text) == false)
                 {
                     ViewsUtil.WordCount(comboBox_Position.Text, 5);
                     ViewsUtil.PositionChk(comboBox_Position.Text, positionList);
@@ -194,7 +204,6 @@ namespace SyainKanriSystem
                 {
                     return false;
                 }
-
                 return true;
 
             }
@@ -233,13 +242,15 @@ namespace SyainKanriSystem
             addEmployee.MeiKana = textBox_MeiKana.Text;
             addEmployee.Email = textBox_Email.Text;
             addEmployee.PhoneNumber = textBox_PhoneNumber1.Text + "-" + textBox_PhoneNumber2.Text + "-" + textBox_PhoneNumber3.Text;
-            addEmployee.HireDate = DateTime.Parse(dateTimePicker1.Text);
+            addEmployee.HireDate = DateTime.Parse(dateTimePicker_HireDate.Text);
             addEmployee.Department = departmentList.Where(x => x.DepartmentName == comboBox_Department.Text).Select(x => x.DepartmentID).FirstOrDefault(); ;
             addEmployee.Position = positionList.Where(x => x.PositionName == comboBox_Position.Text).Select(x => x.PositionID).FirstOrDefault();
             addEmployee.Status = 0;
             
             var employeeService = new EmployeeService();
             employeeService.InsertEmployeeData(addEmployee);
+
+            this.addEmployeeFlg = true;
 
             return addEmployee;
         }
