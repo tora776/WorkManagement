@@ -28,7 +28,7 @@ namespace SyainKanriSystem.Tests
         {
             try
             {
-                ViewsUtil.WordCount(hoge1, hoge2);
+                ViewsUtil.WordCountCheck(hoge1, hoge2);
             }
             catch
             {
@@ -37,24 +37,40 @@ namespace SyainKanriSystem.Tests
 
         }
 
+        [TestMethod()]
+        [DataRow("000002")]
+        public void EmployeeIDChkTest(string hoge)
+        {
+            try
+            {
+                ViewsUtil.EmployeeIDCheck(hoge);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+
+        }
 
         [TestMethod()]
         [DataRow("あ")]
         [DataRow("ア")]
         [DataRow("/")]
-        [DataRow("2/2")]
+        [DataRow("2-2")]
         [DataRow("*")]
-        public void EmployeeIDChkTest_CatchError(string hoge)
+        public void EmployeeIDChkTest_CatchErrorCheck(string hoge)
         {
             try
             {
-                ViewsUtil.EmployeeIDChk(hoge);
-                Assert.Fail();
+                ViewsUtil.EmployeeIDCheck(hoge);
             }
-            catch (Exception error)
+            catch
             {
-                throw error;
+                Assert.IsTrue(true);
+                return;
             }
+            // 例外が発生していない。
+            Assert.Fail();
         }
 
         [TestMethod()]
@@ -63,7 +79,7 @@ namespace SyainKanriSystem.Tests
         {
             try
             {
-                ViewsUtil.KanaChk(hoge);
+                ViewsUtil.KanaCheck(hoge);
             }
             catch
             {
@@ -75,17 +91,54 @@ namespace SyainKanriSystem.Tests
         [DataRow("ア")]
         [DataRow("a")]
         [DataRow("!")]
-        public void KanaChkTest_CatchError(string hoge)
+        public void KanaChkTest_CatchErrorCheck(string hoge)
         {
             try
             {
-                ViewsUtil.KanaChk(hoge);
+                ViewsUtil.KanaCheck(hoge);
+            }
+            catch
+            {
+                Assert.IsTrue(true);
+                return;
+            }
+            // 例外が発生していない
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        [DataRow("090")]
+        public void PhoneChkTest(string hoge)
+        {
+            try
+            {
+                ViewsUtil.PhoneCheck(hoge);
+            }
+            catch
+            {
                 Assert.Fail();
             }
-            catch (Exception error)
+        }
+
+        [TestMethod()]
+        [DataRow("あ")]
+        [DataRow("ア")]
+        [DataRow("/")]
+        [DataRow("2-2")]
+        [DataRow("*")]
+        public void PhoneChkTest_CatchErrorCheck(string hoge)
+        {
+            try
             {
-                throw error;
+                ViewsUtil.PhoneCheck(hoge);
             }
+            catch
+            {
+                Assert.IsTrue(true);
+                return;
+            }
+            // 例外が発生していない
+            Assert.Fail();
         }
     }
 }

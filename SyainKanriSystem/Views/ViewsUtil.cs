@@ -32,7 +32,7 @@ namespace SyainKanriSystem
 
         // 文字数チェック
         // 入力文字数がDBの入力制限を超えていないか確認する
-        public static void WordCount(string chkData, int limit)
+        public static void WordCountCheck(string chkData, int limit)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace SyainKanriSystem
 
         // 社員番号が数字か確認する
         // 6桁かどうかはwordCount_Mainで確認する
-        public static void EmployeeIDChk(string chkData)
+        public static void EmployeeIDCheck(string chkData)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace SyainKanriSystem
         }
 
         // 姓（かな）・名（かな）が平仮名か確認する
-        public static void KanaChk(string chkData)
+        public static void KanaCheck(string chkData)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace SyainKanriSystem
         // 入力値が数字か確認する
         // 電話番号を「xxx-xxxx-xxxx」の形に成形する
         // TODO 電話番号が指定の文字数を下回っていないことを確認
-        public static void PhoneChk(string phoneNumber)
+        public static void PhoneCheck(string phoneNumber)
         {
             try
             {
@@ -106,7 +106,7 @@ namespace SyainKanriSystem
         }
 
         // 入力値に「@」「.」が含まれているか確認する
-        public static void MailChk(string chkData)
+        public static void MailCheck(string chkData)
         {
             try
             {
@@ -127,7 +127,7 @@ namespace SyainKanriSystem
         }
 
         // TODO 日付以外のデータが入力されている場合、Catch部に移行するエラーを作成
-        public static DateTime CalendarChk(string chkData)
+        public static DateTime CalendarCheck(string chkData)
         {
             try
             {
@@ -143,7 +143,7 @@ namespace SyainKanriSystem
 
         // TODO 入力値が空の場合はemptyChk関数で精査できるので、この関数は不要？
         // 部門コンボボックスに異なる値が入力されていないか確認する
-        public static int DepartmentChk(string chkData, List<Departments> departmentList)
+        public static int DepartmentCheck(string chkData, List<Departments> departmentList)
         {
             try
             {
@@ -165,7 +165,7 @@ namespace SyainKanriSystem
 
         // TODO 入力値が空の場合はemptyChk関数で精査できるので、この関数は不要？
         // 役職コンボボックスに異なる値が入力されていないか確認する
-        public static int PositionChk(string chkData, List<Positions> positionList)
+        public static int PositionCheck(string chkData, List<Positions> positionList)
         {
             try
             {
@@ -185,7 +185,7 @@ namespace SyainKanriSystem
         }
 
         // ステータスコンボボックスに異なる値が入力されていないか確認する
-        public static int StatusChk(string chkData)
+        public static int StatusCheck(string chkData)
         {
             try
             {

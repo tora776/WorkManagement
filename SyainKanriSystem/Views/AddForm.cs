@@ -99,7 +99,7 @@ namespace SyainKanriSystem
             {
                 if (ViewsUtil.InputEmptyCheck(textBox_Sei.Text) == false)
                 {
-                    ViewsUtil.WordCount(textBox_Sei.Text, 50);
+                    ViewsUtil.WordCountCheck(textBox_Sei.Text, 50);
                 }
                 else
                 {
@@ -108,7 +108,7 @@ namespace SyainKanriSystem
 
                 if (ViewsUtil.InputEmptyCheck(textBox_Mei.Text) == false)
                 {
-                    ViewsUtil.WordCount(textBox_Mei.Text, 50);
+                    ViewsUtil.WordCountCheck(textBox_Mei.Text, 50);
                 }
                 else
                 {
@@ -117,8 +117,8 @@ namespace SyainKanriSystem
 
                 if (ViewsUtil.InputEmptyCheck(textBox_SeiKana.Text) == false)
                 {
-                    ViewsUtil.WordCount(textBox_SeiKana.Text, 50);
-                    ViewsUtil.KanaChk(textBox_SeiKana.Text);
+                    ViewsUtil.WordCountCheck(textBox_SeiKana.Text, 50);
+                    ViewsUtil.KanaCheck(textBox_SeiKana.Text);
                 }
                 else
                 {
@@ -127,8 +127,8 @@ namespace SyainKanriSystem
 
                 if (ViewsUtil.InputEmptyCheck(textBox_MeiKana.Text) == false)
                 {
-                    ViewsUtil.WordCount(textBox_MeiKana.Text, 50);
-                    ViewsUtil.KanaChk(textBox_MeiKana.Text);
+                    ViewsUtil.WordCountCheck(textBox_MeiKana.Text, 50);
+                    ViewsUtil.KanaCheck(textBox_MeiKana.Text);
                 }
                 else
                 {
@@ -137,8 +137,8 @@ namespace SyainKanriSystem
 
                 if (ViewsUtil.InputEmptyCheck(textBox_Email.Text) == false)
                 {
-                    ViewsUtil.WordCount(textBox_Email.Text, 255);
-                    ViewsUtil.MailChk(textBox_Email.Text);
+                    ViewsUtil.WordCountCheck(textBox_Email.Text, 255);
+                    ViewsUtil.MailCheck(textBox_Email.Text);
                 }
                 else
                 {
@@ -147,8 +147,8 @@ namespace SyainKanriSystem
 
                 if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber1.Text) == false)
                 {
-                    ViewsUtil.WordCount(textBox_PhoneNumber1.Text, 4);
-                    ViewsUtil.PhoneChk(textBox_PhoneNumber1.Text);
+                    ViewsUtil.WordCountCheck(textBox_PhoneNumber1.Text, 4);
+                    ViewsUtil.PhoneCheck(textBox_PhoneNumber1.Text);
                 }
                 else
                 {
@@ -157,8 +157,8 @@ namespace SyainKanriSystem
 
                 if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber2.Text) == false)
                 {
-                    ViewsUtil.WordCount(textBox_PhoneNumber2.Text, 4);
-                    ViewsUtil.PhoneChk(textBox_PhoneNumber2.Text);
+                    ViewsUtil.WordCountCheck(textBox_PhoneNumber2.Text, 4);
+                    ViewsUtil.PhoneCheck(textBox_PhoneNumber2.Text);
                 }
                 else
                 {
@@ -167,8 +167,8 @@ namespace SyainKanriSystem
 
                 if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber3.Text) == false)
                 {
-                    ViewsUtil.WordCount(textBox_PhoneNumber3.Text, 4);
-                    ViewsUtil.PhoneChk(textBox_PhoneNumber3.Text);
+                    ViewsUtil.WordCountCheck(textBox_PhoneNumber3.Text, 4);
+                    ViewsUtil.PhoneCheck(textBox_PhoneNumber3.Text);
                 }
                 else
                 {
@@ -177,8 +177,8 @@ namespace SyainKanriSystem
 
                 if (ViewsUtil.InputEmptyCheck(dateTimePicker_HireDate.Text) == false)
                 {
-                    ViewsUtil.WordCount(dateTimePicker_HireDate.Text, 10);
-                    ViewsUtil.CalendarChk(dateTimePicker_HireDate.Text);
+                    ViewsUtil.WordCountCheck(dateTimePicker_HireDate.Text, 10);
+                    ViewsUtil.CalendarCheck(dateTimePicker_HireDate.Text);
                 }
                 else
                 {
@@ -187,8 +187,8 @@ namespace SyainKanriSystem
 
                 if (ViewsUtil.InputEmptyCheck(comboBox_Department.Text) == false)
                 {
-                    ViewsUtil.WordCount(comboBox_Department.Text, 5);
-                    ViewsUtil.DepartmentChk(comboBox_Department.Text, departmentList);
+                    ViewsUtil.WordCountCheck(comboBox_Department.Text, 5);
+                    ViewsUtil.DepartmentCheck(comboBox_Department.Text, departmentList);
                 }
                 else
                 {
@@ -197,8 +197,8 @@ namespace SyainKanriSystem
 
                 if (ViewsUtil.InputEmptyCheck(comboBox_Position.Text) == false)
                 {
-                    ViewsUtil.WordCount(comboBox_Position.Text, 5);
-                    ViewsUtil.PositionChk(comboBox_Position.Text, positionList);
+                    ViewsUtil.WordCountCheck(comboBox_Position.Text, 5);
+                    ViewsUtil.PositionCheck(comboBox_Position.Text, positionList);
                 }
                 else
                 {
