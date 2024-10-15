@@ -28,8 +28,7 @@ namespace SyainKanriSystem.Tests
         {
             try
             {
-                var validationService = new ViewsUtil();
-                validationService.WordCount(hoge1, hoge2);
+                ViewsUtil.WordCount(hoge1, hoge2);
             }
             catch
             {
@@ -49,8 +48,7 @@ namespace SyainKanriSystem.Tests
         {
             try
             {
-                var validationService = new ViewsUtil();
-                validationService.EmployeeIDChk(hoge);
+                ViewsUtil.EmployeeIDChk(hoge);
                 Assert.Fail();
             }
             catch (Exception error)
@@ -65,8 +63,7 @@ namespace SyainKanriSystem.Tests
         {
             try
             {
-                var validationService = new ViewsUtil();
-                validationService.KanaChk(hoge);
+                ViewsUtil.KanaChk(hoge);
             }
             catch
             {
@@ -82,8 +79,7 @@ namespace SyainKanriSystem.Tests
         {
             try
             {
-                var validationService = new ViewsUtil();
-                validationService.KanaChk(hoge);
+                ViewsUtil.KanaChk(hoge);
                 Assert.Fail();
             }
             catch (Exception error)
