@@ -1,5 +1,4 @@
-﻿using Microsoft.Identity.Client;
-using Npgsql;
+﻿using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;

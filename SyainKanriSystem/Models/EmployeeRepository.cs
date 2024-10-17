@@ -19,7 +19,7 @@ namespace SyainKanriSystem.Models
         {
             try
             {
-                string query = "SELECT * FROM Employees";
+                string query = "SELECT * FROM Employees ORDER BY EmployeeID";
                 return query;
             }
             catch (Exception)

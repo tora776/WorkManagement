@@ -20,18 +20,4 @@ namespace SyainKanriSystem
         public int Position { set; get; }
         public int Status { set; get; }
         }
-
-    public class Departments
-    {
-        public int DepartmentID { set; get; }
-        public string DepartmentName { set; get; }
-        public string Location { set; get; }
-    }
-
-    public class Positions
-    {
-        public int PositionID { set; get; }
-        public string PositionName { set; get; }
-        public string Description { set; get; }
-    }
 }

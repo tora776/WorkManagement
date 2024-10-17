@@ -1,5 +1,4 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using SyainKanriSystem.Models;
+﻿using SyainKanriSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,11 +55,7 @@ namespace SyainKanriSystem
             try
             {
                 // 社員を追加する
-                AddEmployee();
-                MessageBox.Show("社員を追加しました。");
-                // テキストボックスを初期化する
-                ClearInputText();
-                
+                AddEmployee();                
             }
             catch (Exception error) {
                 MessageBox.Show(error.Message);
@@ -93,115 +88,147 @@ namespace SyainKanriSystem
 
 
         // 入力値を取得する
-        private bool GetInputText()
+        private bool InputTextCheck()
         {
             try
             {
-                if (ViewsUtil.InputEmptyCheck(textBox_Sei.Text) == false)
+                // 「姓」が入力されているか確認する
+                if (ViewsUtil.InputEmptyCheck(textBox_Sei.Text) == true)
                 {
+                    // 文字数チェック
                     ViewsUtil.WordCountCheck(textBox_Sei.Text, 50);
                 }
                 else
                 {
+                    MessageBox.Show("「姓」は必須入力です");
                     return false;
                 }
-
-                if (ViewsUtil.InputEmptyCheck(textBox_Mei.Text) == false)
+                // 「名」が入力されているか確認する
+                if (ViewsUtil.InputEmptyCheck(textBox_Mei.Text) == true)
                 {
+                    // 文字数チェック
                     ViewsUtil.WordCountCheck(textBox_Mei.Text, 50);
                 }
                 else
                 {
+                    MessageBox.Show("「名」は必須入力です");
                     return false;
                 }
-
-                if (ViewsUtil.InputEmptyCheck(textBox_SeiKana.Text) == false)
+                // 「姓（かな）」が入力されているか確認する
+                if (ViewsUtil.InputEmptyCheck(textBox_SeiKana.Text) == true)
                 {
+                    // 文字数チェック
                     ViewsUtil.WordCountCheck(textBox_SeiKana.Text, 50);
+                    // 平仮名かどうか確認する
                     ViewsUtil.KanaCheck(textBox_SeiKana.Text);
                 }
                 else
                 {
+                    MessageBox.Show("「姓（かな）」は必須入力です");
                     return false;
                 }
-
-                if (ViewsUtil.InputEmptyCheck(textBox_MeiKana.Text) == false)
+                // 「名（かな）」が入力されているか確認する
+                if (ViewsUtil.InputEmptyCheck(textBox_MeiKana.Text) == true)
                 {
+                    // 文字数チェック
                     ViewsUtil.WordCountCheck(textBox_MeiKana.Text, 50);
+                    // 平仮名かどうか確認する
                     ViewsUtil.KanaCheck(textBox_MeiKana.Text);
                 }
                 else
                 {
+                    MessageBox.Show("「名（かな）」は必須入力です");
                     return false;
                 }
-
-                if (ViewsUtil.InputEmptyCheck(textBox_Email.Text) == false)
+                // 「メールアドレス」が入力されているか確認する
+                if (ViewsUtil.InputEmptyCheck(textBox_Email.Text) == true)
                 {
+                    // 文字数チェック
                     ViewsUtil.WordCountCheck(textBox_Email.Text, 255);
+                    // メールアドレスの書式チェック（「@」「.」の有無）
                     ViewsUtil.MailCheck(textBox_Email.Text);
                 }
                 else
                 {
+                    MessageBox.Show("「メールアドレス」は必須入力です");
                     return false;
                 }
-
-                if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber1.Text) == false)
+                // 「電話番号」のテキストボックス1つ目が入力されているか確認する
+                if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber1.Text) == true)
                 {
+                    // 文字数チェック
                     ViewsUtil.WordCountCheck(textBox_PhoneNumber1.Text, 4);
+                    // 電話番号の書式チェック（数字が入力されているか）
                     ViewsUtil.PhoneCheck(textBox_PhoneNumber1.Text);
                 }
                 else
                 {
+                    MessageBox.Show("「電話番号」は必須入力です");
                     return false;
                 }
-
-                if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber2.Text) == false)
+                // 「電話番号」のテキストボックス2つ目が入力されているか確認する
+                if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber2.Text) == true)
                 {
+                    // 文字数チェック
                     ViewsUtil.WordCountCheck(textBox_PhoneNumber2.Text, 4);
+                    // 電話番号の書式チェック（数字が入力されているか）
                     ViewsUtil.PhoneCheck(textBox_PhoneNumber2.Text);
                 }
                 else
                 {
+                    MessageBox.Show("「電話番号」は必須入力です");
                     return false;
                 }
-
-                if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber3.Text) == false)
+                // 「電話番号」のテキストボックス3つ目が入力されているか確認する
+                if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber3.Text) == true)
                 {
+                    // 文字数チェック
                     ViewsUtil.WordCountCheck(textBox_PhoneNumber3.Text, 4);
+                    // 電話番号の書式チェック（数字が入力されているか）
                     ViewsUtil.PhoneCheck(textBox_PhoneNumber3.Text);
                 }
                 else
                 {
+                    MessageBox.Show("「電話番号」は必須入力です");
                     return false;
                 }
-
-                if (ViewsUtil.InputEmptyCheck(dateTimePicker_HireDate.Text) == false)
+                // 「雇用日」が入力されているか確認する
+                if (ViewsUtil.InputEmptyCheck(dateTimePicker_HireDate.Text) == true)
                 {
+                    // 文字数チェック
                     ViewsUtil.WordCountCheck(dateTimePicker_HireDate.Text, 10);
+                    // 日付の書式かどうか確認する
                     ViewsUtil.CalendarCheck(dateTimePicker_HireDate.Text);
                 }
                 else
                 {
+                    MessageBox.Show("「雇用日」は必須入力です");
                     return false;
                 }
-
-                if (ViewsUtil.InputEmptyCheck(comboBox_Department.Text) == false)
+                // 「部門」が入力されているか確認する
+                if (ViewsUtil.InputEmptyCheck(comboBox_Department.Text) == true)
                 {
+                    // 文字数チェック
                     ViewsUtil.WordCountCheck(comboBox_Department.Text, 5);
+                    // コンボボックスに存在する部門名と一致しているか確認する
                     ViewsUtil.DepartmentCheck(comboBox_Department.Text, departmentList);
                 }
                 else
                 {
+                    MessageBox.Show("「部門」は必須入力です");
                     return false;
                 }
-
-                if (ViewsUtil.InputEmptyCheck(comboBox_Position.Text) == false)
+                // 「役職」が入力されているか確認する
+                if (ViewsUtil.InputEmptyCheck(comboBox_Position.Text) == true)
                 {
+                    // 文字数チェック
                     ViewsUtil.WordCountCheck(comboBox_Position.Text, 5);
+                    // コンボボックスに存在する役職名と一致しているか確認する
                     ViewsUtil.PositionCheck(comboBox_Position.Text, positionList);
                 }
                 else
                 {
+                    MessageBox.Show("「役職」は必須入力です");
                     return false;
                 }
                 return true;
@@ -267,14 +294,18 @@ namespace SyainKanriSystem
         {
             try
             {
-                // 入力値を取得
-                GetInputText();
+                // 入力値をチェックする
+                bool result = InputTextCheck();
+                // 入力値が不正であれば処理終了する
+                if (!result)
+                {
+                    return;
+                }
                 // データの作成・追加処理
                 SubmitAddEmployee();
-                // 追加フォームを閉じる。閉じずに入力フォームを初期化したほうがよい？
-                // closeAddForm();
-                
-
+                MessageBox.Show("社員を追加しました。");
+                // テキストボックスを初期化する
+                ClearInputText();
             }
             catch (Exception error)
             {

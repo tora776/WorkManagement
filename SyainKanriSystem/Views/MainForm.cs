@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SyainKanriSystem.Models;
 using System.Security.Cryptography.Xml;
-using System.Drawing.Text;
 using System.CodeDom;
 using SyainKanriSystem;
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SyainKanriSystem;
 
 namespace SyainKanriSystem.Models
 {
@@ -31,7 +32,7 @@ namespace SyainKanriSystem.Models
             List<Departments> dataList = new List<Departments>();
 
             foreach(DataRow dr in dt.Rows)
-            {             
+            {
                 Departments department = new Departments();
                 department.DepartmentID = int.Parse(dr[0].ToString());
                 department.DepartmentName = dr[1].ToString();

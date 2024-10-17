@@ -1,4 +1,4 @@
-﻿using SyainKanriSystem;
+﻿using SyainKanriSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +17,13 @@ namespace SyainKanriSystem
         {
             try
             {
-                if (String.IsNullOrEmpty(chkData) == true)
+                if (String.IsNullOrEmpty(chkData) != true)
                 {
-                    throw new Exception("入力されていないテキストボックスがあります");
+                    // throw new Exception("入力されていないテキストボックスがあります");
+                    return true;
                 }
                 
-                return true;
+                return false;
             }
             catch (Exception error)
             {

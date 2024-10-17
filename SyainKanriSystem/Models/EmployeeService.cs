@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using Npgsql;
+﻿using Npgsql;
 using SyainKanriSystem.Models;
 using System;
 using System.Collections.Generic;
