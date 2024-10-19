@@ -181,6 +181,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\PositionService.cs" />
+    <Compile Include="Models\DepartmentService.cs" />
     <Compile Include="Models\Positions.cs" />
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Views\ViewsUtil.cs" />

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SyainKanriSystem;
+using SyainKanriSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -131,6 +132,113 @@ namespace SyainKanriSystem.Tests
             try
             {
                 ViewsUtil.PhoneCheck(hoge);
+            }
+            catch
+            {
+                Assert.IsTrue(true);
+                return;
+            }
+            // 例外が発生していない
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        [DataRow("aaa@ost.co.jp")]
+        public void MailCheckTest(string hoge)
+        {
+            try
+            {
+                ViewsUtil.MailCheck(hoge);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod()]
+        [DataRow("あ")]
+        [DataRow("ア")]
+        [DataRow("号@ost.co.jp")]
+        [DataRow("aaa@ostcojp")]
+        [DataRow("aaa.ostcojp")]
+        [DataRow("aa,>?\a@ost.co.jp")]
+        [DataRow("***@ost.co.jp")]
+        public void MailCheckTest_CatchErrorCheck(string hoge)
+        {
+            try
+            {
+                ViewsUtil.MailCheck(hoge);
+            }
+            catch
+            {
+                Assert.IsTrue(true);
+                return;
+            }
+            // 例外が発生していない
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        [DataRow("2024年")]
+        [DataRow("2024年4月")]
+        [DataRow("2024/04")]
+        [DataRow("2024-04")]
+        [DataRow("2024/04/01")]
+        public void CalendarCheckTest(string hoge)
+        {
+            try
+            {
+                ViewsUtil.CalendarCheck(hoge);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod()]
+        [DataRow("あ")]
+        [DataRow("ア")]
+
+        public void CalendarCheckTest_CatchErrorCheck(string hoge)
+        {
+            try
+            {
+                ViewsUtil.CalendarCheck(hoge);
+            }
+            catch
+            {
+                Assert.IsTrue(true);
+                return;
+            }
+            // 例外が発生していない
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        [DataRow("あ")]
+        public void DepartmentCheckTest(string hoge)
+        {
+            try
+            {
+                var departmentService = new DepartmentService();
+                List<Departments> departmentList = departmentService.SelectDepartmentData();
+                ViewsUtil.DepartmentCheck(hoge, departmentList);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod()]
+        [DataRow("あ")]
+        public void DepartmentCheckTest_CatchErrorCheck(string hoge)
+        {
+            try
+            {
+                
             }
             catch
             {

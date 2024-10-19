@@ -1,11 +1,13 @@
 ﻿using SyainKanriSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SyainKanriSystem
 {
@@ -13,11 +15,11 @@ namespace SyainKanriSystem
     {
 
         // 入力値が空かどうか取得する
-        public static bool InputEmptyCheck(string chkData)
+        public static bool InputEmptyCheck(string checkData)
         {
             try
             {
-                if (String.IsNullOrEmpty(chkData) != true)
+                if (String.IsNullOrEmpty(checkData) != true)
                 {
                     // throw new Exception("入力されていないテキストボックスがあります");
                     return true;
@@ -33,14 +35,14 @@ namespace SyainKanriSystem
 
         // 文字数チェック
         // 入力文字数がDBの入力制限を超えていないか確認する
-        public static void WordCountCheck(string chkData, int limit)
+        public static void WordCountCheck(string checkData, int limit)
         {
             try
             {
-                    if (chkData.Length > limit)
+                    if (checkData.Length > limit)
                     {
                         // TODO contentの{1}がフォーマットされているか確認する
-                        string content = string.Format("{0}は既定の文字数をオーバーしています。※{1}文字まで", chkData, limit);
+                        string content = string.Format("{0}は既定の文字数をオーバーしています。※{1}文字まで", checkData, limit);
                         throw new Exception(content);
                     }
                 
@@ -53,11 +55,11 @@ namespace SyainKanriSystem
 
         // 社員番号が数字か確認する
         // 6桁かどうかはwordCount_Mainで確認する
-        public static void EmployeeIDCheck(string chkData)
+        public static void EmployeeIDCheck(string checkData)
         {
             try
             {
-                bool result = int.TryParse(chkData, out _);
+                bool result = int.TryParse(checkData, out _);
                 if (result == false)
                 {
                     throw new Exception("社員番号は6桁の数字を入力してください");
@@ -70,13 +72,13 @@ namespace SyainKanriSystem
         }
 
         // 姓（かな）・名（かな）が平仮名か確認する
-        public static void KanaCheck(string chkData)
+        public static void KanaCheck(string checkData)
         {
             try
             {
-                    if (Regex.IsMatch(chkData, @"^\p{IsHiragana}*$") == false)
+                    if (Regex.IsMatch(checkData, @"^\p{IsHiragana}*$") == false)
                     {
-                        string content = string.Format("{0}をひらがな入力してください", chkData);
+                        string content = string.Format("{0}をひらがな入力してください", checkData);
                         throw new Exception(content);
                     }
             }
@@ -106,33 +108,82 @@ namespace SyainKanriSystem
             }
         }
 
-        // 入力値に「@」「.」が含まれているか確認する
-        public static void MailCheck(string chkData)
+        // メールアドレスのチェック
+        public static bool MailCheck(string email)
         {
             try
             {
+                // メールアドレスの日本語チェック
+                bool isJapanese = Regex.IsMatch(email, @"[\p{IsHiragana}\p{IsKatakana}\p{IsCJKUnifiedIdeographs}]+");
+                if (isJapanese != true)
+                {
+                    throw new Exception("メールアドレスの書式が異なっています");
+                }
+
+                bool mailValidCheck = Regex.IsMatch(email, @"^[a-zA-Z0-9\-\._@]+$");
+                if (mailValidCheck != true)
+                {
+                    throw new Exception("メールアドレスには下記以外の記号の入力はできません" + 
+                        "「.」「@」「_」「-」");
+                }
+
+                // 入力必須文字列が含まれているかチェックする
                 String[] strRequired = { "@", "." };
                 foreach (String str in strRequired)
                 {
-                    if (chkData.Contains(str) == false)
+                    if (email.Contains(str) == false)
                     {
                         string content = string.Format("メールアドレスに指定の文字（{0}）が入力されていません", str);
                         throw new Exception(content);
                     }
                 }
+
+                // ドメインを正規化する(入力したメールアドレスのドメイン部分を正規表現に変換している)
+                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
+                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
+
+                //  メールのドメイン部分を調べ、正規化します。
+                string DomainMapper(Match match)
+                {
+                    // IdnMappingクラスを使用してUnicodeドメイン名を変換します。
+                    var idn = new IdnMapping();
+
+                    // ドメイン名を引き出して処理する（無効な場合はArgumentExceptionをスローする）
+                    string domainName = idn.GetAscii(match.Groups[2].Value);
+
+                    return match.Groups[1].Value + domainName;
+                }
             }
-            catch (Exception error)
+            catch (RegexMatchTimeoutException error)
             {
                 throw error;
+                // return false;
             }
+            catch (ArgumentException error)
+            {
+                throw error;
+                // return false;
+            }
+
+            try
+            {
+                return Regex.IsMatch(email,
+                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                return false;
+            }
+
         }
 
         // TODO 日付以外のデータが入力されている場合、Catch部に移行するエラーを作成
-        public static DateTime CalendarCheck(string chkData)
+        public static DateTime CalendarCheck(string checkData)
         {
             try
             {
-                DateTime hireDateValue = DateTime.Parse(chkData);
+                DateTime hireDateValue = DateTime.Parse(checkData);
 
                 return hireDateValue;
             }
@@ -144,12 +195,12 @@ namespace SyainKanriSystem
 
         // TODO 入力値が空の場合はemptyChk関数で精査できるので、この関数は不要？
         // 部門コンボボックスに異なる値が入力されていないか確認する
-        public static int DepartmentCheck(string chkData, List<Departments> departmentList)
+        public static int DepartmentCheck(string checkData, List<Departments> departmentList)
         {
             try
             {
                 // departmentIDが0の場合、データが存在しない
-                int departmentID = departmentList.Where(x => x.DepartmentName == chkData).Select(x => x.DepartmentID).FirstOrDefault();
+                int departmentID = departmentList.Where(x => x.DepartmentName == checkData).Select(x => x.DepartmentID).FirstOrDefault();
                 if (departmentID == 0)
                 {
                     throw new Exception("存在しない部門名を入力しています");
@@ -166,11 +217,11 @@ namespace SyainKanriSystem
 
         // TODO 入力値が空の場合はemptyChk関数で精査できるので、この関数は不要？
         // 役職コンボボックスに異なる値が入力されていないか確認する
-        public static int PositionCheck(string chkData, List<Positions> positionList)
+        public static int PositionCheck(string checkData, List<Positions> positionList)
         {
             try
             {
-                int positionID = positionList.Where(x => x.PositionName == chkData).Select(x => x.PositionID).FirstOrDefault();
+                int positionID = positionList.Where(x => x.PositionName == checkData).Select(x => x.PositionID).FirstOrDefault();
                 if (positionID == 0)
                 {
                     throw new Exception("存在しない役職名を入力しています");
@@ -186,16 +237,16 @@ namespace SyainKanriSystem
         }
 
         // ステータスコンボボックスに異なる値が入力されていないか確認する
-        public static int StatusCheck(string chkData)
+        public static int StatusCheck(string checkData)
         {
             try
             {
                 int statusID;
-                if (chkData == "在籍")
+                if (checkData == "在籍")
                 {
                     statusID = 0;
                 }
-                else if (chkData == "退職済")
+                else if (checkData == "退職済")
                 {
                     statusID = 1;
                 }

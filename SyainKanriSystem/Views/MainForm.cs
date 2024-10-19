@@ -27,9 +27,15 @@ namespace SyainKanriSystem
         public MainForm()
         {
             InitializeComponent();
+            // 社員情報を初期化
             employeeList = InitializeEmployeeRepository();
-            departmentList = InitializeDepartmentRepository();
-            positionList = InitializePositionRepository();
+            // 部門情報を初期化
+            var departmentService = new DepartmentService();
+            departmentList = departmentService.SelectDepartmentData();
+            // 役職情報を初期化
+            var positionService = new PositionService();
+            positionList = positionService.SelectPositionData();
+            //DataGridViewを初期化
             dataGridView1 = InitializeDataGridView();
             SetDataGridViewEmployeeInfo(dataGridView1, employeeList, departmentList, positionList);
         }
@@ -294,66 +300,7 @@ namespace SyainKanriSystem
             employeeList = employeeService.SelectEmployeeData();
             return employeeList;
         }
-
-        // 部門情報を初期化する
-        // TODO DepartmentServiceクラスを新規作成し、そのクラス内でDBとやりとりする必要がある（MVCのため）
-        private List<Departments> InitializeDepartmentRepository()
-        {
-            var DB = new DatabaseContext();
-            var DepartmentRepository = new DepartmentRepository();
-            NpgsqlConnection conn = DB.ConnectDB();
-            try
-            {
-                String query = DepartmentRepository.MakeSelectQueryDepartment();
-                DataTable dt = DB.SqlExecute(query, conn);
-                DB.DisconnectDB(conn);
-                List<Departments> departmentList = DepartmentRepository.GetSelectDepartment(dt);
-                return departmentList;
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message);
-                return null;
-            }
-            finally
-            {
-                // DBに接続していれば切断する
-                if (conn != null)
-                {
-                    DB.DisconnectDB(conn);
-                }
-            }
-        }
-
-        // 役職情報を取得する
-        // TODO PositionServiceクラスを新規作成し、そのクラス内でDBとやりとりする必要がある（MVCのため）
-        private List<Positions> InitializePositionRepository()
-        {
-            var DB = new DatabaseContext();
-            var PositionRepository = new PositionRepository();
-            NpgsqlConnection conn = DB.ConnectDB();
-            try
-            {
-                String query = PositionRepository.MakeSelectQueryPosition();
-                DataTable dt = DB.SqlExecute(query, conn);
-                List<Positions> departmentList = PositionRepository.GetSelectPosition(dt);
-                return departmentList;
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message);
-                return null;
-            }
-            finally
-            {
-                // DBに接続していれば切断する
-                if (conn != null)
-                {
-                    DB.DisconnectDB(conn);
-                }
-            }
-        }
-
+        
         // DataGridViewから選択行のデータを取得
         private Employees GetSelectedRow()
         {
