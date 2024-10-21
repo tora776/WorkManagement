@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -115,7 +116,7 @@ namespace SyainKanriSystem
             {
                 // メールアドレスの日本語チェック
                 bool isJapanese = Regex.IsMatch(email, @"[\p{IsHiragana}\p{IsKatakana}\p{IsCJKUnifiedIdeographs}]+");
-                if (isJapanese != true)
+                if (isJapanese == true)
                 {
                     throw new Exception("メールアドレスの書式が異なっています");
                 }
@@ -123,7 +124,7 @@ namespace SyainKanriSystem
                 bool mailValidCheck = Regex.IsMatch(email, @"^[a-zA-Z0-9\-\._@]+$");
                 if (mailValidCheck != true)
                 {
-                    throw new Exception("メールアドレスには下記以外の記号の入力はできません" + 
+                    throw new Exception("メールアドレスには下記以外の記号の入力はできません" +
                         "「.」「@」「_」「-」");
                 }
 
@@ -137,7 +138,7 @@ namespace SyainKanriSystem
                         throw new Exception(content);
                     }
                 }
-
+                
                 // ドメインを正規化する(入力したメールアドレスのドメイン部分を正規表現に変換している)
                 email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
                                       RegexOptions.None, TimeSpan.FromMilliseconds(200));
@@ -175,6 +176,7 @@ namespace SyainKanriSystem
             {
                 return false;
             }
+                
 
         }
 
@@ -298,6 +300,23 @@ namespace SyainKanriSystem
             {
                 throw error;
             }
+        }
+
+        public static void SpaceCheck(string checkData)
+        {
+            // 半角・全角スペースを含むかチェックする正規表現
+            string pattern = @"[\u0020\u3000]";
+
+            if (Regex.IsMatch(checkData, pattern))
+            {
+                throw new Exception("半角または全角スペースが含まれています");
+            }
+        }
+
+        public static void SymbolCheck(string checkData)
+        {
+            string str = @"[\p{IsHiragana}\p{IsKatakana}\p{IsCJKUnifiedIdeographs}A-Za-z･]";
+            bool res = Regex.IsMatch(checkData, str);
         }
 
     }

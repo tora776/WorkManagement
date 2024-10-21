@@ -217,7 +217,7 @@ namespace SyainKanriSystem.Tests
         }
 
         [TestMethod()]
-        [DataRow("あ")]
+        [DataRow("名古屋支部")]
         public void DepartmentCheckTest(string hoge)
         {
             try
@@ -238,7 +238,9 @@ namespace SyainKanriSystem.Tests
         {
             try
             {
-                
+                var departmentService = new DepartmentService();
+                List<Departments> departmentList = departmentService.SelectDepartmentData();
+                ViewsUtil.DepartmentCheck(hoge, departmentList);
             }
             catch
             {
@@ -246,6 +248,106 @@ namespace SyainKanriSystem.Tests
                 return;
             }
             // 例外が発生していない
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        [DataRow("TL")]
+        public void PositionCheckTest(string hoge)
+        {
+            try
+            {
+                var positionService = new PositionService();
+                List<Positions> positionList = positionService.SelectPositionData();
+                ViewsUtil.PositionCheck(hoge, positionList);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod()]
+        [DataRow("ＴＬ")]
+        [DataRow("あ")]
+        public void PositionCheckTest_CatchErrorCheck(string hoge)
+        {
+            try
+            {
+                var positionService = new PositionService();
+                List<Positions> positionList = positionService.SelectPositionData();
+                ViewsUtil.PositionCheck(hoge, positionList);
+            }
+            catch
+            {
+                Assert.IsTrue(true);
+                return;
+            }
+            // 例外が発生していない
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        [DataRow("在籍")]
+        [DataRow("退職済")]
+        public void StatusCheckTest(string hoge)
+        {
+            try
+            {
+                ViewsUtil.StatusCheck(hoge);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod()]
+        [DataRow("あ")]
+        [DataRow("退職")]
+        public void StatusCheckTest_CatchErrorCheck(string hoge)
+        {
+            try
+            {
+                ViewsUtil.StatusCheck(hoge);
+            }
+            catch
+            {
+                Assert.IsTrue(true);
+                return;
+            }
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        [DataRow("あ")]
+        public void SpaceCheckTest(string hoge)
+        {
+            try
+            {
+                ViewsUtil.SpaceCheck(hoge);
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+            
+        }
+
+        [TestMethod()]
+        [DataRow("あ　")]
+        [DataRow("あ ")]
+        public void SpaceCheckTest_CatchErrorCheck(string hoge)
+        {
+            try
+            {
+                ViewsUtil.SpaceCheck(hoge);
+            }
+            catch
+            {
+                Assert.IsTrue(true);
+                return;
+            }
             Assert.Fail();
         }
     }

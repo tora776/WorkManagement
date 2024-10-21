@@ -211,6 +211,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Models\DepartmentRepositoryTests.cs" />
+    <Compile Include="Models\EmployeeRepositoryTests.cs" />
+    <Compile Include="Models\PositionRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewsUtilTests.cs" />
   </ItemGroup>
