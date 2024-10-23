@@ -205,11 +205,7 @@ namespace SyainKanriSystem
                 bool result = DateTime.TryParse(checkData, out DateTime _);
                 if (result == false)
                 {
-                    throw new Exception("電話番号には数字を記載してください");
-                    /*
-                    MessageBox.Show("電話番号には数字を記載してください");
                     return false;
-                    */
                 }
                 return true;
             }
@@ -229,7 +225,7 @@ namespace SyainKanriSystem
                 int departmentID = departmentList.Where(x => x.DepartmentName == checkData).Select(x => x.DepartmentID).FirstOrDefault();
                 if (departmentID == 0)
                 {
-                    MessageBox.Show("存在しない部門名を入力しています");
+                    return -1;
                 }
 
                 return departmentID;
@@ -279,7 +275,9 @@ namespace SyainKanriSystem
                 }
                 else
                 {
-                    throw new Exception("ステータスは「在籍」か「退職済」と入力してください");
+                    MessageBox.Show("ステータスは「在籍」か「退職済」と入力してください");
+                    // 0か1ではない数字を返す。return後、falseとなる。
+                    return -1;
                 }
 
                 return statusID;
@@ -334,7 +332,7 @@ namespace SyainKanriSystem
 
             if (Regex.IsMatch(checkData, pattern))
             {
-                throw new Exception("半角または全角スペースが含まれています");
+                MessageBox.Show("半角または全角スペースが含まれています");
             }
         }
         /*

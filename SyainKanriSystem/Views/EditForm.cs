@@ -75,14 +75,15 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if (ViewsUtil.WordCountCheck(textBox_Sei.Text, 50) != true)
                     {
-                        string content = string.Format("姓({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_Sei.Text, 50);
-                        MessageBox.Show(content);
+                        label_Sei_Error.Text = "※「姓」は51文字以上入力できません";
+                        label_Sei_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("「姓」は必須入力です");
+                    label_Sei_Error.Text = "※「姓」は必須入力です";
+                    label_Sei_Error.Visible = true;
                     ret = false;
                 }
                 // 「名」が入力されているか確認する
@@ -91,14 +92,15 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(textBox_Mei.Text, 50) != true)
                     {
-                        string content = string.Format("名({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_Mei.Text, 50);
-                        MessageBox.Show(content);
+                        label_Mei_Error.Text = "※「名」は51文字以上入力できません";
+                        label_Mei_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("「名」は必須入力です");
+                    label_Mei_Error.Text = "※「名」は必須入力です";
+                    label_Mei_Error.Visible = true;
                     ret = false;
                 }
                 // 「姓（かな）」が入力されているか確認する
@@ -107,21 +109,22 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(textBox_SeiKana.Text, 50) != true)
                     {
-                        string content = string.Format("姓（かな）({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_SeiKana.Text, 50);
-                        MessageBox.Show(content);
+                        label_SeiKana_Error.Text = "※「姓（かな）」は51文字以上入力できません";
+                        label_SeiKana_Error.Visible = true;
                         ret = false;
                     }
                     // 平仮名かどうか確認する
                     if (ViewsUtil.KanaCheck(textBox_SeiKana.Text) != true)
                     {
-                        string content = string.Format("姓（かな）({0})をひらがな入力してください", textBox_SeiKana.Text);
-                        MessageBox.Show(content);
+                        label_SeiKana_Error.Text += "※「姓（かな）」をひらがな入力してください";
+                        label_SeiKana_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("「姓（かな）」は必須入力です");
+                    label_SeiKana_Error.Text = "※「姓（かな）」は必須入力です";
+                    label_SeiKana_Error.Visible = true;
                     ret = false;
                 }
                 // 「名（かな）」が入力されているか確認する
@@ -130,21 +133,22 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(textBox_MeiKana.Text, 50) != true)
                     {
-                        string content = string.Format("名（かな）({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_MeiKana.Text, 50);
-                        MessageBox.Show(content);
+                        label_MeiKana_Error.Text = "※「名（かな）」は51文字以上入力できません";
+                        label_MeiKana_Error.Visible = true;
                         ret = false;
                     }
                     // 平仮名かどうか確認する
                     if(ViewsUtil.KanaCheck(textBox_MeiKana.Text) != true)
                     {
-                        string content = string.Format("名（かな）({0})をひらがな入力してください", textBox_MeiKana.Text);
-                        MessageBox.Show(content);
+                        label_MeiKana_Error.Text += "※「名（かな）」をひらがな入力してください";
+                        label_MeiKana_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("「名（かな）」は必須入力です");
+                    label_MeiKana_Error.Text = "※「名（かな）」は必須入力です";
+                    label_MeiKana_Error.Visible = true;
                     ret = false;
                 }
                 // 「メールアドレス」が入力されているか確認する
@@ -153,19 +157,22 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(textBox_Email.Text, 255) != true)
                     {
-                        string content = string.Format("メールアドレス({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_Email.Text, 255);
-                        MessageBox.Show(content);
+                        label_Email_Error.Text = "※メールアドレスは256文字以上入力できません";
+                        label_Email_Error.Visible = true;
                         ret = false;
                     }
                     // メールアドレスの書式チェック（「@」「.」の有無）
                     if (ViewsUtil.MailCheck(textBox_Email.Text) != true)
                     {
+                        // TODO Emailのエラーメッセージ作成
+                        // label_Email_Error.Text = content;
+                        // label_Email_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("「メールアドレス」は必須入力です");
+                    label_Email_Error.Text = "※「メールアドレス」は必須入力です";
                     ret = false;
                 }
                 // 「電話番号」のテキストボックス1つ目が入力されているか確認する
@@ -174,8 +181,8 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if (ViewsUtil.WordCountCheck(textBox_PhoneNumber1.Text, 4) != true)
                     {
-                        string content = string.Format("電話番号({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_PhoneNumber1.Text, 4);
-                        MessageBox.Show(content);
+                        label_PhoneNumber_Error.Text = "※電話番号は5桁以上入力できません";
+                        label_PhoneNumber_Error.Visible = true;
                         ret = false;
                     }
                     // 電話番号の書式チェック（数字が入力されているか）
@@ -186,7 +193,8 @@ namespace SyainKanriSystem
                 }
                 else
                 {
-                    MessageBox.Show("「電話番号」は必須入力です");
+                    label_PhoneNumber_Error.Text = "※「電話番号」は必須入力です";
+                    label_PhoneNumber_Error.Visible = true;
                     ret = false;
                 }
                 // 「電話番号」のテキストボックス2つ目が入力されているか確認する
@@ -195,8 +203,8 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(textBox_PhoneNumber2.Text, 4) != true)
                     {
-                        string content = string.Format("電話番号({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_PhoneNumber2.Text, 4);
-                        MessageBox.Show(content);
+                        label_PhoneNumber_Error.Text = "※電話番号は5桁以上入力できません";
+                        label_PhoneNumber_Error.Visible = true;
                         ret = false;
                     }
                     // 電話番号の書式チェック（数字が入力されているか）
@@ -207,7 +215,8 @@ namespace SyainKanriSystem
                 }
                 else
                 {
-                    MessageBox.Show("「電話番号」は必須入力です");
+                    label_PhoneNumber_Error.Text = "※「電話番号」は必須入力です";
+                    label_PhoneNumber_Error.Visible = true;
                     ret = false;
                 }
                 // 「電話番号」のテキストボックス3つ目が入力されているか確認する
@@ -216,8 +225,8 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(textBox_PhoneNumber3.Text, 4) != true)
                     {
-                        string content = string.Format("電話番号({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_PhoneNumber3.Text, 4);
-                        MessageBox.Show(content);
+                        label_PhoneNumber_Error.Text = "※電話番号は5桁以上入力できません";
+                        label_PhoneNumber_Error.Visible = true;
                         ret = false;
                     }
                     // 電話番号の書式チェック（数字が入力されているか）
@@ -228,7 +237,8 @@ namespace SyainKanriSystem
                 }
                 else
                 {
-                    MessageBox.Show("「電話番号」は必須入力です");
+                    label_PhoneNumber_Error.Text = "※「電話番号」は必須入力です";
+                    label_PhoneNumber_Error.Visible = true;
                     return false;
                 }
                 // 「雇用日」が入力されているか確認する
@@ -237,16 +247,21 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(dateTimePicker_HireDate.Text, 11) != true)
                     {
-                        string content = string.Format("雇用日({0})は既定の文字数をオーバーしています。※{1}文字まで", dateTimePicker_HireDate.Text, 11);
-                        MessageBox.Show(content);
+                        label_HireDate_Error.Text = "※雇用日は11文字以上入力できません";
+                        label_HireDate_Error.Visible = true;
                         ret = false;
                     }
                     // 日付の書式かどうか確認する
-                    ViewsUtil.CalendarCheck(dateTimePicker_HireDate.Text);
+                    if(ViewsUtil.CalendarCheck(dateTimePicker_HireDate.Text) != true)
+                    {
+                        label_HireDate_Error.Text = "※日付を入力してください";
+                        label_HireDate_Error.Visible = true;
+                        ret = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("「雇用日」は必須入力です");
+                    MessageBox.Show("※「雇用日」は必須入力です");
                     return false;
                 }
                 // 「部門」が入力されているか確認する
@@ -255,19 +270,22 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(comboBox_Department.Text, 5) != true)
                     {
-                        string content = string.Format("部門({0})は既定の文字数をオーバーしています。※{1}文字まで", comboBox_Department.Text, 5);
-                        MessageBox.Show(content);
+                        label_Department_Error.Text = "※部門は6文字以上入力できません";
+                        label_Department_Error.Visible = true;
                         ret = false;
                     }
                     // コンボボックスに存在する部門名と一致しているか確認する。存在しない部門名の場合は0。
                     if(ViewsUtil.DepartmentCheck(comboBox_Department.Text, departmentList) == 0)
                     {
+                        label_Department_Error.Text += "※存在しない部門名を入力しています";
+                        label_Department_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("「部門」は必須入力です");
+                    label_Department_Error.Text = "※「部門」は必須入力です";
+                    label_Department_Error.Visible = true;
                     ret = false;
                 }
                 // 「役職」が入力されているか確認する
@@ -276,19 +294,22 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(comboBox_Position.Text, 5) != true)
                     {
-                        string content = string.Format("役職({0})は既定の文字数をオーバーしています。※{1}文字まで", comboBox_Position.Text, 11);
-                        MessageBox.Show(content);
+                        label_Position_Error.Text = "※役職は6文字以上入力できません";
+                        label_Position_Error.Visible = true;
                         ret = false;
                     }
                     // コンボボックスに存在する役職名と一致しているか確認する。存在しない役職名の場合は0・
                     if(ViewsUtil.PositionCheck(comboBox_Position.Text, positionList) == 0)
                     {
+                        label_Position_Error.Text = "※存在しない役職名を入力しています";
+                        label_Position_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("「役職」は必須入力です");
+                    label_Position_Error.Text = "※役職は必須入力です";
+                    label_Position_Error.Visible = true;
                     ret = false;
                 }
                 if (ViewsUtil.InputEmptyCheck(comboBox_Status.Text) == true)
@@ -296,19 +317,22 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(comboBox_Status.Text, 3) != true)
                     {
-                        string content = string.Format("ステータス({0})は既定の文字数をオーバーしています。※{1}文字まで", comboBox_Status.Text, 11);
-                        MessageBox.Show(content);
+                        label_Status_Error.Text = "※ステータスは4文字以上入力できません";
+                        label_Status_Error.Visible = true;
                         ret = false;
                     }
                     // コンボボックスに存在するステータスと一致しているか確認する。「在籍」は0、「退職済」は1となる。
                     if (ViewsUtil.StatusCheck(comboBox_Status.Text) != 0 || ViewsUtil.StatusCheck(comboBox_Status.Text) != 1)
                     {
+                        label_Status_Error.Text += "※存在しないステータス名を入力しています";
+                        label_Status_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("「ステータス」は必須入力です");
+                    label_Status_Error.Text = "※「ステータス」は必須入力です";
+                    label_Status_Error.Visible = true;
                     ret = false;
                 }
 
