@@ -22,7 +22,6 @@ namespace SyainKanriSystem
             {
                 if (String.IsNullOrEmpty(checkData) != true)
                 {
-                    // throw new Exception("入力されていないテキストボックスがあります");
                     return true;
                 }
                 
@@ -36,35 +35,42 @@ namespace SyainKanriSystem
 
         // 文字数チェック
         // 入力文字数がDBの入力制限を超えていないか確認する
-        public static void WordCountCheck(string checkData, int limit)
+        public static bool WordCountCheck(string inputData, int limit)
         {
+            bool ret = true;
             try
             {
-                    if (checkData.Length > limit)
+                    if (inputData.Length > limit)
                     {
-                        // TODO contentの{1}がフォーマットされているか確認する
-                        string content = string.Format("{0}は既定の文字数をオーバーしています。※{1}文字まで", checkData, limit);
-                        throw new Exception(content);
+                        // エラーメッセージ例：姓（あああ･･･）は既定の文字数をオーバーしています。※50文字まで
+                        // string content = string.Format("{0}({1})は既定の文字数をオーバーしています。※{1}文字まで",label inputData, 255);
+                        // MessageBox.Show(content);
+                        ret = false;
                     }
-                
+                    return ret;
             }
             catch (Exception error)
             {
-                throw error;
+                MessageBox.Show(error.Message);
+                ret = false;
+                return ret;
             }
         }        
 
         // 社員番号が数字か確認する
         // 6桁かどうかはwordCount_Mainで確認する
-        public static void EmployeeIDCheck(string checkData)
+        public static bool EmployeeIDCheck(string checkData)
         {
             try
             {
                 bool result = int.TryParse(checkData, out _);
-                if (result == false)
+                if (result != true)
                 {
-                    throw new Exception("社員番号は6桁の数字を入力してください");
+                    MessageBox.Show("社員番号は6桁の数字を入力してください");
+                    return false;
                 }
+                return true;
+
             }
             catch (Exception error)
             {
@@ -73,15 +79,18 @@ namespace SyainKanriSystem
         }
 
         // 姓（かな）・名（かな）が平仮名か確認する
-        public static void KanaCheck(string checkData)
+        public static bool KanaCheck(string checkData)
         {
             try
             {
-                    if (Regex.IsMatch(checkData, @"^\p{IsHiragana}*$") == false)
+                    if (Regex.IsMatch(checkData, @"^\p{IsHiragana}*$") != true)
                     {
-                        string content = string.Format("{0}をひらがな入力してください", checkData);
-                        throw new Exception(content);
+                        // string content = string.Format("{0}({1})をひらがな入力してください", label, checkData);
+                        // throw new Exception(content);
+                        // MessageBox.Show(content);
+                        return false;
                     }
+                    return true;
             }
             catch (Exception error)
             {
@@ -92,7 +101,7 @@ namespace SyainKanriSystem
         // 入力値が数字か確認する
         // 電話番号を「xxx-xxxx-xxxx」の形に成形する
         // TODO 電話番号が指定の文字数を下回っていないことを確認
-        public static void PhoneCheck(string phoneNumber)
+        public static bool PhoneCheck(string phoneNumber)
         {
             try
             {
@@ -100,8 +109,10 @@ namespace SyainKanriSystem
                 bool result = int.TryParse(phoneNumber, out _);
                 if (result == false)
                     {
-                        throw new Exception("電話番号には数字を記載してください");
+                        MessageBox.Show("電話番号には数字を記載してください");
+                        return false;
                     }
+                return true;
             }
             catch (Exception error)
             {
@@ -112,20 +123,23 @@ namespace SyainKanriSystem
         // メールアドレスのチェック
         public static bool MailCheck(string email)
         {
+            bool ret = true;
             try
             {
                 // メールアドレスの日本語チェック
                 bool isJapanese = Regex.IsMatch(email, @"[\p{IsHiragana}\p{IsKatakana}\p{IsCJKUnifiedIdeographs}]+");
                 if (isJapanese == true)
                 {
-                    throw new Exception("メールアドレスの書式が異なっています");
+                    MessageBox.Show("メールアドレスに日本語は入力できません");
+                    ret = false;
                 }
 
                 bool mailValidCheck = Regex.IsMatch(email, @"^[a-zA-Z0-9\-\._@]+$");
                 if (mailValidCheck != true)
                 {
-                    throw new Exception("メールアドレスには下記以外の記号の入力はできません" +
+                    MessageBox.Show("メールアドレスには下記以外の記号の入力はできません" +
                         "「.」「@」「_」「-」");
+                    ret = false;
                 }
 
                 // 入力必須文字列が含まれているかチェックする
@@ -135,7 +149,8 @@ namespace SyainKanriSystem
                     if (email.Contains(str) == false)
                     {
                         string content = string.Format("メールアドレスに指定の文字（{0}）が入力されていません", str);
-                        throw new Exception(content);
+                        MessageBox.Show(content);
+                        ret = false;
                     }
                 }
                 
@@ -157,15 +172,17 @@ namespace SyainKanriSystem
             }
             catch (RegexMatchTimeoutException error)
             {
-                throw error;
-                // return false;
+                MessageBox.Show(error.Message);
+                ret = false;
+                return ret;
             }
             catch (ArgumentException error)
             {
-                throw error;
-                // return false;
+                MessageBox.Show(error.Message);
+                ret = false;
+                return ret;
             }
-
+            /*
             try
             {
                 return Regex.IsMatch(email,
@@ -174,20 +191,27 @@ namespace SyainKanriSystem
             }
             catch (RegexMatchTimeoutException)
             {
-                return false;
+                ret = false;
             }
-                
-
+            */
+            return ret;
         }
 
         // TODO 日付以外のデータが入力されている場合、Catch部に移行するエラーを作成
-        public static DateTime CalendarCheck(string checkData)
+        public static bool CalendarCheck(string checkData)
         {
             try
             {
-                DateTime hireDateValue = DateTime.Parse(checkData);
-
-                return hireDateValue;
+                bool result = DateTime.TryParse(checkData, out DateTime _);
+                if (result == false)
+                {
+                    throw new Exception("電話番号には数字を記載してください");
+                    /*
+                    MessageBox.Show("電話番号には数字を記載してください");
+                    return false;
+                    */
+                }
+                return true;
             }
             catch (Exception error)
             {
@@ -205,7 +229,7 @@ namespace SyainKanriSystem
                 int departmentID = departmentList.Where(x => x.DepartmentName == checkData).Select(x => x.DepartmentID).FirstOrDefault();
                 if (departmentID == 0)
                 {
-                    throw new Exception("存在しない部門名を入力しています");
+                    MessageBox.Show("存在しない部門名を入力しています");
                 }
 
                 return departmentID;
@@ -223,10 +247,11 @@ namespace SyainKanriSystem
         {
             try
             {
+                // IDが0の場合、データが存在しない
                 int positionID = positionList.Where(x => x.PositionName == checkData).Select(x => x.PositionID).FirstOrDefault();
                 if (positionID == 0)
                 {
-                    throw new Exception("存在しない役職名を入力しています");
+                    MessageBox.Show("存在しない役職名を入力しています");
                 }
 
                 return positionID;
@@ -312,12 +337,13 @@ namespace SyainKanriSystem
                 throw new Exception("半角または全角スペースが含まれています");
             }
         }
-
+        /*
         public static void SymbolCheck(string checkData)
         {
-            string str = @"[\p{IsHiragana}\p{IsKatakana}\p{IsCJKUnifiedIdeographs}A-Za-z･]";
-            bool res = Regex.IsMatch(checkData, str);
+            // string str = @"[\p{IsHiragana}\p{IsKatakana}\p{IsCJKUnifiedIdeographs}A-Za-z･]";
+            // bool res = Regex.IsMatch(checkData, str);
         }
+        */
 
     }
 }

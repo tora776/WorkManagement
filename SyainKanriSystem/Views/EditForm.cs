@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection.Emit;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -65,102 +66,165 @@ namespace SyainKanriSystem
         // テキストボックスの入力値を取得
         private bool InputTextCheck()
         {
+            bool ret = true;
             try
             {
                 // 「姓」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_Sei.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_Sei.Text, 50);
+                    if (ViewsUtil.WordCountCheck(textBox_Sei.Text, 50) != true)
+                    {
+                        string content = string.Format("姓({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_Sei.Text, 50);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
                 }
                 else
                 {
                     MessageBox.Show("「姓」は必須入力です");
-                    return false;
+                    ret = false;
                 }
                 // 「名」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_Mei.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_Mei.Text, 50);
+                    if(ViewsUtil.WordCountCheck(textBox_Mei.Text, 50) != true)
+                    {
+                        string content = string.Format("名({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_Mei.Text, 50);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
                 }
                 else
                 {
                     MessageBox.Show("「名」は必須入力です");
-                    return false;
+                    ret = false;
                 }
                 // 「姓（かな）」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_SeiKana.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_SeiKana.Text, 50);
+                    if(ViewsUtil.WordCountCheck(textBox_SeiKana.Text, 50) != true)
+                    {
+                        string content = string.Format("姓（かな）({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_SeiKana.Text, 50);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
                     // 平仮名かどうか確認する
-                    ViewsUtil.KanaCheck(textBox_SeiKana.Text);
+                    if (ViewsUtil.KanaCheck(textBox_SeiKana.Text) != true)
+                    {
+                        string content = string.Format("姓（かな）({0})をひらがな入力してください", textBox_SeiKana.Text);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
                 }
                 else
                 {
                     MessageBox.Show("「姓（かな）」は必須入力です");
-                    return false;
+                    ret = false;
                 }
                 // 「名（かな）」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_MeiKana.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_MeiKana.Text, 50);
+                    if(ViewsUtil.WordCountCheck(textBox_MeiKana.Text, 50) != true)
+                    {
+                        string content = string.Format("名（かな）({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_MeiKana.Text, 50);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
                     // 平仮名かどうか確認する
-                    ViewsUtil.KanaCheck(textBox_MeiKana.Text);
+                    if(ViewsUtil.KanaCheck(textBox_MeiKana.Text) != true)
+                    {
+                        string content = string.Format("名（かな）({0})をひらがな入力してください", textBox_MeiKana.Text);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
                 }
                 else
                 {
                     MessageBox.Show("「名（かな）」は必須入力です");
-                    return false;
+                    ret = false;
                 }
                 // 「メールアドレス」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_Email.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_Email.Text, 255);
+                    if(ViewsUtil.WordCountCheck(textBox_Email.Text, 255) != true)
+                    {
+                        string content = string.Format("メールアドレス({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_Email.Text, 255);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
                     // メールアドレスの書式チェック（「@」「.」の有無）
-                    ViewsUtil.MailCheck(textBox_Email.Text);
+                    if (ViewsUtil.MailCheck(textBox_Email.Text) != true)
+                    {
+                        ret = false;
+                    }
                 }
                 else
                 {
                     MessageBox.Show("「メールアドレス」は必須入力です");
-                    return false;
+                    ret = false;
                 }
                 // 「電話番号」のテキストボックス1つ目が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber1.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_PhoneNumber1.Text, 4);
+                    if (ViewsUtil.WordCountCheck(textBox_PhoneNumber1.Text, 4) != true)
+                    {
+                        string content = string.Format("電話番号({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_PhoneNumber1.Text, 4);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
                     // 電話番号の書式チェック（数字が入力されているか）
-                    ViewsUtil.PhoneCheck(textBox_PhoneNumber1.Text);
+                    if(ViewsUtil.PhoneCheck(textBox_PhoneNumber1.Text) != true)
+                    {
+                        ret = false;
+                    }
                 }
                 else
                 {
                     MessageBox.Show("「電話番号」は必須入力です");
-                    return false;
+                    ret = false;
                 }
                 // 「電話番号」のテキストボックス2つ目が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber2.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_PhoneNumber2.Text, 4);
+                    if(ViewsUtil.WordCountCheck(textBox_PhoneNumber2.Text, 4) != true)
+                    {
+                        string content = string.Format("電話番号({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_PhoneNumber2.Text, 4);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
                     // 電話番号の書式チェック（数字が入力されているか）
-                    ViewsUtil.PhoneCheck(textBox_PhoneNumber2.Text);
+                    if(ViewsUtil.PhoneCheck(textBox_PhoneNumber2.Text) != true)
+                    {
+                        ret = false;
+                    }
                 }
                 else
                 {
                     MessageBox.Show("「電話番号」は必須入力です");
-                    return false;
+                    ret = false;
                 }
                 // 「電話番号」のテキストボックス3つ目が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber3.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_PhoneNumber3.Text, 4);
+                    if(ViewsUtil.WordCountCheck(textBox_PhoneNumber3.Text, 4) != true)
+                    {
+                        string content = string.Format("電話番号({0})は既定の文字数をオーバーしています。※{1}文字まで", textBox_PhoneNumber3.Text, 4);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
                     // 電話番号の書式チェック（数字が入力されているか）
-                    ViewsUtil.PhoneCheck(textBox_PhoneNumber3.Text);
+                    if (ViewsUtil.PhoneCheck(textBox_PhoneNumber3.Text) != true)
+                    {
+                        ret = false;
+                    }
                 }
                 else
                 {
@@ -171,7 +235,12 @@ namespace SyainKanriSystem
                 if (ViewsUtil.InputEmptyCheck(dateTimePicker_HireDate.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(dateTimePicker_HireDate.Text, 10);
+                    if(ViewsUtil.WordCountCheck(dateTimePicker_HireDate.Text, 11) != true)
+                    {
+                        string content = string.Format("雇用日({0})は既定の文字数をオーバーしています。※{1}文字まで", dateTimePicker_HireDate.Text, 11);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
                     // 日付の書式かどうか確認する
                     ViewsUtil.CalendarCheck(dateTimePicker_HireDate.Text);
                 }
@@ -184,42 +253,66 @@ namespace SyainKanriSystem
                 if (ViewsUtil.InputEmptyCheck(comboBox_Department.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(comboBox_Department.Text, 5);
-                    // コンボボックスに存在する部門名と一致しているか確認する
-                    ViewsUtil.DepartmentCheck(comboBox_Department.Text, departmentList);
+                    if(ViewsUtil.WordCountCheck(comboBox_Department.Text, 5) != true)
+                    {
+                        string content = string.Format("部門({0})は既定の文字数をオーバーしています。※{1}文字まで", comboBox_Department.Text, 5);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
+                    // コンボボックスに存在する部門名と一致しているか確認する。存在しない部門名の場合は0。
+                    if(ViewsUtil.DepartmentCheck(comboBox_Department.Text, departmentList) == 0)
+                    {
+                        ret = false;
+                    }
                 }
                 else
                 {
                     MessageBox.Show("「部門」は必須入力です");
-                    return false;
+                    ret = false;
                 }
                 // 「役職」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(comboBox_Position.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(comboBox_Position.Text, 5);
-                    // コンボボックスに存在する役職名と一致しているか確認する
-                    ViewsUtil.PositionCheck(comboBox_Position.Text, positionList);
+                    if(ViewsUtil.WordCountCheck(comboBox_Position.Text, 5) != true)
+                    {
+                        string content = string.Format("役職({0})は既定の文字数をオーバーしています。※{1}文字まで", comboBox_Position.Text, 11);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
+                    // コンボボックスに存在する役職名と一致しているか確認する。存在しない役職名の場合は0・
+                    if(ViewsUtil.PositionCheck(comboBox_Position.Text, positionList) == 0)
+                    {
+                        ret = false;
+                    }
                 }
                 else
                 {
                     MessageBox.Show("「役職」は必須入力です");
-                    return false;
+                    ret = false;
                 }
                 if (ViewsUtil.InputEmptyCheck(comboBox_Status.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(comboBox_Status.Text, 3);
-                    // コンボボックスに存在するステータスと一致しているか確認する
-                    ViewsUtil.StatusCheck(comboBox_Status.Text);
+                    if(ViewsUtil.WordCountCheck(comboBox_Status.Text, 3) != true)
+                    {
+                        string content = string.Format("ステータス({0})は既定の文字数をオーバーしています。※{1}文字まで", comboBox_Status.Text, 11);
+                        MessageBox.Show(content);
+                        ret = false;
+                    }
+                    // コンボボックスに存在するステータスと一致しているか確認する。「在籍」は0、「退職済」は1となる。
+                    if (ViewsUtil.StatusCheck(comboBox_Status.Text) != 0 || ViewsUtil.StatusCheck(comboBox_Status.Text) != 1)
+                    {
+                        ret = false;
+                    }
                 }
                 else
                 {
                     MessageBox.Show("「ステータス」は必須入力です");
-                    return false;
+                    ret = false;
                 }
 
-                return true;
+                return ret;
             }
 
             catch (Exception error)
@@ -273,9 +366,15 @@ namespace SyainKanriSystem
             try
             {
                 // 入力値を取得
-                InputTextCheck();
+                bool ret = InputTextCheck();
+                // 入力値が不正であれば処理終了する
+                if (!ret)
+                {
+                    return;
+                }
                 // データの作成・追加処理
                 SubmitUpdateEmployee(detailedEmployee);
+                MessageBox.Show("データを更新しました");
                 // MainFormに反映
                 mainForm.CloseForm_ResetDataGridView();
                 detailForm.CloseDetailForm();
@@ -299,7 +398,6 @@ namespace SyainKanriSystem
             try
             {
                 UpdateEmployee();
-                MessageBox.Show("データを更新しました");
             }
             catch (Exception error)
             {
@@ -310,6 +408,11 @@ namespace SyainKanriSystem
         private void Button_UpdateCancel_Click(object sender, EventArgs e)
         {
             CloseUpdateForm();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

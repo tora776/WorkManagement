@@ -196,7 +196,7 @@ namespace SyainKanriSystem
                 if (ViewsUtil.InputEmptyCheck(dateTimePicker_HireDate.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(dateTimePicker_HireDate.Text, 10);
+                    ViewsUtil.WordCountCheck(dateTimePicker_HireDate.Text, 11);
                     // 日付の書式かどうか確認する
                     ViewsUtil.CalendarCheck(dateTimePicker_HireDate.Text);
                 }

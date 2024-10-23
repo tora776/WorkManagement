@@ -58,7 +58,7 @@ namespace SyainKanriSystem.Models.Tests
             var employeeRepository = new EmployeeRepository();
             employeeRepository.MakeInsertQuery(updateEmployee);
         }
-
+        /*
         [TestMethod()]
         [DataRow("EmployeeID", "000001")]
         [DataRow("EmployeeID", "000001")]
@@ -68,5 +68,7 @@ namespace SyainKanriSystem.Models.Tests
         {
             
         }
+        */
+        
     }
 }

@@ -501,9 +501,10 @@ namespace SyainKanriSystem
                                 break;
                             case "雇用日":
                                 searchComboValue = "HireDate";
-                                ViewsUtil.WordCountCheck(searchTextValue, 10);
+                                ViewsUtil.WordCountCheck(searchTextValue, 11);
                                 // string型に戻して、日付の入力形式を修正
-                                searchTextValue = ViewsUtil.CalendarCheck(searchTextValue).ToString("yyyy/MM/dd");
+                                ViewsUtil.CalendarCheck(searchTextValue);
+                                searchTextValue = DateTime.Parse(searchTextValue).ToString("yyyy/MM/dd");
                                 break;
                             case "部門":
                                 searchComboValue = "Department";

@@ -127,7 +127,7 @@ namespace SyainKanriSystem.Models
                     }
                 }
 
-                string query = "SELECT * FROM Employees " + conditionQuery;
+                string query = "SELECT * FROM Employees " + conditionQuery + "ORDER BY EmployeeID";
                 return query;
             }
             catch (Exception)

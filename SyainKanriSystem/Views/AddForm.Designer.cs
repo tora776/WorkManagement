@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.label_Sei = new System.Windows.Forms.Label();
+            this.label_Email = new System.Windows.Forms.Label();
+            this.label_SeiKana = new System.Windows.Forms.Label();
+            this.label_PhoneNumber = new System.Windows.Forms.Label();
+            this.label_HireDate = new System.Windows.Forms.Label();
+            this.label_Position = new System.Windows.Forms.Label();
             this.button_Back = new System.Windows.Forms.Button();
             this.textBox_Sei = new System.Windows.Forms.TextBox();
             this.textBox_Mei = new System.Windows.Forms.TextBox();
@@ -51,9 +51,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.button_Add = new System.Windows.Forms.Button();
             this.button_Cancel = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.label_Department = new System.Windows.Forms.Label();
+            this.label_MeiKana = new System.Windows.Forms.Label();
+            this.label_Mei = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -67,71 +67,71 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "社員追加";
             // 
-            // label3
+            // label_Sei
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label3.Location = new System.Drawing.Point(44, 104);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 22);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "姓";
+            this.label_Sei.AutoSize = true;
+            this.label_Sei.Font = new System.Drawing.Font("MS UI Gothic", 11F);
+            this.label_Sei.Location = new System.Drawing.Point(44, 104);
+            this.label_Sei.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_Sei.Name = "label_Sei";
+            this.label_Sei.Size = new System.Drawing.Size(32, 22);
+            this.label_Sei.TabIndex = 2;
+            this.label_Sei.Text = "姓";
             // 
-            // label4
+            // label_Email
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label4.Location = new System.Drawing.Point(43, 194);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(128, 22);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "メールアドレス";
+            this.label_Email.AutoSize = true;
+            this.label_Email.Font = new System.Drawing.Font("MS UI Gothic", 11F);
+            this.label_Email.Location = new System.Drawing.Point(43, 194);
+            this.label_Email.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_Email.Name = "label_Email";
+            this.label_Email.Size = new System.Drawing.Size(128, 22);
+            this.label_Email.TabIndex = 3;
+            this.label_Email.Text = "メールアドレス";
             // 
-            // label5
+            // label_SeiKana
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label5.Location = new System.Drawing.Point(43, 149);
-            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 22);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "姓（かな）";
+            this.label_SeiKana.AutoSize = true;
+            this.label_SeiKana.Font = new System.Drawing.Font("MS UI Gothic", 11F);
+            this.label_SeiKana.Location = new System.Drawing.Point(43, 149);
+            this.label_SeiKana.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_SeiKana.Name = "label_SeiKana";
+            this.label_SeiKana.Size = new System.Drawing.Size(91, 22);
+            this.label_SeiKana.TabIndex = 4;
+            this.label_SeiKana.Text = "姓（かな）";
             // 
-            // label6
+            // label_PhoneNumber
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label6.Location = new System.Drawing.Point(43, 239);
-            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 22);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "電話番号";
+            this.label_PhoneNumber.AutoSize = true;
+            this.label_PhoneNumber.Font = new System.Drawing.Font("MS UI Gothic", 11F);
+            this.label_PhoneNumber.Location = new System.Drawing.Point(43, 239);
+            this.label_PhoneNumber.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_PhoneNumber.Name = "label_PhoneNumber";
+            this.label_PhoneNumber.Size = new System.Drawing.Size(98, 22);
+            this.label_PhoneNumber.TabIndex = 5;
+            this.label_PhoneNumber.Text = "電話番号";
             // 
-            // label7
+            // label_HireDate
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label7.Location = new System.Drawing.Point(43, 283);
-            this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 22);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "雇用日";
+            this.label_HireDate.AutoSize = true;
+            this.label_HireDate.Font = new System.Drawing.Font("MS UI Gothic", 11F);
+            this.label_HireDate.Location = new System.Drawing.Point(43, 283);
+            this.label_HireDate.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_HireDate.Name = "label_HireDate";
+            this.label_HireDate.Size = new System.Drawing.Size(76, 22);
+            this.label_HireDate.TabIndex = 6;
+            this.label_HireDate.Text = "雇用日";
             // 
-            // label8
+            // label_Position
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label8.Location = new System.Drawing.Point(43, 370);
-            this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 22);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "役職";
+            this.label_Position.AutoSize = true;
+            this.label_Position.Font = new System.Drawing.Font("MS UI Gothic", 11F);
+            this.label_Position.Location = new System.Drawing.Point(43, 370);
+            this.label_Position.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_Position.Name = "label_Position";
+            this.label_Position.Size = new System.Drawing.Size(54, 22);
+            this.label_Position.TabIndex = 7;
+            this.label_Position.Text = "役職";
             // 
             // button_Back
             // 
@@ -276,38 +276,38 @@
             this.button_Cancel.UseVisualStyleBackColor = true;
             this.button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
-            // label12
+            // label_Department
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label12.Location = new System.Drawing.Point(43, 327);
-            this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(54, 22);
-            this.label12.TabIndex = 29;
-            this.label12.Text = "部門";
+            this.label_Department.AutoSize = true;
+            this.label_Department.Font = new System.Drawing.Font("MS UI Gothic", 11F);
+            this.label_Department.Location = new System.Drawing.Point(43, 327);
+            this.label_Department.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_Department.Name = "label_Department";
+            this.label_Department.Size = new System.Drawing.Size(54, 22);
+            this.label_Department.TabIndex = 29;
+            this.label_Department.Text = "部門";
             // 
-            // label2
+            // label_MeiKana
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label2.Location = new System.Drawing.Point(416, 145);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 22);
-            this.label2.TabIndex = 32;
-            this.label2.Text = "名（かな）";
+            this.label_MeiKana.AutoSize = true;
+            this.label_MeiKana.Font = new System.Drawing.Font("MS UI Gothic", 11F);
+            this.label_MeiKana.Location = new System.Drawing.Point(416, 145);
+            this.label_MeiKana.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_MeiKana.Name = "label_MeiKana";
+            this.label_MeiKana.Size = new System.Drawing.Size(91, 22);
+            this.label_MeiKana.TabIndex = 32;
+            this.label_MeiKana.Text = "名（かな）";
             // 
-            // label9
+            // label_Mei
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label9.Location = new System.Drawing.Point(416, 100);
-            this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(32, 22);
-            this.label9.TabIndex = 31;
-            this.label9.Text = "名";
+            this.label_Mei.AutoSize = true;
+            this.label_Mei.Font = new System.Drawing.Font("MS UI Gothic", 11F);
+            this.label_Mei.Location = new System.Drawing.Point(416, 100);
+            this.label_Mei.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_Mei.Name = "label_Mei";
+            this.label_Mei.Size = new System.Drawing.Size(32, 22);
+            this.label_Mei.TabIndex = 31;
+            this.label_Mei.Text = "名";
             // 
             // EmployeeAddForm
             // 
@@ -320,9 +320,9 @@
             this.Controls.Add(this.comboBox_Department);
             this.Controls.Add(this.textBox_Mei);
             this.Controls.Add(this.textBox_MeiKana);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label_MeiKana);
+            this.Controls.Add(this.label_Mei);
+            this.Controls.Add(this.label_Department);
             this.Controls.Add(this.button_Cancel);
             this.Controls.Add(this.button_Add);
             this.Controls.Add(this.label10);
@@ -333,12 +333,12 @@
             this.Controls.Add(this.textBox_Sei);
             this.Controls.Add(this.textBox_Email);
             this.Controls.Add(this.textBox_SeiKana);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label_Position);
+            this.Controls.Add(this.label_HireDate);
+            this.Controls.Add(this.label_PhoneNumber);
+            this.Controls.Add(this.label_SeiKana);
+            this.Controls.Add(this.label_Email);
+            this.Controls.Add(this.label_Sei);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "EmployeeAddForm";
@@ -352,12 +352,12 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label_Sei;
+        private System.Windows.Forms.Label label_Email;
+        private System.Windows.Forms.Label label_SeiKana;
+        private System.Windows.Forms.Label label_PhoneNumber;
+        private System.Windows.Forms.Label label_HireDate;
+        private System.Windows.Forms.Label label_Position;
         private System.Windows.Forms.TextBox textBox_SeiKana;
         private System.Windows.Forms.TextBox textBox_Email;
         private System.Windows.Forms.TextBox textBox_Sei;
@@ -368,9 +368,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button_Add;
         private System.Windows.Forms.Button button_Cancel;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label_Department;
+        private System.Windows.Forms.Label label_MeiKana;
+        private System.Windows.Forms.Label label_Mei;
         private System.Windows.Forms.TextBox textBox_Mei;
         private System.Windows.Forms.TextBox textBox_MeiKana;
         private System.Windows.Forms.ComboBox comboBox_Position;
