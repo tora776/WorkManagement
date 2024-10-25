@@ -146,7 +146,7 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     ViewsUtil.WordCountCheck(textBox_Email.Text, 255);
                     // メールアドレスの書式チェック（「@」「.」の有無）
-                    ViewsUtil.MailCheck(textBox_Email.Text);
+                    ViewsUtil.MailJapaneseCheck(textBox_Email.Text);
                 }
                 else
                 {

@@ -7,8 +7,10 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace SyainKanriSystem
 {
@@ -106,22 +108,21 @@ namespace SyainKanriSystem
             try
             {
                 // 入力値が数字かどうか確認する
-                bool result = int.TryParse(phoneNumber, out _);
-                if (result == false)
+                bool ret = int.TryParse(phoneNumber, out _);
+                if (ret == false)
                     {
-                        MessageBox.Show("電話番号には数字を記載してください");
                         return false;
                     }
-                return true;
             }
             catch (Exception error)
             {
                 throw error;
             }
+            return true;
         }
 
         // メールアドレスのチェック
-        public static bool MailCheck(string email)
+        public static bool MailJapaneseCheck(string email)
         {
             bool ret = true;
             try
@@ -130,30 +131,39 @@ namespace SyainKanriSystem
                 bool isJapanese = Regex.IsMatch(email, @"[\p{IsHiragana}\p{IsKatakana}\p{IsCJKUnifiedIdeographs}]+");
                 if (isJapanese == true)
                 {
-                    MessageBox.Show("メールアドレスに日本語は入力できません");
                     ret = false;
                 }
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
+            return ret;
+        }
 
+        public static bool MailSymbolCheck(string email)
+        {
+            bool ret = true;
+            try
+            {
                 bool mailValidCheck = Regex.IsMatch(email, @"^[a-zA-Z0-9\-\._@]+$");
                 if (mailValidCheck != true)
                 {
-                    MessageBox.Show("メールアドレスには下記以外の記号の入力はできません" +
-                        "「.」「@」「_」「-」");
                     ret = false;
                 }
-
-                // 入力必須文字列が含まれているかチェックする
-                String[] strRequired = { "@", "." };
-                foreach (String str in strRequired)
-                {
-                    if (email.Contains(str) == false)
-                    {
-                        string content = string.Format("メールアドレスに指定の文字（{0}）が入力されていません", str);
-                        MessageBox.Show(content);
-                        ret = false;
-                    }
-                }
-                
+            }
+            catch(Exception error)
+            {
+                throw error;
+            }
+            return ret;
+        }
+        /*
+        public static bool MailDomainCheck(string email)
+        {
+            bool ret = true;
+            try
+            {
                 // ドメインを正規化する(入力したメールアドレスのドメイン部分を正規表現に変換している)
                 email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
                                       RegexOptions.None, TimeSpan.FromMilliseconds(200));
@@ -182,20 +192,9 @@ namespace SyainKanriSystem
                 ret = false;
                 return ret;
             }
-            /*
-            try
-            {
-                return Regex.IsMatch(email,
-                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
-                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
-            }
-            catch (RegexMatchTimeoutException)
-            {
-                ret = false;
-            }
-            */
-            return ret;
         }
+        */
+
 
         // TODO 日付以外のデータが入力されている場合、Catch部に移行するエラーを作成
         public static bool CalendarCheck(string checkData)
@@ -335,6 +334,7 @@ namespace SyainKanriSystem
                 MessageBox.Show("半角または全角スペースが含まれています");
             }
         }
+
         /*
         public static void SymbolCheck(string checkData)
         {

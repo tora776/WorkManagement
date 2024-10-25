@@ -67,6 +67,7 @@ namespace SyainKanriSystem
         private bool InputTextCheck()
         {
             bool ret = true;
+            InitializeErrorTextBox();
             try
             {
                 // 「姓」が入力されているか確認する
@@ -75,14 +76,14 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if (ViewsUtil.WordCountCheck(textBox_Sei.Text, 50) != true)
                     {
-                        label_Sei_Error.Text = "※「姓」は51文字以上入力できません";
+                        label_Sei_Error.Text = " ※「姓」は51文字以上入力できません";
                         label_Sei_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    label_Sei_Error.Text = "※「姓」は必須入力です";
+                    label_Sei_Error.Text = " ※「姓」は必須入力です";
                     label_Sei_Error.Visible = true;
                     ret = false;
                 }
@@ -92,87 +93,98 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(textBox_Mei.Text, 50) != true)
                     {
-                        label_Mei_Error.Text = "※「名」は51文字以上入力できません";
+                        label_Mei_Error.Text = " ※「名」は51文字以上入力できません";
                         label_Mei_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    label_Mei_Error.Text = "※「名」は必須入力です";
+                    label_Mei_Error.Text = " ※「名」は必須入力です";
                     label_Mei_Error.Visible = true;
                     ret = false;
                 }
+                
                 // 「姓（かな）」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_SeiKana.Text) == true)
                 {
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(textBox_SeiKana.Text, 50) != true)
                     {
-                        label_SeiKana_Error.Text = "※「姓（かな）」は51文字以上入力できません";
+                        label_SeiKana_Error.Text = " ※「姓（かな）」は51文字以上入力できません";
                         label_SeiKana_Error.Visible = true;
                         ret = false;
                     }
                     // 平仮名かどうか確認する
                     if (ViewsUtil.KanaCheck(textBox_SeiKana.Text) != true)
                     {
-                        label_SeiKana_Error.Text += "※「姓（かな）」をひらがな入力してください";
+                        label_SeiKana_Error.Text += " ※「姓（かな）」をひらがな入力してください";
                         label_SeiKana_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    label_SeiKana_Error.Text = "※「姓（かな）」は必須入力です";
+                    label_SeiKana_Error.Text = " ※「姓（かな）」は必須入力です";
                     label_SeiKana_Error.Visible = true;
                     ret = false;
                 }
+
+                
                 // 「名（かな）」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_MeiKana.Text) == true)
                 {
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(textBox_MeiKana.Text, 50) != true)
                     {
-                        label_MeiKana_Error.Text = "※「名（かな）」は51文字以上入力できません";
+                        label_MeiKana_Error.Text = " ※「名（かな）」は51文字以上入力できません";
                         label_MeiKana_Error.Visible = true;
                         ret = false;
                     }
                     // 平仮名かどうか確認する
                     if(ViewsUtil.KanaCheck(textBox_MeiKana.Text) != true)
                     {
-                        label_MeiKana_Error.Text += "※「名（かな）」をひらがな入力してください";
+                        label_MeiKana_Error.Text += " ※「名（かな）」をひらがな入力してください";
                         label_MeiKana_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    label_MeiKana_Error.Text = "※「名（かな）」は必須入力です";
+                    label_MeiKana_Error.Text = " ※「名（かな）」は必須入力です";
                     label_MeiKana_Error.Visible = true;
                     ret = false;
                 }
+
+                
                 // 「メールアドレス」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_Email.Text) == true)
                 {
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(textBox_Email.Text, 255) != true)
                     {
-                        label_Email_Error.Text = "※メールアドレスは256文字以上入力できません";
+                        label_Email_Error.Text = " ※メールアドレスは256文字以上入力できません";
+                        label_Email_Error.Visible = true;
+                        ret = false;
+                    }
+                    // メールアドレスの書式チェック（日本語の有無）
+                    if (ViewsUtil.MailJapaneseCheck(textBox_Email.Text) != true)
+                    {
+                        label_Email_Error.Text += " ※メールアドレスに日本語は入力できません";
                         label_Email_Error.Visible = true;
                         ret = false;
                     }
                     // メールアドレスの書式チェック（「@」「.」の有無）
-                    if (ViewsUtil.MailCheck(textBox_Email.Text) != true)
+                    if (ViewsUtil.MailSymbolCheck(textBox_Email.Text) != true)
                     {
-                        // TODO Emailのエラーメッセージ作成
-                        // label_Email_Error.Text = content;
-                        // label_Email_Error.Visible = true;
+                        label_Email_Error.Text += " ※メールアドレスには下記以外の記号の入力はできません「.」「@」「_」「-」";
+                        label_Email_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    label_Email_Error.Text = "※「メールアドレス」は必須入力です";
+                    label_Email_Error.Text = " ※「メールアドレス」は必須入力です";
                     ret = false;
                 }
                 // 「電話番号」のテキストボックス1つ目が入力されているか確認する
@@ -181,7 +193,7 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if (ViewsUtil.WordCountCheck(textBox_PhoneNumber1.Text, 4) != true)
                     {
-                        label_PhoneNumber_Error.Text = "※電話番号は5桁以上入力できません";
+                        label_PhoneNumber_Error.Text = " ※電話番号は5桁以上入力できません";
                         label_PhoneNumber_Error.Visible = true;
                         ret = false;
                     }
@@ -193,7 +205,7 @@ namespace SyainKanriSystem
                 }
                 else
                 {
-                    label_PhoneNumber_Error.Text = "※「電話番号」は必須入力です";
+                    label_PhoneNumber_Error.Text = " ※「電話番号」は必須入力です";
                     label_PhoneNumber_Error.Visible = true;
                     ret = false;
                 }
@@ -203,7 +215,7 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(textBox_PhoneNumber2.Text, 4) != true)
                     {
-                        label_PhoneNumber_Error.Text = "※電話番号は5桁以上入力できません";
+                        label_PhoneNumber_Error.Text = " ※電話番号は5桁以上入力できません";
                         label_PhoneNumber_Error.Visible = true;
                         ret = false;
                     }
@@ -215,7 +227,7 @@ namespace SyainKanriSystem
                 }
                 else
                 {
-                    label_PhoneNumber_Error.Text = "※「電話番号」は必須入力です";
+                    label_PhoneNumber_Error.Text = " ※「電話番号」は必須入力です";
                     label_PhoneNumber_Error.Visible = true;
                     ret = false;
                 }
@@ -225,7 +237,7 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(textBox_PhoneNumber3.Text, 4) != true)
                     {
-                        label_PhoneNumber_Error.Text = "※電話番号は5桁以上入力できません";
+                        label_PhoneNumber_Error.Text = " ※電話番号は5桁以上入力できません";
                         label_PhoneNumber_Error.Visible = true;
                         ret = false;
                     }
@@ -237,7 +249,7 @@ namespace SyainKanriSystem
                 }
                 else
                 {
-                    label_PhoneNumber_Error.Text = "※「電話番号」は必須入力です";
+                    label_PhoneNumber_Error.Text = " ※「電話番号」は必須入力です";
                     label_PhoneNumber_Error.Visible = true;
                     return false;
                 }
@@ -247,21 +259,22 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(dateTimePicker_HireDate.Text, 11) != true)
                     {
-                        label_HireDate_Error.Text = "※雇用日は11文字以上入力できません";
+                        label_HireDate_Error.Text = " ※雇用日は11文字以上入力できません";
                         label_HireDate_Error.Visible = true;
                         ret = false;
                     }
                     // 日付の書式かどうか確認する
                     if(ViewsUtil.CalendarCheck(dateTimePicker_HireDate.Text) != true)
                     {
-                        label_HireDate_Error.Text = "※日付を入力してください";
+                        label_HireDate_Error.Text += " ※日付を入力してください";
                         label_HireDate_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("※「雇用日」は必須入力です");
+                    label_HireDate_Error.Text = (" ※「雇用日」は必須入力です");
+                    label_HireDate_Error.Visible = true;
                     return false;
                 }
                 // 「部門」が入力されているか確認する
@@ -270,21 +283,21 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(comboBox_Department.Text, 5) != true)
                     {
-                        label_Department_Error.Text = "※部門は6文字以上入力できません";
+                        label_Department_Error.Text = " ※部門は6文字以上入力できません";
                         label_Department_Error.Visible = true;
                         ret = false;
                     }
                     // コンボボックスに存在する部門名と一致しているか確認する。存在しない部門名の場合は0。
                     if(ViewsUtil.DepartmentCheck(comboBox_Department.Text, departmentList) == 0)
                     {
-                        label_Department_Error.Text += "※存在しない部門名を入力しています";
+                        label_Department_Error.Text += " ※存在しない部門名を入力しています";
                         label_Department_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    label_Department_Error.Text = "※「部門」は必須入力です";
+                    label_Department_Error.Text = " ※「部門」は必須入力です";
                     label_Department_Error.Visible = true;
                     ret = false;
                 }
@@ -294,21 +307,21 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(comboBox_Position.Text, 5) != true)
                     {
-                        label_Position_Error.Text = "※役職は6文字以上入力できません";
+                        label_Position_Error.Text = " ※役職は6文字以上入力できません";
                         label_Position_Error.Visible = true;
                         ret = false;
                     }
                     // コンボボックスに存在する役職名と一致しているか確認する。存在しない役職名の場合は0・
                     if(ViewsUtil.PositionCheck(comboBox_Position.Text, positionList) == 0)
                     {
-                        label_Position_Error.Text = "※存在しない役職名を入力しています";
+                        label_Position_Error.Text += " ※存在しない役職名を入力しています";
                         label_Position_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    label_Position_Error.Text = "※役職は必須入力です";
+                    label_Position_Error.Text = " ※役職は必須入力です";
                     label_Position_Error.Visible = true;
                     ret = false;
                 }
@@ -317,21 +330,21 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if(ViewsUtil.WordCountCheck(comboBox_Status.Text, 3) != true)
                     {
-                        label_Status_Error.Text = "※ステータスは4文字以上入力できません";
+                        label_Status_Error.Text = " ※ステータスは4文字以上入力できません";
                         label_Status_Error.Visible = true;
                         ret = false;
                     }
                     // コンボボックスに存在するステータスと一致しているか確認する。「在籍」は0、「退職済」は1となる。
-                    if (ViewsUtil.StatusCheck(comboBox_Status.Text) != 0 || ViewsUtil.StatusCheck(comboBox_Status.Text) != 1)
+                    if (ViewsUtil.StatusCheck(comboBox_Status.Text) != 0 && ViewsUtil.StatusCheck(comboBox_Status.Text) != 1)
                     {
-                        label_Status_Error.Text += "※存在しないステータス名を入力しています";
+                        label_Status_Error.Text += " ※存在しないステータス名を入力しています";
                         label_Status_Error.Visible = true;
                         ret = false;
                     }
                 }
                 else
                 {
-                    label_Status_Error.Text = "※「ステータス」は必須入力です";
+                    label_Status_Error.Text = " ※「ステータス」は必須入力です";
                     label_Status_Error.Visible = true;
                     ret = false;
                 }
@@ -343,6 +356,41 @@ namespace SyainKanriSystem
             {
                 throw error;
             }
+        }
+
+        private void InitializeErrorTextBox()
+        {
+            //「姓」のエラーメッセージを初期化
+            label_Sei_Error.Visible = false;
+            label_Sei_Error.Text = "";
+            //「名」のエラーメッセージを初期化
+            label_Mei_Error.Visible = false;
+            label_Mei_Error.Text = "";
+            //「姓（かな）」のエラーメッセージを初期化
+            label_SeiKana_Error.Visible = false;
+            label_SeiKana_Error.Text = "";
+            //「名（かな）」のエラーメッセージを初期化
+            label_MeiKana_Error.Visible = false;
+            label_MeiKana_Error.Text = "";
+            //「メールアドレス」のエラーメッセージを初期化
+            label_Email_Error.Visible = false;
+            label_Email_Error.Text = "";
+            //「電話番号」のエラーメッセージを初期化
+            label_PhoneNumber_Error.Visible = false;
+            label_PhoneNumber_Error.Text = "";
+            //「雇用日」のエラーメッセージを初期化
+            label_HireDate_Error.Visible = false;
+            label_HireDate_Error.Text = "";
+            //「部門」のエラーメッセージを初期化
+            label_Department_Error.Visible = false;
+            label_Department_Error.Text = "";
+            //「役職」のエラーメッセージを初期化
+            label_Position_Error.Visible = false;
+            label_Position_Error.Text = "";
+            //「ステータス」のエラーメッセージを初期化
+            label_Status_Error.Visible = false;
+            label_Status_Error.Text = "";
+
         }
         
 

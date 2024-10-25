@@ -491,7 +491,7 @@ namespace SyainKanriSystem
                             case "メールアドレス":
                                 searchComboValue = "Email";
                                 ViewsUtil.WordCountCheck(searchTextValue, 255);
-                                ViewsUtil.MailCheck(searchTextValue);
+                                ViewsUtil.MailJapaneseCheck(searchTextValue);
                                 break;
                             case "電話番号":
                                 searchComboValue = "PhoneNumber";
