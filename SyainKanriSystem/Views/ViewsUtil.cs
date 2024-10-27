@@ -141,6 +141,31 @@ namespace SyainKanriSystem
             return ret;
         }
 
+        // メールアドレスのチェック
+        public static string MailRequiredStrCheck(string email)
+        {
+            // bool ret = true;
+            try
+            {
+                String[] strRequired = { "@", "." };
+                foreach (String str in strRequired)
+                {
+                    if (email.Contains(str) == false)
+                    {
+                        // string content = string.Format("メールアドレスに指定の文字（{0}）が入力されていません", str);
+                        // throw new Exception(content);
+                        // ret = false;
+                        return str;
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
+            return null;
+        }
+
         public static bool MailSymbolCheck(string email)
         {
             bool ret = true;
@@ -324,15 +349,18 @@ namespace SyainKanriSystem
             }
         }
 
-        public static void SpaceCheck(string checkData)
+        public static bool SpaceCheck(string checkData)
         {
+            bool ret = true;
             // 半角・全角スペースを含むかチェックする正規表現
             string pattern = @"[\u0020\u3000]";
 
             if (Regex.IsMatch(checkData, pattern))
             {
-                MessageBox.Show("半角または全角スペースが含まれています");
+                // MessageBox.Show("半角または全角スペースが含まれています");
+                ret = false;
             }
+            return ret;
         }
 
         /*

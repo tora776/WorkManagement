@@ -80,6 +80,13 @@ namespace SyainKanriSystem
                         label_Sei_Error.Visible = true;
                         ret = false;
                     }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_Sei.Text) != true)
+                    {
+                        label_Sei_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_Sei_Error.Visible = true;
+                        ret = false;
+                    }
                 }
                 else
                 {
@@ -94,6 +101,13 @@ namespace SyainKanriSystem
                     if(ViewsUtil.WordCountCheck(textBox_Mei.Text, 50) != true)
                     {
                         label_Mei_Error.Text = " ※「名」は51文字以上入力できません";
+                        label_Mei_Error.Visible = true;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_Mei.Text) != true)
+                    {
+                        label_Mei_Error.Text += " ※半角または全角スペースが含まれています";
                         label_Mei_Error.Visible = true;
                         ret = false;
                     }
@@ -119,6 +133,13 @@ namespace SyainKanriSystem
                     if (ViewsUtil.KanaCheck(textBox_SeiKana.Text) != true)
                     {
                         label_SeiKana_Error.Text += " ※「姓（かな）」をひらがな入力してください";
+                        label_SeiKana_Error.Visible = true;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_SeiKana.Text) != true)
+                    {
+                        label_SeiKana_Error.Text += " ※半角または全角スペースが含まれています";
                         label_SeiKana_Error.Visible = true;
                         ret = false;
                     }
@@ -148,6 +169,13 @@ namespace SyainKanriSystem
                         label_MeiKana_Error.Visible = true;
                         ret = false;
                     }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_MeiKana.Text) != true)
+                    {
+                        label_MeiKana_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_MeiKana_Error.Visible = true;
+                        ret = false;
+                    }
                 }
                 else
                 {
@@ -174,10 +202,19 @@ namespace SyainKanriSystem
                         label_Email_Error.Visible = true;
                         ret = false;
                     }
-                    // メールアドレスの書式チェック（「@」「.」の有無）
+                    // メールアドレスの書式チェック（使用不可の記号の有無）半角全角スペースも本メソッドでチェックする。
                     if (ViewsUtil.MailSymbolCheck(textBox_Email.Text) != true)
                     {
                         label_Email_Error.Text += " ※メールアドレスには下記以外の記号の入力はできません「.」「@」「_」「-」";
+                        label_Email_Error.Visible = true;
+                        ret = false;
+                    }
+                    // メールアドレスに必須文字列が含まれているかチェック（「@」「.」の有無）
+                    string str = ViewsUtil.MailRequiredStrCheck(textBox_Email.Text);
+                    if (str != null)
+                    {
+                        string content = string.Format(" ※メールアドレスに指定の文字（{0}）が入力されていません", str);
+                        label_Email_Error.Text += content;
                         label_Email_Error.Visible = true;
                         ret = false;
                     }
@@ -202,6 +239,13 @@ namespace SyainKanriSystem
                     {
                         ret = false;
                     }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_PhoneNumber1.Text) != true)
+                    {
+                        label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_PhoneNumber_Error.Visible = true;
+                        ret = false;
+                    }
                 }
                 else
                 {
@@ -222,6 +266,13 @@ namespace SyainKanriSystem
                     // 電話番号の書式チェック（数字が入力されているか）
                     if(ViewsUtil.PhoneCheck(textBox_PhoneNumber2.Text) != true)
                     {
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_PhoneNumber2.Text) != true)
+                    {
+                        label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_PhoneNumber_Error.Visible = true;
                         ret = false;
                     }
                 }
@@ -246,6 +297,13 @@ namespace SyainKanriSystem
                     {
                         ret = false;
                     }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_PhoneNumber3.Text) != true)
+                    {
+                        label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_PhoneNumber_Error.Visible = true;
+                        ret = false;
+                    }
                 }
                 else
                 {
@@ -267,6 +325,13 @@ namespace SyainKanriSystem
                     if(ViewsUtil.CalendarCheck(dateTimePicker_HireDate.Text) != true)
                     {
                         label_HireDate_Error.Text += " ※日付を入力してください";
+                        label_HireDate_Error.Visible = true;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(dateTimePicker_HireDate.Text) != true)
+                    {
+                        label_HireDate_Error.Text += " ※半角または全角スペースが含まれています";
                         label_HireDate_Error.Visible = true;
                         ret = false;
                     }
@@ -294,6 +359,13 @@ namespace SyainKanriSystem
                         label_Department_Error.Visible = true;
                         ret = false;
                     }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(comboBox_Department.Text) != true)
+                    {
+                        label_Department_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_Department_Error.Visible = true;
+                        ret = false;
+                    }
                 }
                 else
                 {
@@ -318,6 +390,13 @@ namespace SyainKanriSystem
                         label_Position_Error.Visible = true;
                         ret = false;
                     }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(comboBox_Position.Text) != true)
+                    {
+                        label_Position_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_Position_Error.Visible = true;
+                        ret = false;
+                    }
                 }
                 else
                 {
@@ -338,6 +417,13 @@ namespace SyainKanriSystem
                     if (ViewsUtil.StatusCheck(comboBox_Status.Text) != 0 && ViewsUtil.StatusCheck(comboBox_Status.Text) != 1)
                     {
                         label_Status_Error.Text += " ※存在しないステータス名を入力しています";
+                        label_Status_Error.Visible = true;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(comboBox_Status.Text) != true)
+                    {
+                        label_Status_Error.Text += " ※半角または全角スペースが含まれています";
                         label_Status_Error.Visible = true;
                         ret = false;
                     }
@@ -390,7 +476,6 @@ namespace SyainKanriSystem
             //「ステータス」のエラーメッセージを初期化
             label_Status_Error.Visible = false;
             label_Status_Error.Text = "";
-
         }
         
 
