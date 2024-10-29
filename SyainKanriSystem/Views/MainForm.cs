@@ -58,93 +58,7 @@ namespace SyainKanriSystem
             {
                 MessageBox.Show(error.Message);
             }
-        }
-        
-        /*
-        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            // ソートする列の名前を取得
-            string columnName = dataGridView1.Columns[e.ColumnIndex].Name;
-
-            // 現在のソート方向を取得
-            SortOrder sortOrder = getSortOrder(e.ColumnIndex);
-
-            // 特定の列に基づいてソート処理を分岐
-            if (columnName == "姓")
-            {
-                SortByFirstNameKana(sortOrder);  // 「姓」を「姓（かな）」と同様にソート
-            }
-            else if (columnName == "部門")
-            {
-                SortByDepartment(sortOrder);  // 「部門」をDepartmentの値に基づいてソート
-            }
-            else
-            {
-                // デフォルトのソート処理（通常の列ソート）
-                SortDataGridView(columnName, sortOrder);
-            }
-        }
-
-        private SortOrder getSortOrder(int columnIndex)
-        {
-            // 現在のソート状況を確認
-            if (dataGridView1.SortedColumn != null && dataGridView1.SortedColumn.Index == columnIndex)
-            {
-                if (dataGridView1.SortOrder == SortOrder.Ascending)
-                {
-                    return SortOrder.Descending;
-                }
-                else if (dataGridView1.SortOrder == SortOrder.Descending)
-                {
-                    return SortOrder.Ascending;
-                }
-            }
-            return SortOrder.Ascending; // デフォルトでは昇順でソート
-        }
-
-        // 「姓（かな）」列に基づいてソートするメソッド
-        private void SortByFirstNameKana(SortOrder sortOrder)
-        {
-            if (sortOrder == SortOrder.Ascending)
-            {
-                employeeList = employeeList.OrderBy(x => x.SeiKana).ToList();
-            }
-            else
-            {
-                employeeList = employeeList.OrderByDescending(x => x.MeiKana).ToList();
-            }
-        }
-
-        // Departmentに基づいてソートするメソッド
-        private void SortByDepartment(SortOrder sortOrder)
-        {
-            if (sortOrder == SortOrder.Ascending)
-            {
-                employeeList = employeeList.OrderBy(x => x.Department).ToList();
-                // employeeList = employeeList.Where(x => x.Department == departmentList.DepartmentName).OrderBy(x => departmentList.DepartmentID).ToList();
-            }
-            else
-            {
-                employeeList = employeeList.OrderByDescending(x => x.Department).ToList();
-            }
-            // resetDataGridView();
-            // setEmployeesDataGridView();
-        }
-
-        // 通常の列ソート処理を行うメソッド
-        private void SortDataGridView(string columnName, SortOrder sortOrder)
-        {
-            if (sortOrder == SortOrder.Ascending)
-            {
-                dataGridView1.Sort(dataGridView1.Columns[columnName], System.ComponentModel.ListSortDirection.Ascending);
-            }
-            else
-            {
-                dataGridView1.Sort(dataGridView1.Columns[columnName], System.ComponentModel.ListSortDirection.Descending);
-            }
-        }
-        */
-        
+        }        
 
         // DataGridViewをリセットする
         private void ResetDataGridView()
@@ -238,8 +152,8 @@ namespace SyainKanriSystem
                     row.Cells["社員番号"].Value = item.EmployeeID;
                     row.Cells["姓"].Value = item.Sei;
                     row.Cells["名"].Value = item.Mei;
-                    row.Cells["姓（かな）"].Value = item.SeiKana;
-                    row.Cells["名（かな）"].Value = item.MeiKana;
+                    row.Cells["姓（カナ）"].Value = item.SeiKana;
+                    row.Cells["名（カナ）"].Value = item.MeiKana;
                     row.Cells["メールアドレス"].Value = item.Email;
                     row.Cells["電話番号"].Value = item.PhoneNumber;
                     row.Cells["雇用日"].Value = item.HireDate.ToString("yyyy/MM/dd");
@@ -277,8 +191,8 @@ namespace SyainKanriSystem
             dataGridView1.Columns[0].Name = "社員番号";
             dataGridView1.Columns[1].Name = "姓";
             dataGridView1.Columns[2].Name = "名";
-            dataGridView1.Columns[3].Name = "姓（かな）";
-            dataGridView1.Columns[4].Name = "名（かな）";
+            dataGridView1.Columns[3].Name = "姓（カナ）";
+            dataGridView1.Columns[4].Name = "名（カナ）";
             dataGridView1.Columns[5].Name = "メールアドレス";
             dataGridView1.Columns[6].Name = "電話番号";
             dataGridView1.Columns[7].Name = "雇用日";
@@ -377,8 +291,8 @@ namespace SyainKanriSystem
             "社員番号",
             "姓",
             "名",
-            "姓（かな）",
-            "名（かな）",
+            "姓（カナ）",
+            "名（カナ）",
             "メールアドレス",
             "電話番号",
             "雇用日",
@@ -478,12 +392,12 @@ namespace SyainKanriSystem
                                 searchComboValue = "Mei";
                                 ViewsUtil.WordCountCheck(searchTextValue, 50);
                                 break;
-                            case "姓（かな）":
+                            case "姓（カナ）":
                                 searchComboValue = "SeiKana";
                                 ViewsUtil.WordCountCheck(searchTextValue, 50);
                                 ViewsUtil.KanaCheck(searchTextValue);
                                 break;
-                            case "名（かな）":
+                            case "名（カナ）":
                                 searchComboValue = "MeiKana";
                                 ViewsUtil.WordCountCheck(searchTextValue, 50);
                                 ViewsUtil.KanaCheck(searchTextValue);

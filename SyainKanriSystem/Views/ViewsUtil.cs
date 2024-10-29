@@ -44,9 +44,6 @@ namespace SyainKanriSystem
             {
                     if (inputData.Length > limit)
                     {
-                        // エラーメッセージ例：姓（あああ･･･）は既定の文字数をオーバーしています。※50文字まで
-                        // string content = string.Format("{0}({1})は既定の文字数をオーバーしています。※{1}文字まで",label inputData, 255);
-                        // MessageBox.Show(content);
                         ret = false;
                     }
                     return ret;
@@ -65,8 +62,7 @@ namespace SyainKanriSystem
         {
             try
             {
-                bool result = int.TryParse(checkData, out _);
-                if (result != true)
+                if (int.TryParse(checkData, out _) != true)
                 {
                     MessageBox.Show("社員番号は6桁の数字を入力してください");
                     return false;
@@ -85,7 +81,7 @@ namespace SyainKanriSystem
         {
             try
             {
-                    if (Regex.IsMatch(checkData, @"^\p{IsHiragana}*$") != true)
+                    if (Regex.IsMatch(checkData, @"^\p{IsKatakana}*$") != true)
                     {
                         return false;
                     }
@@ -105,8 +101,7 @@ namespace SyainKanriSystem
             try
             {
                 // 入力値が数字かどうか確認する
-                bool ret = int.TryParse(phoneNumber, out _);
-                if (ret == false)
+                if (int.TryParse(phoneNumber, out _) != true)
                     {
                         return false;
                     }
