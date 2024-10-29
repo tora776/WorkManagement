@@ -87,157 +87,481 @@ namespace SyainKanriSystem
         }
 
 
-        // 入力値を取得する
+        // テキストボックスの入力値を取得
         private bool InputTextCheck()
         {
+            bool ret = true;
+            InitializeErrorTextBox();
             try
             {
                 // 「姓」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_Sei.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_Sei.Text, 50);
+                    if (ViewsUtil.WordCountCheck(textBox_Sei.Text, 50) != true)
+                    {
+                        // エラーメッセージの作成
+                        label_Sei_Error.Text = " ※「姓」は51文字以上入力できません";
+                        label_Sei_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_Sei.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_Sei.Text) != true)
+                    {
+                        label_Sei_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_Sei_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_Sei.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("「姓」は必須入力です");
-                    return false;
+                    label_Sei_Error.Text = " ※「姓」は必須入力です";
+                    label_Sei_Error.ForeColor = Color.Red;
+                    // テキストボックスの背景色を変更
+                    textBox_Sei.BackColor = Color.Khaki;
+                    ret = false;
                 }
                 // 「名」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_Mei.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_Mei.Text, 50);
+                    if (ViewsUtil.WordCountCheck(textBox_Mei.Text, 50) != true)
+                    {
+                        label_Mei_Error.Text = " ※「名」は51文字以上入力できません";
+                        label_Mei_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_Mei.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_Mei.Text) != true)
+                    {
+                        label_Mei_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_Mei_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_Mei.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("「名」は必須入力です");
-                    return false;
+                    label_Mei_Error.Text = " ※「名」は必須入力です";
+                    label_Mei_Error.ForeColor = Color.Red;
+                    // テキストボックスの背景色を変更
+                    textBox_Mei.BackColor = Color.Khaki;
+                    ret = false;
                 }
+
                 // 「姓（かな）」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_SeiKana.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_SeiKana.Text, 50);
+                    if (ViewsUtil.WordCountCheck(textBox_SeiKana.Text, 50) != true)
+                    {
+                        label_SeiKana_Error.Text = " ※「姓（カナ）」は51文字以上入力できません";
+                        label_SeiKana_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_SeiKana.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                     // 平仮名かどうか確認する
-                    ViewsUtil.KanaCheck(textBox_SeiKana.Text);
+                    if (ViewsUtil.KanaCheck(textBox_SeiKana.Text) != true)
+                    {
+                        label_SeiKana_Error.Text += " ※「姓（カナ）」をカタカナ入力してください";
+                        label_SeiKana_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_SeiKana.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_SeiKana.Text) != true)
+                    {
+                        label_SeiKana_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_SeiKana_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_SeiKana.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("「姓（かな）」は必須入力です");
-                    return false;
+                    label_SeiKana_Error.Text = " ※「姓（カナ）」は必須入力です";
+                    label_SeiKana_Error.ForeColor = Color.Red;
+                    // テキストボックスの背景色を変更
+                    textBox_SeiKana.BackColor = Color.Khaki;
+                    ret = false;
                 }
+
+
                 // 「名（かな）」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_MeiKana.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_MeiKana.Text, 50);
+                    if (ViewsUtil.WordCountCheck(textBox_MeiKana.Text, 50) != true)
+                    {
+                        label_MeiKana_Error.Text = " ※「名（かな）」は51文字以上入力できません";
+                        label_MeiKana_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_MeiKana.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                     // 平仮名かどうか確認する
-                    ViewsUtil.KanaCheck(textBox_MeiKana.Text);
+                    if (ViewsUtil.KanaCheck(textBox_MeiKana.Text) != true)
+                    {
+                        label_MeiKana_Error.Text += " ※「名（カナ）」をカタカナ入力してください";
+                        label_MeiKana_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_MeiKana.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_MeiKana.Text) != true)
+                    {
+                        label_MeiKana_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_MeiKana_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_MeiKana.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("「名（かな）」は必須入力です");
-                    return false;
+                    label_MeiKana_Error.Text = " ※「名（カナ）」は必須入力です";
+                    label_MeiKana_Error.ForeColor = Color.Red;
+                    // テキストボックスの背景色を変更
+                    textBox_MeiKana.BackColor = Color.Khaki;
+                    ret = false;
                 }
+
+
                 // 「メールアドレス」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_Email.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_Email.Text, 255);
-                    // メールアドレスの書式チェック（「@」「.」の有無）
-                    ViewsUtil.MailJapaneseCheck(textBox_Email.Text);
+                    if (ViewsUtil.WordCountCheck(textBox_Email.Text, 255) != true)
+                    {
+                        label_Email_Error.Text = " ※メールアドレスは256文字以上入力できません";
+                        label_Email_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_Email.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // メールアドレスの書式チェック（日本語の有無）
+                    if (ViewsUtil.MailJapaneseCheck(textBox_Email.Text) != true)
+                    {
+                        label_Email_Error.Text += " ※メールアドレスに日本語は入力できません";
+                        label_Email_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_Email.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // メールアドレスの書式チェック（使用不可の記号の有無）半角全角スペースも本メソッドでチェックする。
+                    if (ViewsUtil.MailSymbolCheck(textBox_Email.Text) != true)
+                    {
+                        label_Email_Error.Text += " ※メールアドレスには右記以外の記号の入力はできません「.」「@」「_」「-」";
+                        label_Email_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_Email.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // メールアドレスに必須文字列が含まれているかチェック（「@」「.」の有無）
+                    string str = ViewsUtil.MailRequiredStrCheck(textBox_Email.Text);
+                    if (str != null)
+                    {
+                        string content = string.Format(" ※メールアドレスに指定の文字（{0}）が入力されていません", str);
+                        label_Email_Error.Text += content;
+                        label_Email_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_Email.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("「メールアドレス」は必須入力です");
-                    return false;
+                    label_Email_Error.Text = " ※「メールアドレス」は必須入力です";
+                    label_Email_Error.ForeColor = Color.Red;
+                    // テキストボックスの背景色を変更
+                    textBox_Email.BackColor = Color.Khaki;
+                    ret = false;
                 }
                 // 「電話番号」のテキストボックス1つ目が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber1.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_PhoneNumber1.Text, 4);
+                    if (ViewsUtil.WordCountCheck(textBox_PhoneNumber1.Text, 4) != true)
+                    {
+                        label_PhoneNumber_Error.Text = " ※電話番号は5桁以上入力できません";
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_PhoneNumber1.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                     // 電話番号の書式チェック（数字が入力されているか）
-                    ViewsUtil.PhoneCheck(textBox_PhoneNumber1.Text);
+                    if (ViewsUtil.PhoneCheck(textBox_PhoneNumber1.Text) != true)
+                    {
+                        label_PhoneNumber_Error.Text += " ※電話番号は半角数字以外は入力できません";
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_PhoneNumber1.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_PhoneNumber1.Text) != true)
+                    {
+                        label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_PhoneNumber1.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("「電話番号」は必須入力です");
-                    return false;
+                    label_PhoneNumber_Error.Text = " ※「電話番号」は必須入力です";
+                    label_PhoneNumber_Error.ForeColor = Color.Red;
+                    // テキストボックスの背景色を変更
+                    textBox_PhoneNumber1.BackColor = Color.Khaki;
+                    ret = false;
                 }
                 // 「電話番号」のテキストボックス2つ目が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber2.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_PhoneNumber2.Text, 4);
+                    if (ViewsUtil.WordCountCheck(textBox_PhoneNumber2.Text, 4) != true)
+                    {
+                        label_PhoneNumber_Error.Text += " ※電話番号は5桁以上入力できません";
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_PhoneNumber2.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                     // 電話番号の書式チェック（数字が入力されているか）
-                    ViewsUtil.PhoneCheck(textBox_PhoneNumber2.Text);
+                    if (ViewsUtil.PhoneCheck(textBox_PhoneNumber2.Text) != true)
+                    {
+                        label_PhoneNumber_Error.Text += " ※電話番号は半角数字以外は入力できません";
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_PhoneNumber2.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_PhoneNumber2.Text) != true)
+                    {
+                        label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_PhoneNumber2.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("「電話番号」は必須入力です");
-                    return false;
+                    label_PhoneNumber_Error.Text += " ※「電話番号」は必須入力です";
+                    label_PhoneNumber_Error.ForeColor = Color.Red;
+                    // テキストボックスの背景色を変更
+                    textBox_PhoneNumber2.BackColor = Color.Khaki;
+                    ret = false;
                 }
                 // 「電話番号」のテキストボックス3つ目が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(textBox_PhoneNumber3.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(textBox_PhoneNumber3.Text, 4);
+                    if (ViewsUtil.WordCountCheck(textBox_PhoneNumber3.Text, 4) != true)
+                    {
+                        label_PhoneNumber_Error.Text += " ※電話番号は5桁以上入力できません";
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_PhoneNumber3.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                     // 電話番号の書式チェック（数字が入力されているか）
-                    ViewsUtil.PhoneCheck(textBox_PhoneNumber3.Text);
+                    if (ViewsUtil.PhoneCheck(textBox_PhoneNumber3.Text) != true)
+                    {
+                        label_PhoneNumber_Error.Text += " ※電話番号は半角数字以外は入力できません";
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_PhoneNumber3.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(textBox_PhoneNumber3.Text) != true)
+                    {
+                        label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
+                        // テキストボックスの背景色を変更
+                        textBox_PhoneNumber3.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("「電話番号」は必須入力です");
+                    label_PhoneNumber_Error.Text += " ※「電話番号」は必須入力です";
+                    label_PhoneNumber_Error.ForeColor = Color.Red;
+                    // テキストボックスの背景色を変更
+                    textBox_PhoneNumber3.BackColor = Color.Khaki;
                     return false;
                 }
                 // 「雇用日」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(dateTimePicker_HireDate.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(dateTimePicker_HireDate.Text, 11);
+                    if (ViewsUtil.WordCountCheck(dateTimePicker_HireDate.Text, 11) != true)
+                    {
+                        label_HireDate_Error.Text = " ※雇用日は11文字以上入力できません";
+                        label_HireDate_Error.ForeColor = Color.Red;
+                        // dateTimePickerの背景色を変更
+                        dateTimePicker_HireDate.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                     // 日付の書式かどうか確認する
-                    ViewsUtil.CalendarCheck(dateTimePicker_HireDate.Text);
+                    if (ViewsUtil.CalendarCheck(dateTimePicker_HireDate.Text) != true)
+                    {
+                        label_HireDate_Error.Text += " ※日付を入力してください";
+                        label_HireDate_Error.ForeColor = Color.Red;
+                        // dateTimePickerの背景色を変更
+                        dateTimePicker_HireDate.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(dateTimePicker_HireDate.Text) != true)
+                    {
+                        label_HireDate_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_HireDate_Error.ForeColor = Color.Red;
+                        // dateTimePickerの背景色を変更
+                        dateTimePicker_HireDate.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("「雇用日」は必須入力です");
+                    label_HireDate_Error.Text = (" ※「雇用日」は必須入力です");
+                    label_HireDate_Error.ForeColor = Color.Red;
+                    // dateTimePickerの背景色を変更
+                    dateTimePicker_HireDate.BackColor = Color.Khaki;
                     return false;
                 }
                 // 「部門」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(comboBox_Department.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(comboBox_Department.Text, 5);
-                    // コンボボックスに存在する部門名と一致しているか確認する
-                    ViewsUtil.DepartmentCheck(comboBox_Department.Text, departmentList);
+                    if (ViewsUtil.WordCountCheck(comboBox_Department.Text, 5) != true)
+                    {
+                        label_Department_Error.Text = " ※部門は6文字以上入力できません";
+                        label_Department_Error.ForeColor = Color.Red;
+                        // コンボボックスの背景色を変更
+                        comboBox_Department.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // コンボボックスに存在する部門名と一致しているか確認する。存在しない部門名の場合は0。
+                    if (ViewsUtil.DepartmentCheck(comboBox_Department.Text, departmentList) == 0)
+                    {
+                        label_Department_Error.Text += " ※存在しない部門名を入力しています";
+                        label_Department_Error.ForeColor = Color.Red;
+                        // コンボボックスの背景色を変更
+                        comboBox_Department.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(comboBox_Department.Text) != true)
+                    {
+                        label_Department_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_Department_Error.ForeColor = Color.Red;
+                        // コンボボックスの背景色を変更
+                        comboBox_Department.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("「部門」は必須入力です");
-                    return false;
+                    label_Department_Error.Text = " ※「部門」は必須入力です";
+                    label_Department_Error.ForeColor = Color.Red;
+                    // コンボボックスの背景色を変更
+                    comboBox_Department.BackColor = Color.Khaki;
+                    ret = false;
                 }
                 // 「役職」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(comboBox_Position.Text) == true)
                 {
                     // 文字数チェック
-                    ViewsUtil.WordCountCheck(comboBox_Position.Text, 5);
-                    // コンボボックスに存在する役職名と一致しているか確認する
-                    ViewsUtil.PositionCheck(comboBox_Position.Text, positionList);
+                    if (ViewsUtil.WordCountCheck(comboBox_Position.Text, 5) != true)
+                    {
+                        label_Position_Error.Text = " ※役職は6文字以上入力できません";
+                        label_Position_Error.ForeColor = Color.Red;
+                        // コンボボックスの背景色を変更
+                        comboBox_Position.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // コンボボックスに存在する役職名と一致しているか確認する。存在しない役職名の場合は0・
+                    if (ViewsUtil.PositionCheck(comboBox_Position.Text, positionList) == 0)
+                    {
+                        label_Position_Error.Text += " ※存在しない役職名を入力しています";
+                        label_Position_Error.ForeColor = Color.Red;
+                        // コンボボックスの背景色を変更
+                        comboBox_Position.BackColor = Color.Khaki;
+                        ret = false;
+                    }
+                    // 半角全角スペースチェック
+                    if (ViewsUtil.SpaceCheck(comboBox_Position.Text) != true)
+                    {
+                        label_Position_Error.Text += " ※半角または全角スペースが含まれています";
+                        label_Position_Error.ForeColor = Color.Red;
+                        // コンボボックスの背景色を変更
+                        comboBox_Position.BackColor = Color.Khaki;
+                        ret = false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("「役職」は必須入力です");
-                    return false;
+                    label_Position_Error.Text = " ※役職は必須入力です";
+                    label_Position_Error.ForeColor = Color.Red;
+                    // コンボボックスの背景色を変更
+                    comboBox_Position.BackColor = Color.Khaki;
+                    ret = false;
                 }
-                return true;
-
+                return ret;
             }
+
             catch (Exception error)
             {
                 throw error;
             }
+        }
+
+        private void InitializeErrorTextBox()
+        {
+            //「姓」のエラーメッセージを初期化
+            label_Sei_Error.Text = "";
+            textBox_Sei.BackColor = Color.White;
+            //「名」のエラーメッセージを初期化
+            label_Mei_Error.Text = "";
+            textBox_Mei.BackColor = Color.White;
+            //「姓（かな）」のエラーメッセージを初期化
+            label_SeiKana_Error.Text = "";
+            textBox_SeiKana.BackColor = Color.White;
+            //「名（かな）」のエラーメッセージを初期化
+            label_MeiKana_Error.Text = "";
+            textBox_MeiKana.BackColor = Color.White;
+            //「メールアドレス」のエラーメッセージを初期化
+            label_Email_Error.Text = "";
+            textBox_Email.BackColor = Color.White;
+            //「電話番号」のエラーメッセージを初期化
+            label_PhoneNumber_Error.Text = "";
+            textBox_PhoneNumber1.BackColor = Color.White;
+            textBox_PhoneNumber2.BackColor = Color.White;
+            textBox_PhoneNumber3.BackColor = Color.White;
+            //「雇用日」のエラーメッセージを初期化
+            label_HireDate_Error.Text = "";
+            dateTimePicker_HireDate.BackColor = Color.White;
+            //「部門」のエラーメッセージを初期化
+            label_Department_Error.Text = "";
+            comboBox_Department.BackColor = Color.White;
+            //「役職」のエラーメッセージを初期化
+            label_Position_Error.Text = "";
+            comboBox_Position.BackColor = Color.White;
         }
 
         // 入力値をクリアする

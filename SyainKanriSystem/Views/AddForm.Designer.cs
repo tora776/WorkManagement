@@ -431,7 +431,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1058, 794);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1258, 839);
             this.Controls.Add(this.label_MeiKana_Error);
             this.Controls.Add(this.label_Mei_Error);
             this.Controls.Add(this.label_SeiKana_Error);

@@ -578,10 +578,10 @@ namespace SyainKanriSystem
             comboBox_Department.BackColor = Color.White;
             //「役職」のエラーメッセージを初期化
             label_Position_Error.Text = "";
-            comboBox_Department.BackColor = Color.White;
+            comboBox_Position.BackColor = Color.White;
             //「ステータス」のエラーメッセージを初期化
             label_Status_Error.Text = "";
-            comboBox_Department.BackColor = Color.White;
+            comboBox_Status.BackColor = Color.White;
         }
         
 
