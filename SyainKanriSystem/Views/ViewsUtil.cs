@@ -87,9 +87,6 @@ namespace SyainKanriSystem
             {
                     if (Regex.IsMatch(checkData, @"^\p{IsHiragana}*$") != true)
                     {
-                        // string content = string.Format("{0}({1})をひらがな入力してください", label, checkData);
-                        // throw new Exception(content);
-                        // MessageBox.Show(content);
                         return false;
                     }
                     return true;
@@ -299,7 +296,6 @@ namespace SyainKanriSystem
                 }
                 else
                 {
-                    MessageBox.Show("ステータスは「在籍」か「退職済」と入力してください");
                     // 0か1ではない数字を返す。return後、falseとなる。
                     return -1;
                 }
