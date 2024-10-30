@@ -172,9 +172,9 @@
             // 
             // textBox_EmployeeID
             // 
+            this.textBox_EmployeeID.Enabled = false;
             this.textBox_EmployeeID.Location = new System.Drawing.Point(110, 87);
             this.textBox_EmployeeID.Name = "textBox_EmployeeID";
-            this.textBox_EmployeeID.ReadOnly = true;
             this.textBox_EmployeeID.Size = new System.Drawing.Size(100, 19);
             this.textBox_EmployeeID.TabIndex = 0;
             // 
@@ -281,7 +281,7 @@
             "在籍",
             "退職済"});
             this.comboBox_Status.Location = new System.Drawing.Point(110, 461);
-            this.comboBox_Status.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox_Status.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Status.Name = "comboBox_Status";
             this.comboBox_Status.Size = new System.Drawing.Size(99, 20);
             this.comboBox_Status.TabIndex = 12;
@@ -311,7 +311,7 @@
             this.comboBox_Department.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Department.FormattingEnabled = true;
             this.comboBox_Department.Location = new System.Drawing.Point(110, 385);
-            this.comboBox_Department.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox_Department.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Department.Name = "comboBox_Department";
             this.comboBox_Department.Size = new System.Drawing.Size(99, 20);
             this.comboBox_Department.TabIndex = 10;
@@ -321,7 +321,7 @@
             this.comboBox_Position.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Position.FormattingEnabled = true;
             this.comboBox_Position.Location = new System.Drawing.Point(110, 422);
-            this.comboBox_Position.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox_Position.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Position.Name = "comboBox_Position";
             this.comboBox_Position.Size = new System.Drawing.Size(99, 20);
             this.comboBox_Position.TabIndex = 11;
@@ -329,7 +329,7 @@
             // dateTimePicker_HireDate
             // 
             this.dateTimePicker_HireDate.Location = new System.Drawing.Point(110, 347);
-            this.dateTimePicker_HireDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker_HireDate.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker_HireDate.Name = "dateTimePicker_HireDate";
             this.dateTimePicker_HireDate.Size = new System.Drawing.Size(122, 19);
             this.dateTimePicker_HireDate.TabIndex = 9;
@@ -459,6 +459,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.label_MeiKana_Error);
             this.Controls.Add(this.label_Mei_Error);
