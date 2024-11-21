@@ -31,6 +31,7 @@ namespace SyainKanriSystem.Models
             }
             catch (Exception error)
             {
+                MessageBox.Show("DBに接続できません。DB接続情報を確認してください。");
                 throw error;
             }
         }
@@ -46,12 +47,13 @@ namespace SyainKanriSystem.Models
         }
 
         // DB接続を切断する
-        public void DisconnectDB(NpgsqlConnection conn){
+        public void DisconnectDB(NpgsqlConnection conn)
+        {
             conn.Close();
             conn.Dispose();
         }
 
-       
+
     }
 
 

@@ -19,7 +19,7 @@ namespace SyainKanriSystem
         private readonly List<Positions> positionList;
         private readonly Employees detailedEmployee;
         private readonly MainForm mainForm;
-        
+
         // 詳細表示画面を表示する
         public EmployeeDetailForm(MainForm mainForm, List<Departments> departmentList, List<Positions> positionList, Employees detailedEmployee)
         {
@@ -30,9 +30,12 @@ namespace SyainKanriSystem
             this.positionList = positionList;
             this.mainForm = mainForm;
             this.detailedEmployee = detailedEmployee;
-            InputDetailedEmployee(detailedEmployee);
+            if (detailedEmployee != null)
+            {
+                InputDetailedEmployee(detailedEmployee);
+            }
         }
-        
+
 
         // DataGridView選択行の社員データをフォーム・コンボボックスに入力する
         // TODO コンボボックス・DateTimePickerを読み取り専用（入力不可）にする
@@ -44,9 +47,9 @@ namespace SyainKanriSystem
             textBox_SeiKana.Text = detailedEmployee.SeiKana;
             textBox_MeiKana.Text = detailedEmployee.MeiKana;
             textBox_Email.Text = detailedEmployee.Email;
-            textBox_PhoneNumber1.Text = detailedEmployee.PhoneNumber.Substring(0,3);
-            textBox_PhoneNumber2.Text = detailedEmployee.PhoneNumber.Substring(4,4);
-            textBox_PhoneNumber3.Text = detailedEmployee.PhoneNumber.Substring(9,4);
+            textBox_PhoneNumber1.Text = detailedEmployee.PhoneNumber.Substring(0, 3);
+            textBox_PhoneNumber2.Text = detailedEmployee.PhoneNumber.Substring(4, 4);
+            textBox_PhoneNumber3.Text = detailedEmployee.PhoneNumber.Substring(9, 4);
             dateTimePicker_HireDate.Text = detailedEmployee.HireDate.ToString("yyyy/MM/dd");
             dateTimePicker_HireDate.Enabled = false;
             InitializeDepartmentComboBox(detailedEmployee);
@@ -62,7 +65,7 @@ namespace SyainKanriSystem
 
 
         // 社員編集フォームを開く
-        private void Button_EditForm(object sender, EventArgs e)
+        private void Button_EditFormOpen(object sender, EventArgs e)
         {
             EmployeeEditForm editForm = new EmployeeEditForm(this, mainForm, departmentList, positionList, detailedEmployee);
             editForm.Show();
@@ -72,7 +75,7 @@ namespace SyainKanriSystem
         // TODO 削除ボタン処理が2個あるのでどちらが正しいか調べる
         private void Button_DeleteEmployee(object sender, EventArgs e)
         {
-            
+
             DialogResult result = MessageBox.Show("この社員を削除しますか？", "削除確認", MessageBoxButtons.OKCancel);
             if (result == DialogResult.OK)
             {
@@ -89,7 +92,7 @@ namespace SyainKanriSystem
         }
 
         // 部門名のコンボボックスのリストを作成・初期値を入力する
-        public ComboBox InitializeDepartmentComboBox(Employees detailedEmployee)
+        private ComboBox InitializeDepartmentComboBox(Employees detailedEmployee)
         {
             try
             {
@@ -115,7 +118,7 @@ namespace SyainKanriSystem
         }
 
         // 役職コンボボックスのリストを作成・初期値を入力する
-        public ComboBox InitializePositionComboBox(Employees detailedEmployee)
+        private ComboBox InitializePositionComboBox(Employees detailedEmployee)
         {
             try
             {
@@ -141,7 +144,7 @@ namespace SyainKanriSystem
         }
 
         // ステータスコンボボックスに初期値を入力する（ステータスコンボボックスのリストはDesignerで作成したものを使用する）
-        public ComboBox InitializeStatusComboBox(Employees detailedEmployee)
+        private ComboBox InitializeStatusComboBox(Employees detailedEmployee)
         {
             try
             {
@@ -160,7 +163,7 @@ namespace SyainKanriSystem
         }
 
         // DBへ社員データを削除する
-        public void SubmitDeleteEmployee(Employees detailedEmployee)
+        private void SubmitDeleteEmployee(Employees detailedEmployee)
         {
             // deleteするデータの作成
             string deleteEmployeeID = detailedEmployee.EmployeeID;

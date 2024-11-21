@@ -26,7 +26,7 @@ namespace SyainKanriSystem
                 {
                     return true;
                 }
-                
+
                 return false;
             }
             catch (Exception error)
@@ -42,11 +42,11 @@ namespace SyainKanriSystem
             bool ret = true;
             try
             {
-                    if (inputData.Length > limit)
-                    {
-                        ret = false;
-                    }
-                    return ret;
+                if (inputData.Length > limit)
+                {
+                    ret = false;
+                }
+                return ret;
             }
             catch (Exception error)
             {
@@ -54,7 +54,7 @@ namespace SyainKanriSystem
                 ret = false;
                 return ret;
             }
-        }        
+        }
 
         // 社員番号が数字か確認する
         // 6桁かどうかはwordCount_Mainで確認する
@@ -62,12 +62,13 @@ namespace SyainKanriSystem
         {
             try
             {
-                if (int.TryParse(checkData, out _) != true)
+                bool ret = int.TryParse(checkData, out _);
+                if (ret != true)
                 {
-                    MessageBox.Show("社員番号は6桁の数字を入力してください");
-                    return false;
+                    ret = false;
+                    return ret;
                 }
-                return true;
+                return ret;
 
             }
             catch (Exception error)
@@ -76,16 +77,16 @@ namespace SyainKanriSystem
             }
         }
 
-        // 姓（かな）・名（かな）が平仮名か確認する
+        // 姓（カナ）・名（カナ）がカタカナか確認する
         public static bool KanaCheck(string checkData)
         {
             try
             {
-                    if (Regex.IsMatch(checkData, @"^\p{IsKatakana}*$") != true)
-                    {
-                        return false;
-                    }
-                    return true;
+                if (Regex.IsMatch(checkData, @"^\p{IsKatakana}*$") != true)
+                {
+                    return false;
+                }
+                return true;
             }
             catch (Exception error)
             {
@@ -102,9 +103,9 @@ namespace SyainKanriSystem
             {
                 // 入力値が数字かどうか確認する
                 if (int.TryParse(phoneNumber, out _) != true)
-                    {
-                        return false;
-                    }
+                {
+                    return false;
+                }
             }
             catch (Exception error)
             {
@@ -169,7 +170,7 @@ namespace SyainKanriSystem
                     ret = false;
                 }
             }
-            catch(Exception error)
+            catch (Exception error)
             {
                 throw error;
             }
@@ -263,7 +264,7 @@ namespace SyainKanriSystem
                 int positionID = positionList.Where(x => x.PositionName == checkData).Select(x => x.PositionID).FirstOrDefault();
                 if (positionID == 0)
                 {
-                    MessageBox.Show("存在しない役職名を入力しています");
+                    return -1;
                 }
 
                 return positionID;

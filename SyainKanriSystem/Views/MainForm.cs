@@ -50,6 +50,7 @@ namespace SyainKanriSystem
                 string[] searchSet = { searchComboBox0.Name, searchTextBox0.Name };
                 searchNameList.Add(searchSet);
                 this.searchNameList = searchNameList;
+                dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
                 // DataGridViewのColumnHeaderMouseClickイベントにハンドラーを追加
                 // dataGridView1.ColumnHeaderMouseClick += new DataGridViewCellMouseEventHandler(dataGridView1_ColumnHeaderMouseClick);
 
@@ -58,7 +59,7 @@ namespace SyainKanriSystem
             {
                 MessageBox.Show(error.Message);
             }
-        }        
+        }
 
         // DataGridViewをリセットする
         private void ResetDataGridView()
@@ -88,14 +89,14 @@ namespace SyainKanriSystem
 
         }
         // 追加ボタンを押下すると、AddFormを表示する
-        private void ButtonAdd_Click(object sender, EventArgs e)
+        private void Button_AddFormOpen(object sender, EventArgs e)
         {
             EmployeeAddForm addForm = new EmployeeAddForm(this, departmentList, positionList);
             addForm.Show();
         }
 
         // 検索ボタンを押下すると、DBより検索結果を取得する
-        private void ButtonSearch_Click(object sender, EventArgs e)
+        private void Button_EmployeeSearch(object sender, EventArgs e)
         {
             try
             {
@@ -117,14 +118,14 @@ namespace SyainKanriSystem
                 // DataGridViewに検索結果を格納する
                 SetEmployeesDataGridView();
             }
-            catch(Exception error)
+            catch (Exception error)
             {
                 MessageBox.Show(error.Message);
             }
         }
 
         // 詳細表示ボタンを押下すると、detailFormを表示する
-        private void ButtonDetailed_Click(object sender, EventArgs e)
+        private void Button_DetailedFormOpen(object sender, EventArgs e)
         {
             try
             {
@@ -139,28 +140,35 @@ namespace SyainKanriSystem
         }
 
         // DataGridViewに取得した社員データを表示する
-        private DataGridView SetDataGridViewEmployeeInfo(DataGridView dataGridView1, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList) {
+        private DataGridView SetDataGridViewEmployeeInfo(DataGridView dataGridView1, List<Employees> employeeList, List<Departments> departmentList, List<Positions> positionList)
+        {
 
             try
             {
-                foreach (Employees item in employeeList)
+                if (employeeList.Count != 0)
                 {
-                    // 行番号を指定する
-                    int rowIndex = dataGridView1.Rows.Add();
-                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
-                    // 社員データを記載する
-                    row.Cells["社員番号"].Value = item.EmployeeID;
-                    row.Cells["姓"].Value = item.Sei;
-                    row.Cells["名"].Value = item.Mei;
-                    row.Cells["姓（カナ）"].Value = item.SeiKana;
-                    row.Cells["名（カナ）"].Value = item.MeiKana;
-                    row.Cells["メールアドレス"].Value = item.Email;
-                    row.Cells["電話番号"].Value = item.PhoneNumber;
-                    row.Cells["雇用日"].Value = item.HireDate.ToString("yyyy/MM/dd");
-                    row.Cells["部門"].Value = departmentList.Where(x => x.DepartmentID == item.Department).Select(x => x.DepartmentName).FirstOrDefault();
-                    row.Cells["役職"].Value = positionList.Where(x => x.PositionID == item.Position).Select(x => x.PositionName).FirstOrDefault();
-                    row.Cells["ステータス"].Value = (item.Status == 0) ? "在籍" : "退職済";
-
+                    foreach (Employees item in employeeList)
+                    {
+                        // 行番号を指定する
+                        int rowIndex = dataGridView1.Rows.Add();
+                        DataGridViewRow row = dataGridView1.Rows[rowIndex];
+                        // 社員データを記載する
+                        row.Cells["社員番号"].Value = item.EmployeeID;
+                        row.Cells["姓"].Value = item.Sei;
+                        row.Cells["名"].Value = item.Mei;
+                        row.Cells["姓（カナ）"].Value = item.SeiKana;
+                        row.Cells["名（カナ）"].Value = item.MeiKana;
+                        row.Cells["メールアドレス"].Value = item.Email;
+                        row.Cells["電話番号"].Value = item.PhoneNumber;
+                        row.Cells["雇用日"].Value = item.HireDate.ToString("yyyy/MM/dd");
+                        row.Cells["部門"].Value = departmentList.Where(x => x.DepartmentID == item.Department).Select(x => x.DepartmentName).FirstOrDefault();
+                        row.Cells["役職"].Value = positionList.Where(x => x.PositionID == item.Position).Select(x => x.PositionName).FirstOrDefault();
+                        row.Cells["ステータス"].Value = (item.Status == 0) ? "在籍" : "退職済";
+                    }
+                }
+                else
+                {
+                    dataGridView1.Rows.Add("検索結果なし");
                 }
 
                 return dataGridView1;
@@ -207,14 +215,14 @@ namespace SyainKanriSystem
         private List<Employees> InitializeEmployeeRepository()
         {
             // NULLチェック
-            employeeList?.Clear();           
+            employeeList?.Clear();
             // employeeServiceのクラスインスタンスを作成
             var employeeService = new EmployeeService();
             // DBよりemployeeListを取得
             employeeList = employeeService.SelectEmployeeData();
             return employeeList;
         }
-        
+
         // DataGridViewから選択行のデータを取得
         private Employees GetSelectedRow()
         {
@@ -227,17 +235,24 @@ namespace SyainKanriSystem
                     // 選択している行を取得
                     DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
                     // 選択している行の社員番号からデータを取得
-                    Employees detailedEmployee = employeeList.Find(x => x.EmployeeID == selectedRow.Cells[0].Value.ToString());
+                    if (selectedRow.Cells[0].Value != null)
+                    {
+                        Employees detailedEmployee = employeeList.Find(x => x.EmployeeID == selectedRow.Cells[0].Value.ToString());
+                        return detailedEmployee;
+                    }
+                    else
+                    {
+                        MessageBox.Show("データが格納されている行を選択してください");
+                    }
 
-                    return detailedEmployee;
                 }
                 // 全く行が選択されていない場合
-                else if(selectedRowCount == 0)
+                else if (selectedRowCount == 0)
                 {
                     throw new Exception("行選択をしてください");
                 }
                 // 2行以上選択されている場合
-                else if(selectedRowCount > 1)
+                else if (selectedRowCount > 1)
                 {
                     throw new Exception("行選択は1行のみにしてください");
                 }
@@ -252,15 +267,15 @@ namespace SyainKanriSystem
         }
 
         // 「+」ボタンを押下すると、テキストフォーム・コンボボックスが追加される
-        private void Button_AddSearchCondition_Click(object sender, EventArgs e)
+        private void Button_AddSearchCondition(object sender, EventArgs e)
         {
             try
             {
                 if (searchNameList.Count < 12)
                 {
                     int searchConditionsCount = CountSearchConditions();
-                    string searchComboBox_Name = SearchComboBox_Add(searchConditionsCount);
-                    string searchTextBox_Name = SearchTextBox_Add(searchConditionsCount);
+                    string searchComboBox_Name = AddSearchComboBox(searchConditionsCount);
+                    string searchTextBox_Name = AddSearchTextBox(searchConditionsCount);
                     string[] searchSet = { searchComboBox_Name, searchTextBox_Name };
                     searchNameList.Add(searchSet);
                 }
@@ -277,7 +292,7 @@ namespace SyainKanriSystem
 
         // 検索条件コンボボックス追加処理
         // テキストボックスとコンボボックスの数は同一なので、textBoxCountを格納。変数名をcomboBoxCountに変更している
-        private string SearchComboBox_Add(int searchConditionsCount)
+        private string AddSearchComboBox(int searchConditionsCount)
         {
             ComboBox searchComboBox = new ComboBox();
             // 検索条件コンボボックスのNameを指定 ex)searchComboBox1, searchComboBox2...
@@ -307,7 +322,7 @@ namespace SyainKanriSystem
         }
 
         // 検索条件テキストボックス追加処理
-        private string SearchTextBox_Add(int searchConditionsCount)
+        private string AddSearchTextBox(int searchConditionsCount)
         {
             TextBox searchTextBox = new TextBox();
             // 検索条件テキストボックスのNameを指定 ex)searchTextBox1, searchTextBox2...
@@ -352,7 +367,7 @@ namespace SyainKanriSystem
         }
 
         // クリアボタンを押した際の処理
-        private void Button_clearSearchConditionsClick(object sender, EventArgs e)
+        private void Button_ClearSearchConditionsClick(object sender, EventArgs e)
         {
             ClearSearchConditions();
             searchNameList.Clear();
@@ -462,5 +477,5 @@ namespace SyainKanriSystem
     }
 }
 
-    
+
 

@@ -35,10 +35,11 @@
             this.button_Search = new System.Windows.Forms.Button();
             this.button_AddSearchCondition = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.searchComboBox0 = new System.Windows.Forms.ComboBox();
-            this.searchTextBox0 = new System.Windows.Forms.TextBox();
+            this.label_Search_Error = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button_ClearSearchConditions = new System.Windows.Forms.Button();
+            this.searchTextBox0 = new System.Windows.Forms.TextBox();
+            this.searchComboBox0 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -47,7 +48,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 116);
+            this.dataGridView1.Location = new System.Drawing.Point(11, 133);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
@@ -58,19 +59,19 @@
             // 
             // button_Add
             // 
-            this.button_Add.Location = new System.Drawing.Point(345, 25);
+            this.button_Add.Location = new System.Drawing.Point(345, 39);
             this.button_Add.Name = "button_Add";
             this.button_Add.Size = new System.Drawing.Size(151, 69);
             this.button_Add.TabIndex = 2;
             this.button_Add.Text = "社員追加";
             this.button_Add.UseVisualStyleBackColor = true;
-            this.button_Add.Click += new System.EventHandler(this.ButtonAdd_Click);
+            this.button_Add.Click += new System.EventHandler(this.Button_AddFormOpen);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("メイリオ", 14F);
-            this.label9.Location = new System.Drawing.Point(64, 25);
+            this.label9.Location = new System.Drawing.Point(54, 24);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(130, 42);
@@ -79,23 +80,23 @@
             // 
             // button_Detail
             // 
-            this.button_Detail.Location = new System.Drawing.Point(158, 25);
+            this.button_Detail.Location = new System.Drawing.Point(158, 39);
             this.button_Detail.Name = "button_Detail";
             this.button_Detail.Size = new System.Drawing.Size(151, 69);
             this.button_Detail.TabIndex = 31;
             this.button_Detail.Text = "社員詳細表示";
             this.button_Detail.UseVisualStyleBackColor = true;
-            this.button_Detail.Click += new System.EventHandler(this.ButtonDetailed_Click);
+            this.button_Detail.Click += new System.EventHandler(this.Button_DetailedFormOpen);
             // 
             // button_Search
             // 
-            this.button_Search.Location = new System.Drawing.Point(441, 21);
+            this.button_Search.Location = new System.Drawing.Point(441, 37);
             this.button_Search.Name = "button_Search";
             this.button_Search.Size = new System.Drawing.Size(151, 69);
             this.button_Search.TabIndex = 3;
             this.button_Search.Text = "社員検索";
             this.button_Search.UseVisualStyleBackColor = true;
-            this.button_Search.Click += new System.EventHandler(this.ButtonSearch_Click);
+            this.button_Search.Click += new System.EventHandler(this.Button_EmployeeSearch);
             // 
             // button_AddSearchCondition
             // 
@@ -106,46 +107,30 @@
             this.button_AddSearchCondition.TabIndex = 61;
             this.button_AddSearchCondition.Text = "+";
             this.button_AddSearchCondition.UseVisualStyleBackColor = true;
-            this.button_AddSearchCondition.Click += new System.EventHandler(this.Button_AddSearchCondition_Click);
+            this.button_AddSearchCondition.Click += new System.EventHandler(this.Button_AddSearchCondition);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label_Search_Error);
             this.groupBox1.Controls.Add(this.button_Search);
             this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Location = new System.Drawing.Point(509, 7);
+            this.groupBox1.Location = new System.Drawing.Point(509, 1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(610, 104);
+            this.groupBox1.Size = new System.Drawing.Size(610, 127);
             this.groupBox1.TabIndex = 60;
             this.groupBox1.TabStop = false;
             // 
-            // searchComboBox0
+            // label_Search_Error
             // 
-            this.searchComboBox0.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.searchComboBox0.FormattingEnabled = true;
-            this.searchComboBox0.Items.AddRange(new object[] {
-            "社員番号",
-            "姓",
-            "名",
-            "姓（かな）",
-            "名（かな）",
-            "メールアドレス",
-            "電話番号",
-            "雇用日",
-            "部門",
-            "役職",
-            "ステータス"});
-            this.searchComboBox0.Location = new System.Drawing.Point(40, 10);
-            this.searchComboBox0.Name = "searchComboBox0";
-            this.searchComboBox0.Size = new System.Drawing.Size(115, 19);
-            this.searchComboBox0.TabIndex = 58;
-            // 
-            // searchTextBox0
-            // 
-            this.searchTextBox0.Location = new System.Drawing.Point(166, 10);
-            this.searchTextBox0.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.searchTextBox0.Name = "searchTextBox0";
-            this.searchTextBox0.Size = new System.Drawing.Size(196, 17);
-            this.searchTextBox0.TabIndex = 59;
+            this.label_Search_Error.AutoSize = true;
+            this.label_Search_Error.Font = new System.Drawing.Font("MS UI Gothic", 11F);
+            this.label_Search_Error.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.label_Search_Error.Location = new System.Drawing.Point(12, 15);
+            this.label_Search_Error.Name = "label_Search_Error";
+            this.label_Search_Error.Size = new System.Drawing.Size(164, 22);
+            this.label_Search_Error.TabIndex = 70;
+            this.label_Search_Error.Text = "※エラーメッセージ";
+            this.label_Search_Error.Visible = false;
             // 
             // panel1
             // 
@@ -154,7 +139,7 @@
             this.panel1.Controls.Add(this.button_AddSearchCondition);
             this.panel1.Controls.Add(this.searchTextBox0);
             this.panel1.Controls.Add(this.searchComboBox0);
-            this.panel1.Location = new System.Drawing.Point(9, 15);
+            this.panel1.Location = new System.Drawing.Point(9, 33);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(426, 83);
             this.panel1.TabIndex = 61;
@@ -168,7 +153,36 @@
             this.button_ClearSearchConditions.TabIndex = 61;
             this.button_ClearSearchConditions.Text = "クリア";
             this.button_ClearSearchConditions.UseVisualStyleBackColor = true;
-            this.button_ClearSearchConditions.Click += new System.EventHandler(this.Button_clearSearchConditionsClick);
+            this.button_ClearSearchConditions.Click += new System.EventHandler(this.Button_ClearSearchConditionsClick);
+            // 
+            // searchTextBox0
+            // 
+            this.searchTextBox0.Location = new System.Drawing.Point(166, 10);
+            this.searchTextBox0.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.searchTextBox0.Name = "searchTextBox0";
+            this.searchTextBox0.Size = new System.Drawing.Size(196, 26);
+            this.searchTextBox0.TabIndex = 59;
+            // 
+            // searchComboBox0
+            // 
+            this.searchComboBox0.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.searchComboBox0.FormattingEnabled = true;
+            this.searchComboBox0.Items.AddRange(new object[] {
+            "社員番号",
+            "姓",
+            "名",
+            "姓（カナ）",
+            "名（カナ）",
+            "メールアドレス",
+            "電話番号",
+            "雇用日",
+            "部門",
+            "役職",
+            "ステータス"});
+            this.searchComboBox0.Location = new System.Drawing.Point(40, 10);
+            this.searchComboBox0.Name = "searchComboBox0";
+            this.searchComboBox0.Size = new System.Drawing.Size(115, 28);
+            this.searchComboBox0.TabIndex = 58;
             // 
             // MainForm
             // 
@@ -188,6 +202,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -208,6 +223,7 @@
         private System.Windows.Forms.TextBox searchTextBox0;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button_ClearSearchConditions;
+        private System.Windows.Forms.Label label_Search_Error;
     }
 }
 

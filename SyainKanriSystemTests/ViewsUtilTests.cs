@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SyainKanriSystem.Tests
 {
@@ -18,18 +19,54 @@ namespace SyainKanriSystem.Tests
         [DataRow("太郎", 50)]
         [DataRow("たなか", 50)]
         [DataRow("たろう", 50)]
-        [DataRow("tanaka-taro@ost.co.jp", 255)]
+        [DataRow("tanaka-taro@gmail.com", 255)]
         [DataRow("090-1111-1111", 13)]
         [DataRow("2024/12/31", 11)]
         [DataRow("名古屋支部", 5)]
         [DataRow("TL", 5)]
         [DataRow("000003", 6)]
         [DataRow("退職済", 3)]
-        public void WordCount_MainTest(string hoge1, int hoge2)
+        public void WordCountTest(string hoge1, int hoge2)
         {
             try
             {
-                ViewsUtil.WordCountCheck(hoge1, hoge2);
+                if (ViewsUtil.WordCountCheck(hoge1, hoge2) == true)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+
+        }
+
+        [TestMethod()]
+        [DataRow("あああああああああああああああああああああああああああああああああああああああああああああああああああ", 50)]
+        [DataRow("あああああああああああああああああああああああああああああああああああああああああああああああああああ", 50)]
+        [DataRow("あああああああああああああああああああああああああああああああああああああああああああああああああああ", 50)]
+        [DataRow("あああああああああああああああああああああああああああああああああああああああああああああああああああ", 50)]
+        [DataRow("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 255)]
+        [DataRow("090-1111-11111", 13)]
+        [DataRow("2024年12月310日", 11)]
+        [DataRow("名古屋支部長", 5)]
+        [DataRow("新規テスト役職", 5)]
+        [DataRow("0000003", 6)]
+        [DataRow("退職済み", 3)]
+        public void WordCount_False(string hoge1, int hoge2)
+        {
+            try
+            {
+                if (ViewsUtil.WordCountCheck(hoge1, hoge2) == false)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
+                return;
             }
             catch
             {
@@ -44,7 +81,14 @@ namespace SyainKanriSystem.Tests
         {
             try
             {
-                ViewsUtil.EmployeeIDCheck(hoge);
+                if (ViewsUtil.EmployeeIDCheck(hoge) == true)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
+                return;
+
             }
             catch
             {
@@ -59,28 +103,17 @@ namespace SyainKanriSystem.Tests
         [DataRow("/")]
         [DataRow("2-2")]
         [DataRow("*")]
-        public void EmployeeIDChkTest_CatchErrorCheck(string hoge)
+        public void EmployeeIDChkTest_False(string hoge)
         {
             try
             {
-                ViewsUtil.EmployeeIDCheck(hoge);
-            }
-            catch
-            {
-                Assert.IsTrue(true);
+                if (ViewsUtil.EmployeeIDCheck(hoge) == false)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
                 return;
-            }
-            // 例外が発生していない。
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        [DataRow("あ")]
-        public void KanaChkTest(string hoge)
-        {
-            try
-            {
-                ViewsUtil.KanaCheck(hoge);
             }
             catch
             {
@@ -90,21 +123,44 @@ namespace SyainKanriSystem.Tests
 
         [TestMethod()]
         [DataRow("ア")]
+        public void KanaChkTest(string hoge)
+        {
+            try
+            {
+                if (ViewsUtil.KanaCheck(hoge) == true)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
+                return;
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod()]
+        [DataRow("あ")]
         [DataRow("a")]
         [DataRow("!")]
         public void KanaChkTest_CatchErrorCheck(string hoge)
         {
             try
             {
-                ViewsUtil.KanaCheck(hoge);
+                if (ViewsUtil.KanaCheck(hoge) == false)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
-                Assert.IsTrue(true);
+                Assert.Fail();
                 return;
             }
-            // 例外が発生していない
-            Assert.Fail();
         }
 
         [TestMethod()]
@@ -113,7 +169,12 @@ namespace SyainKanriSystem.Tests
         {
             try
             {
-                ViewsUtil.PhoneCheck(hoge);
+                if (ViewsUtil.PhoneCheck(hoge) == true)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
@@ -127,28 +188,37 @@ namespace SyainKanriSystem.Tests
         [DataRow("/")]
         [DataRow("2-2")]
         [DataRow("*")]
-        public void PhoneChkTest_CatchErrorCheck(string hoge)
+        public void PhoneChkTest_False(string hoge)
         {
+
             try
             {
-                ViewsUtil.PhoneCheck(hoge);
+                if (ViewsUtil.PhoneCheck(hoge) == false)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
-                Assert.IsTrue(true);
-                return;
+                Assert.Fail();
             }
-            // 例外が発生していない
-            Assert.Fail();
+
         }
 
         [TestMethod()]
         [DataRow("aaa@ost.co.jp")]
-        public void MailCheckTest(string hoge)
+        public void MailJapaneseCheckTest(string hoge)
         {
             try
             {
-                ViewsUtil.MailJapaneseCheck(hoge);
+                if (ViewsUtil.MailJapaneseCheck(hoge) == true)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
@@ -160,24 +230,112 @@ namespace SyainKanriSystem.Tests
         [DataRow("あ")]
         [DataRow("ア")]
         [DataRow("号@ost.co.jp")]
-        [DataRow("aaa@ostcojp")]
-        [DataRow("aaa.ostcojp")]
-        [DataRow("aa,>?\a@ost.co.jp")]
-        [DataRow("***@ost.co.jp")]
-        public void MailCheckTest_CatchErrorCheck(string hoge)
+        public void MailJapaneseCheckTest_False(string hoge)
         {
             try
             {
-                ViewsUtil.MailJapaneseCheck(hoge);
+                if (ViewsUtil.MailJapaneseCheck(hoge) == false)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
-                Assert.IsTrue(true);
-                return;
+                Assert.Fail();
             }
             // 例外が発生していない
             Assert.Fail();
         }
+
+        [TestMethod()]
+        [DataRow("aaa@gmail.com")]
+        public void MailRequiredStrCheckTest(string hoge)
+        {
+            try
+            {
+                if (ViewsUtil.InputEmptyCheck(hoge) == true)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod()]
+        [DataRow("aaa@gmailcom")]
+        [DataRow("aaagmail.com")]
+        [DataRow("aaagmailcom")]
+        public void MailRequiredStrCheckTest_False(string hoge)
+        {
+            try
+            {
+                if (ViewsUtil.InputEmptyCheck(hoge) == true)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+        [TestMethod()]
+        [DataRow("aaa@gmail.com")]
+        [DataRow("aaa_a@gmail.com")]
+        [DataRow("aaa.a@gmail.com")]
+        [DataRow("aaa12@gmail.com")]
+        [DataRow("aaa-a@gmail.com")]
+        public void MailSymbolCheckTest(string hoge)
+        {
+            try
+            {
+                if (ViewsUtil.MailSymbolCheck(hoge) == true)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+
+        [TestMethod()]
+        [DataRow("aaa/a@gmail.com")]
+        [DataRow("aaa\a@gmail.com")]
+        [DataRow("aaa!2@gmail.com")]
+        [DataRow("aa?a@gmail.com")]
+        public void MailSymbolCheckTest_False(string hoge)
+        {
+            try
+            {
+                if (ViewsUtil.MailSymbolCheck(hoge) == false)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+        }
+
+
 
         [TestMethod()]
         [DataRow("2024年")]
@@ -185,11 +343,18 @@ namespace SyainKanriSystem.Tests
         [DataRow("2024/04")]
         [DataRow("2024-04")]
         [DataRow("2024/04/01")]
+        [DataRow("2024年4月1日")]
+        [DataRow("2024年04月01日")]
         public void CalendarCheckTest(string hoge)
         {
             try
             {
-                ViewsUtil.CalendarCheck(hoge);
+                if (ViewsUtil.CalendarCheck(hoge) == true)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
@@ -200,20 +365,23 @@ namespace SyainKanriSystem.Tests
         [TestMethod()]
         [DataRow("あ")]
         [DataRow("ア")]
-
-        public void CalendarCheckTest_CatchErrorCheck(string hoge)
+        [DataRow("2024ねん")]
+        [DataRow("2024/4!")]
+        public void CalendarCheckTest_False(string hoge)
         {
             try
             {
-                ViewsUtil.CalendarCheck(hoge);
+                if (ViewsUtil.CalendarCheck(hoge) == false)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
-                Assert.IsTrue(true);
-                return;
+                Assert.Fail();
             }
-            // 例外が発生していない
-            Assert.Fail();
         }
 
         [TestMethod()]
@@ -224,7 +392,12 @@ namespace SyainKanriSystem.Tests
             {
                 var departmentService = new DepartmentService();
                 List<Departments> departmentList = departmentService.SelectDepartmentData();
-                ViewsUtil.DepartmentCheck(hoge, departmentList);
+                if (ViewsUtil.DepartmentCheck(hoge, departmentList) != 0)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
@@ -234,21 +407,23 @@ namespace SyainKanriSystem.Tests
 
         [TestMethod()]
         [DataRow("あ")]
-        public void DepartmentCheckTest_CatchErrorCheck(string hoge)
+        public void DepartmentCheckTest_False(string hoge)
         {
             try
             {
                 var departmentService = new DepartmentService();
                 List<Departments> departmentList = departmentService.SelectDepartmentData();
-                ViewsUtil.DepartmentCheck(hoge, departmentList);
+                if (ViewsUtil.DepartmentCheck(hoge, departmentList) == -1)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
-                Assert.IsTrue(true);
-                return;
+                Assert.Fail();
             }
-            // 例外が発生していない
-            Assert.Fail();
         }
 
         [TestMethod()]
@@ -259,7 +434,12 @@ namespace SyainKanriSystem.Tests
             {
                 var positionService = new PositionService();
                 List<Positions> positionList = positionService.SelectPositionData();
-                ViewsUtil.PositionCheck(hoge, positionList);
+                if (ViewsUtil.PositionCheck(hoge, positionList) != -1)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
@@ -270,21 +450,23 @@ namespace SyainKanriSystem.Tests
         [TestMethod()]
         [DataRow("ＴＬ")]
         [DataRow("あ")]
-        public void PositionCheckTest_CatchErrorCheck(string hoge)
+        public void PositionCheckTest_False(string hoge)
         {
             try
             {
                 var positionService = new PositionService();
                 List<Positions> positionList = positionService.SelectPositionData();
-                ViewsUtil.PositionCheck(hoge, positionList);
+                if (ViewsUtil.PositionCheck(hoge, positionList) == -1)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
-                Assert.IsTrue(true);
-                return;
+                Assert.Fail();
             }
-            // 例外が発生していない
-            Assert.Fail();
         }
 
         [TestMethod()]
@@ -294,7 +476,12 @@ namespace SyainKanriSystem.Tests
         {
             try
             {
-                ViewsUtil.StatusCheck(hoge);
+                if (ViewsUtil.StatusCheck(hoge) != -1)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
@@ -305,18 +492,21 @@ namespace SyainKanriSystem.Tests
         [TestMethod()]
         [DataRow("あ")]
         [DataRow("退職")]
-        public void StatusCheckTest_CatchErrorCheck(string hoge)
+        public void StatusCheckTest_False(string hoge)
         {
             try
             {
-                ViewsUtil.StatusCheck(hoge);
+                if (ViewsUtil.StatusCheck(hoge) == -1)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
-                Assert.IsTrue(true);
-                return;
+                Assert.Fail();
             }
-            Assert.Fail();
         }
 
         [TestMethod()]
@@ -325,29 +515,59 @@ namespace SyainKanriSystem.Tests
         {
             try
             {
-                ViewsUtil.SpaceCheck(hoge);
+                if (ViewsUtil.SpaceCheck(hoge) == true)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
                 Assert.Fail();
             }
-            
+
         }
 
         [TestMethod()]
         [DataRow("あ　")]
         [DataRow("あ ")]
-        public void SpaceCheckTest_CatchErrorCheck(string hoge)
+        public void SpaceCheckTest_False(string hoge)
         {
             try
             {
-                ViewsUtil.SpaceCheck(hoge);
+                if (ViewsUtil.SpaceCheck(hoge) != true)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
             }
             catch
             {
-                Assert.IsTrue(true);
-                return;
+                Assert.Fail();
             }
+        }
+
+
+        [TestMethod()]
+        [DataRow("")]
+        public void InputEmptyCheckTest(string hoge)
+        {
+            try
+            {
+                if (ViewsUtil.InputEmptyCheck(hoge) == false)
+                {
+                    Assert.IsTrue(true);
+                    return;
+                }
+                Assert.Fail();
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+            // 例外が発生していない
             Assert.Fail();
         }
     }
