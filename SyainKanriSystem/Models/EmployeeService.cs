@@ -137,7 +137,6 @@ namespace SyainKanriSystem
                     DB.DisconnectDB(conn);
                 }
             }
-
         }
 
         // DBに検索処理のSelect文のクエリを送り、社員データを検索し、フロントエンドに伝える。

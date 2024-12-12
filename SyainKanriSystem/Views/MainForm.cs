@@ -291,7 +291,6 @@ namespace SyainKanriSystem
         }
 
         // 検索条件コンボボックス追加処理
-        // テキストボックスとコンボボックスの数は同一なので、textBoxCountを格納。変数名をcomboBoxCountに変更している
         private string AddSearchComboBox(int searchConditionsCount)
         {
             ComboBox searchComboBox = new ComboBox();

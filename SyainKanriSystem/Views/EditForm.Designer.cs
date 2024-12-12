@@ -199,6 +199,7 @@
             // 
             // textBox_Mei
             // 
+            this.textBox_Mei.BackColor = System.Drawing.SystemColors.Window;
             this.textBox_Mei.Location = new System.Drawing.Point(490, 160);
             this.textBox_Mei.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textBox_Mei.Name = "textBox_Mei";
@@ -362,7 +363,7 @@
             this.label_Sei_Error.Location = new System.Drawing.Point(172, 134);
             this.label_Sei_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Sei_Error.Name = "label_Sei_Error";
-            this.label_Sei_Error.Size = new System.Drawing.Size(156, 33);
+            this.label_Sei_Error.Size = new System.Drawing.Size(104, 22);
             this.label_Sei_Error.TabIndex = 69;
             this.label_Sei_Error.Text = "※姓エラー";
             this.label_Sei_Error.Visible = false;
@@ -376,7 +377,7 @@
             this.label_Status_Error.Location = new System.Drawing.Point(172, 527);
             this.label_Status_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Status_Error.Name = "label_Status_Error";
-            this.label_Status_Error.Size = new System.Drawing.Size(249, 33);
+            this.label_Status_Error.Size = new System.Drawing.Size(166, 22);
             this.label_Status_Error.TabIndex = 70;
             this.label_Status_Error.Text = "※ステータスエラー";
             this.label_Status_Error.Visible = false;
@@ -402,7 +403,7 @@
             this.label_SeiKana_Error.Location = new System.Drawing.Point(172, 187);
             this.label_SeiKana_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_SeiKana_Error.Name = "label_SeiKana_Error";
-            this.label_SeiKana_Error.Size = new System.Drawing.Size(245, 33);
+            this.label_SeiKana_Error.Size = new System.Drawing.Size(163, 22);
             this.label_SeiKana_Error.TabIndex = 72;
             this.label_SeiKana_Error.Text = "※姓（かな）エラー";
             this.label_SeiKana_Error.Visible = false;
@@ -415,7 +416,7 @@
             this.label_HireDate_Error.Location = new System.Drawing.Point(172, 354);
             this.label_HireDate_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_HireDate_Error.Name = "label_HireDate_Error";
-            this.label_HireDate_Error.Size = new System.Drawing.Size(222, 33);
+            this.label_HireDate_Error.Size = new System.Drawing.Size(148, 22);
             this.label_HireDate_Error.TabIndex = 73;
             this.label_HireDate_Error.Text = "※雇用日エラー";
             this.label_HireDate_Error.Visible = false;
@@ -428,7 +429,7 @@
             this.label_Department_Error.Location = new System.Drawing.Point(172, 415);
             this.label_Department_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Department_Error.Name = "label_Department_Error";
-            this.label_Department_Error.Size = new System.Drawing.Size(189, 33);
+            this.label_Department_Error.Size = new System.Drawing.Size(126, 22);
             this.label_Department_Error.TabIndex = 74;
             this.label_Department_Error.Text = "※部門エラー";
             this.label_Department_Error.Visible = false;
@@ -441,7 +442,7 @@
             this.label_Email_Error.Location = new System.Drawing.Point(172, 239);
             this.label_Email_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Email_Error.Name = "label_Email_Error";
-            this.label_Email_Error.Size = new System.Drawing.Size(300, 33);
+            this.label_Email_Error.Size = new System.Drawing.Size(200, 22);
             this.label_Email_Error.TabIndex = 75;
             this.label_Email_Error.Text = "※メールアドレスエラー";
             this.label_Email_Error.Visible = false;
@@ -454,7 +455,7 @@
             this.label_PhoneNumber_Error.Location = new System.Drawing.Point(172, 297);
             this.label_PhoneNumber_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_PhoneNumber_Error.Name = "label_PhoneNumber_Error";
-            this.label_PhoneNumber_Error.Size = new System.Drawing.Size(255, 33);
+            this.label_PhoneNumber_Error.Size = new System.Drawing.Size(170, 22);
             this.label_PhoneNumber_Error.TabIndex = 76;
             this.label_PhoneNumber_Error.Text = "※電話番号エラー";
             this.label_PhoneNumber_Error.Visible = false;
@@ -467,7 +468,7 @@
             this.label_EmployeeID_Error.Location = new System.Drawing.Point(172, 74);
             this.label_EmployeeID_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_EmployeeID_Error.Name = "label_EmployeeID_Error";
-            this.label_EmployeeID_Error.Size = new System.Drawing.Size(255, 33);
+            this.label_EmployeeID_Error.Size = new System.Drawing.Size(170, 22);
             this.label_EmployeeID_Error.TabIndex = 77;
             this.label_EmployeeID_Error.Text = "※社員番号エラー";
             this.label_EmployeeID_Error.Visible = false;
