@@ -110,9 +110,9 @@
             this.label_SeiKana.Location = new System.Drawing.Point(43, 213);
             this.label_SeiKana.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_SeiKana.Name = "label_SeiKana";
-            this.label_SeiKana.Size = new System.Drawing.Size(91, 22);
+            this.label_SeiKana.Size = new System.Drawing.Size(132, 33);
             this.label_SeiKana.TabIndex = 30;
-            this.label_SeiKana.Text = "姓（かな）";
+            this.label_SeiKana.Text = "姓（カナ）";
             // 
             // label_Email
             // 
@@ -315,9 +315,9 @@
             this.label_MeiKana.Location = new System.Drawing.Point(391, 211);
             this.label_MeiKana.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_MeiKana.Name = "label_MeiKana";
-            this.label_MeiKana.Size = new System.Drawing.Size(91, 22);
+            this.label_MeiKana.Size = new System.Drawing.Size(132, 33);
             this.label_MeiKana.TabIndex = 58;
-            this.label_MeiKana.Text = "名（かな）";
+            this.label_MeiKana.Text = "名（カナ）";
             // 
             // label_Mei
             // 
@@ -403,9 +403,9 @@
             this.label_SeiKana_Error.Location = new System.Drawing.Point(172, 187);
             this.label_SeiKana_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_SeiKana_Error.Name = "label_SeiKana_Error";
-            this.label_SeiKana_Error.Size = new System.Drawing.Size(163, 22);
+            this.label_SeiKana_Error.Size = new System.Drawing.Size(240, 33);
             this.label_SeiKana_Error.TabIndex = 72;
-            this.label_SeiKana_Error.Text = "※姓（かな）エラー";
+            this.label_SeiKana_Error.Text = "※姓（カナ）エラー";
             this.label_SeiKana_Error.Visible = false;
             // 
             // label_HireDate_Error
@@ -494,9 +494,9 @@
             this.label_MeiKana_Error.Location = new System.Drawing.Point(486, 187);
             this.label_MeiKana_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_MeiKana_Error.Name = "label_MeiKana_Error";
-            this.label_MeiKana_Error.Size = new System.Drawing.Size(163, 22);
+            this.label_MeiKana_Error.Size = new System.Drawing.Size(240, 33);
             this.label_MeiKana_Error.TabIndex = 79;
-            this.label_MeiKana_Error.Text = "※名（かな）エラー";
+            this.label_MeiKana_Error.Text = "※名（カナ）エラー";
             this.label_MeiKana_Error.Visible = false;
             // 
             // EmployeeEditForm

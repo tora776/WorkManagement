@@ -139,7 +139,7 @@ namespace SyainKanriSystem
                     // 平仮名かどうか確認する
                     if (ViewsUtil.KanaCheck(textBox_SeiKana.Text) != true)
                     {
-                        label_SeiKana_Error.Text += " ※「姓（カナ）」をひらがな入力してください";
+                        label_SeiKana_Error.Text += " ※「姓（カナ）」をカタカナ入力してください";
                         label_SeiKana_Error.Visible = true;
                         textBox_SeiKana.BackColor = Color.Khaki;
                         ret = false;
@@ -176,7 +176,7 @@ namespace SyainKanriSystem
                     // 平仮名かどうか確認する
                     if (ViewsUtil.KanaCheck(textBox_MeiKana.Text) != true)
                     {
-                        label_MeiKana_Error.Text += " ※「名（カナ）」をひらがな入力してください";
+                        label_MeiKana_Error.Text += " ※「名（カナ）」をカタカナ入力してください";
                         label_MeiKana_Error.Visible = true;
                         textBox_MeiKana.BackColor = Color.Khaki;
                         ret = false;
@@ -250,6 +250,9 @@ namespace SyainKanriSystem
                     // 電話番号の書式チェック（数字が入力されているか）
                     if (ViewsUtil.PhoneCheck(textBox_PhoneNumber1.Text) != true)
                     {
+                        label_PhoneNumber_Error.Text += " ※電話番号は数字を入力してください";
+                        label_PhoneNumber_Error.Visible = true;
+                        textBox_PhoneNumber1.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // 半角全角スペースチェック
@@ -263,7 +266,7 @@ namespace SyainKanriSystem
                 }
                 else
                 {
-                    label_PhoneNumber_Error.Text = " ※「電話番号」は必須入力です";
+                    label_PhoneNumber_Error.Text += " ※「電話番号」は必須入力です";
                     label_PhoneNumber_Error.Visible = true;
                     textBox_PhoneNumber1.BackColor = Color.Khaki;
                     ret = false;
@@ -274,29 +277,48 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if (ViewsUtil.WordCountCheck(textBox_PhoneNumber2.Text, 4) != true)
                     {
-                        label_PhoneNumber_Error.Text = " ※電話番号は5桁以上入力できません";
-                        label_PhoneNumber_Error.Visible = true;
+                        // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                        if(label_PhoneNumber_Error.Text.Contains(" ※電話番号は5桁以上入力できません") == false)
+                        {
+                            label_PhoneNumber_Error.Text += " ※電話番号は5桁以上入力できません";
+                            label_PhoneNumber_Error.Visible = true;
+                        }
                         textBox_PhoneNumber2.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // 電話番号の書式チェック（数字が入力されているか）
                     if (ViewsUtil.PhoneCheck(textBox_PhoneNumber2.Text) != true)
                     {
+                        // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                        if (label_PhoneNumber_Error.Text.Contains(" ※電話番号は数字を入力してください") == false)
+                        {
+                            label_PhoneNumber_Error.Text += " ※電話番号は数字を入力してください";
+                            label_PhoneNumber_Error.Visible = true;
+                        }
+                        textBox_PhoneNumber1.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // 半角全角スペースチェック
                     if (ViewsUtil.SpaceCheck(textBox_PhoneNumber2.Text) != true)
                     {
-                        label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
-                        label_PhoneNumber_Error.Visible = true;
+                        // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                        if (label_PhoneNumber_Error.Text.Contains(" ※半角または全角スペースが含まれています") == false)
+                        {
+                            label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
+                            label_PhoneNumber_Error.Visible = true;
+                        }
                         textBox_PhoneNumber2.BackColor = Color.Khaki;
                         ret = false;
                     }
                 }
                 else
                 {
-                    label_PhoneNumber_Error.Text = " ※「電話番号」は必須入力です";
-                    label_PhoneNumber_Error.Visible = true;
+                    // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                    if (label_PhoneNumber_Error.Text.Contains(" ※「電話番号」は必須入力です") == false)
+                    {
+                        label_PhoneNumber_Error.Text += " ※「電話番号」は必須入力です";
+                        label_PhoneNumber_Error.Visible = true;
+                    }
                     textBox_PhoneNumber2.BackColor = Color.Khaki;
                     ret = false;
                 }
@@ -306,20 +328,35 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if (ViewsUtil.WordCountCheck(textBox_PhoneNumber3.Text, 4) != true)
                     {
-                        label_PhoneNumber_Error.Text = " ※電話番号は5桁以上入力できません";
-                        label_PhoneNumber_Error.Visible = true;
+                        // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                        if (label_PhoneNumber_Error.Text.Contains(" ※電話番号は5桁以上入力できません") == false)
+                        {
+                            label_PhoneNumber_Error.Text += " ※電話番号は5桁以上入力できません";
+                            label_PhoneNumber_Error.Visible = true;
+                        }
                         textBox_PhoneNumber3.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // 電話番号の書式チェック（数字が入力されているか）
                     if (ViewsUtil.PhoneCheck(textBox_PhoneNumber3.Text) != true)
                     {
+                        // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                        if (label_PhoneNumber_Error.Text.Contains(" ※電話番号は数字を入力してください") == false)
+                        {
+                            label_PhoneNumber_Error.Text += " ※電話番号は数字を入力してください";
+                            label_PhoneNumber_Error.Visible = true;
+                        }
                         ret = false;
                     }
                     // 半角全角スペースチェック
                     if (ViewsUtil.SpaceCheck(textBox_PhoneNumber3.Text) != true)
                     {
-                        label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
+                        // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                        if (label_PhoneNumber_Error.Text.Contains(" ※半角または全角スペースが含まれています") == false)
+                        {
+                            label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
+                            label_PhoneNumber_Error.Visible = true;
+                        }
                         label_PhoneNumber_Error.Visible = true;
                         textBox_PhoneNumber3.BackColor = Color.Khaki;
                         ret = false;
@@ -327,7 +364,12 @@ namespace SyainKanriSystem
                 }
                 else
                 {
-                    label_PhoneNumber_Error.Text = " ※「電話番号」は必須入力です";
+                    // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                    if (label_PhoneNumber_Error.Text.Contains(" ※「電話番号」は必須入力です") == false)
+                    {
+                        label_PhoneNumber_Error.Text += " ※「電話番号」は必須入力です";
+                        label_PhoneNumber_Error.Visible = true;
+                    }
                     label_PhoneNumber_Error.Visible = true;
                     textBox_PhoneNumber3.BackColor = Color.Khaki;
                     return false;
