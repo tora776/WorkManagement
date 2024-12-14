@@ -354,14 +354,13 @@ namespace SyainKanriSystem
             }
             return ret;
         }
-
-        /*
-        public static void SymbolCheck(string checkData)
+        
+        public static bool SymbolCheck(string checkData)
         {
-            // string str = @"[\p{IsHiragana}\p{IsKatakana}\p{IsCJKUnifiedIdeographs}A-Za-z･]";
-            // bool res = Regex.IsMatch(checkData, str);
+            string str = @"^[\p{IsHiragana}\p{IsKatakana}\p{IsCJKUnifiedIdeographs}A-Za-z・]+$";
+            bool ret = Regex.IsMatch(checkData, str);
+            return ret;
         }
-        */
 
     }
 }

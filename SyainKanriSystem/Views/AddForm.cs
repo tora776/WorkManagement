@@ -102,21 +102,27 @@ namespace SyainKanriSystem
                     if (ViewsUtil.WordCountCheck(textBox_Sei.Text, 50) != true)
                     {
                         label_Sei_Error.Text = " ※「姓」は51文字以上入力できません";
-                        label_Sei_Error.Visible = true;
+                        // label_Sei_Error.Visible = true;
+                        textBox_Sei.BackColor = Color.Khaki;
+                        label_Sei_Error.ForeColor = Color.Red;
                         ret = false;
                     }
-                    // 半角全角スペースチェック
-                    if (ViewsUtil.SpaceCheck(textBox_Sei.Text) != true)
+                    // 記号チェック
+                    if (ViewsUtil.SymbolCheck(textBox_Sei.Text) != true)
                     {
-                        label_Sei_Error.Text += " ※半角または全角スペースが含まれています";
-                        label_Sei_Error.Visible = true;
+                        label_Sei_Error.Text = " ※「･」以外の記号は使用できません";
+                        // label_Sei_Error.Visible = true;
+                        textBox_Sei.BackColor = Color.Khaki;
+                        label_Sei_Error.ForeColor = Color.Red;
                         ret = false;
                     }
                 }
                 else
                 {
                     label_Sei_Error.Text = " ※「姓」は必須入力です";
-                    label_Sei_Error.Visible = true;
+                    // label_Sei_Error.Visible = true;
+                    textBox_Sei.BackColor = Color.Khaki;
+                    label_Sei_Error.ForeColor = Color.Red;
                     ret = false;
                 }
                 // 「名」が入力されているか確認する
@@ -126,21 +132,27 @@ namespace SyainKanriSystem
                     if (ViewsUtil.WordCountCheck(textBox_Mei.Text, 50) != true)
                     {
                         label_Mei_Error.Text = " ※「名」は51文字以上入力できません";
-                        label_Mei_Error.Visible = true;
+                        // label_Mei_Error.Visible = true;
+                        textBox_Mei.BackColor = Color.Khaki;
+                        label_Mei_Error.ForeColor = Color.Red;
                         ret = false;
                     }
-                    // 半角全角スペースチェック
-                    if (ViewsUtil.SpaceCheck(textBox_Mei.Text) != true)
+                    // 記号チェック
+                    if (ViewsUtil.SymbolCheck(textBox_Mei.Text) != true)
                     {
-                        label_Mei_Error.Text += " ※半角または全角スペースが含まれています";
-                        label_Mei_Error.Visible = true;
+                        label_Mei_Error.Text = " ※「･」以外の記号は使用できません";
+                        // label_Mei_Error.Visible = true;
+                        textBox_Mei.BackColor = Color.Khaki;
+                        label_Mei_Error.ForeColor = Color.Red;
                         ret = false;
                     }
                 }
                 else
                 {
                     label_Mei_Error.Text = " ※「名」は必須入力です";
-                    label_Mei_Error.Visible = true;
+                    // label_Mei_Error.Visible = true;
+                    textBox_Mei.BackColor = Color.Khaki;
+                    label_Mei_Error.ForeColor = Color.Red;
                     ret = false;
                 }
 
@@ -151,28 +163,38 @@ namespace SyainKanriSystem
                     if (ViewsUtil.WordCountCheck(textBox_SeiKana.Text, 50) != true)
                     {
                         label_SeiKana_Error.Text = " ※「姓（カナ）」は51文字以上入力できません";
-                        label_SeiKana_Error.Visible = true;
+                        // label_SeiKana_Error.Visible = true;
+                        textBox_SeiKana.BackColor = Color.Khaki;
+                        label_SeiKana_Error.ForeColor = Color.Red;
                         ret = false;
                     }
                     // 平仮名かどうか確認する
                     if (ViewsUtil.KanaCheck(textBox_SeiKana.Text) != true)
                     {
-                        label_SeiKana_Error.Text += " ※「姓（カナ）」をカタカナ入力してください";
-                        label_SeiKana_Error.Visible = true;
+                        label_SeiKana_Error.Text = " ※「姓（カナ）」をカタカナ入力してください";
+                        // label_SeiKana_Error.Visible = true;
+                        textBox_SeiKana.BackColor = Color.Khaki;
+                        label_SeiKana_Error.ForeColor = Color.Red;
                         ret = false;
                     }
+                    /* 正規表現で半角全角スペースをチェックできているため不要。
                     // 半角全角スペースチェック
                     if (ViewsUtil.SpaceCheck(textBox_SeiKana.Text) != true)
                     {
-                        label_SeiKana_Error.Text += " ※半角または全角スペースが含まれています";
-                        label_SeiKana_Error.Visible = true;
+                        label_SeiKana_Error.Text = " ※半角または全角スペースが含まれています";
+                        // label_SeiKana_Error.Visible = true;
+                        textBox_SeiKana.BackColor = Color.Khaki;
+                        label_SeiKana_Error.ForeColor = Color.Red;
                         ret = false;
                     }
+                    */
                 }
                 else
                 {
                     label_SeiKana_Error.Text = " ※「姓（カナ）」は必須入力です";
-                    label_SeiKana_Error.Visible = true;
+                    // label_SeiKana_Error.Visible = true;
+                    textBox_SeiKana.BackColor = Color.Khaki;
+                    label_SeiKana_Error.ForeColor = Color.Red;
                     ret = false;
                 }
 
@@ -184,28 +206,38 @@ namespace SyainKanriSystem
                     if (ViewsUtil.WordCountCheck(textBox_MeiKana.Text, 50) != true)
                     {
                         label_MeiKana_Error.Text = " ※「名（カナ）」は51文字以上入力できません";
-                        label_MeiKana_Error.Visible = true;
+                        // label_MeiKana_Error.Visible = true;
+                        textBox_MeiKana.BackColor = Color.Khaki;
+                        label_MeiKana_Error.ForeColor = Color.Red;
                         ret = false;
                     }
                     // 平仮名かどうか確認する
                     if (ViewsUtil.KanaCheck(textBox_MeiKana.Text) != true)
                     {
-                        label_MeiKana_Error.Text += " ※「名（カナ）」をカタカナ入力してください";
-                        label_MeiKana_Error.Visible = true;
+                        label_MeiKana_Error.Text = " ※「名（カナ）」はカタカナ入力してください";
+                        // label_MeiKana_Error.Visible = true;
+                        textBox_MeiKana.BackColor = Color.Khaki;
+                        label_MeiKana_Error.ForeColor = Color.Red;
                         ret = false;
                     }
+                    /* 正規表現で半角全角スペースをチェックできているため不要。
                     // 半角全角スペースチェック
                     if (ViewsUtil.SpaceCheck(textBox_MeiKana.Text) != true)
                     {
                         label_MeiKana_Error.Text += " ※半角または全角スペースが含まれています";
-                        label_MeiKana_Error.Visible = true;
+                        // label_MeiKana_Error.Visible = true;
+                        textBox_MeiKana.BackColor = Color.Khaki;
+                        label_MeiKana_Error.ForeColor = Color.Red;
                         ret = false;
                     }
+                    */
                 }
                 else
                 {
                     label_MeiKana_Error.Text = " ※「名（カナ）」は必須入力です";
-                    label_MeiKana_Error.Visible = true;
+                    // label_MeiKana_Error.Visible = true;
+                    textBox_MeiKana.BackColor = Color.Khaki;
+                    label_MeiKana_Error.ForeColor = Color.Red;
                     ret = false;
                 }
 
@@ -217,21 +249,18 @@ namespace SyainKanriSystem
                     if (ViewsUtil.WordCountCheck(textBox_Email.Text, 255) != true)
                     {
                         label_Email_Error.Text = " ※メールアドレスは256文字以上入力できません";
-                        label_Email_Error.Visible = true;
-                        ret = false;
-                    }
-                    // メールアドレスの書式チェック（日本語の有無）
-                    if (ViewsUtil.MailJapaneseCheck(textBox_Email.Text) != true)
-                    {
-                        label_Email_Error.Text += " ※メールアドレスに日本語は入力できません";
-                        label_Email_Error.Visible = true;
+                        // label_Email_Error.Visible = true;
+                        textBox_Email.BackColor = Color.Khaki;
+                        label_Email_Error.ForeColor = Color.Red;
                         ret = false;
                     }
                     // メールアドレスの書式チェック（使用不可の記号の有無）半角全角スペースも本メソッドでチェックする。
                     if (ViewsUtil.MailSymbolCheck(textBox_Email.Text) != true)
                     {
                         label_Email_Error.Text += " ※メールアドレスには下記以外の記号の入力はできません「.」「@」「_」「-」";
-                        label_Email_Error.Visible = true;
+                        // label_Email_Error.Visible = true;
+                        textBox_Email.BackColor = Color.Khaki;
+                        label_Email_Error.ForeColor = Color.Red;
                         ret = false;
                     }
                     // メールアドレスに必須文字列が含まれているかチェック（「@」「.」の有無）
@@ -239,15 +268,19 @@ namespace SyainKanriSystem
                     if (str != null)
                     {
                         string content = string.Format(" ※メールアドレスに指定の文字（{0}）が入力されていません", str);
-                        label_Email_Error.Text += content;
-                        label_Email_Error.Visible = true;
+                        label_Email_Error.Text = content;
+                        // label_Email_Error.Visible = true;
+                        textBox_Email.BackColor = Color.Khaki;
+                        label_Email_Error.ForeColor = Color.Red;
                         ret = false;
                     }
                 }
                 else
                 {
                     label_Email_Error.Text = " ※「メールアドレス」は必須入力です";
-                    label_Email_Error.Visible = true;
+                    // label_Email_Error.Visible = true;
+                    textBox_Email.BackColor = Color.Khaki;
+                    label_Email_Error.ForeColor = Color.Red;
                     ret = false;
                 }
                 // 「電話番号」のテキストボックス1つ目が入力されているか確認する
@@ -257,26 +290,36 @@ namespace SyainKanriSystem
                     if (ViewsUtil.WordCountCheck(textBox_PhoneNumber1.Text, 4) != true)
                     {
                         label_PhoneNumber_Error.Text = " ※電話番号は5桁以上入力できません";
-                        label_PhoneNumber_Error.Visible = true;
+
+                        textBox_PhoneNumber1.BackColor = Color.Khaki;
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
                         ret = false;
                     }
                     // 電話番号の書式チェック（数字が入力されているか）
                     if (ViewsUtil.PhoneCheck(textBox_PhoneNumber1.Text) != true)
                     {
+                        label_PhoneNumber_Error.Text += " ※電話番号は数字を入力してください";
+
+                        textBox_PhoneNumber1.BackColor = Color.Khaki;
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
                         ret = false;
                     }
                     // 半角全角スペースチェック
                     if (ViewsUtil.SpaceCheck(textBox_PhoneNumber1.Text) != true)
                     {
                         label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
-                        label_PhoneNumber_Error.Visible = true;
+
+                        textBox_PhoneNumber1.BackColor = Color.Khaki;
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
                         ret = false;
                     }
                 }
                 else
                 {
-                    label_PhoneNumber_Error.Text = " ※「電話番号」は必須入力です";
-                    label_PhoneNumber_Error.Visible = true;
+                    label_PhoneNumber_Error.Text += " ※「電話番号」は必須入力です";
+
+                    textBox_PhoneNumber1.BackColor = Color.Khaki;
+                    label_PhoneNumber_Error.ForeColor = Color.Red;
                     ret = false;
                 }
                 // 「電話番号」のテキストボックス2つ目が入力されているか確認する
@@ -285,27 +328,53 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if (ViewsUtil.WordCountCheck(textBox_PhoneNumber2.Text, 4) != true)
                     {
-                        label_PhoneNumber_Error.Text = " ※電話番号は5桁以上入力できません";
-                        label_PhoneNumber_Error.Visible = true;
+                        // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                        if (label_PhoneNumber_Error.Text.Contains(" ※電話番号は5桁以上入力できません") == false)
+                        {
+                            label_PhoneNumber_Error.Text += " ※電話番号は5桁以上入力できません";
+
+                            label_PhoneNumber_Error.ForeColor = Color.Red;
+                        }
+                        textBox_PhoneNumber2.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // 電話番号の書式チェック（数字が入力されているか）
                     if (ViewsUtil.PhoneCheck(textBox_PhoneNumber2.Text) != true)
                     {
+                        // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                        if (label_PhoneNumber_Error.Text.Contains(" ※電話番号は数字を入力してください") == false)
+                        {
+                            label_PhoneNumber_Error.Text += " ※電話番号は数字を入力してください";
+
+                            label_PhoneNumber_Error.ForeColor = Color.Red;
+                        }
+                        textBox_PhoneNumber2.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // 半角全角スペースチェック
                     if (ViewsUtil.SpaceCheck(textBox_PhoneNumber2.Text) != true)
                     {
-                        label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
-                        label_PhoneNumber_Error.Visible = true;
+                        // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                        if (label_PhoneNumber_Error.Text.Contains(" ※半角または全角スペースが含まれています") == false)
+                        {
+                            label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
+
+                            label_PhoneNumber_Error.ForeColor = Color.Red;
+                        }
+                        textBox_PhoneNumber2.BackColor = Color.Khaki;
                         ret = false;
                     }
                 }
                 else
                 {
-                    label_PhoneNumber_Error.Text = " ※「電話番号」は必須入力です";
-                    label_PhoneNumber_Error.Visible = true;
+                    // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                    if (label_PhoneNumber_Error.Text.Contains(" ※「電話番号」は必須入力です") == false)
+                    {
+                        label_PhoneNumber_Error.Text += " ※「電話番号」は必須入力です";
+
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
+                    }
+                    textBox_PhoneNumber2.BackColor = Color.Khaki;
                     ret = false;
                 }
                 // 「電話番号」のテキストボックス3つ目が入力されているか確認する
@@ -314,29 +383,62 @@ namespace SyainKanriSystem
                     // 文字数チェック
                     if (ViewsUtil.WordCountCheck(textBox_PhoneNumber3.Text, 4) != true)
                     {
-                        label_PhoneNumber_Error.Text = " ※電話番号は5桁以上入力できません";
-                        label_PhoneNumber_Error.Visible = true;
+                        // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                        if (label_PhoneNumber_Error.Text.Contains(" ※電話番号は5桁以上入力できません") == false)
+                        {
+                            label_PhoneNumber_Error.Text += " ※電話番号は5桁以上入力できません";
+                            label_PhoneNumber_Error.ForeColor = Color.Red;
+                        }
+                        textBox_PhoneNumber3.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // 電話番号の書式チェック（数字が入力されているか）
                     if (ViewsUtil.PhoneCheck(textBox_PhoneNumber3.Text) != true)
                     {
+                        // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                        if (label_PhoneNumber_Error.Text.Contains(" ※電話番号は数字を入力してください") == false)
+                        {
+                            label_PhoneNumber_Error.Text += " ※電話番号は数字を入力してください";
+                            label_PhoneNumber_Error.ForeColor = Color.Red;
+                        }
+                        textBox_PhoneNumber3.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // 半角全角スペースチェック
                     if (ViewsUtil.SpaceCheck(textBox_PhoneNumber3.Text) != true)
                     {
-                        label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
-                        label_PhoneNumber_Error.Visible = true;
+                        // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                        if (label_PhoneNumber_Error.Text.Contains(" ※半角または全角スペースが含まれています") == false)
+                        {
+                            label_PhoneNumber_Error.Text += " ※半角または全角スペースが含まれています";
+                            label_PhoneNumber_Error.ForeColor = Color.Red;
+                        }
+
+                        textBox_PhoneNumber3.BackColor = Color.Khaki;
                         ret = false;
                     }
                 }
                 else
                 {
-                    label_PhoneNumber_Error.Text = " ※「電話番号」は必須入力です";
-                    label_PhoneNumber_Error.Visible = true;
-                    return false;
+                    // 既にエラーメッセージが出力されている場合のみ、エラー出力する
+                    if (label_PhoneNumber_Error.Text.Contains(" ※「電話番号」は必須入力です") == false)
+                    {
+                        label_PhoneNumber_Error.Text += " ※「電話番号」は必須入力です";
+                        label_PhoneNumber_Error.ForeColor = Color.Red;
+                    }
+
+                    textBox_PhoneNumber3.BackColor = Color.Khaki;
+                    ret = false;
                 }
+                // エラーがあった際、エラーテキストから "※必須 半角数字のみ" を削除する
+                if (label_PhoneNumber_Error.ForeColor == Color.Red)
+                {
+                    if (label_PhoneNumber_Error.Text.Contains("※必須 半角数字のみ"))
+                    {
+                        label_PhoneNumber_Error.Text = label_PhoneNumber_Error.Text.Replace("※必須 半角数字のみ", "");
+                    }
+                }
+
                 // 「雇用日」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(dateTimePicker_HireDate.Text) == true)
                 {
@@ -344,29 +446,37 @@ namespace SyainKanriSystem
                     if (ViewsUtil.WordCountCheck(dateTimePicker_HireDate.Text, 11) != true)
                     {
                         label_HireDate_Error.Text = " ※雇用日は11文字以上入力できません";
-                        label_HireDate_Error.Visible = true;
+                        // label_HireDate_Error.Visible = true;
+                        label_HireDate_Error.ForeColor = Color.Red;
+                        dateTimePicker_HireDate.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // 日付の書式かどうか確認する
                     if (ViewsUtil.CalendarCheck(dateTimePicker_HireDate.Text) != true)
                     {
                         label_HireDate_Error.Text += " ※日付を入力してください";
-                        label_HireDate_Error.Visible = true;
+                        // label_HireDate_Error.Visible = true;
+                        label_HireDate_Error.ForeColor = Color.Red;
+                        dateTimePicker_HireDate.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // 半角全角スペースチェック
                     if (ViewsUtil.SpaceCheck(dateTimePicker_HireDate.Text) != true)
                     {
                         label_HireDate_Error.Text += " ※半角または全角スペースが含まれています";
-                        label_HireDate_Error.Visible = true;
+                        // label_HireDate_Error.Visible = true;
+                        label_HireDate_Error.ForeColor = Color.Red;
+                        dateTimePicker_HireDate.BackColor = Color.Khaki;
                         ret = false;
                     }
                 }
                 else
                 {
                     label_HireDate_Error.Text = (" ※「雇用日」は必須入力です");
-                    label_HireDate_Error.Visible = true;
-                    return false;
+                    // label_HireDate_Error.Visible = true;
+                    label_HireDate_Error.ForeColor = Color.Red;
+                    dateTimePicker_HireDate.BackColor = Color.Khaki;
+                    ret = false;
                 }
                 // 「部門」が入力されているか確認する
                 if (ViewsUtil.InputEmptyCheck(comboBox_Department.Text) == true)
@@ -375,28 +485,36 @@ namespace SyainKanriSystem
                     if (ViewsUtil.WordCountCheck(comboBox_Department.Text, 5) != true)
                     {
                         label_Department_Error.Text = " ※部門は6文字以上入力できません";
-                        label_Department_Error.Visible = true;
+                        // label_Department_Error.Visible = true;
+                        label_Department_Error.ForeColor = Color.Red;
+                        comboBox_Department.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // コンボボックスに存在する部門名と一致しているか確認する。存在しない部門名の場合は0。
                     if (ViewsUtil.DepartmentCheck(comboBox_Department.Text, departmentList) == 0)
                     {
                         label_Department_Error.Text += " ※存在しない部門名を入力しています";
-                        label_Department_Error.Visible = true;
+                        // label_Department_Error.Visible = true;
+                        label_Department_Error.ForeColor = Color.Red;
+                        comboBox_Department.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // 半角全角スペースチェック
                     if (ViewsUtil.SpaceCheck(comboBox_Department.Text) != true)
                     {
                         label_Department_Error.Text += " ※半角または全角スペースが含まれています";
-                        label_Department_Error.Visible = true;
+                        // label_Department_Error.Visible = true;
+                        label_Department_Error.ForeColor = Color.Red;
+                        comboBox_Department.BackColor = Color.Khaki;
                         ret = false;
                     }
                 }
                 else
                 {
                     label_Department_Error.Text = " ※「部門」は必須入力です";
-                    label_Department_Error.Visible = true;
+                    // label_Department_Error.Visible = true;
+                    label_Department_Error.ForeColor = Color.Red;
+                    comboBox_Department.BackColor = Color.Khaki;
                     ret = false;
                 }
                 // 「役職」が入力されているか確認する
@@ -406,31 +524,38 @@ namespace SyainKanriSystem
                     if (ViewsUtil.WordCountCheck(comboBox_Position.Text, 5) != true)
                     {
                         label_Position_Error.Text = " ※役職は6文字以上入力できません";
-                        label_Position_Error.Visible = true;
+                        // label_Position_Error.Visible = true;
+                        label_Position_Error.ForeColor = Color.Red;
+                        comboBox_Position.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // コンボボックスに存在する役職名と一致しているか確認する。存在しない役職名の場合は0・
                     if (ViewsUtil.PositionCheck(comboBox_Position.Text, positionList) == 0)
                     {
                         label_Position_Error.Text += " ※存在しない役職名を入力しています";
-                        label_Position_Error.Visible = true;
+                        // label_Position_Error.Visible = true;
+                        label_Position_Error.ForeColor = Color.Red;
+                        comboBox_Position.BackColor = Color.Khaki;
                         ret = false;
                     }
                     // 半角全角スペースチェック
                     if (ViewsUtil.SpaceCheck(comboBox_Position.Text) != true)
                     {
                         label_Position_Error.Text += " ※半角または全角スペースが含まれています";
-                        label_Position_Error.Visible = true;
+                        // label_Position_Error.Visible = true;
+                        label_Position_Error.ForeColor = Color.Red;
+                        comboBox_Position.BackColor = Color.Khaki;
                         ret = false;
                     }
                 }
                 else
                 {
                     label_Position_Error.Text = " ※役職は必須入力です";
-                    label_Position_Error.Visible = true;
+                    // label_Position_Error.Visible = true;
+                    label_Position_Error.ForeColor = Color.Red;
+                    comboBox_Position.BackColor = Color.Khaki;
                     ret = false;
                 }
-
                 return ret;
             }
 
@@ -443,32 +568,43 @@ namespace SyainKanriSystem
         private void InitializeErrorTextBox()
         {
             //「姓」のエラーメッセージを初期化
-            label_Sei_Error.Visible = false;
-            label_Sei_Error.Text = "";
+            textBox_Sei.BackColor = Color.White;
+            label_Sei_Error.Text = "※必須 50文字まで";
+            label_Sei_Error.ForeColor = Color.Black;
             //「名」のエラーメッセージを初期化
-            label_Mei_Error.Visible = false;
-            label_Mei_Error.Text = "";
+            textBox_Mei.BackColor = Color.White;
+            label_Mei_Error.Text = "※必須 50文字まで";
+            label_Mei_Error.ForeColor = Color.Black;
             //「姓（かな）」のエラーメッセージを初期化
-            label_SeiKana_Error.Visible = false;
-            label_SeiKana_Error.Text = "";
+            textBox_SeiKana.BackColor = Color.White;
+            label_SeiKana_Error.Text = "※必須 カタカナのみ 50文字まで";
+            label_SeiKana_Error.ForeColor = Color.Black;
             //「名（かな）」のエラーメッセージを初期化
-            label_MeiKana_Error.Visible = false;
-            label_MeiKana_Error.Text = "";
+            textBox_MeiKana.BackColor = Color.White;
+            label_MeiKana_Error.Text = "※必須 カタカナのみ 50文字まで";
+            label_MeiKana_Error.ForeColor = Color.Black;
             //「メールアドレス」のエラーメッセージを初期化
-            label_Email_Error.Visible = false;
-            label_Email_Error.Text = "";
+            textBox_Email.BackColor = Color.White;
+            label_Email_Error.Text = "※必須 半角英数字一部記号のみ 255文字まで";
+            label_Email_Error.ForeColor = Color.Black;
             //「電話番号」のエラーメッセージを初期化
-            label_PhoneNumber_Error.Visible = false;
-            label_PhoneNumber_Error.Text = "";
+            textBox_PhoneNumber1.BackColor = Color.White;
+            textBox_PhoneNumber2.BackColor = Color.White;
+            textBox_PhoneNumber3.BackColor = Color.White;
+            label_PhoneNumber_Error.Text = "※必須 半角数字のみ";
+            label_PhoneNumber_Error.ForeColor = Color.Black;
             //「雇用日」のエラーメッセージを初期化
-            label_HireDate_Error.Visible = false;
-            label_HireDate_Error.Text = "";
+            dateTimePicker_HireDate.BackColor = Color.White;
+            label_HireDate_Error.Text = "※必須 半角数字のみ";
+            label_HireDate_Error.ForeColor = Color.Black;
             //「部門」のエラーメッセージを初期化
-            label_Department_Error.Visible = false;
-            label_Department_Error.Text = "";
+            comboBox_Department.BackColor = Color.White;
+            label_Department_Error.Text = "必須";
+            label_Department_Error.ForeColor = Color.Black;
             //「役職」のエラーメッセージを初期化
-            label_Position_Error.Visible = false;
-            label_Position_Error.Text = "";
+            comboBox_Position.BackColor = Color.White;
+            label_Position_Error.Text = "必須";
+            label_Position_Error.ForeColor = Color.Black;
         }
 
         // 入力値をクリアする

@@ -110,7 +110,7 @@
             this.label_SeiKana.Location = new System.Drawing.Point(43, 213);
             this.label_SeiKana.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_SeiKana.Name = "label_SeiKana";
-            this.label_SeiKana.Size = new System.Drawing.Size(132, 33);
+            this.label_SeiKana.Size = new System.Drawing.Size(88, 22);
             this.label_SeiKana.TabIndex = 30;
             this.label_SeiKana.Text = "姓（カナ）";
             // 
@@ -151,7 +151,7 @@
             // 
             this.label_Department.AutoSize = true;
             this.label_Department.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_Department.Location = new System.Drawing.Point(43, 439);
+            this.label_Department.Location = new System.Drawing.Point(43, 444);
             this.label_Department.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Department.Name = "label_Department";
             this.label_Department.Size = new System.Drawing.Size(54, 22);
@@ -162,7 +162,7 @@
             // 
             this.label_Position.AutoSize = true;
             this.label_Position.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_Position.Location = new System.Drawing.Point(43, 497);
+            this.label_Position.Location = new System.Drawing.Point(43, 505);
             this.label_Position.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Position.Name = "label_Position";
             this.label_Position.Size = new System.Drawing.Size(54, 22);
@@ -173,7 +173,7 @@
             // 
             this.label_Status.AutoSize = true;
             this.label_Status.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_Status.Location = new System.Drawing.Point(43, 554);
+            this.label_Status.Location = new System.Drawing.Point(43, 565);
             this.label_Status.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Status.Name = "label_Status";
             this.label_Status.Size = new System.Drawing.Size(94, 22);
@@ -194,16 +194,16 @@
             this.textBox_Sei.Location = new System.Drawing.Point(183, 160);
             this.textBox_Sei.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textBox_Sei.Name = "textBox_Sei";
-            this.textBox_Sei.Size = new System.Drawing.Size(196, 25);
+            this.textBox_Sei.Size = new System.Drawing.Size(294, 38);
             this.textBox_Sei.TabIndex = 38;
             // 
             // textBox_Mei
             // 
             this.textBox_Mei.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_Mei.Location = new System.Drawing.Point(490, 160);
+            this.textBox_Mei.Location = new System.Drawing.Point(613, 160);
             this.textBox_Mei.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textBox_Mei.Name = "textBox_Mei";
-            this.textBox_Mei.Size = new System.Drawing.Size(196, 25);
+            this.textBox_Mei.Size = new System.Drawing.Size(294, 25);
             this.textBox_Mei.TabIndex = 39;
             // 
             // textBox_SeiKana
@@ -211,15 +211,15 @@
             this.textBox_SeiKana.Location = new System.Drawing.Point(183, 210);
             this.textBox_SeiKana.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textBox_SeiKana.Name = "textBox_SeiKana";
-            this.textBox_SeiKana.Size = new System.Drawing.Size(196, 25);
+            this.textBox_SeiKana.Size = new System.Drawing.Size(294, 25);
             this.textBox_SeiKana.TabIndex = 40;
             // 
             // textBox_MeiKana
             // 
-            this.textBox_MeiKana.Location = new System.Drawing.Point(490, 210);
+            this.textBox_MeiKana.Location = new System.Drawing.Point(613, 210);
             this.textBox_MeiKana.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textBox_MeiKana.Name = "textBox_MeiKana";
-            this.textBox_MeiKana.Size = new System.Drawing.Size(196, 25);
+            this.textBox_MeiKana.Size = new System.Drawing.Size(294, 25);
             this.textBox_MeiKana.TabIndex = 41;
             // 
             // textBox_Email
@@ -276,7 +276,7 @@
             // 
             // button_UpdateEmployee
             // 
-            this.button_UpdateEmployee.Location = new System.Drawing.Point(118, 589);
+            this.button_UpdateEmployee.Location = new System.Drawing.Point(118, 617);
             this.button_UpdateEmployee.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.button_UpdateEmployee.Name = "button_UpdateEmployee";
             this.button_UpdateEmployee.Size = new System.Drawing.Size(197, 72);
@@ -287,7 +287,7 @@
             // 
             // button_UpdateCancel
             // 
-            this.button_UpdateCancel.Location = new System.Drawing.Point(458, 589);
+            this.button_UpdateCancel.Location = new System.Drawing.Point(458, 617);
             this.button_UpdateCancel.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.button_UpdateCancel.Name = "button_UpdateCancel";
             this.button_UpdateCancel.Size = new System.Drawing.Size(197, 72);
@@ -303,7 +303,7 @@
             this.comboBox_Status.Items.AddRange(new object[] {
             "在籍",
             "退職済"});
-            this.comboBox_Status.Location = new System.Drawing.Point(181, 554);
+            this.comboBox_Status.Location = new System.Drawing.Point(181, 565);
             this.comboBox_Status.Name = "comboBox_Status";
             this.comboBox_Status.Size = new System.Drawing.Size(162, 26);
             this.comboBox_Status.TabIndex = 56;
@@ -312,10 +312,10 @@
             // 
             this.label_MeiKana.AutoSize = true;
             this.label_MeiKana.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_MeiKana.Location = new System.Drawing.Point(391, 211);
+            this.label_MeiKana.Location = new System.Drawing.Point(514, 211);
             this.label_MeiKana.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_MeiKana.Name = "label_MeiKana";
-            this.label_MeiKana.Size = new System.Drawing.Size(132, 33);
+            this.label_MeiKana.Size = new System.Drawing.Size(88, 22);
             this.label_MeiKana.TabIndex = 58;
             this.label_MeiKana.Text = "名（カナ）";
             // 
@@ -323,7 +323,7 @@
             // 
             this.label_Mei.AutoSize = true;
             this.label_Mei.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_Mei.Location = new System.Drawing.Point(391, 159);
+            this.label_Mei.Location = new System.Drawing.Point(514, 159);
             this.label_Mei.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Mei.Name = "label_Mei";
             this.label_Mei.Size = new System.Drawing.Size(32, 22);
@@ -334,7 +334,7 @@
             // 
             this.comboBox_Department.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Department.FormattingEnabled = true;
-            this.comboBox_Department.Location = new System.Drawing.Point(182, 440);
+            this.comboBox_Department.Location = new System.Drawing.Point(182, 445);
             this.comboBox_Department.Name = "comboBox_Department";
             this.comboBox_Department.Size = new System.Drawing.Size(162, 26);
             this.comboBox_Department.TabIndex = 59;
@@ -343,7 +343,7 @@
             // 
             this.comboBox_Position.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Position.FormattingEnabled = true;
-            this.comboBox_Position.Location = new System.Drawing.Point(181, 497);
+            this.comboBox_Position.Location = new System.Drawing.Point(181, 505);
             this.comboBox_Position.Name = "comboBox_Position";
             this.comboBox_Position.Size = new System.Drawing.Size(163, 26);
             this.comboBox_Position.TabIndex = 60;
@@ -359,151 +359,139 @@
             // 
             this.label_Sei_Error.AutoSize = true;
             this.label_Sei_Error.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_Sei_Error.ForeColor = System.Drawing.Color.Red;
+            this.label_Sei_Error.ForeColor = System.Drawing.Color.Black;
             this.label_Sei_Error.Location = new System.Drawing.Point(172, 134);
             this.label_Sei_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Sei_Error.Name = "label_Sei_Error";
-            this.label_Sei_Error.Size = new System.Drawing.Size(104, 22);
+            this.label_Sei_Error.Size = new System.Drawing.Size(276, 33);
             this.label_Sei_Error.TabIndex = 69;
-            this.label_Sei_Error.Text = "※姓エラー";
-            this.label_Sei_Error.Visible = false;
-            this.label_Sei_Error.Click += new System.EventHandler(this.label1_Click);
+            this.label_Sei_Error.Text = "※必須 50文字まで";
             // 
             // label_Status_Error
             // 
             this.label_Status_Error.AutoSize = true;
             this.label_Status_Error.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_Status_Error.ForeColor = System.Drawing.Color.Red;
-            this.label_Status_Error.Location = new System.Drawing.Point(172, 527);
+            this.label_Status_Error.ForeColor = System.Drawing.Color.Black;
+            this.label_Status_Error.Location = new System.Drawing.Point(172, 537);
             this.label_Status_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Status_Error.Name = "label_Status_Error";
-            this.label_Status_Error.Size = new System.Drawing.Size(166, 22);
+            this.label_Status_Error.Size = new System.Drawing.Size(76, 22);
             this.label_Status_Error.TabIndex = 70;
-            this.label_Status_Error.Text = "※ステータスエラー";
-            this.label_Status_Error.Visible = false;
+            this.label_Status_Error.Text = "※必須";
             // 
             // label_Position_Error
             // 
             this.label_Position_Error.AutoSize = true;
             this.label_Position_Error.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_Position_Error.ForeColor = System.Drawing.Color.Red;
-            this.label_Position_Error.Location = new System.Drawing.Point(172, 468);
+            this.label_Position_Error.ForeColor = System.Drawing.Color.Black;
+            this.label_Position_Error.Location = new System.Drawing.Point(172, 477);
             this.label_Position_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Position_Error.Name = "label_Position_Error";
-            this.label_Position_Error.Size = new System.Drawing.Size(126, 22);
+            this.label_Position_Error.Size = new System.Drawing.Size(76, 22);
             this.label_Position_Error.TabIndex = 71;
-            this.label_Position_Error.Text = "※役職エラー";
-            this.label_Position_Error.Visible = false;
+            this.label_Position_Error.Text = "※必須";
             // 
             // label_SeiKana_Error
             // 
             this.label_SeiKana_Error.AutoSize = true;
             this.label_SeiKana_Error.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_SeiKana_Error.ForeColor = System.Drawing.Color.Red;
+            this.label_SeiKana_Error.ForeColor = System.Drawing.Color.Black;
             this.label_SeiKana_Error.Location = new System.Drawing.Point(172, 187);
             this.label_SeiKana_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_SeiKana_Error.Name = "label_SeiKana_Error";
-            this.label_SeiKana_Error.Size = new System.Drawing.Size(240, 33);
+            this.label_SeiKana_Error.Size = new System.Drawing.Size(441, 33);
             this.label_SeiKana_Error.TabIndex = 72;
-            this.label_SeiKana_Error.Text = "※姓（カナ）エラー";
-            this.label_SeiKana_Error.Visible = false;
+            this.label_SeiKana_Error.Text = "※必須 カタカナのみ 50文字まで";
             // 
             // label_HireDate_Error
             // 
             this.label_HireDate_Error.AutoSize = true;
             this.label_HireDate_Error.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_HireDate_Error.ForeColor = System.Drawing.Color.Red;
+            this.label_HireDate_Error.ForeColor = System.Drawing.Color.Black;
             this.label_HireDate_Error.Location = new System.Drawing.Point(172, 354);
             this.label_HireDate_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_HireDate_Error.Name = "label_HireDate_Error";
-            this.label_HireDate_Error.Size = new System.Drawing.Size(148, 22);
+            this.label_HireDate_Error.Size = new System.Drawing.Size(314, 33);
             this.label_HireDate_Error.TabIndex = 73;
-            this.label_HireDate_Error.Text = "※雇用日エラー";
-            this.label_HireDate_Error.Visible = false;
+            this.label_HireDate_Error.Text = "※必須 半角数字のみ";
             // 
             // label_Department_Error
             // 
             this.label_Department_Error.AutoSize = true;
             this.label_Department_Error.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_Department_Error.ForeColor = System.Drawing.Color.Red;
-            this.label_Department_Error.Location = new System.Drawing.Point(172, 415);
+            this.label_Department_Error.ForeColor = System.Drawing.Color.Black;
+            this.label_Department_Error.Location = new System.Drawing.Point(172, 416);
             this.label_Department_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Department_Error.Name = "label_Department_Error";
-            this.label_Department_Error.Size = new System.Drawing.Size(126, 22);
+            this.label_Department_Error.Size = new System.Drawing.Size(76, 22);
             this.label_Department_Error.TabIndex = 74;
-            this.label_Department_Error.Text = "※部門エラー";
-            this.label_Department_Error.Visible = false;
+            this.label_Department_Error.Text = "※必須";
             // 
             // label_Email_Error
             // 
             this.label_Email_Error.AutoSize = true;
             this.label_Email_Error.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_Email_Error.ForeColor = System.Drawing.Color.Red;
+            this.label_Email_Error.ForeColor = System.Drawing.Color.Black;
             this.label_Email_Error.Location = new System.Drawing.Point(172, 239);
             this.label_Email_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Email_Error.Name = "label_Email_Error";
-            this.label_Email_Error.Size = new System.Drawing.Size(200, 22);
+            this.label_Email_Error.Size = new System.Drawing.Size(657, 33);
             this.label_Email_Error.TabIndex = 75;
-            this.label_Email_Error.Text = "※メールアドレスエラー";
-            this.label_Email_Error.Visible = false;
+            this.label_Email_Error.Text = "※必須 半角英数字一部記号のみ 255文字まで";
             // 
             // label_PhoneNumber_Error
             // 
             this.label_PhoneNumber_Error.AutoSize = true;
             this.label_PhoneNumber_Error.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_PhoneNumber_Error.ForeColor = System.Drawing.Color.Red;
+            this.label_PhoneNumber_Error.ForeColor = System.Drawing.Color.Black;
             this.label_PhoneNumber_Error.Location = new System.Drawing.Point(172, 297);
             this.label_PhoneNumber_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_PhoneNumber_Error.Name = "label_PhoneNumber_Error";
-            this.label_PhoneNumber_Error.Size = new System.Drawing.Size(170, 22);
+            this.label_PhoneNumber_Error.Size = new System.Drawing.Size(314, 33);
             this.label_PhoneNumber_Error.TabIndex = 76;
-            this.label_PhoneNumber_Error.Text = "※電話番号エラー";
-            this.label_PhoneNumber_Error.Visible = false;
+            this.label_PhoneNumber_Error.Text = "※必須 半角数字のみ";
             // 
             // label_EmployeeID_Error
             // 
             this.label_EmployeeID_Error.AutoSize = true;
             this.label_EmployeeID_Error.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_EmployeeID_Error.ForeColor = System.Drawing.Color.Red;
+            this.label_EmployeeID_Error.ForeColor = System.Drawing.Color.Black;
             this.label_EmployeeID_Error.Location = new System.Drawing.Point(172, 74);
             this.label_EmployeeID_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_EmployeeID_Error.Name = "label_EmployeeID_Error";
-            this.label_EmployeeID_Error.Size = new System.Drawing.Size(170, 22);
+            this.label_EmployeeID_Error.Size = new System.Drawing.Size(180, 33);
             this.label_EmployeeID_Error.TabIndex = 77;
-            this.label_EmployeeID_Error.Text = "※社員番号エラー";
-            this.label_EmployeeID_Error.Visible = false;
+            this.label_EmployeeID_Error.Text = "※編集不可";
             // 
             // label_Mei_Error
             // 
             this.label_Mei_Error.AutoSize = true;
             this.label_Mei_Error.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_Mei_Error.ForeColor = System.Drawing.Color.Red;
-            this.label_Mei_Error.Location = new System.Drawing.Point(486, 134);
+            this.label_Mei_Error.ForeColor = System.Drawing.Color.Black;
+            this.label_Mei_Error.Location = new System.Drawing.Point(609, 134);
             this.label_Mei_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_Mei_Error.Name = "label_Mei_Error";
-            this.label_Mei_Error.Size = new System.Drawing.Size(104, 22);
+            this.label_Mei_Error.Size = new System.Drawing.Size(276, 33);
             this.label_Mei_Error.TabIndex = 78;
-            this.label_Mei_Error.Text = "※名エラー";
-            this.label_Mei_Error.Visible = false;
+            this.label_Mei_Error.Text = "※必須 50文字まで";
             // 
             // label_MeiKana_Error
             // 
             this.label_MeiKana_Error.AutoSize = true;
             this.label_MeiKana_Error.Font = new System.Drawing.Font("MS UI Gothic", 11F);
-            this.label_MeiKana_Error.ForeColor = System.Drawing.Color.Red;
-            this.label_MeiKana_Error.Location = new System.Drawing.Point(486, 187);
+            this.label_MeiKana_Error.ForeColor = System.Drawing.Color.Black;
+            this.label_MeiKana_Error.Location = new System.Drawing.Point(609, 187);
             this.label_MeiKana_Error.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_MeiKana_Error.Name = "label_MeiKana_Error";
-            this.label_MeiKana_Error.Size = new System.Drawing.Size(240, 33);
+            this.label_MeiKana_Error.Size = new System.Drawing.Size(441, 33);
             this.label_MeiKana_Error.TabIndex = 79;
-            this.label_MeiKana_Error.Text = "※名（カナ）エラー";
-            this.label_MeiKana_Error.Visible = false;
+            this.label_MeiKana_Error.Text = "※必須 カタカナのみ 50文字まで";
             // 
             // EmployeeEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1333, 675);
+            this.ClientSize = new System.Drawing.Size(1333, 711);
             this.Controls.Add(this.label_MeiKana_Error);
             this.Controls.Add(this.label_Mei_Error);
             this.Controls.Add(this.label_EmployeeID_Error);
